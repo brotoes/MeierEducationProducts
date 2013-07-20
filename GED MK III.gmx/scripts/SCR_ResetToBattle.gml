@@ -1,0 +1,10 @@
+global.MyHealth = global.DefaultMyHealth;
+global.EnemyHealth = global.DefaultEnemyHealth;
+global.TurnNumber +=1;
+global.Answer = 1;
+global.CorrectAnswer = 2;
+global.CardsXCoordinate = 0;
+global.CardsInPlay = 0;
+global.NumberOfActions = 0;
+global.CardsInDeck = 0;
+global.Combo = "";
