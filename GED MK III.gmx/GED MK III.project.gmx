@@ -42,11 +42,15 @@
       <sprite>sprites\SPR_Leather_Armor_Button</sprite>
       <sprite>sprites\SPR_Regular_Armor_Button</sprite>
     </sprites>
+    <sprites name="Example Resources">
+      <sprite>sprites\SPR_testCardFace</sprite>
+      <sprite>sprites\SPR_testCardImage</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\SCR_Backup1.gml</script>
+    <script>scripts\nameblanked.gml</script>
     <script>scripts\SCR_CheckConditions.gml</script>
     <script>scripts\SCR_CheckTurnOrder.gml</script>
     <script>scripts\SCR_ResetToBattle.gml</script>
@@ -120,12 +124,14 @@
       <object>objects\OBJ_RegularArmor</object>
       <object>objects\OBJ_InventoryController</object>
     </objects>
+    <object>objects\OBJ_modularCardExample</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\Example_Room</room>
     <room>rooms\Main_Room</room>
     <room>rooms\Armor_Store_Room</room>
     <room>rooms\Level_Up_Room</room>
-    <room>rooms\TestRoom</room>
+    <room>rooms\Test_Room</room>
     <room>rooms\Store_Room</room>
     <room>rooms\Inventory_Room</room>
   </rooms>
