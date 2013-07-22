@@ -125,6 +125,7 @@
       <object>objects\OBJ_InventoryController</object>
     </objects>
     <object>objects\OBJ_modularCardExample</object>
+    <object>objects\OBJ_modularCardExampleChild</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\Example_Room</room>

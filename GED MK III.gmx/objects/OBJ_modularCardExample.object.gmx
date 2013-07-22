@@ -25,12 +25,26 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Please make card face of size: TODO
+            <string>/*The following code stores what sprites you want to be used in the display
+ *of the card.
+ *face is "body" of the card
+ *image is whatever image is drawn onto the card in the top portion
+ *description is written beneath the image
+ *
+ *it would not be difficult to add things to the card modularly.
+ *for example, if you wanted to add a card difficulty class to the top, or
+ *something
+ *
+ *finally, I did not spend much time making the card neat, it simply is a
+ *demonstration of the idea/proof of concept
+ */
+//Please make card face of size: TODO
 //Please make image of size: TODO
 //please make description less than length: TODO
 self.face = SPR_testCardFace
 self.image = SPR_testCardImage
 self.description = "Smile: Smile creepily at your foe!"
+self.type = "Creeps"
 </string>
           </argument>
         </arguments>
@@ -53,7 +67,10 @@ self.description = "Smile: Smile creepily at your foe!"
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = mouse_x
+            <string>/*This is just here so you can see the composite moving around, and
+ * how it works dynamically.
+ */
+x = mouse_x
 y = mouse_y
 </string>
           </argument>
@@ -77,9 +94,15 @@ y = mouse_y
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(self.face, -1, self.x, self.y)
+            <string>/*Here you can see that the modular card is merely done by taking the object's
+ *variables defined in the Create event and drawing them on top of one another.
+ *Doing it this way, to create another card, you merely have to create a child
+ *object with a different Create event!
+ */
+draw_sprite(self.face, -1, self.x, self.y)
 draw_sprite(self.image, -1, self.x + 13, self.y + 3)
 draw_text_ext(self.x + 10, self.y + 64, self.description, 10, 88)
+draw_text_ext(self.x + 40, self.y + 5, self.type, 10, 50)
 </string>
           </argument>
         </arguments>
