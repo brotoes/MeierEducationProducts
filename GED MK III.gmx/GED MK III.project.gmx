@@ -43,7 +43,9 @@
       <sprite>sprites\SPR_Regular_Armor_Button</sprite>
     </sprites>
     <sprites name="Example Resources">
+      <sprite>sprites\SPR_cardFace</sprite>
       <sprite>sprites\SPR_testCardFace</sprite>
+      <sprite>sprites\SPR_knife</sprite>
       <sprite>sprites\SPR_testCardImage</sprite>
     </sprites>
   </sprites>
@@ -125,7 +127,6 @@
       <object>objects\OBJ_InventoryController</object>
     </objects>
     <object>objects\OBJ_modularCardExample</object>
-    <object>objects\OBJ_modularCardExampleChild</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\Example_Room</room>

@@ -33,7 +33,7 @@
 //Please make image of size: TODO
 //please make description less than length: TODO
 self.image = SPR_testCardImage
-self.face = SPR_testCardFace
+self.face = SPR_cardFace
 self.description = "Smile: description that is different!"
 self.type = "Smiles"
 </string>
