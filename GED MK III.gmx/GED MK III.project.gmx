@@ -7,6 +7,10 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\SPR_CardBackgroundLayout</sprite>
+    <sprites name="overworld">
+      <sprite>sprites\cloud</sprite>
+      <sprite>sprites\SPR_level_indicator</sprite>
+    </sprites>
     <sprite>sprites\SPR_Deck</sprite>
     <sprites name="Cards">
       <sprite>sprites\SPR_DefenseCard</sprite>
@@ -49,10 +53,11 @@
       <sprite>sprites\SPR_testCardImage</sprite>
     </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\overworld</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\nameblanked.gml</script>
     <script>scripts\SCR_CheckConditions.gml</script>
     <script>scripts\SCR_CheckTurnOrder.gml</script>
     <script>scripts\SCR_ResetToBattle.gml</script>
@@ -67,6 +72,14 @@
     <script>scripts\SCR_ComboCheck.gml</script>
   </scripts>
   <objects name="objects">
+    <objects name="overworld">
+      <object>objects\OBJ_overworld_controller</object>
+      <object>objects\OBJ_level_indicator</object>
+      <object>objects\OBJ_cloud</object>
+      <objects name="levels">
+        <object>objects\OBJ_intro_level</object>
+      </objects>
+    </objects>
     <objects name="Message Objects">
       <object>objects\OBJ_LevelUpMessage1</object>
       <object>objects\OBJ_NotEnoughGoldMessage</object>
@@ -129,12 +142,12 @@
     <object>objects\OBJ_modularCardExample</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\Example_Room</room>
+    <room>rooms\overworld_room</room>
     <room>rooms\Main_Room</room>
     <room>rooms\Armor_Store_Room</room>
     <room>rooms\Level_Up_Room</room>
-    <room>rooms\Test_Room</room>
     <room>rooms\Store_Room</room>
+    <room>rooms\Example_Room</room>
     <room>rooms\Inventory_Room</room>
   </rooms>
   <help>
