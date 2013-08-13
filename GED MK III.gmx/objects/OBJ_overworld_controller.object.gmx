@@ -25,11 +25,23 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>level_listid = ds_list_create()
-levels_passed = 0
+            <string>//count the number of iterations. For use with animation
+iter_count = 0
+
+//these colors to be used for path drawing
+//they've been put here for easy manipulation
+passed_path_color = make_color_rgb(255, 0, 0)
+new_path_color = make_color_rgb(0, 0, 0)
+path_bg_color = make_color_rgb(255, 255, 0)
+
+//these variables store the levels in the overworld and how many of them
+//the player has passed
+level_listid = ds_list_create()
+levels_passed = 2
 
 //populate list with level indicators
-//TODO: atm, I'm not sure how I should go about sorting it. perhaps using depth?
+//TODO: atm, I'm not sure how I should go about sorting it.
+//Perhaps using depth?
 //  Depending on design of the overworld, x position may also work.
 for (i = 0; i &lt; instance_number(OBJ_level_indicator); i ++) {
     ds_list_add(level_listid,instance_find(OBJ_level_indicator, i))
@@ -56,11 +68,41 @@ for (i = 0; i &lt; instance_number(OBJ_level_indicator); i ++) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>level_count = ds_list_size(level_listid)
+            <string>//step the iteration count
+iter_count ++
 
+//get the number of levels on the overworld
+level_count = ds_list_size(level_listid)
+
+//draw lines between all of the overworld's level indicators
 for(i = 0; i &lt; level_count - 1; i ++) {
-    draw_line_width(ds_list_find_value(level_listid, i).x, ds_list_find_value(level_listid, i).y,
-               ds_list_find_value(level_listid, i + 1).x, ds_list_find_value(level_listid, i + 1).y, 10)
+    //draw the outline of the line between level indicators
+    draw_set_color(path_bg_color)
+    draw_line_width(ds_list_find_value(level_listid, i).x, 
+                    ds_list_find_value(level_listid, i).y,
+                    ds_list_find_value(level_listid, i + 1).x, 
+                    ds_list_find_value(level_listid, i + 1).y, 14)
+
+    //check what color to draw the line.
+    //different color if the level has been passed
+    if (i &lt; levels_passed) {
+        draw_set_color(passed_path_color)
+    } else {
+        draw_set_color(new_path_color)
+    }
+    
+    //draw the line between two level indicators
+    draw_line_width(ds_list_find_value(level_listid, i).x, 
+                    ds_list_find_value(level_listid, i).y,
+                    ds_list_find_value(level_listid, i + 1).x, 
+                    ds_list_find_value(level_listid, i + 1).y, 10)
+
+    //if there is a new level available, indicate it.
+    if (i == levels_passed) {
+        draw_sprite(SPR_glow, iter_count % sprite_get_number(SPR_glow), 
+                    ds_list_find_value(level_listid, i).x,
+                    ds_list_find_value(level_listid, i).y)
+    }
 }
 </string>
           </argument>

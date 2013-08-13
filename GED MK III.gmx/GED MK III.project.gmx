@@ -10,6 +10,7 @@
     <sprites name="overworld">
       <sprite>sprites\cloud</sprite>
       <sprite>sprites\SPR_level_indicator</sprite>
+      <sprite>sprites\SPR_glow</sprite>
     </sprites>
     <sprite>sprites\SPR_Deck</sprite>
     <sprites name="Cards">
@@ -70,6 +71,7 @@
     <script>scripts\SCR_DrawQuestion.gml</script>
     <script>scripts\SCR_QuestionGenerator.gml</script>
     <script>scripts\SCR_ComboCheck.gml</script>
+    <script>scripts\SCR_GenerateBattle.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="overworld">

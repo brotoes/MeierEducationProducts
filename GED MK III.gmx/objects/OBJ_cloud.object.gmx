@@ -47,7 +47,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>self.x = 0
+            <string>if (self.x &gt; 0) {
+    self.x = -(self.sprite_width + random(100))
+}
 </string>
           </argument>
         </arguments>
