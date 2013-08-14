@@ -6,46 +6,56 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\SPR_CardBackgroundLayout</sprite>
+    <sprites name="enemies">
+      <sprite>sprites\SPR_goomba</sprite>
+      <sprite>sprites\SPR_experiment</sprite>
+    </sprites>
+    <sprites name="interface">
+      <sprite>sprites\SPR_TextBox</sprite>
+      <sprites name="bars">
+        <sprite>sprites\SPR_meter</sprite>
+      </sprites>
+      <sprite>sprites\SPR_Coin</sprite>
+      <sprites name="Buttons">
+        <sprites name="Armor Types">
+          <sprite>sprites\SPR_Ultra_Light_Armor_Button</sprite>
+          <sprite>sprites\SPR_Knitted_Armor_Button</sprite>
+          <sprite>sprites\SPR_Cloth_Armor_Button</sprite>
+          <sprite>sprites\SPR_Leather_Armor_Button</sprite>
+          <sprite>sprites\SPR_Regular_Armor_Button</sprite>
+        </sprites>
+        <sprite>sprites\SPR_Inventory_Button</sprite>
+        <sprite>sprites\SPR_ShuffleDeck</sprite>
+        <sprite>sprites\SPR_Armor_Selection_Store_Button</sprite>
+        <sprite>sprites\SPR_LevelUp</sprite>
+        <sprite>sprites\SPR_ExitButton</sprite>
+        <sprite>sprites\SPR_Store_Button</sprite>
+        <sprite>sprites\SPR_BackToGame</sprite>
+        <sprite>sprites\SPR_Light_Armor_Button</sprite>
+      </sprites>
+    </sprites>
     <sprites name="overworld">
       <sprite>sprites\cloud</sprite>
       <sprite>sprites\SPR_level_indicator</sprite>
       <sprite>sprites\SPR_glow</sprite>
+      <sprite>sprites\SPR_conflict</sprite>
     </sprites>
-    <sprite>sprites\SPR_Deck</sprite>
     <sprites name="Cards">
       <sprite>sprites\SPR_DefenseCard</sprite>
+      <sprite>sprites\SPR_CardBackgroundLayout</sprite>
       <sprite>sprites\SPR_AttackCard</sprite>
       <sprite>sprites\SPR_AnotherTurnCard</sprite>
       <sprite>sprites\SPR_DoubleAttack</sprite>
       <sprite>sprites\SPR_StabCard</sprite>
       <sprite>sprites\SPR_VerticalCard</sprite>
       <sprite>sprites\SPR_HorizontalCard</sprite>
+      <sprite>sprites\SPR_Deck</sprite>
     </sprites>
-    <sprites name="Buttons">
-      <sprite>sprites\SPR_Inventory_Button</sprite>
-      <sprite>sprites\SPR_ShuffleDeck</sprite>
-      <sprite>sprites\SPR_Armor_Selection_Store_Button</sprite>
-      <sprite>sprites\SPR_LevelUp</sprite>
-      <sprite>sprites\SPR_ExitButton</sprite>
-      <sprite>sprites\SPR_Store_Button</sprite>
-      <sprite>sprites\SPR_BackToGame</sprite>
-    </sprites>
-    <sprite>sprites\SPR_TextBox</sprite>
     <sprites name="Level up Icons">
       <sprite>sprites\SPR_Menu_QuickAttackCard</sprite>
-      <sprite>sprites\SCR_Menu_PowerAttack</sprite>
       <sprite>sprites\SPR_Menu_QuickAttack2Card</sprite>
       <sprite>sprites\SPR_Menu_Stab1Card</sprite>
-    </sprites>
-    <sprite>sprites\SPR_Coin</sprite>
-    <sprites name="Armor Types">
-      <sprite>sprites\SPR_Light_Armor_Button</sprite>
-      <sprite>sprites\SPR_Ultra_Light_Armor_Button</sprite>
-      <sprite>sprites\SPR_Knitted_Armor_Button</sprite>
-      <sprite>sprites\SPR_Cloth_Armor_Button</sprite>
-      <sprite>sprites\SPR_Leather_Armor_Button</sprite>
-      <sprite>sprites\SPR_Regular_Armor_Button</sprite>
+      <sprite>sprites\SCR_Menu_PowerAttack</sprite>
     </sprites>
     <sprites name="Example Resources">
       <sprite>sprites\SPR_cardFace</sprite>
@@ -53,9 +63,16 @@
       <sprite>sprites\SPR_knife</sprite>
       <sprite>sprites\SPR_testCardImage</sprite>
     </sprites>
+    <sprites name="invisible sprites">
+      <sprite>sprites\SPR_parent</sprite>
+      <sprite>sprites\SPR_counter</sprite>
+      <sprite>sprites\SPR_controller</sprite>
+      <sprite>sprites\SPR_invis_meter</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
-    <background>background\overworld</background>
+    <background>background\BG_overworld</background>
+    <background>background\BG_battlescape</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -71,86 +88,105 @@
     <script>scripts\SCR_DrawQuestion.gml</script>
     <script>scripts\SCR_QuestionGenerator.gml</script>
     <script>scripts\SCR_ComboCheck.gml</script>
-    <script>scripts\SCR_GenerateBattle.gml</script>
   </scripts>
   <objects name="objects">
+    <objects name="worlds">
+      <object>objects\OBJ_conflict_indicator</object>
+    </objects>
     <objects name="overworld">
       <object>objects\OBJ_overworld_controller</object>
-      <object>objects\OBJ_level_indicator</object>
+      <object>objects\OBJ_stage_indicator</object>
       <object>objects\OBJ_cloud</object>
-      <objects name="levels">
-        <object>objects\OBJ_intro_level</object>
+      <object>objects\OBJ_persistent_variables</object>
+    </objects>
+    <object>objects\OBJ_modular_card_example</object>
+    <objects name="kyle objects">
+      <objects name="Inventory">
+        <object>objects\OBJ_ClothArmor</object>
+        <object>objects\OBJ_LeatherArmor</object>
+        <object>objects\OBJ_KnittedArmor</object>
+        <object>objects\OBJ_LightArmor</object>
+        <object>objects\OBJ_UltraLightArmor</object>
+        <object>objects\OBJ_RegularArmor</object>
+        <object>objects\OBJ_InventoryController</object>
+      </objects>
+      <objects name="Buttons">
+        <object>objects\OBJ_Armor_Selection_Store_Button</object>
+        <object>objects\OBJ_Inventory_Button</object>
+        <object>objects\OBJ_Store_Button</object>
+        <object>objects\OBJ_BackToGame</object>
+        <object>objects\OBJ_ExitButton</object>
+      </objects>
+      <objects name="Store Icons">
+        <object>objects\OBJ_Pets_Button</object>
+        <objects name="Armour Selection">
+          <object>objects\OBJ_Regular_Armor_Button</object>
+          <object>objects\OBJ_Light_Armor_Button</object>
+          <object>objects\OBJ_Ultra_Light_Armor_Button</object>
+          <object>objects\OBJ_Leather_Armor_Button</object>
+          <object>objects\OBJ_Cloth_Armor_Button</object>
+          <object>objects\OBJ_Store_Boots_Button</object>
+          <object>objects\OBJ_Knitted_Armor_Button</object>
+        </objects>
+        <object>objects\OBJ_Weapon_Button</object>
+        <object>objects\OBJ_StorePricesController</object>
+        <object>objects\OBJ_Armour_Button</object>
+      </objects>
+      <objects name="Gameplay Objects">
+        <object>objects\OBJ_Deck</object>
+        <object>objects\OBJ_LevelUp</object>
+        <object>objects\OBJ_Leveling_CardChoiceParent</object>
+        <object>objects\OBJ_QuestionGenerator</object>
+        <object>objects\OBJ_EnemyAttack2</object>
+        <object>objects\OBJ_ShuffleDeck</object>
+        <object>objects\OBJ_CardBackgroundLayout</object>
+        <object>objects\OBJ_TextInput</object>
+        <object>objects\OBJ_Combo</object>
+      </objects>
+      <objects name="Leveling Up">
+        <object>objects\OBJ_Menu_AnotherTurnCard</object>
+        <object>objects\OBJ_Menu_DoubleAttack</object>
+        <object>objects\OBJ_Menu_Stab1</object>
+      </objects>
+      <objects name="Cards">
+        <object>objects\OBJ_CardParent</object>
+        <object>objects\OBJ_Horiz1</object>
+        <object>objects\OBJ_Vert1</object>
+        <object>objects\OBJ_AnotherTurnCard</object>
+        <object>objects\OBJ_DoubleAttack</object>
+        <object>objects\OBJ_Stab1</object>
+      </objects>
+      <objects name="Message Objects">
+        <object>objects\OBJ_LevelUpMessage1</object>
+        <object>objects\OBJ_NotEnoughGoldMessage</object>
       </objects>
     </objects>
-    <objects name="Message Objects">
-      <object>objects\OBJ_LevelUpMessage1</object>
-      <object>objects\OBJ_NotEnoughGoldMessage</object>
+    <objects name="battle elements">
+      <object>objects\OBJ_meter</object>
+      <object>objects\OBJ_enemy_creator</object>
+      <object>objects\OBJ_battle_controller</object>
     </objects>
-    <objects name="Cards">
-      <object>objects\OBJ_CardParent</object>
-      <object>objects\OBJ_Horiz1</object>
-      <object>objects\OBJ_Vert1</object>
-      <object>objects\OBJ_AnotherTurnCard</object>
-      <object>objects\OBJ_DoubleAttack</object>
-      <object>objects\OBJ_Stab1</object>
+    <objects name="enemies">
+      <object>objects\OBJ_enemy_parent</object>
     </objects>
-    <objects name="Leveling Up">
-      <object>objects\OBJ_Menu_AnotherTurnCard</object>
-      <object>objects\OBJ_Menu_DoubleAttack</object>
-      <object>objects\OBJ_Menu_Stab1</object>
-    </objects>
-    <objects name="Gameplay Objects">
-      <object>objects\OBJ_Deck</object>
-      <object>objects\OBJ_LevelUp</object>
-      <object>objects\OBJ_Leveling_CardChoiceParent</object>
-      <object>objects\OBJ_QuestionGenerator</object>
-      <object>objects\OBJ_EnemyAttack2</object>
-      <object>objects\OBJ_ShuffleDeck</object>
-      <object>objects\OBJ_CardBackgroundLayout</object>
-      <object>objects\OBJ_TextInput</object>
-      <object>objects\OBJ_Combo</object>
-    </objects>
-    <objects name="Store Icons">
-      <object>objects\OBJ_Pets_Button</object>
-      <objects name="Armour Selection">
-        <object>objects\OBJ_Regular_Armor_Button</object>
-        <object>objects\OBJ_Light_Armor_Button</object>
-        <object>objects\OBJ_Ultra_Light_Armor_Button</object>
-        <object>objects\OBJ_Leather_Armor_Button</object>
-        <object>objects\OBJ_Cloth_Armor_Button</object>
-        <object>objects\OBJ_Store_Boots_Button</object>
-        <object>objects\OBJ_Knitted_Armor_Button</object>
-      </objects>
-      <object>objects\OBJ_Weapon_Button</object>
-      <object>objects\OBJ_StorePricesController</object>
-      <object>objects\OBJ_Armour_Button</object>
-    </objects>
-    <objects name="Buttons">
-      <object>objects\OBJ_Armor_Selection_Store_Button</object>
-      <object>objects\OBJ_Inventory_Button</object>
-      <object>objects\OBJ_Store_Button</object>
-      <object>objects\OBJ_BackToGame</object>
-      <object>objects\OBJ_ExitButton</object>
-    </objects>
-    <objects name="Inventory">
-      <object>objects\OBJ_ClothArmor</object>
-      <object>objects\OBJ_LeatherArmor</object>
-      <object>objects\OBJ_KnittedArmor</object>
-      <object>objects\OBJ_LightArmor</object>
-      <object>objects\OBJ_UltraLightArmor</object>
-      <object>objects\OBJ_RegularArmor</object>
-      <object>objects\OBJ_InventoryController</object>
-    </objects>
-    <object>objects\OBJ_modularCardExample</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\overworld_room</room>
-    <room>rooms\Main_Room</room>
-    <room>rooms\Armor_Store_Room</room>
-    <room>rooms\Level_Up_Room</room>
-    <room>rooms\Store_Room</room>
-    <room>rooms\Example_Room</room>
-    <room>rooms\Inventory_Room</room>
+    <room>rooms\battle_room</room>
+    <rooms name="stages">
+      <room>rooms\waterfall_windmill_room</room>
+      <room>rooms\mountain_room</room>
+      <room>rooms\forged_wilds_room</room>
+      <room>rooms\crystal_city_room</room>
+    </rooms>
+    <rooms name="kyles rooms">
+      <room>rooms\Main_Room</room>
+      <room>rooms\Level_Up_Room</room>
+      <room>rooms\Store_Room</room>
+      <room>rooms\Example_Room</room>
+      <room>rooms\Inventory_Room</room>
+      <room>rooms\Armor_Store_Room</room>
+    </rooms>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
