@@ -100,7 +100,7 @@ hand = ds_list_create()
 //convenient to put it here, at the time.
 meter_hp.x = x + ((sprite_width % sprite_get_width(SPR_meter))/2)
 meter_hp.y = sprite_height + y
-meter_hp.length = sprite_width
+//meter_hp.length = sprite_width
 meter_hp.fill = hp_current / hp_total
 </string>
           </argument>

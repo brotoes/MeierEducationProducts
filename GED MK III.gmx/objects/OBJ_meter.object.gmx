@@ -67,11 +67,10 @@ vertical = false
             <kind>1</kind>
             <string>//TODO: account for vertical bars
 //TODO: account for a differently sized bar sprite
-//TODO: change the bar sprite so that the caps don't show any fill
-//TODO: fix line_len calculation. it's not always right
+//TODO: change the bar sprite so that the caps don't show any fill?
 draw_set_color(fill_color)
 
-line_len = (length - 8) * fill
+line_len = (length - 8) * fill - length % 8
 segment_count = (length - (length % 8))/8
 if (segment_count &lt; 3) {
     segment_count = 3
