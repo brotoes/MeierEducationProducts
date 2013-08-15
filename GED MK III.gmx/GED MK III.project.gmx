@@ -33,6 +33,11 @@
         <sprite>sprites\SPR_BackToGame</sprite>
         <sprite>sprites\SPR_Light_Armor_Button</sprite>
       </sprites>
+      <sprites name="battle elements">
+        <sprite>sprites\SPR_turn_flag</sprite>
+        <sprite>sprites\SPR_card_back</sprite>
+        <sprite>sprites\SPR_card_stack</sprite>
+      </sprites>
     </sprites>
     <sprites name="overworld">
       <sprite>sprites\cloud</sprite>
@@ -90,16 +95,9 @@
     <script>scripts\SCR_ComboCheck.gml</script>
   </scripts>
   <objects name="objects">
-    <objects name="worlds">
-      <object>objects\OBJ_conflict_indicator</object>
+    <objects name="examples">
+      <object>objects\OBJ_modular_card_example</object>
     </objects>
-    <objects name="overworld">
-      <object>objects\OBJ_overworld_controller</object>
-      <object>objects\OBJ_stage_indicator</object>
-      <object>objects\OBJ_cloud</object>
-      <object>objects\OBJ_persistent_variables</object>
-    </objects>
-    <object>objects\OBJ_modular_card_example</object>
     <objects name="kyle objects">
       <objects name="Inventory">
         <object>objects\OBJ_ClothArmor</object>
@@ -161,10 +159,19 @@
         <object>objects\OBJ_NotEnoughGoldMessage</object>
       </objects>
     </objects>
+    <objects name="worlds">
+      <object>objects\OBJ_conflict_indicator</object>
+    </objects>
+    <objects name="overworld">
+      <object>objects\OBJ_overworld_controller</object>
+      <object>objects\OBJ_stage_indicator</object>
+      <object>objects\OBJ_cloud</object>
+      <object>objects\OBJ_persistent_variables</object>
+    </objects>
     <objects name="battle elements">
       <object>objects\OBJ_meter</object>
-      <object>objects\OBJ_enemy_creator</object>
       <object>objects\OBJ_battle_controller</object>
+      <object>objects\OBJ_deck</object>
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>

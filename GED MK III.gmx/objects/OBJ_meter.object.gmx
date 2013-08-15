@@ -39,7 +39,7 @@ length = 80
 fill = 1
 
 //color of the fill of the bar
-fill_color = make_color_rgb(255, 0, 0)
+fill_color = c_red
 
 //if true, bar will be vertical, instead of horizontal
 vertical = false

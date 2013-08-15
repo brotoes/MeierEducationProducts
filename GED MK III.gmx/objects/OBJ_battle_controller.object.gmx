@@ -35,7 +35,6 @@ backgrounds[0] = BG_battlescape
 //these are for runtime functions, not generation. Don't change dynamically
 turn_in_progress = false
 whose_turn = 0
-stagger = 200
 </string>
           </argument>
         </arguments>
@@ -66,10 +65,12 @@ stagger = 200
 //in the future
 for (i = 0; difficulty &gt; 0; i ++) { 
     //TODO: choose position properly
-    //idea: create things other than enemies? e.g. environment pieces?
-    new_enemy = instance_create(room_width/4 + stagger*i, room_height/2,
-                                OBJ_enemy_creator)
     //TODO: a better way to determine turn order
+    //TODO: a better way to choose enemy position in the room
+    //TODO: enemy selection
+    //idea: create things other than enemies? e.g. environment pieces?
+    new_enemy = instance_create(room_width/4 + 200*i, room_height/3,
+                                OBJ_enemy_parent)
     new_enemy.turn_priority = i
     difficulty -= new_enemy.difficulty
 }

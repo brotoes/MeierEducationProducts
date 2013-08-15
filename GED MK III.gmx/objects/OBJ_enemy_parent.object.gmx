@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>self</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -102,6 +102,12 @@ meter_hp.x = x + ((sprite_width % sprite_get_width(SPR_meter))/2)
 meter_hp.y = sprite_height + y
 //meter_hp.length = sprite_width
 meter_hp.fill = hp_current / hp_total
+
+//Draw the turn order indicators
+draw_sprite(SPR_turn_flag, 0, x + sprite_width, y)
+//TODO account for player's turn
+draw_set_color(c_black)
+draw_text(x + sprite_width + 9, y + 8, turn_priority + 1)
 </string>
           </argument>
         </arguments>
