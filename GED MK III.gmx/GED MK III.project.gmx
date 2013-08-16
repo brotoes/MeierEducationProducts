@@ -36,8 +36,11 @@
       <sprites name="battle elements">
         <sprite>sprites\SPR_turn_flag</sprite>
         <sprite>sprites\SPR_card_back</sprite>
+        <sprite>sprites\SPR_card_template</sprite>
+        <sprite>sprites\SPR_card_image_template</sprite>
         <sprite>sprites\SPR_card_stack</sprite>
       </sprites>
+      <sprite>sprites\SPR_button</sprite>
     </sprites>
     <sprites name="overworld">
       <sprite>sprites\cloud</sprite>
@@ -73,6 +76,7 @@
       <sprite>sprites\SPR_counter</sprite>
       <sprite>sprites\SPR_controller</sprite>
       <sprite>sprites\SPR_invis_meter</sprite>
+      <sprite>sprites\SPR_invis_button</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -93,6 +97,10 @@
     <script>scripts\SCR_DrawQuestion.gml</script>
     <script>scripts\SCR_QuestionGenerator.gml</script>
     <script>scripts\SCR_ComboCheck.gml</script>
+    <scripts name="button actions">
+      <script>scripts\SCR_placeholder.gml</script>
+      <script>scripts\SCR_play_hand.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="examples">
@@ -171,10 +179,14 @@
     <objects name="battle elements">
       <object>objects\OBJ_meter</object>
       <object>objects\OBJ_battle_controller</object>
+      <object>objects\OBJ_card_parent</object>
       <object>objects\OBJ_deck</object>
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
+    </objects>
+    <objects name="interface">
+      <object>objects\OBJ_button_parent</object>
     </objects>
   </objects>
   <rooms name="rooms">
