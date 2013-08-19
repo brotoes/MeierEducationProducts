@@ -35,6 +35,7 @@ backgrounds[0] = BG_battlescape
 //these are for runtime functions, not generation. Don't change dynamically
 turn_in_progress = false
 whose_turn = 0
+turn_available = true
 </string>
           </argument>
         </arguments>

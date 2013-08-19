@@ -31,22 +31,29 @@ card_back = SPR_card_back
 
 //fetch variables for local use. this just makes later code cleaner
 persistent_variables = instance_find(OBJ_persistent_variables, 0)
+battle_controller = instance_find(OBJ_battle_controller, 0)
 deck_listid = persistent_variables.pdeck_listid
-hand_size = persistent_variables.hand_size
+max_hand_size = persistent_variables.hand_size
+
+//gameplay variables
+hand_listid = ds_list_create()
+current_hand_size = 0
+
+popped_card = 999
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="10">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
-        <id>605</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
@@ -55,32 +62,46 @@ hand_size = persistent_variables.hand_size
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>TODO draw new cards for player</string>
+            <string>//draw new cards for the player
+if (battle_controller.whose_turn == 0 and battle_controller.turn_available) {
+
+    battle_controller.turn_available = false
+    battle_controller.whose_turn ++
+    //check how many cards need to be drawn
+    cards_to_pop = max_hand_size - current_hand_size
+    
+    //randomize what cards are drawn from the deck
+    randomize()
+    ds_list_shuffle(deck_listid)
+    //walk through the top of the deck until enough cards have been drawn
+    for (i = 0; i &lt; cards_to_pop; i ++) {
+        if (ds_list_size(deck_listid) &gt; 0) {
+            //remove item from deck and place it in the hand
+            popped_card = ds_list_find_value(deck_listid, 0)
+            ds_list_delete(deck_listid, 0)
+            ds_list_add(hand_listid, popped_card)
+        }
+    }
+    
+    //TODO I don't know if this counts children. if it doesn't, it will need
+    //to be replaced with something else
+    count = instance_number(OBJ_card_parent)
+    //the newly drawn cards have not been created in the room yet. Create objects
+    //to represent these new cards while not creating a redundancy with
+    //the old ones
+    for (i = current_hand_size; i &lt; max_hand_size; i ++) {
+        card = ds_list_find_value(hand_listid, i)
+        instance_create(x + (sprite_get_width(SPR_card_template) + 32) * (i + 1), y,
+                        card)
+    }
+    current_hand_size = max_hand_size
+}
+</string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>605</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>TODO: draw card back</string>
-          </argument>
-        </arguments>
-      </action>
       <action>
         <libid>1</libid>
         <id>500</id>

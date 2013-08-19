@@ -26,6 +26,40 @@
           <argument>
             <kind>1</kind>
             <string>image = SPR_card_image_template
+description = 
+"This here is a five line sample of a card's description!"
+title = "Sample Card"
+
+selected = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (selected) {
+    selected = false
+    y += 50
+} else {
+    selected = true
+    y -= 50
+}
 </string>
           </argument>
         </arguments>
@@ -75,6 +109,28 @@
           <argument>
             <kind>0</kind>
             <string>-1</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_text_ext(x + 3, y + 3, title, 11, 120)
+draw_text_ext(x + 3, y + 86, description, 14, 120)
+</string>
           </argument>
         </arguments>
       </action>

@@ -29,7 +29,7 @@
 //it also dynamically changes its length
 button_text = "Calling object, change me please"
 //set this script to be what the button does
-button_script = SCR_placeholder
+button_script = SCR_null_action
 
 //if you'd like arguments, use these
 arg0 = 0
