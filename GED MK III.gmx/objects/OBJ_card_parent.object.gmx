@@ -82,38 +82,6 @@ selected = false
       </action>
       <action>
         <libid>1</libid>
-        <id>501</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_draw_sprite</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>-1</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>5</kind>
-            <sprite>SPR_card_image_template</sprite>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>2</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>18</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>-1</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -128,7 +96,8 @@ selected = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text_ext(x + 3, y + 3, title, 11, 120)
+            <string>draw_sprite(image, 0, x + 2, y + 18)
+draw_text_ext(x + 3, y + 3, title, 11, 120)
 draw_text_ext(x + 3, y + 86, description, 14, 120)
 </string>
           </argument>

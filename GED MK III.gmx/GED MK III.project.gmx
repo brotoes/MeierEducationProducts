@@ -6,9 +6,14 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
+    <sprites name="cards">
+      <sprite>sprites\SPR_card_template</sprite>
+      <sprite>sprites\SPR_card_image_template</sprite>
+      <sprite>sprites\SPR_card_image_stab</sprite>
+      <sprite>sprites\SPR_card_image_slash</sprite>
+    </sprites>
     <sprites name="enemies">
       <sprite>sprites\SPR_goomba</sprite>
-      <sprite>sprites\SPR_experiment</sprite>
     </sprites>
     <sprites name="interface">
       <sprite>sprites\SPR_TextBox</sprite>
@@ -34,8 +39,6 @@
         <sprite>sprites\SPR_turn_flag</sprite>
         <sprite>sprites\SPR_card_back</sprite>
         <sprite>sprites\SPR_enemy_card_indicator</sprite>
-        <sprite>sprites\SPR_card_template</sprite>
-        <sprite>sprites\SPR_card_image_template</sprite>
         <sprite>sprites\SPR_card_stack</sprite>
       </sprites>
       <sprites name="bars">
@@ -49,7 +52,7 @@
       <sprite>sprites\SPR_glow</sprite>
       <sprite>sprites\SPR_conflict</sprite>
     </sprites>
-    <sprites name="Cards">
+    <sprites name="kyle cards">
       <sprite>sprites\SPR_DefenseCard</sprite>
       <sprite>sprites\SPR_CardBackgroundLayout</sprite>
       <sprite>sprites\SPR_AttackCard</sprite>
@@ -101,6 +104,7 @@
     <scripts name="button actions">
       <script>scripts\SCR_null_action.gml</script>
       <script>scripts\SCR_play_hand.gml</script>
+      <script>scripts\SCR_combine.gml</script>
     </scripts>
     <scripts name="enemy AIs">
       <script>scripts\SCR_AI_sample.gml</script>
@@ -175,22 +179,26 @@
       <object>objects\OBJ_conflict_indicator</object>
     </objects>
     <objects name="overworld">
-      <object>objects\OBJ_overworld_controller</object>
       <object>objects\OBJ_stage_indicator</object>
       <object>objects\OBJ_cloud</object>
-      <object>objects\OBJ_persistent_variables</object>
-    </objects>
-    <objects name="battle elements">
-      <object>objects\OBJ_battle_controller</object>
-      <object>objects\OBJ_card_parent</object>
-      <object>objects\OBJ_deck</object>
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
     </objects>
     <objects name="interface">
-      <object>objects\OBJ_button_parent</object>
+      <object>objects\OBJ_button</object>
       <object>objects\OBJ_meter</object>
+    </objects>
+    <objects name="cards">
+      <object>objects\OBJ_card_parent</object>
+      <object>objects\OBJ_card_stab</object>
+      <object>objects\OBJ_card_slash</object>
+      <object>objects\OBJ_deck</object>
+    </objects>
+    <objects name="controllers">
+      <object>objects\OBJ_overworld_controller</object>
+      <object>objects\OBJ_battle_controller</object>
+      <object>objects\OBJ_persistent_variables</object>
     </objects>
   </objects>
   <rooms name="rooms">

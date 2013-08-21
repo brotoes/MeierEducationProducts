@@ -43,7 +43,7 @@ difficulty = 100
 //enemy will draw from this deck.
 deck_listid = ds_list_create()
 //Idea: perhaps add a random element to the enemy's deck?
-ds_list_add(deck_listid, OBJ_card_parent)
+ds_list_add(deck_listid, OBJ_card_stab)
 
 enemy_ai = SCR_AI_sample
 
@@ -86,7 +86,7 @@ if (battle_controller.whose_turn == turn_priority and battle_controller.turn_ava
     randomize()
     ds_list_shuffle(deck_listid)
     //walk through the top of the deck until enough cards have been drawn
-    for (i = 0; i &lt; card_to_pop; i ++) {
+    for (i = 0; i &lt; cards_to_pop; i ++) {
         if (ds_list_size(deck_listid) &gt; 0) {
             //remove item from deck and place it in the hand
             popped_card = ds_list_find_value(deck_listid, 0)

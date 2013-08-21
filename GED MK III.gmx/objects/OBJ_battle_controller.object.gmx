@@ -33,7 +33,6 @@ parent_room = room
 backgrounds[0] = BG_battlescape
 
 //these are for runtime functions, not generation. Don't change dynamically
-turn_in_progress = false
 whose_turn = 0
 turn_available = true
 </string>
@@ -72,7 +71,7 @@ for (i = 0; difficulty &gt; 0; i ++) {
     //idea: create things other than enemies? e.g. environment pieces?
     new_enemy = instance_create(room_width/4 + 200*i, room_height/3,
                                 OBJ_enemy_parent)
-    new_enemy.turn_priority = i
+    new_enemy.turn_priority = i + 1
     difficulty -= new_enemy.difficulty
 }
 </string>

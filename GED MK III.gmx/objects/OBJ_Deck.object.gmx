@@ -83,9 +83,6 @@ if (battle_controller.whose_turn == 0 and battle_controller.turn_available) {
         }
     }
     
-    //TODO I don't know if this counts children. if it doesn't, it will need
-    //to be replaced with something else
-    count = instance_number(OBJ_card_parent)
     //the newly drawn cards have not been created in the room yet. Create objects
     //to represent these new cards while not creating a redundancy with
     //the old ones
@@ -118,33 +115,22 @@ if (battle_controller.whose_turn == 0 and battle_controller.turn_available) {
       </action>
       <action>
         <libid>1</libid>
-        <id>501</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_draw_sprite</functionname>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
-        <relative>-1</relative>
+        <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>5</kind>
-            <sprite>SPR_card_back</sprite>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>-1</string>
+            <kind>1</kind>
+            <string>draw_sprite(card_back, 0, x, y)
+</string>
           </argument>
         </arguments>
       </action>

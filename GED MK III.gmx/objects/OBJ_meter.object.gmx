@@ -80,7 +80,7 @@ if (fill &lt; 0) {
     fill = 0
 }
 
-draw_line_width(x + 3, y + 8, x + 3 + line_len, y + 8, 13)
+draw_line_width(x + 3, y + 7, x + 3 + line_len, y + 7, 13)
 
 draw_sprite(SPR_meter, 0, x, y)
 for (i = 1; i &lt; segment_count - 1; i ++) {
