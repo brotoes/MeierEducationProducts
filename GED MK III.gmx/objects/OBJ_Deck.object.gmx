@@ -92,8 +92,7 @@ if (battle_controller.whose_turn == 0 and battle_controller.turn_available) {
     //the old ones
     for (i = current_hand_size; i &lt; max_hand_size - card_deficit; i ++) {
         card = ds_list_find_value(hand_listid, i)
-        instance_create(x + (sprite_get_width(SPR_card_melee) + 32) * (i + 1), y,
-                        card)
+        instance_create(0, 0, card)
     }
     current_hand_size = max_hand_size
 }
