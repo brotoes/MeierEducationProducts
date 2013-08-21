@@ -3,13 +3,20 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\Advanced Arrays</extension>
+  </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="cards">
-      <sprite>sprites\SPR_card_template</sprite>
+      <sprite>sprites\SPR_card_melee</sprite>
+      <sprite>sprites\SPR_card_chemistry</sprite>
+      <sprite>sprites\SPR_card_engineering</sprite>
       <sprite>sprites\SPR_card_image_template</sprite>
       <sprite>sprites\SPR_card_image_stab</sprite>
+      <sprite>sprites\SPR_card_image_hydrogen</sprite>
+      <sprite>sprites\SPR_card_image_pressure</sprite>
+      <sprite>sprites\SPR_card_image_hbomb</sprite>
       <sprite>sprites\SPR_card_image_slash</sprite>
     </sprites>
     <sprites name="enemies">
@@ -45,6 +52,7 @@
         <sprite>sprites\SPR_meter</sprite>
       </sprites>
       <sprite>sprites\SPR_button</sprite>
+      <sprite>sprites\SPR_almanac</sprite>
     </sprites>
     <sprites name="overworld">
       <sprite>sprites\cloud</sprite>
@@ -81,6 +89,7 @@
       <sprite>sprites\SPR_controller</sprite>
       <sprite>sprites\SPR_invis_meter</sprite>
       <sprite>sprites\SPR_invis_button</sprite>
+      <sprite>sprites\SPR_null</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -111,6 +120,7 @@
     </scripts>
   </scripts>
   <objects name="objects">
+    <object>objects\OBJ_null</object>
     <objects name="examples">
       <object>objects\OBJ_mod_card_example</object>
     </objects>
@@ -193,6 +203,9 @@
       <object>objects\OBJ_card_parent</object>
       <object>objects\OBJ_card_stab</object>
       <object>objects\OBJ_card_slash</object>
+      <object>objects\OBJ_card_hydrogen</object>
+      <object>objects\OBJ_card_pressure</object>
+      <object>objects\OBJ_card_hbomb</object>
       <object>objects\OBJ_deck</object>
     </objects>
     <objects name="controllers">

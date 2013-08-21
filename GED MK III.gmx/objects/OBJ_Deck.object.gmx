@@ -73,6 +73,8 @@ if (battle_controller.whose_turn == 0 and battle_controller.turn_available) {
     //randomize what cards are drawn from the deck
     randomize()
     ds_list_shuffle(deck_listid)
+    //compensate for not having enough cards in the deck
+    card_deficit = 0
     //walk through the top of the deck until enough cards have been drawn
     for (i = 0; i &lt; cards_to_pop; i ++) {
         if (ds_list_size(deck_listid) &gt; 0) {
@@ -80,15 +82,17 @@ if (battle_controller.whose_turn == 0 and battle_controller.turn_available) {
             popped_card = ds_list_find_value(deck_listid, 0)
             ds_list_delete(deck_listid, 0)
             ds_list_add(hand_listid, popped_card)
+        } else {
+            card_deficit ++
         }
     }
     
     //the newly drawn cards have not been created in the room yet. Create objects
     //to represent these new cards while not creating a redundancy with
     //the old ones
-    for (i = current_hand_size; i &lt; max_hand_size; i ++) {
+    for (i = current_hand_size; i &lt; max_hand_size - card_deficit; i ++) {
         card = ds_list_find_value(hand_listid, i)
-        instance_create(x + (sprite_get_width(SPR_card_template) + 32) * (i + 1), y,
+        instance_create(x + (sprite_get_width(SPR_card_melee) + 32) * (i + 1), y,
                         card)
     }
     current_hand_size = max_hand_size
