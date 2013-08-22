@@ -48,6 +48,8 @@ array_set(combos_arrayid, OBJ_card_hbomb, OBJ_card_hydrogen, OBJ_card_pressure,
 
 //temporary for debugging TODO remove
 ds_list_add(pdeck_listid, OBJ_card_stab)
+ds_list_add(pdeck_listid, OBJ_card_stab)
+ds_list_add(pdeck_listid, OBJ_card_slash)
 ds_list_add(pdeck_listid, OBJ_card_slash)
 ds_list_add(pdeck_listid, OBJ_card_hydrogen)
 ds_list_add(pdeck_listid, OBJ_card_pressure)
