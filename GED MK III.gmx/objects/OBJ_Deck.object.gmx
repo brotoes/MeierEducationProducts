@@ -80,9 +80,11 @@ if (battle_controller.whose_turn == 0 and ready_to_draw) {
         }
     }
     
-    //the newly drawn cards have not been created in the room yet. Create objects
-    //to represent these new cards while not creating a redundancy with
-    //the old ones
+    for (i = instance_number(OBJ_card_parent) - 1; i &gt;= 0; i --) {
+        to_destroy = instance_find(OBJ_card_parent, i)
+        with (to_destroy) instance_destroy()
+    }
+    //create newly drawn cards
     for (i = 0; i &lt; ds_list_size(hand_listid); i ++) {
         card = ds_list_find_value(hand_listid, i)
         instance_create(x, y, card)
@@ -125,6 +127,7 @@ if (battle_controller.whose_turn == 0 and ready_to_draw) {
           <argument>
             <kind>1</kind>
             <string>draw_sprite(card_back, 0, x, y)
+draw_text(0, 0, ds_list_size(hand_listid))
 </string>
           </argument>
         </arguments>

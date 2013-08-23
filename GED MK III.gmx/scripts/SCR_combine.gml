@@ -37,7 +37,7 @@ if (array_isSet(persistent_variables.combos_arrayid, key0, key1, key2, key3, key
     //clean up and end turn
     ds_list_destroy(selected_listid)
     battle_controller.whose_turn ++
-    deck.ready_to_draw = true
+    //deck.ready_to_draw = true
 }
 
 

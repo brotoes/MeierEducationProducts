@@ -94,6 +94,45 @@ for (i = 0; i &lt; instance_number(OBJ_enemy_parent); i ++) {
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>cards_listid = script_execute(enemy_ai, id)
+//TODO: assemble combo card
+card_to_play = ds_list_find_value(cards_listid, 0)
+card_played = instance_create(0, 0, card_to_play)
+battle_controller.hp_current -= card_played.strength
+with (card_played) instance_destroy()
+to_destroy = ds_list_find_index(hand_listid, card_to_play)
+ds_list_delete(hand_listid, to_destroy)
+ds_list_add(deck_listid, card_to_play)
+//queue up the next turn
+if (turn_priority == instance_number(OBJ_enemy_parent)) {
+    deck = instance_find(OBJ_deck, 0)
+    battle_controller.whose_turn = 0
+    deck.ready_to_draw = true
+} else {
+    battle_controller.whose_turn ++
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -117,7 +156,8 @@ if (hp_current &lt;= 0) {
 }
 
 //check if it is this instance's turn
-if (battle_controller.whose_turn == turn_priority and hp_current &gt; 0) {
+if (battle_controller.whose_turn == turn_priority and 
+    hp_current &gt; 0 and alarm[0] == -1) {
     //draw new cards from deck
     //check how many cards need to be drawn
     cards_to_pop = max_hand_size - current_hand_size
@@ -133,17 +173,7 @@ if (battle_controller.whose_turn == turn_priority and hp_current &gt; 0) {
             ds_list_add(hand_listid, popped_card)
         }
     }
-    cards_listid = script_execute(enemy_ai, id)
-    //TODO: assemble combo card
-    card_to_play = ds_list_find_value(cards_listid, 0)
-    card_played = instance_create(0, 0, card_to_play)
-    battle_controller.hp_current -= card_played.strength
-    with (card_played) instance_destroy()
-    to_destroy = ds_list_find_index(hand_listid, card_to_play)
-    ds_list_delete(hand_listid, to_destroy)
-    ds_list_add(deck_listid, card_to_play)
-    //queue up the next turn
-    battle_controller.whose_turn ++
+    alarm[0] = 30
 }
 </string>
           </argument>

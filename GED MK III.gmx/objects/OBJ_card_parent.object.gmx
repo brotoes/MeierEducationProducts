@@ -76,10 +76,6 @@ for (i = 0; i &lt; instance_number(OBJ_card_parent); i ++) {
 
 y = deck.y - 50*selected
 x = deck.x + (index + 1)*(sprite_width + 16)
-
-if (deck.ready_to_draw) {
-    instance_destroy()
-}
 </string>
           </argument>
         </arguments>

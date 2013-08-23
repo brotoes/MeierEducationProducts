@@ -53,5 +53,5 @@ if (battle_controller.target != OBJ_null) {
     //clean up and end turn
     ds_list_destroy(selected_listid)
     battle_controller.whose_turn ++
-    deck.ready_to_draw = true
+    //deck.ready_to_draw = true
 }
