@@ -3,7 +3,7 @@
   <spriteName>SPR_invis_meter</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -70,14 +70,14 @@ vertical = false
 //TODO: change the bar sprite so that the caps don't show any fill?
 draw_set_color(fill_color)
 
+if (fill &lt; 0) {
+    fill = 0
+}
+
 line_len = (length - 8) * fill - length % 8
 segment_count = (length - (length % 8))/8
 if (segment_count &lt; 3) {
     segment_count = 3
-}
-
-if (fill &lt; 0) {
-    fill = 0
 }
 
 draw_line_width(x + 3, y + 7, x + 3 + line_len, y + 7, 13)

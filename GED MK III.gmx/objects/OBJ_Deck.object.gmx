@@ -37,9 +37,7 @@ max_hand_size = persistent_variables.hand_size
 
 //gameplay variables
 hand_listid = ds_list_create()
-current_hand_size = 0
-
-popped_card = 999
+ready_to_draw = true
 </string>
           </argument>
         </arguments>
@@ -63,13 +61,10 @@ popped_card = 999
           <argument>
             <kind>1</kind>
             <string>//draw new cards for the player
-if (battle_controller.whose_turn == 0 and battle_controller.turn_available) {
-
-    battle_controller.turn_available = false
-    battle_controller.whose_turn ++
+if (battle_controller.whose_turn == 0 and ready_to_draw) {
+    ready_to_draw = false
     //check how many cards need to be drawn
-    cards_to_pop = max_hand_size - current_hand_size
-    
+    cards_to_pop = max_hand_size - ds_list_size(hand_listid)
     //randomize what cards are drawn from the deck
     randomize()
     ds_list_shuffle(deck_listid)
@@ -82,19 +77,16 @@ if (battle_controller.whose_turn == 0 and battle_controller.turn_available) {
             popped_card = ds_list_find_value(deck_listid, 0)
             ds_list_delete(deck_listid, 0)
             ds_list_add(hand_listid, popped_card)
-        } else {
-            card_deficit ++
         }
     }
     
     //the newly drawn cards have not been created in the room yet. Create objects
     //to represent these new cards while not creating a redundancy with
     //the old ones
-    for (i = current_hand_size; i &lt; max_hand_size - card_deficit; i ++) {
+    for (i = 0; i &lt; ds_list_size(hand_listid); i ++) {
         card = ds_list_find_value(hand_listid, i)
-        instance_create(0, 0, card)
+        instance_create(x, y, card)
     }
-    current_hand_size = max_hand_size
 }
 </string>
           </argument>
@@ -133,6 +125,10 @@ if (battle_controller.whose_turn == 0 and battle_controller.turn_available) {
           <argument>
             <kind>1</kind>
             <string>draw_sprite(card_back, 0, x, y)
+
+for (i = 0; i &lt; ds_list_size(hand_listid); i ++) {
+    draw_text(i * 30, 0, ds_list_find_value(hand_listid, i))
+}
 </string>
           </argument>
         </arguments>

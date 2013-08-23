@@ -29,6 +29,7 @@
 description = 
 "Big Badaboom!"
 title = "H-Bomb"
+strength = 10000
 
 selected = false
 </string>

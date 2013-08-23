@@ -29,6 +29,7 @@
 description = 
 "50 stab dmg"
 title = "Stab"
+strength = 50
 
 selected = false
 </string>

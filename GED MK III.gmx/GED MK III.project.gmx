@@ -47,6 +47,7 @@
         <sprite>sprites\SPR_card_back</sprite>
         <sprite>sprites\SPR_enemy_card_indicator</sprite>
         <sprite>sprites\SPR_card_stack</sprite>
+        <sprite>sprites\SPR_target</sprite>
       </sprites>
       <sprites name="bars">
         <sprite>sprites\SPR_meter</sprite>
@@ -201,6 +202,7 @@
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>
+      <object>objects\OBJ_card_dud</object>
       <object>objects\OBJ_card_stab</object>
       <object>objects\OBJ_card_slash</object>
       <object>objects\OBJ_card_hydrogen</object>

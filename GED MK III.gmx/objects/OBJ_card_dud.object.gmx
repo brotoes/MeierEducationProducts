@@ -2,10 +2,10 @@
 <object>
   <spriteName>SPR_card_melee</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>OBJ_card_parent</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,11 +25,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image = SPR_card_image_slash
+            <string>image = SPR_card_image_template
 description = 
-"50 slash dmg"
-title = "Slash"
-strength = 40
+"This card does very little"
+title = "DUD"
+
+//stats
+//0: single target 1: blast (single target and adjacents) 3: all
+target_style = 0
+//TODO: document what each number represents (eg 1: slash)
+attack_type = 0
+strength = 1
+//How much the card costs to play (MP?)
+cost = 0
 
 selected = false
 </string>

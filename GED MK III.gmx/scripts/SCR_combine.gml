@@ -7,7 +7,7 @@ battle_controller = instance_find(OBJ_battle_controller, 0)
 hand_listid = deck.hand_listid
 selected_listid = ds_list_create()
 //walk through and add selected to a temporary list
-for (i = 0; i < ds_list_size(hand_listid); i ++) {
+for (i = 0; i < instance_number(OBJ_card_parent); i ++) {
     card = ds_list_find_value(hand_listid, i)
     if (card.selected) {
         ds_list_add(selected_listid, card)
@@ -33,10 +33,10 @@ if (array_isSet(persistent_variables.combos_arrayid, key0, key1, key2, key3, key
         precursor_index = ds_list_find_index(hand_listid, precursor)
         ds_list_delete(hand_listid, precursor_index)
     }
-    //NOTE: should I delete cards event on unsuccessful combine?
+    //idea: should I delete cards event on unsuccessful combine?
 }
 
 //clean up and end turn
 ds_list_destroy(selected_listid)
 battle_controller.whose_turn ++
-battle_controller.turn_available = true
+deck.ready_to_draw = true

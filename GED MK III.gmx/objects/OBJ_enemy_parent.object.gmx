@@ -26,8 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>//create health bar
-meter_hp = instance_create(x + (sprite_width % sprite_get_width(SPR_meter)/2),
-                y + sprite_height, OBJ_meter)
+meter_hp = instance_create(x, y + sprite_height, OBJ_meter)
 meter_hp.length = sprite_width
 meter_hp.fill_color = make_color_rgb(255, 0, 0)
 
@@ -52,6 +51,33 @@ current_hand_size = 0
 hand_listid = ds_list_create()
 //idea: do I need a discard stack?
 battle_controller = instance_find(OBJ_battle_controller, 0)
+targetted = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Idea: loot variables in battle_controller
+//TODO: death animation
+with (meter_hp) instance_destroy()
+battle_controller.target = OBJ_null
 </string>
           </argument>
         </arguments>
@@ -74,11 +100,13 @@ battle_controller = instance_find(OBJ_battle_controller, 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//check if it is this instance's turn
-if (battle_controller.whose_turn == turn_priority and battle_controller.turn_available) {
-    //queue up the next turn, and set the waiting variable to false
-    battle_controller.whose_turn ++
-    battle_controller.turn_available = false
+            <string>//check for death
+if (hp_current &lt;= 0) {
+    instance_destroy()
+}
+
+//check if it is this instance's turn
+if (battle_controller.whose_turn == turn_priority) {
     //draw new cards from deck
     //check how many cards need to be drawn
     cards_to_pop = max_hand_size - current_hand_size
@@ -95,8 +123,36 @@ if (battle_controller.whose_turn == turn_priority and battle_controller.turn_ava
         }
     }
     script_execute(enemy_ai, id)
-    //finished! let the next instance know they can go
-    battle_controller.turn_available = true
+    //queue up the next turn
+    battle_controller.whose_turn ++
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (battle_controller.target == id) {
+    //remove self from target variable in battle_controller
+    battle_controller.target = 0
+} else {
+    battle_controller.target = id
 }
 </string>
           </argument>
@@ -120,12 +176,10 @@ if (battle_controller.whose_turn == turn_priority and battle_controller.turn_ava
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self()
-
-//Change variables. This doesn't need to be in draw, but it was
+            <string>//Change variables. This doesn't need to be in draw, but it was
 //convenient to put it here, at the time.
-meter_hp.x = x + ((sprite_width % sprite_get_width(SPR_meter))/2)
-meter_hp.y = sprite_height + y
+meter_hp.x = x + (sprite_width % sprite_get_width(SPR_meter))
+meter_hp.y = sprite_height + sprite_get_height(SPR_meter) + y
 //meter_hp.length = sprite_width
 meter_hp.fill = hp_current / hp_total
 
@@ -134,6 +188,20 @@ draw_sprite(SPR_turn_flag, 0, x + sprite_width, y)
 //TODO account for player's turn
 draw_set_color(c_black)
 draw_text(x + sprite_width + 9, y + 8, turn_priority + 1)
+
+//draw targetting indicator
+battle_controller = instance_find(OBJ_battle_controller, 0)
+if (battle_controller.target == id) {
+    draw_sprite(SPR_target, 1, x, 
+                y + (sprite_height - sprite_get_height(SPR_target)))
+    draw_self()
+    draw_sprite(SPR_target, 0, x, y + sprite_height)
+} else {
+    draw_self()
+}
+
+//draw correct number of card indicators below health bar
+//TODO
 </string>
           </argument>
         </arguments>
