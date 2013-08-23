@@ -42,6 +42,7 @@ fill = 1
 fill_color = c_red
 
 //if true, bar will be vertical, instead of horizontal
+//TODO
 vertical = false
 </string>
           </argument>
@@ -65,9 +66,9 @@ vertical = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//TODO: account for vertical bars
-//TODO: account for a differently sized bar sprite
+            <string>//TODO: account for a differently sized bar sprite
 //TODO: change the bar sprite so that the caps don't show any fill?
+//TODO: fix vertical, it goes too low
 draw_set_color(fill_color)
 
 if (fill &lt; 0) {
@@ -80,13 +81,23 @@ if (segment_count &lt; 3) {
     segment_count = 3
 }
 
-draw_line_width(x + 3, y + 7, x + 3 + line_len, y + 7, 13)
+if (vertical) {
+    draw_line_width(x + 8, y - 3, x + 8, y - 6 - line_len, 13)
 
-draw_sprite(SPR_meter, 0, x, y)
-for (i = 1; i &lt; segment_count - 1; i ++) {
-    draw_sprite(SPR_meter, 1, x + i * 8, y)
+    draw_sprite_ext(SPR_meter, 0, x, y, 1, 1, 90, c_white, 1)
+    for (i = 1; i &lt; segment_count - 1; i ++) {
+        draw_sprite_ext(SPR_meter, 1, x, y - i * 8, 1, 1, 90, c_white, 1)
+    }
+    draw_sprite_ext(SPR_meter, 2, x, y - (segment_count - 1) * 8, 1, 1, 90, c_white, 1)
+} else {
+    draw_line_width(x + 3, y + 7, x + 3 + line_len, y + 7, 13)
+
+    draw_sprite(SPR_meter, 0, x, y)
+    for (i = 1; i &lt; segment_count - 1; i ++) {
+        draw_sprite(SPR_meter, 1, x + i * 8, y)
+    }
+    draw_sprite(SPR_meter, 2, x + (segment_count - 1) * 8, y)
 }
-draw_sprite(SPR_meter, 2, x + (segment_count - 1) * 8, y)
 </string>
           </argument>
         </arguments>

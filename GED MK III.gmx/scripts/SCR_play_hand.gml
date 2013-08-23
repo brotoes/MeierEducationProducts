@@ -31,6 +31,7 @@ if (array_isSet(persistent_variables.combos_arrayid,
 }
 
 //TODO: have this line check for the whole script
+//TODO: or card damage type
 if (battle_controller.target != OBJ_null) {
     //play card stored in to_play
     //TODO: figure out a better damage formula

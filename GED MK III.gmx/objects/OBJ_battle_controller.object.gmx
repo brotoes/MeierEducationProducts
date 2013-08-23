@@ -2,7 +2,7 @@
 <object>
   <spriteName>SPR_controller</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -37,6 +37,33 @@ whose_turn = 0
 
 //stores which enemy is targetted by the player
 target = 0
+
+persistent_variables = instance_find(OBJ_persistent_variables, 0)
+hp_current = persistent_variables.hp
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//carry out end of battle sequence
+room_goto(parent_room)
 </string>
           </argument>
         </arguments>
@@ -60,6 +87,12 @@ target = 0
           <argument>
             <kind>1</kind>
             <string>whose_turn = whose_turn % (instance_number(OBJ_enemy_parent) + 1)
+
+meter_hp.fill = hp_current/persistent_variables.hp
+
+if (instance_number(OBJ_enemy_parent) == 0) {
+    instance_destroy()
+}
 </string>
           </argument>
         </arguments>
@@ -99,6 +132,36 @@ for (i = 0; difficulty &gt; 0; i ++) {
     new_enemy.turn_priority = i + 1
     difficulty -= new_enemy.difficulty
 }
+
+//create health meters
+meter_hp = instance_create(room_width - 64, room_height - 50, OBJ_meter)
+meter_hp.vertical = true
+meter_hp.length = room_height - 50
+meter_hp.fill_color = c_red
+meter_hp.fill = hp_current/persistent_variables.hp
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//placeholder
 </string>
           </argument>
         </arguments>

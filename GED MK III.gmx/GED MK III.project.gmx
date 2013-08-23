@@ -208,12 +208,12 @@
       <object>objects\OBJ_card_hydrogen</object>
       <object>objects\OBJ_card_pressure</object>
       <object>objects\OBJ_card_hbomb</object>
-      <object>objects\OBJ_deck</object>
     </objects>
     <objects name="controllers">
       <object>objects\OBJ_overworld_controller</object>
       <object>objects\OBJ_battle_controller</object>
       <object>objects\OBJ_persistent_variables</object>
+      <object>objects\OBJ_deck</object>
     </objects>
   </objects>
   <rooms name="rooms">

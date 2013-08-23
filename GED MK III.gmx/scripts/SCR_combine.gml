@@ -34,9 +34,10 @@ if (array_isSet(persistent_variables.combos_arrayid, key0, key1, key2, key3, key
         ds_list_delete(hand_listid, precursor_index)
     }
     //idea: should I delete cards event on unsuccessful combine?
+    //clean up and end turn
+    ds_list_destroy(selected_listid)
+    battle_controller.whose_turn ++
+    deck.ready_to_draw = true
 }
 
-//clean up and end turn
-ds_list_destroy(selected_listid)
-battle_controller.whose_turn ++
-deck.ready_to_draw = true
+

@@ -125,10 +125,6 @@ if (battle_controller.whose_turn == 0 and ready_to_draw) {
           <argument>
             <kind>1</kind>
             <string>draw_sprite(card_back, 0, x, y)
-
-for (i = 0; i &lt; ds_list_size(hand_listid); i ++) {
-    draw_text(i * 30, 0, ds_list_find_value(hand_listid, i))
-}
 </string>
           </argument>
         </arguments>

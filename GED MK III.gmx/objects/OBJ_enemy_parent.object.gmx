@@ -78,6 +78,14 @@ targetted = false
 //TODO: death animation
 with (meter_hp) instance_destroy()
 battle_controller.target = OBJ_null
+
+//update the turn priorities of enemies whose turns come after
+for (i = 0; i &lt; instance_number(OBJ_enemy_parent); i ++) {
+    to_update = instance_find(OBJ_enemy_parent, i)
+    if (to_update.turn_priority &gt; turn_priority) {
+        to_update.turn_priority --
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -106,7 +114,7 @@ if (hp_current &lt;= 0) {
 }
 
 //check if it is this instance's turn
-if (battle_controller.whose_turn == turn_priority) {
+if (battle_controller.whose_turn == turn_priority and hp_current &gt; 0) {
     //draw new cards from deck
     //check how many cards need to be drawn
     cards_to_pop = max_hand_size - current_hand_size
@@ -122,7 +130,15 @@ if (battle_controller.whose_turn == turn_priority) {
             ds_list_add(hand_listid, popped_card)
         }
     }
-    script_execute(enemy_ai, id)
+    cards_listid = script_execute(enemy_ai, id)
+    //TODO: assemble combo card
+    card_to_play = ds_list_find_value(cards_listid, 0)
+    card_played = instance_create(0, 0, card_to_play)
+    battle_controller.hp_current -= card_played.strength
+    with (card_played) instance_destroy()
+    to_destroy = ds_list_find_index(hand_listid, card_to_play)
+    ds_list_delete(hand_listid, to_destroy)
+    ds_list_add(deck_listid, card_to_play)
     //queue up the next turn
     battle_controller.whose_turn ++
 }
