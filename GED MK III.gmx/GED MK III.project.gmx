@@ -21,6 +21,7 @@
     </sprites>
     <sprites name="enemies">
       <sprite>sprites\SPR_goomba</sprite>
+      <sprite>sprites\SPR_koopa</sprite>
     </sprites>
     <sprites name="interface">
       <sprite>sprites\SPR_TextBox</sprite>
@@ -119,6 +120,7 @@
     <scripts name="enemy AIs">
       <script>scripts\SCR_AI_sample.gml</script>
     </scripts>
+    <script>scripts\SCR_get_children.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\OBJ_null</object>
@@ -195,6 +197,8 @@
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
+      <object>objects\OBJ_enemy_goomba</object>
+      <object>objects\OBJ_enemy_koopa</object>
     </objects>
     <objects name="interface">
       <object>objects\OBJ_button</object>

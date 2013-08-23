@@ -32,14 +32,17 @@ parent_room = room
 //list of backgrounds
 backgrounds[0] = BG_battlescape
 
-//these are for runtime functions, not generation. Don't change dynamically
 whose_turn = 0
-
 //stores which enemy is targetted by the player
-target = 0
-
+target = OBJ_null
 persistent_variables = instance_find(OBJ_persistent_variables, 0)
 hp_current = persistent_variables.hp
+
+//loot accumulated. This is given to the player upon winning the battle
+gold = 0
+
+//TODO delete, here for debug
+enemy_listid = 0
 </string>
           </argument>
         </arguments>
@@ -63,6 +66,12 @@ hp_current = persistent_variables.hp
           <argument>
             <kind>1</kind>
             <string>//carry out end of battle sequence
+deck = instance_find(OBJ_deck, 0)
+for (i = 0; i &lt; ds_list_size(deck.hand_listid); i ++) {
+    card = ds_list_find_value(deck.hand_listid, i)
+    ds_list_add(deck.deck_listid, card)
+}
+persistent_variables.gold += gold
 room_goto(parent_room)
 </string>
           </argument>
@@ -121,14 +130,16 @@ if (instance_number(OBJ_enemy_parent) == 0) {
 //has to spend. It creates objects of random difficulty until it runs out
 //this is a really simply way to treat the model. I'll definitely improve it
 //in the future
+enemy_listid = SCR_get_children(OBJ_enemy_parent)
 for (i = 0; difficulty &gt; 0; i ++) { 
     //TODO: choose position properly
     //TODO: a better way to determine turn order
-    //TODO: a better way to choose enemy position in the room
-    //TODO: enemy selection
+    //TODO: smarter enemy selection
     //idea: create things other than enemies? e.g. environment pieces?
+    randomize()
+    new_index = irandom(ds_list_size(enemy_listid) - 1)
     new_enemy = instance_create(room_width/4 + 200*i, room_height/3,
-                                OBJ_enemy_parent)
+                                ds_list_find_value(enemy_listid, new_index))
     new_enemy.turn_priority = i + 1
     difficulty -= new_enemy.difficulty
 }
@@ -162,6 +173,7 @@ meter_hp.fill = hp_current/persistent_variables.hp
           <argument>
             <kind>1</kind>
             <string>//placeholder
+draw_text(0, 0, persistent_variables.gold)
 </string>
           </argument>
         </arguments>

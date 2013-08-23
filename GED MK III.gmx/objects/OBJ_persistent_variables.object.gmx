@@ -36,7 +36,9 @@ hand_size = 5
 //player stats
 hp = 1000
 
-//list containing the player's deck
+//inventory
+gold = 0
+
 pdeck_listid = ds_list_create()
 
 //list of combinations
