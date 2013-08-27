@@ -160,7 +160,6 @@
         <object>objects\OBJ_Armour_Button</object>
       </objects>
       <objects name="Gameplay Objects">
-        <object>objects\OBJ_Deck</object>
         <object>objects\OBJ_LevelUp</object>
         <object>objects\OBJ_Leveling_CardChoiceParent</object>
         <object>objects\OBJ_QuestionGenerator</object>
