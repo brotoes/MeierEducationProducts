@@ -175,6 +175,10 @@ if (battle_controller.whose_turn == turn_priority and
     }
     alarm[0] = 30
 }
+
+//change vertical height to match floor
+floor_inst = instance_find(OBJ_floor, 0)
+y = floor_inst.y - sprite_height - 30
 </string>
           </argument>
         </arguments>
@@ -270,5 +274,8 @@ if (battle_controller.target == id) {
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>0,0</point>
+    <point>16,16</point>
+  </PhysicsShapePoints>
 </object>

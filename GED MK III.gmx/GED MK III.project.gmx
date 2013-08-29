@@ -22,6 +22,7 @@
     <sprites name="enemies">
       <sprite>sprites\SPR_goomba</sprite>
       <sprite>sprites\SPR_koopa</sprite>
+      <sprite>sprites\SPR_walking_tiger</sprite>
     </sprites>
     <sprites name="interface">
       <sprite>sprites\SPR_TextBox</sprite>
@@ -92,6 +93,7 @@
       <sprite>sprites\SPR_invis_meter</sprite>
       <sprite>sprites\SPR_invis_button</sprite>
       <sprite>sprites\SPR_null</sprite>
+      <sprite>sprites\SPR_floor</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -197,7 +199,7 @@
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
       <object>objects\OBJ_enemy_goomba</object>
-      <object>objects\OBJ_enemy_koopa</object>
+      <object>objects\OBJ_walking_tiger</object>
     </objects>
     <objects name="interface">
       <object>objects\OBJ_button</object>
@@ -218,6 +220,7 @@
       <object>objects\OBJ_persistent_variables</object>
       <object>objects\OBJ_deck</object>
     </objects>
+    <object>objects\OBJ_floor</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\overworld_room</room>
