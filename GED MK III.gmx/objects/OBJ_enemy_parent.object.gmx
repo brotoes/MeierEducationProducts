@@ -40,7 +40,12 @@ max_hand_size = 1
 difficulty = 100
 
 //loot
+//IDEA: have modifiers for experience and gold, rather than
+//a set value for a given enemy?
+experience_value = 50
 gold = irandom_range(0,1)
+
+native_environment = 0
 
 //enemy will draw from this deck.
 deck_listid = ds_list_create()
@@ -81,7 +86,8 @@ targetted = false
 //TODO: death animation
 with (meter_hp) instance_destroy()
 battle_controller.target = OBJ_null
-battle_controller.gold += gold
+battle_controller.gold_earned += gold
+battle_controller.experience_earned += experience_value
 //update the turn priorities of enemies whose turns come after
 for (i = 0; i &lt; instance_number(OBJ_enemy_parent); i ++) {
     to_update = instance_find(OBJ_enemy_parent, i)

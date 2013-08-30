@@ -94,6 +94,7 @@
       <sprite>sprites\SPR_invis_button</sprite>
       <sprite>sprites\SPR_null</sprite>
       <sprite>sprites\SPR_floor</sprite>
+      <sprite>sprites\SPR_integer_indicator</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -123,6 +124,7 @@
       <script>scripts\SCR_AI_sample.gml</script>
     </scripts>
     <script>scripts\SCR_get_children.gml</script>
+    <script>scripts\SCR_increase_exp.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\OBJ_null</object>
@@ -204,6 +206,7 @@
     <objects name="interface">
       <object>objects\OBJ_button</object>
       <object>objects\OBJ_meter</object>
+      <object>objects\OBJ_integer_indicator</object>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>
@@ -219,10 +222,11 @@
       <object>objects\OBJ_battle_controller</object>
       <object>objects\OBJ_persistent_variables</object>
       <object>objects\OBJ_deck</object>
+      <object>objects\OBJ_floor</object>
     </objects>
-    <object>objects\OBJ_floor</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\test_room</room>
     <room>rooms\overworld_room</room>
     <room>rooms\battle_room</room>
     <rooms name="stages">

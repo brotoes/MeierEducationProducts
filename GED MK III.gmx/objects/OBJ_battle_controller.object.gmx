@@ -39,10 +39,10 @@ persistent_variables = instance_find(OBJ_persistent_variables, 0)
 hp_current = persistent_variables.hp
 
 //loot accumulated. This is given to the player upon winning the battle
-gold = 0
+gold_earned = 0
 
 //TODO delete, here for debug
-enemy_listid = 0
+//enemy_listid = 0
 </string>
           </argument>
         </arguments>
@@ -71,7 +71,8 @@ for (i = 0; i &lt; ds_list_size(deck.hand_listid); i ++) {
     card = ds_list_find_value(deck.hand_listid, i)
     ds_list_add(deck.deck_listid, card)
 }
-persistent_variables.gold += gold
+persistent_variables.gold += gold_earned
+SCR_increase_exp(experience_earned)
 room_goto(parent_room)
 </string>
           </argument>
