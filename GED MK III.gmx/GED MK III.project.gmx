@@ -94,7 +94,7 @@
       <sprite>sprites\SPR_invis_button</sprite>
       <sprite>sprites\SPR_null</sprite>
       <sprite>sprites\SPR_floor</sprite>
-      <sprite>sprites\SPR_integer_indicator</sprite>
+      <sprite>sprites\SPR_discrete_meter</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -206,7 +206,7 @@
     <objects name="interface">
       <object>objects\OBJ_button</object>
       <object>objects\OBJ_meter</object>
-      <object>objects\OBJ_integer_indicator</object>
+      <object>objects\OBJ_discrete_meter</object>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>
