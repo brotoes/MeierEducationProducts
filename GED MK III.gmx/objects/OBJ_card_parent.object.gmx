@@ -36,6 +36,7 @@ target_style = 0
 //TODO: document what each number represents (eg 0: slash)
 attack_type = 0
 strength = 50
+//animation = SPR_TODO
 //How much the card costs to play (MP?)
 cost = 1
 

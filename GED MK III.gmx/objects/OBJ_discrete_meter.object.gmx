@@ -71,13 +71,10 @@ for (i = 0; i &lt; total_circles; i ++) {
     circles_per_line = wrap_length div (circle_size + circle_spacing)
     row = i div circles_per_line
     column = i mod circles_per_line
-    circle_x = x + (circle_size + circle_spacing)*column
+    circle_x = x + (circle_size + circle_spacing)*column + circle_size/2
     circle_y = y + (circle_size + circle_spacing)*row
     draw_circle(circle_x, circle_y, circle_size/2, i &gt;= filled_count)
 }
-
-draw_text(0, 0, filled_count)
-draw_text(0, 20, total_circles)
 </string>
           </argument>
         </arguments>

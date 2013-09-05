@@ -41,6 +41,7 @@ difficulty = 150
 
 //loot
 gold = irandom_range(7, 14)
+experience_value = 100
 
 //enemy will draw from this deck.
 deck_listid = ds_list_create()

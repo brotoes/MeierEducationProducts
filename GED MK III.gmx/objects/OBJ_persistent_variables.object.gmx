@@ -34,8 +34,10 @@ stages_passed = 0
 //allowable number of cards for player to hold in hand
 hand_size = 5
 //player stats
+//TODO: change these to the starting value
 level = 0.00
 hp = 1000
+mp = 20
 
 //inventory
 gold = 0

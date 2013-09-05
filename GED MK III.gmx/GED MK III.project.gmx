@@ -25,8 +25,38 @@
       <sprite>sprites\SPR_walking_tiger</sprite>
     </sprites>
     <sprites name="interface">
-      <sprite>sprites\SPR_TextBox</sprite>
-      <sprite>sprites\SPR_Coin</sprite>
+      <sprites name="battle elements">
+        <sprite>sprites\SPR_turn_flag</sprite>
+        <sprite>sprites\SPR_card_back</sprite>
+        <sprite>sprites\SPR_enemy_card_indicator</sprite>
+        <sprite>sprites\SPR_card_stack</sprite>
+        <sprite>sprites\SPR_target</sprite>
+      </sprites>
+      <sprites name="bars">
+        <sprite>sprites\SPR_meter</sprite>
+      </sprites>
+      <sprites name="buttons">
+        <sprite>sprites\SPR_back</sprite>
+        <sprite>sprites\SPR_shop</sprite>
+        <sprite>sprites\SPR_button</sprite>
+      </sprites>
+    </sprites>
+    <sprites name="overworld">
+      <sprite>sprites\cloud</sprite>
+      <sprite>sprites\SPR_level_indicator</sprite>
+      <sprite>sprites\SPR_glow</sprite>
+      <sprite>sprites\SPR_conflict</sprite>
+    </sprites>
+    <sprites name="kyle">
+      <sprite>sprites\SPR_DefenseCard</sprite>
+      <sprite>sprites\SPR_CardBackgroundLayout</sprite>
+      <sprite>sprites\SPR_AttackCard</sprite>
+      <sprite>sprites\SPR_AnotherTurnCard</sprite>
+      <sprite>sprites\SPR_DoubleAttack</sprite>
+      <sprite>sprites\SPR_StabCard</sprite>
+      <sprite>sprites\SPR_VerticalCard</sprite>
+      <sprite>sprites\SPR_HorizontalCard</sprite>
+      <sprite>sprites\SPR_Deck</sprite>
       <sprites name="Buttons">
         <sprites name="Armor Types">
           <sprite>sprites\SPR_Ultra_Light_Armor_Button</sprite>
@@ -44,35 +74,8 @@
         <sprite>sprites\SPR_BackToGame</sprite>
         <sprite>sprites\SPR_Light_Armor_Button</sprite>
       </sprites>
-      <sprites name="battle elements">
-        <sprite>sprites\SPR_turn_flag</sprite>
-        <sprite>sprites\SPR_card_back</sprite>
-        <sprite>sprites\SPR_enemy_card_indicator</sprite>
-        <sprite>sprites\SPR_card_stack</sprite>
-        <sprite>sprites\SPR_target</sprite>
-      </sprites>
-      <sprites name="bars">
-        <sprite>sprites\SPR_meter</sprite>
-      </sprites>
-      <sprite>sprites\SPR_button</sprite>
-      <sprite>sprites\SPR_almanac</sprite>
-    </sprites>
-    <sprites name="overworld">
-      <sprite>sprites\cloud</sprite>
-      <sprite>sprites\SPR_level_indicator</sprite>
-      <sprite>sprites\SPR_glow</sprite>
-      <sprite>sprites\SPR_conflict</sprite>
-    </sprites>
-    <sprites name="kyle cards">
-      <sprite>sprites\SPR_DefenseCard</sprite>
-      <sprite>sprites\SPR_CardBackgroundLayout</sprite>
-      <sprite>sprites\SPR_AttackCard</sprite>
-      <sprite>sprites\SPR_AnotherTurnCard</sprite>
-      <sprite>sprites\SPR_DoubleAttack</sprite>
-      <sprite>sprites\SPR_StabCard</sprite>
-      <sprite>sprites\SPR_VerticalCard</sprite>
-      <sprite>sprites\SPR_HorizontalCard</sprite>
-      <sprite>sprites\SPR_Deck</sprite>
+      <sprite>sprites\SPR_Coin</sprite>
+      <sprite>sprites\SPR_TextBox</sprite>
     </sprites>
     <sprites name="Level up Icons">
       <sprite>sprites\SPR_Menu_QuickAttackCard</sprite>
@@ -95,11 +98,13 @@
       <sprite>sprites\SPR_null</sprite>
       <sprite>sprites\SPR_floor</sprite>
       <sprite>sprites\SPR_discrete_meter</sprite>
+      <sprite>sprites\SPR_location_reference</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\BG_overworld</background>
     <background>background\BG_battlescape</background>
+    <background>background\BG_store</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -197,6 +202,7 @@
     <objects name="overworld">
       <object>objects\OBJ_stage_indicator</object>
       <object>objects\OBJ_cloud</object>
+      <object>objects\OBJ_shop_indicator</object>
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
@@ -207,6 +213,7 @@
       <object>objects\OBJ_button</object>
       <object>objects\OBJ_meter</object>
       <object>objects\OBJ_discrete_meter</object>
+      <object>objects\OBJ_back_button</object>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>
@@ -223,11 +230,15 @@
       <object>objects\OBJ_persistent_variables</object>
       <object>objects\OBJ_deck</object>
       <object>objects\OBJ_floor</object>
+      <object>objects\OBJ_reference</object>
     </objects>
+    <object>objects\OBJ_store_controller</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\test_room</room>
     <room>rooms\overworld_room</room>
+    <room>rooms\test_room</room>
+    <room>rooms\loot_room</room>
+    <room>rooms\store_room</room>
     <room>rooms\battle_room</room>
     <rooms name="stages">
       <room>rooms\waterfall_windmill_room</room>
@@ -235,10 +246,10 @@
       <room>rooms\forged_wilds_room</room>
       <room>rooms\crystal_city_room</room>
     </rooms>
-    <rooms name="kyles rooms">
+    <rooms name="kyle rooms">
       <room>rooms\Main_Room</room>
       <room>rooms\Level_Up_Room</room>
-      <room>rooms\Store_Room</room>
+      <room>rooms\Store_Room_OLD</room>
       <room>rooms\Example_Room</room>
       <room>rooms\Inventory_Room</room>
       <room>rooms\Armor_Store_Room</room>
