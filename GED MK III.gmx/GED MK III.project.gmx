@@ -28,7 +28,6 @@
       <sprites name="battle elements">
         <sprite>sprites\SPR_turn_flag</sprite>
         <sprite>sprites\SPR_card_back</sprite>
-        <sprite>sprites\SPR_enemy_card_indicator</sprite>
         <sprite>sprites\SPR_card_stack</sprite>
         <sprite>sprites\SPR_target</sprite>
       </sprites>
@@ -99,6 +98,13 @@
       <sprite>sprites\SPR_floor</sprite>
       <sprite>sprites\SPR_discrete_meter</sprite>
       <sprite>sprites\SPR_location_reference</sprite>
+      <sprite>sprites\SPR_merchandise</sprite>
+    </sprites>
+    <sprites name="battle animations">
+      <sprite>sprites\SPR_explosion</sprite>
+    </sprites>
+    <sprites name="icons">
+      <sprite>sprites\SPR_card_icon</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -213,6 +219,7 @@
       <object>objects\OBJ_button</object>
       <object>objects\OBJ_meter</object>
       <object>objects\OBJ_discrete_meter</object>
+      <object>objects\OBJ_merchandise</object>
       <object>objects\OBJ_back_button</object>
     </objects>
     <objects name="cards">
@@ -227,12 +234,12 @@
     <objects name="controllers">
       <object>objects\OBJ_overworld_controller</object>
       <object>objects\OBJ_battle_controller</object>
+      <object>objects\OBJ_store_controller</object>
       <object>objects\OBJ_persistent_variables</object>
       <object>objects\OBJ_deck</object>
       <object>objects\OBJ_floor</object>
       <object>objects\OBJ_reference</object>
     </objects>
-    <object>objects\OBJ_store_controller</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\overworld_room</room>
