@@ -127,7 +127,6 @@ if (battle_controller.whose_turn == 0 and ready_to_draw) {
           <argument>
             <kind>1</kind>
             <string>draw_sprite(card_back, 0, x, y)
-draw_text(0, 0, ds_list_size(hand_listid))
 </string>
           </argument>
         </arguments>
@@ -145,5 +144,8 @@ draw_text(0, 0, ds_list_size(hand_listid))
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>0,0</point>
+    <point>96,96</point>
+  </PhysicsShapePoints>
 </object>

@@ -142,7 +142,7 @@ for (i = 0; difficulty &gt; 0; i ++) {
     new_index = irandom(ds_list_size(enemy_listid) - 1)
     new_enemy = instance_create(room_width/6 + next_x, 0,
                                 ds_list_find_value(enemy_listid, new_index))
-    next_x += new_enemy.sprite_width
+    next_x += new_enemy.sprite_width + 10
     new_enemy.turn_priority = i + 1
     difficulty -= new_enemy.difficulty
 }

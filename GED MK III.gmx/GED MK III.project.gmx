@@ -36,6 +36,7 @@
       </sprites>
       <sprites name="buttons">
         <sprite>sprites\SPR_back</sprite>
+        <sprite>sprites\SPR_inventory</sprite>
         <sprite>sprites\SPR_shop</sprite>
         <sprite>sprites\SPR_button</sprite>
       </sprites>
@@ -105,6 +106,7 @@
     </sprites>
     <sprites name="icons">
       <sprite>sprites\SPR_card_icon</sprite>
+      <sprite>sprites\SPR_gold_icon</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -208,7 +210,6 @@
     <objects name="overworld">
       <object>objects\OBJ_stage_indicator</object>
       <object>objects\OBJ_cloud</object>
-      <object>objects\OBJ_shop_indicator</object>
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
@@ -220,7 +221,10 @@
       <object>objects\OBJ_meter</object>
       <object>objects\OBJ_discrete_meter</object>
       <object>objects\OBJ_merchandise</object>
+      <object>objects\OBJ_shop</object>
+      <object>objects\OBJ_inventory</object>
       <object>objects\OBJ_back_button</object>
+      <object>objects\OBJ_gold_display</object>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>
