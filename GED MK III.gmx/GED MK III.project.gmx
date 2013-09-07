@@ -244,6 +244,7 @@
       <object>objects\OBJ_floor</object>
       <object>objects\OBJ_reference</object>
     </objects>
+    <object>objects\OBJ_mask_test</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\overworld_room</room>

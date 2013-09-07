@@ -30,8 +30,114 @@ price = 0
 name = "placeholder"
 icon = SPR_null
 x_end = 0
+item_index = 0
 
+store_controller = instance_find(OBJ_store_controller, 0)
 persistent_variables = instance_find(OBJ_persistent_variables, 0)
+box_start = instance_find(OBJ_reference, 0)
+box_end = instance_find(OBJ_reference, 1)
+selected = false
+dragged = false
+
+spawn_y = y
+mouse_y_difference = 0
+mouse_over = false
+purchase_failed = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>purchase_failed = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>horizontal = mouse_x &gt; x and mouse_x &lt; x_end
+vertical = mouse_y &gt;= y and mouse_y &lt; y + sprite_get_height(icon)
+
+mouse_over = horizontal and vertical
+
+menu_start = instance_find(OBJ_reference, 0)
+y = store_controller.scroll_offset + 
+    item_index*sprite_get_height(icon) + 
+    menu_start.y
+    
+top_ref = instance_find(OBJ_reference, 0)
+bottom_ref = instance_find(OBJ_reference, 1)    
+
+visible = y &gt;= top_ref.y and y + sprite_get_height(icon) &lt; bottom_ref.y
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (selected and not dragged and visible) {
+    //TODO check other item types i.e. not cards
+    //TODO fix unreliable click checking
+    if (persistent_variables.gold &gt;= price) {
+        persistent_variables.gold -= price
+        deck_listid = persistent_variables.pdeck_listid
+        ds_list_add(deck_listid, object)
+    } else {
+        purchase_failed = true
+        alarm[0] = 5
+    }
+}
+selected = false
+dragged = false
 </string>
           </argument>
         </arguments>
@@ -55,24 +161,34 @@ persistent_variables = instance_find(OBJ_persistent_variables, 0)
           <argument>
             <kind>1</kind>
             <string>//if clicked, check if purchase conditions are met, and add item to inventory
+selected = mouse_over
 
-//check if clicked
-horizontal = mouse_x &gt;= x and mouse_x &lt;= x_end
-vertical = mouse_y &gt;= y and mouse_y &lt;= y + sprite_get_height(icon)
-
-purchaseable = false
-
-if (horizontal and vertical) {
-    if ((persistent_variables.gold - price) &gt;= 0) {
-        purchaseable = true
-    }
-}
-
-if (purchaseable) {
-    //TODO check other item types i.e. not cards
-    persistent_variables.gold -= price
-    deck_listid = persistent_variables.pdeck_listid
-    ds_list_add(deck_listid, object)
+mouse_y_difference = y - mouse_y
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="50">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (selected and y != mouse_y + mouse_y_difference) {
+    dragged = true
+    store_controller.scroll_offset = mouse_y - spawn_y + mouse_y_difference
 }
 </string>
           </argument>
@@ -96,7 +212,21 @@ if (purchaseable) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(icon, 0, x, y)
+            <string>draw_set_color(c_white)
+if (purchase_failed) {
+    draw_set_color(c_red)
+}
+if (selected) {
+    draw_set_alpha(1)
+} else {
+    draw_set_alpha(0.5)
+}
+if (mouse_over) {
+    draw_rectangle(box_start.x, y, box_end.x, y + sprite_get_height(icon), false)
+}
+
+draw_set_alpha(1)
+draw_sprite(icon, 0, x, y)
 draw_sprite(SPR_gold_icon, 0, x_end - sprite_get_width(SPR_gold_icon), y)
 draw_set_color(c_black)
 draw_text(x + 64, y + sprite_get_height(icon)/2, name)

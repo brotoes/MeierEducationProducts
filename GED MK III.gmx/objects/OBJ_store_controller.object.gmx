@@ -58,9 +58,67 @@ for (i = 0; i &lt; item_count; i ++) {
     merchandise.icon = store_inventory[i, 1]
     merchandise.price = store_inventory[i, 2]
     merchandise.name = store_inventory[i, 3]
+    merchandise.item_index = i
 }
 
 scroll_offset = 0
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//check if item menu is in an inoptimal position.
+//if it is, reset the scroll offset
+
+to_reset = false
+one_visible = false
+one_dragged = false
+//loop through merchandise
+for (i = 0; i &lt; instance_number(OBJ_merchandise); i ++) {
+    merchandise = instance_find(OBJ_merchandise, i)
+    //first, check if all the items are off the screen
+    if (merchandise.visible) {
+        one_visible = true
+    }
+    //then, check if the top-most item is below the top
+    if (merchandise.item_index == 0 and merchandise.y &gt; box_start.y) {
+        to_reset = true
+    }
+    //finally, check if the user is currently dragging the items
+    //if they are, don't do anything
+    if (merchandise.dragged) {
+        one_dragged = true
+    }
+}
+
+if (not one_visible) {
+    to_reset = true
+}
+
+if (one_dragged) {
+    to_reset = false
+}
+
+if (to_reset) {
+    scroll_offset = 0
+}
 </string>
           </argument>
         </arguments>
