@@ -40,6 +40,8 @@ strength = 50
 //How much the card costs to play (MP?)
 cost = 1
 
+animation_sprite = SPR_explosion
+
 selected = false
 </string>
           </argument>

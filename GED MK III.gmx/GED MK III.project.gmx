@@ -100,6 +100,7 @@
       <sprite>sprites\SPR_discrete_meter</sprite>
       <sprite>sprites\SPR_location_reference</sprite>
       <sprite>sprites\SPR_merchandise</sprite>
+      <sprite>sprites\SPR_animate</sprite>
     </sprites>
     <sprites name="battle animations">
       <sprite>sprites\SPR_explosion</sprite>
@@ -225,6 +226,8 @@
       <object>objects\OBJ_inventory</object>
       <object>objects\OBJ_back_button</object>
       <object>objects\OBJ_gold_display</object>
+      <object>objects\OBJ_fade_out</object>
+      <object>objects\OBJ_animation</object>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>
@@ -244,11 +247,9 @@
       <object>objects\OBJ_floor</object>
       <object>objects\OBJ_reference</object>
     </objects>
-    <object>objects\OBJ_mask_test</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\overworld_room</room>
-    <room>rooms\test_room</room>
     <room>rooms\loot_room</room>
     <room>rooms\store_room</room>
     <room>rooms\battle_room</room>

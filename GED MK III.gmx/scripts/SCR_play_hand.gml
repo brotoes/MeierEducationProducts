@@ -39,6 +39,11 @@ if (battle_controller.target != OBJ_null) {
     target = battle_controller.target
     to_play = instance_create(0, 0, to_play)
     target.hp_current -= to_play.strength
+    
+    //animate attack
+    animation = instance_create(target.x, target.y, OBJ_animation)
+    animation.animation_sprite = to_play.animation_sprite
+    
     with (to_play) instance_destroy()
     
     //delete cards from room and hand and put them in the deck
