@@ -41,7 +41,12 @@ if (battle_controller.target != OBJ_null) {
     target.hp_current -= to_play.strength
     
     //animate attack
-    animation = instance_create(target.x, target.y, OBJ_animation)
+    //Idea: choose a better location over the middle for the animation
+    animation_x = target.x + sprite_get_width(target.sprite_index)/2
+    animation_x -= sprite_get_width(to_play.animation_sprite)/2
+    animation_y = target.y + sprite_get_height(target.sprite_index)/2
+    animation_y -= sprite_get_width(to_play.animation_sprite)/2
+    animation = instance_create(animation_x, animation_y, OBJ_animation)
     animation.animation_sprite = to_play.animation_sprite
     
     with (to_play) instance_destroy()

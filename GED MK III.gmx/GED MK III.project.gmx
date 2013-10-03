@@ -9,15 +9,37 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprites name="cards">
-      <sprite>sprites\SPR_card_melee</sprite>
-      <sprite>sprites\SPR_card_chemistry</sprite>
-      <sprite>sprites\SPR_card_engineering</sprite>
-      <sprite>sprites\SPR_card_image_template</sprite>
-      <sprite>sprites\SPR_card_image_stab</sprite>
-      <sprite>sprites\SPR_card_image_hydrogen</sprite>
-      <sprite>sprites\SPR_card_image_pressure</sprite>
-      <sprite>sprites\SPR_card_image_hbomb</sprite>
-      <sprite>sprites\SPR_card_image_slash</sprite>
+      <sprite>sprites\SPR_card_fire</sprite>
+      <sprite>sprites\SPR_card_earth</sprite>
+      <sprite>sprites\SPR_card_metal</sprite>
+      <sprite>sprites\SPR_card_water</sprite>
+      <sprite>sprites\SPR_card_wood</sprite>
+      <sprites name="legacy cards">
+        <sprite>sprites\SPR_card_image_slash</sprite>
+        <sprite>sprites\SPR_card_melee</sprite>
+        <sprite>sprites\SPR_card_engineering</sprite>
+        <sprite>sprites\SPR_card_chemistry</sprite>
+        <sprite>sprites\SPR_card_image_template</sprite>
+        <sprite>sprites\SPR_card_image_hbomb</sprite>
+        <sprite>sprites\SPR_card_image_pressure</sprite>
+        <sprite>sprites\SPR_card_image_stab</sprite>
+        <sprite>sprites\SPR_card_image_hydrogen</sprite>
+      </sprites>
+      <sprites name="icons">
+        <sprite>sprites\SPR_icon_placeholder</sprite>
+        <sprite>sprites\SPR_icon_fire</sprite>
+        <sprite>sprites\SPR_icon_earth</sprite>
+        <sprite>sprites\SPR_icon_metal</sprite>
+        <sprite>sprites\SPR_icon_water</sprite>
+        <sprite>sprites\SPR_icon_wood</sprite>
+      </sprites>
+      <sprites name="type">
+        <sprite>sprites\SPR_offense</sprite>
+        <sprite>sprites\SPR_defense</sprite>
+        <sprite>sprites\SPR_restore</sprite>
+        <sprite>sprites\SPR_poison</sprite>
+        <sprite>sprites\SPR_burn</sprite>
+      </sprites>
     </sprites>
     <sprites name="enemies">
       <sprite>sprites\SPR_goomba</sprite>
@@ -101,9 +123,11 @@
       <sprite>sprites\SPR_location_reference</sprite>
       <sprite>sprites\SPR_merchandise</sprite>
       <sprite>sprites\SPR_animate</sprite>
+      <sprite>sprites\SPR_cycle</sprite>
     </sprites>
     <sprites name="battle animations">
       <sprite>sprites\SPR_explosion</sprite>
+      <sprite>sprites\SPR_null_animation</sprite>
     </sprites>
     <sprites name="icons">
       <sprite>sprites\SPR_card_icon</sprite>
@@ -214,8 +238,6 @@
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
-      <object>objects\OBJ_enemy_goomba</object>
-      <object>objects\OBJ_walking_tiger</object>
     </objects>
     <objects name="interface">
       <object>objects\OBJ_button</object>
@@ -228,15 +250,15 @@
       <object>objects\OBJ_gold_display</object>
       <object>objects\OBJ_fade_out</object>
       <object>objects\OBJ_animation</object>
+      <object>objects\OBJ_cycle</object>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>
-      <object>objects\OBJ_card_dud</object>
-      <object>objects\OBJ_card_stab</object>
-      <object>objects\OBJ_card_slash</object>
-      <object>objects\OBJ_card_hydrogen</object>
-      <object>objects\OBJ_card_pressure</object>
-      <object>objects\OBJ_card_hbomb</object>
+      <object>objects\OBJ_card_fire</object>
+      <object>objects\OBJ_card_earth</object>
+      <object>objects\OBJ_card_metal</object>
+      <object>objects\OBJ_card_water</object>
+      <object>objects\OBJ_card_wood</object>
     </objects>
     <objects name="controllers">
       <object>objects\OBJ_overworld_controller</object>
@@ -249,6 +271,7 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\test_room</room>
     <room>rooms\overworld_room</room>
     <room>rooms\loot_room</room>
     <room>rooms\store_room</room>
@@ -268,6 +291,14 @@
       <room>rooms\Armor_Store_Room</room>
     </rooms>
   </rooms>
+  <constants number="6">
+    <constant name="ELEMENT_WOOD">5</constant>
+    <constant name="ELEMENT_WATER">4</constant>
+    <constant name="ELEMENT_METAL">3</constant>
+    <constant name="ELEMENT_EARTH">2</constant>
+    <constant name="ELEMENT_FIRE">1</constant>
+    <constant name="ELEMENT_NULL">0</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>
