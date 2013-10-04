@@ -26,7 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>//list of cards in the cycle, in the order they were put there
-card_order_listid = ds_list_create()
+elements_listid = ds_list_create()
+ds_list_add(elements_listid, ELEMENT_NULL)
 
 //size of the cycle, change this to have the cycle rendered differently
 size = 86
@@ -45,6 +46,66 @@ for (i = 0; i &lt; 5; i ++) {
     point_seq_x[i] = cos(degtorad(angle))*radius + center_x
     point_seq_y[i] = sin(degtorad(angle))*radius + center_y
 }
+element_colors[ELEMENT_NULL] = c_black
+element_colors[ELEMENT_FIRE] = c_red
+element_colors[ELEMENT_EARTH] = c_yellow
+element_colors[ELEMENT_METAL] = c_purple
+element_colors[ELEMENT_WATER] = c_blue
+element_colors[ELEMENT_WOOD] = c_green
+
+element_levels[ELEMENT_NULL] = 0
+element_levels[ELEMENT_FIRE] = 0
+element_levels[ELEMENT_EARTH] = 0
+element_levels[ELEMENT_METAL] = 0
+element_levels[ELEMENT_WATER] = 0
+element_levels[ELEMENT_WOOD] = 0
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//find and set element levels
+last = ELEMENT_NULL
+level = 0
+for (i = 0; i &lt; ds_list_size(elements_listid); i ++) {
+    //TODO: add base levels from persistent_variables
+    current = ds_list_find_value(elements_listid, i)
+    if (last != ELEMENT_NULL) {
+        last ++
+    }
+    if (last &gt; ELEMENT_WOOD) {
+        last = ELEMENT_FIRE
+    }
+    if (last == current) {
+        level ++
+    } else {
+        //level = 0
+    }
+    if (level &gt; 5) {
+        level = 0
+        //increment persistent_variables' base level
+    }
+    element_levels[current] = level
+    last = current
+}
+element_levels[ELEMENT_NULL] = 0
 </string>
           </argument>
         </arguments>
@@ -67,14 +128,30 @@ for (i = 0; i &lt; 5; i ++) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_circle(center_x, center_y, radius, true)
-for(i = 0; i &lt; 5; i ++) {
-    draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius, true)
-}
+            <string>draw_circle(center_x, center_y, radius + 1, true)
+draw_circle(center_x, center_y, radius, true)
+draw_circle(center_x, center_y, radius - 1, true)
+
 for(i = 0; i &lt; 5; i ++) {
     draw_line(point_seq_x[i], point_seq_y[i], 
         point_seq_x[(i + 2) % 5], point_seq_y[(i + 2) % 5])
 }
+
+for(i = 0; i &lt; 5; i ++) {
+    index = ds_list_size(elements_listid) - 1
+    element = ds_list_find_value(elements_listid, index)
+    fill = (i + 1) != (element)
+
+    draw_set_color(c_black)
+    draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius, false)
+    draw_set_color(element_colors[i + 1])
+    draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius, fill)
+    for (j = 1; j &lt;= element_levels[i + 1]; j ++) {
+        draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius + j*3, true)
+    }
+}
+
+draw_set_color(c_black)
 </string>
           </argument>
         </arguments>

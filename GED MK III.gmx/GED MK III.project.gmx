@@ -259,6 +259,7 @@
       <object>objects\OBJ_card_metal</object>
       <object>objects\OBJ_card_water</object>
       <object>objects\OBJ_card_wood</object>
+      <object>objects\OBJ_temp_parent</object>
     </objects>
     <objects name="controllers">
       <object>objects\OBJ_overworld_controller</object>
