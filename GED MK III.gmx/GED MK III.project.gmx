@@ -238,6 +238,7 @@
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
+      <object>objects\OBJ_enemy_tiger</object>
     </objects>
     <objects name="interface">
       <object>objects\OBJ_button</object>

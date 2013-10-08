@@ -50,7 +50,7 @@ native_environment = 0
 //enemy will draw from this deck.
 deck_listid = ds_list_create()
 //Idea: perhaps add a random element to the enemy's deck?
-ds_list_add(deck_listid, OBJ_card_stab)
+ds_list_add(deck_listid, OBJ_card_fire)
 
 //determines how the enemy will chose cards to play
 enemy_ai = SCR_AI_sample
