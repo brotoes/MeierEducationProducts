@@ -28,7 +28,7 @@
             <string>event_inherited()
 icon = SPR_icon_fire
 cost = 0
-type = ELEMENT_FIRE
+element = ELEMENT_FIRE
 </string>
           </argument>
         </arguments>

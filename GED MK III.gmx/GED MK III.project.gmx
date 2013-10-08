@@ -272,9 +272,9 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\test_room</room>
     <room>rooms\overworld_room</room>
     <room>rooms\loot_room</room>
+    <room>rooms\test_room</room>
     <room>rooms\store_room</room>
     <room>rooms\battle_room</room>
     <rooms name="stages">
@@ -293,12 +293,12 @@
     </rooms>
   </rooms>
   <constants number="6">
-    <constant name="ELEMENT_WOOD">5</constant>
-    <constant name="ELEMENT_WATER">4</constant>
-    <constant name="ELEMENT_METAL">3</constant>
-    <constant name="ELEMENT_EARTH">2</constant>
-    <constant name="ELEMENT_FIRE">1</constant>
-    <constant name="ELEMENT_NULL">0</constant>
+    <constant name="ELEMENT_NULL">5</constant>
+    <constant name="ELEMENT_WOOD">4</constant>
+    <constant name="ELEMENT_WATER">3</constant>
+    <constant name="ELEMENT_METAL">2</constant>
+    <constant name="ELEMENT_EARTH">1</constant>
+    <constant name="ELEMENT_FIRE">0</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

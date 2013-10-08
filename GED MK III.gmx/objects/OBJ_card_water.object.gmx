@@ -28,7 +28,7 @@
             <string>event_inherited()
 icon = SPR_icon_water
 cost = 0
-type = ELEMENT_WATER
+element = ELEMENT_WATER
 </string>
           </argument>
         </arguments>

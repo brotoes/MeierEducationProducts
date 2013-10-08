@@ -3,7 +3,7 @@
   <spriteName>SPR_counter</spriteName>
   <solid>0</solid>
   <visible>0</visible>
-  <depth>0</depth>
+  <depth>10000</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -45,12 +45,10 @@ ds_list_add(pdeck_listid, OBJ_card_metal)
 ds_list_add(pdeck_listid, OBJ_card_water)
 ds_list_add(pdeck_listid, OBJ_card_wood)
 
-element_base[ELEMENT_NULL] = 0
-element_base[ELEMENT_FIRE] = 0
-element_base[ELEMENT_EARTH] = 0
-element_base[ELEMENT_METAL] = 0
-element_base[ELEMENT_WATER] = 0
-element_base[ELEMENT_WOOD] = 0
+element_base[0] = 0
+for (element = ELEMENT_FIRE; element &lt; ELEMENT_NULL; element ++) {
+    element_base[element] = 0
+}
 </string>
           </argument>
         </arguments>

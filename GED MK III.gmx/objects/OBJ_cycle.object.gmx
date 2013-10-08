@@ -25,9 +25,17 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//list of cards in the cycle, in the order they were put there
+            <string>/*This is mostly finished. There are two bugs I'm aware of: after
+ *increasing the base level of an element, the fill circle that indicates
+ *which one was clicked last is not filled in.
+ *The second, you cannot get chains going that start with different elements
+ *from the one you start making first.
+ */
+
+//list of cards in the cycle, in the order they were put there
 elements_listid = ds_list_create()
 ds_list_add(elements_listid, ELEMENT_NULL)
+persistent_variables = instance_find(OBJ_persistent_variables, 0)
 
 //size of the cycle, change this to have the cycle rendered differently
 size = 86
@@ -53,12 +61,19 @@ element_colors[ELEMENT_METAL] = c_purple
 element_colors[ELEMENT_WATER] = c_blue
 element_colors[ELEMENT_WOOD] = c_green
 
+//the current level of each element (may change throughout the battle) 
 element_levels[ELEMENT_NULL] = 0
-element_levels[ELEMENT_FIRE] = 0
-element_levels[ELEMENT_EARTH] = 0
-element_levels[ELEMENT_METAL] = 0
-element_levels[ELEMENT_WATER] = 0
-element_levels[ELEMENT_WOOD] = 0
+//the current baseline level of each element (only reset after the battle ends)
+element_bases[ELEMENT_NULL] = 0
+
+previous_element_count = 0
+
+for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
+    element_levels[i] = persistent_variables.element_base[i]
+    element_bases[i] = persistent_variables.element_base[i]
+}
+
+last_played = ELEMENT_NULL
 </string>
           </argument>
         </arguments>
@@ -82,30 +97,60 @@ element_levels[ELEMENT_WOOD] = 0
           <argument>
             <kind>1</kind>
             <string>//find and set element levels
-last = ELEMENT_NULL
-level = 0
-for (i = 0; i &lt; ds_list_size(elements_listid); i ++) {
-    //TODO: add base levels from persistent_variables
-    current = ds_list_find_value(elements_listid, i)
-    if (last != ELEMENT_NULL) {
-        last ++
+element_count = ds_list_size(elements_listid)
+if (previous_element_count != element_count) {
+    for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
+        element_levels[i] = element_bases[i]
     }
-    if (last &gt; ELEMENT_WOOD) {
-        last = ELEMENT_FIRE
+    chains_listid = ds_list_create()
+    last_element = ELEMENT_NULL
+    cur_chain_length = 0
+    show_debug_message("------------------")
+    for (i = 0; i &lt; element_count; i ++) {
+        cur_element = ds_list_find_value(elements_listid, i)
+        show_debug_message(string(cur_element))
+        if ((last_element + 1) % 5 == cur_element
+            or last_element == ELEMENT_NULL and cur_element != ELEMENT_NULL) {
+            cur_chain_length ++
+        } else if (cur_element != ELEMENT_NULL) {
+            ds_list_add(chains_listid, cur_chain_length)
+            cur_chain_length = 1
+        }
+        if (i == element_count - 1) {
+            ds_list_add(chains_listid, cur_chain_length)
+        }
+        last_element = cur_element
     }
-    if (last == current) {
-        level ++
-    } else {
-        //level = 0
+    chain_start = 0
+    for (chain = 0; chain &lt; ds_list_size(chains_listid); chain ++) {
+        //show_debug_message("---------")
+        for (link = 0; link &lt;= ds_list_find_value(chains_listid, chain); link ++) {
+            index = ds_list_find_value(elements_listid, link + chain_start)
+            //show_debug_message(string(index))
+            new_level = link + element_bases[index]
+            if (new_level &gt; element_levels[index]) {
+                element_levels[index] = new_level
+            }
+            if (new_level &gt; 5) {
+                ds_list_clear(elements_listid)
+                ds_list_add(elements_listid, ELEMENT_NULL)
+                if (element_bases[index] &lt; 5) {
+                    element_bases[index] ++
+                }
+                for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
+                    element_levels[i] = element_bases[i]
+                }
+            }
+        }
+        chain_start += ds_list_find_value(chains_listid, chain)
     }
-    if (level &gt; 5) {
-        level = 0
-        //increment persistent_variables' base level
-    }
-    element_levels[current] = level
-    last = current
+    element_count = ds_list_size(elements_listid)
+    previous_element_count = element_count
+    ds_list_destroy(chains_listid)
+    
+    element_levels[ELEMENT_NULL] = 0
 }
-element_levels[ELEMENT_NULL] = 0
+
 </string>
           </argument>
         </arguments>
@@ -137,17 +182,17 @@ for(i = 0; i &lt; 5; i ++) {
         point_seq_x[(i + 2) % 5], point_seq_y[(i + 2) % 5])
 }
 
-for(i = 0; i &lt; 5; i ++) {
+for(i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     index = ds_list_size(elements_listid) - 1
     element = ds_list_find_value(elements_listid, index)
-    fill = (i + 1) != (element)
+    fill = i != element
 
     draw_set_color(c_black)
     draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius, false)
-    draw_set_color(element_colors[i + 1])
+    draw_set_color(element_colors[i])
     draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius, fill)
-    for (j = 1; j &lt;= element_levels[i + 1]; j ++) {
-        draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius + j*3, true)
+    for (j = 0; j &lt; element_levels[i]; j ++) {
+        draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius + (j+1)*3, true)
     }
 }
 
