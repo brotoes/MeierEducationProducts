@@ -38,7 +38,7 @@ ds_list_add(elements_listid, ELEMENT_NULL)
 persistent_variables = instance_find(OBJ_persistent_variables, 0)
 
 //size of the cycle, change this to have the cycle rendered differently
-size = 86
+size = sprite_get_width(SPR_card_stack)
 
 //generate data to draw self
 center_x = x + size/2

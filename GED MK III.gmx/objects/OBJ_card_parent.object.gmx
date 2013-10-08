@@ -125,9 +125,9 @@ x = deck.x + (index + 1)*(sprite_width + 16)
             <kind>1</kind>
             <string>draw_set_color(c_black)
 //draw the face of the card
-draw_sprite(SPR_card_face, 0, x, y)
+draw_self()
 //draw the card image
-card_center = sprite_get_width(SPR_card_face)/2
+card_center = sprite_width/2
 icon_offset = card_center - sprite_get_width(icon)/2
 draw_sprite(icon, 0, x + icon_offset, y + icon_offset)
 //draw card type in the top left
@@ -135,7 +135,7 @@ draw_sprite(SPR_offense, 0, x + 5, y + 5)
 
 //draw squares in the top right to represent mana cost
 draw_set_color(c_blue)
-width = sprite_get_width(SPR_card_face)
+width = sprite_width
 for (i = 0; i &lt; cost; i ++) {
     start_x = x + (width - 13 - i*9)
     start_y = y + 3
@@ -144,16 +144,8 @@ for (i = 0; i &lt; cost; i ++) {
     draw_rectangle(start_x, start_y, end_x, end_y, false)
 }
 
-//draw card potency
-draw_set_color(c_yellow)
-spacing = 2
-width = 8
-start = sprite_get_width(SPR_card_face)/2 - ((width + spacing)*(potency-1))/2
-for (i = 0; i &lt; potency; i ++) {
-    draw_circle(x + start + i*(width+spacing), y + 120, width/2, false)
-}
-
 //draw card effects
+/*
 effect_icon = 0
 switch(type) {
     case ELEMENT_FIRE:
@@ -171,6 +163,7 @@ switch(type) {
 draw_sprite(effect_icon, -1, 5, 5)
 
 draw_set_color(c_black)
+*/
 </string>
           </argument>
         </arguments>
