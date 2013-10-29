@@ -154,6 +154,48 @@ if (previous_element_count != element_count) {
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*detect click, and play cycle*/
+//detect click, and set flag
+click = false
+
+if (point_distance(mouse_x, mouse_y, center_x, center_y) &lt; radius + 20) {
+    click = true
+}
+//play cycle if clicked
+if (click) {
+    //get target object
+    battle_controller = instance_find(OBJ_battle_controller, 0)
+    target = battle_controller.target
+    if (target.object_index != OBJ_null) {
+        //calculate damage
+        //TODO figure out damage formula
+        
+        //apply damage to target object
+        //increment turn if no cards left, or cycle is empty
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -171,7 +213,14 @@ if (previous_element_count != element_count) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_circle(center_x, center_y, radius + 1, true)
+            <string>/*background*/
+draw_set_color(c_gray)
+draw_set_alpha(0.5)
+draw_circle(center_x, center_y, radius + 20, false)
+
+draw_set_alpha(1)
+draw_set_color(c_black)
+draw_circle(center_x, center_y, radius + 1, true)
 draw_circle(center_x, center_y, radius, true)
 draw_circle(center_x, center_y, radius - 1, true)
 

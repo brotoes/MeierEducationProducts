@@ -40,6 +40,7 @@
           <argument>
             <kind>1</kind>
             <string>flying = true
+primary_element = ELEMENT_WOOD
 </string>
           </argument>
         </arguments>
