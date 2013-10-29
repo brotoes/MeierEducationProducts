@@ -51,11 +51,11 @@
   </views>
   <instances>
     <instance objName="OBJ_overworld_controller" x="0" y="0" name="inst_09250B21" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="OBJ_persistent_variables" x="64" y="0" name="inst_610A5B9C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_stage_indicator" x="224" y="352" name="inst_1B04D252" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_stage_indicator" x="480" y="544" name="inst_8E22FC52" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_stage_indicator" x="768" y="288" name="inst_A5777F24" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_stage_indicator" x="448" y="224" name="inst_83601976" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="OBJ_persistent_variables" x="64" y="0" name="inst_610A5B9C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_shop" x="864" y="544" name="inst_AF1FC0BF" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_inventory" x="768" y="544" name="inst_B5999DC6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_cloud" x="64" y="64" name="inst_2A1E2DBD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>

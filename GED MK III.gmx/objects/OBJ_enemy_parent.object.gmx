@@ -60,6 +60,9 @@ hand_listid = ds_list_create()
 //idea: do I need a discard stack?
 battle_controller = instance_find(OBJ_battle_controller, 0)
 targetted = false
+
+flying = false
+animation_counter = random(100)
 </string>
           </argument>
         </arguments>
@@ -190,6 +193,12 @@ if (battle_controller.whose_turn == turn_priority and
 //change vertical height to match floor
 floor_inst = instance_find(OBJ_floor, 0)
 y = floor_inst.y - sprite_height - 30
+
+if (flying) {
+y -= 100
+y -= sin(animation_counter/30)*20
+}
+animation_counter ++
 </string>
           </argument>
         </arguments>

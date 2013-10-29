@@ -34,7 +34,9 @@
 
 //list of cards in the cycle, in the order they were put there
 elements_listid = ds_list_create()
-ds_list_add(elements_listid, ELEMENT_NULL)
+card_null = instance_create(x, y, OBJ_element_container)
+card_null.element = ELEMENT_NULL
+ds_list_add(elements_listid, card_null)
 persistent_variables = instance_find(OBJ_persistent_variables, 0)
 
 //size of the cycle, change this to have the cycle rendered differently
@@ -73,7 +75,7 @@ for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     element_bases[i] = persistent_variables.element_base[i]
 }
 
-last_played = ELEMENT_NULL
+last_played = card_null
 </string>
           </argument>
         </arguments>
@@ -105,10 +107,9 @@ if (previous_element_count != element_count) {
     chains_listid = ds_list_create()
     last_element = ELEMENT_NULL
     cur_chain_length = 0
-    show_debug_message("------------------")
+
     for (i = 0; i &lt; element_count; i ++) {
-        cur_element = ds_list_find_value(elements_listid, i)
-        show_debug_message(string(cur_element))
+        cur_element = ds_list_find_value(elements_listid, i).element
         if ((last_element + 1) % 5 == cur_element
             or last_element == ELEMENT_NULL and cur_element != ELEMENT_NULL) {
             cur_chain_length ++
@@ -123,17 +124,15 @@ if (previous_element_count != element_count) {
     }
     chain_start = 0
     for (chain = 0; chain &lt; ds_list_size(chains_listid); chain ++) {
-        //show_debug_message("---------")
         for (link = 0; link &lt;= ds_list_find_value(chains_listid, chain); link ++) {
-            index = ds_list_find_value(elements_listid, link + chain_start)
-            //show_debug_message(string(index))
+            index = ds_list_find_value(elements_listid, link + chain_start).element
             new_level = link + element_bases[index]
             if (new_level &gt; element_levels[index]) {
                 element_levels[index] = new_level
             }
             if (new_level &gt; 5) {
                 ds_list_clear(elements_listid)
-                ds_list_add(elements_listid, ELEMENT_NULL)
+                ds_list_add(elements_listid, card_null)
                 if (element_bases[index] &lt; 5) {
                     element_bases[index] ++
                 }
@@ -150,7 +149,6 @@ if (previous_element_count != element_count) {
     
     element_levels[ELEMENT_NULL] = 0
 }
-
 </string>
           </argument>
         </arguments>
@@ -182,11 +180,15 @@ for(i = 0; i &lt; 5; i ++) {
         point_seq_x[(i + 2) % 5], point_seq_y[(i + 2) % 5])
 }
 
-for(i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
-    index = ds_list_size(elements_listid) - 1
-    element = ds_list_find_value(elements_listid, index)
-    fill = i != element
+index = ds_list_size(elements_listid) - 1
+recent_card = ds_list_find_value(elements_listid, index)
 
+recent_element = recent_card.element
+
+for(i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
+    /*yes, this is a valid statement. It sets fill to either true or false*/
+    fill = i != recent_element
+    
     draw_set_color(c_black)
     draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius, false)
     draw_set_color(element_colors[i])

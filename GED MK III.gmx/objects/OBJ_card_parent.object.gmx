@@ -30,7 +30,7 @@
 //stats
 //How much the card costs to play (MP?)
 cost = 0
-type = ELEMENT_NULL
+element = ELEMENT_NULL
 
 //list of effects the card has
 effects = ds_list_create()
@@ -38,6 +38,13 @@ effects = ds_list_create()
 //animation_sprite = SPR_explosion
 
 selected = false
+
+enemy_floor = instance_find(OBJ_floor, 0)
+
+cycle = instance_find(OBJ_cycle, 0)
+
+deck_count = instance_number(OBJ_deck)
+deck = instance_find(OBJ_deck, 0)
 </string>
           </argument>
         </arguments>
@@ -61,8 +68,6 @@ selected = false
           <argument>
             <kind>1</kind>
             <string>//update position
-deck = instance_find(OBJ_deck, 0)
-
 hand_listid = deck.hand_listid
 
 index = 0
@@ -73,7 +78,7 @@ for (i = 0; i &lt; instance_number(OBJ_card_parent); i ++) {
 }
 
 y = deck.y - 50*selected
-x = deck.x + (index + 1)*(sprite_width + 16)
+x = deck.x + (index)*(sprite_width + 16)
 </string>
           </argument>
         </arguments>
@@ -98,8 +103,13 @@ x = deck.x + (index + 1)*(sprite_width + 16)
             <kind>1</kind>
             <string>if (selected) {
     selected = false
+    /*remove card from cycle*/
+    index = ds_list_find_index(cycle.elements_listid, id)
+    ds_list_delete(cycle.elements_listid, index)
 } else {
     selected = true
+    /*add card into cycle*/
+    ds_list_add(cycle.elements_listid, id)
 }
 </string>
           </argument>

@@ -14,6 +14,7 @@
       <sprite>sprites\SPR_card_metal</sprite>
       <sprite>sprites\SPR_card_water</sprite>
       <sprite>sprites\SPR_card_wood</sprite>
+      <sprite>sprites\SPR_card_null</sprite>
       <sprites name="legacy cards">
         <sprite>sprites\SPR_card_image_slash</sprite>
         <sprite>sprites\SPR_card_melee</sprite>
@@ -32,6 +33,7 @@
         <sprite>sprites\SPR_icon_metal</sprite>
         <sprite>sprites\SPR_icon_water</sprite>
         <sprite>sprites\SPR_icon_wood</sprite>
+        <sprite>sprites\SPR_icon_null</sprite>
       </sprites>
       <sprites name="type">
         <sprite>sprites\SPR_offense</sprite>
@@ -42,9 +44,8 @@
       </sprites>
     </sprites>
     <sprites name="enemies">
-      <sprite>sprites\SPR_goomba</sprite>
-      <sprite>sprites\SPR_koopa</sprite>
       <sprite>sprites\SPR_walking_tiger</sprite>
+      <sprite>sprites\SPR_leech_butts</sprite>
     </sprites>
     <sprites name="interface">
       <sprites name="battle elements">
@@ -239,6 +240,7 @@
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
       <object>objects\OBJ_enemy_tiger</object>
+      <object>objects\OBJ_enemy_leech</object>
     </objects>
     <objects name="interface">
       <object>objects\OBJ_button</object>
@@ -260,7 +262,7 @@
       <object>objects\OBJ_card_metal</object>
       <object>objects\OBJ_card_water</object>
       <object>objects\OBJ_card_wood</object>
-      <object>objects\OBJ_temp_parent</object>
+      <object>objects\OBJ_element_container</object>
     </objects>
     <objects name="controllers">
       <object>objects\OBJ_overworld_controller</object>
