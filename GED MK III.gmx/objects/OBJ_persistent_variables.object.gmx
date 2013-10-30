@@ -35,6 +35,7 @@ hand_size = 3
 level = 0.00
 hp = 1000
 mp = 20
+base_damage = 5
 
 pdeck_listid = ds_list_create()
 

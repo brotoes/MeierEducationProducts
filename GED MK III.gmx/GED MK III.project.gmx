@@ -295,7 +295,10 @@
       <room>rooms\Armor_Store_Room</room>
     </rooms>
   </rooms>
-  <constants number="6">
+  <constants number="9">
+    <constant name="DMG_NORMAL">1</constant>
+    <constant name="DMG_FEED">-1</constant>
+    <constant name="DMG_COUNTER">2</constant>
     <constant name="ELEMENT_NULL">5</constant>
     <constant name="ELEMENT_WOOD">4</constant>
     <constant name="ELEMENT_WATER">3</constant>
