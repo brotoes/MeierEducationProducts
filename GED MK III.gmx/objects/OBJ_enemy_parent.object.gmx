@@ -34,8 +34,8 @@ meter_hp.fill_color = make_color_rgb(255, 0, 0)
 turn_priority = 0
 
 //stats
-hp_total = 100
-hp_current = 100
+hp_total = 10
+hp_current = 10
 max_hand_size = 1
 difficulty = 100
 
@@ -192,14 +192,7 @@ if (battle_controller.whose_turn == turn_priority and
     alarm[0] = 30
 }
 
-//change vertical height to match floor
-floor_inst = instance_find(OBJ_floor, 0)
-y = floor_inst.y - sprite_height - 30
-
-if (flying) {
-y -= 100
-y -= sin(animation_counter/30)*20
-}
+//step animation
 animation_counter ++
 </string>
           </argument>
@@ -251,7 +244,11 @@ animation_counter ++
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Change variables. This doesn't need to be in draw, but it was
+            <string>//change vertical height to match floor
+floor_inst = instance_find(OBJ_floor, 0)
+y = floor_inst.y - sprite_height - 30
+
+//Change variables. This doesn't need to be in draw, but it was
 //convenient to put it here, at the time.
 meter_hp.x = x + (sprite_width % sprite_get_width(SPR_meter))
 meter_hp.y = sprite_height + sprite_get_height(SPR_meter) + y
@@ -263,6 +260,25 @@ draw_sprite(SPR_turn_flag, 0, x + sprite_width, y)
 //TODO account for player's turn
 draw_set_color(c_black)
 draw_text(x + sprite_width + 9, y + 8, turn_priority + 1)
+
+//amount the change y value for flying enemies
+adjust_y = 0
+//adjust height for flying
+if (flying) {
+    adjust_y -= 100
+    adjust_y -= sin(animation_counter/15)*20
+}
+
+//draw shadow
+draw_set_alpha(0.5)
+draw_set_color(c_black)
+draw_ellipse(x - adjust_y/2, y + sprite_height - 40 - adjust_y/7,
+ x + sprite_width + adjust_y/2, y + sprite_height + 10, false)
+draw_set_alpha(1)
+draw_set_color(c_black)
+
+//apply height adjustment
+y += adjust_y
 
 //draw targetting indicator
 battle_controller = instance_find(OBJ_battle_controller, 0)
@@ -277,7 +293,7 @@ if (battle_controller.target == id) {
     draw_self()
 }
 
-//draw correct number of card indicators below health bar
+//draw correct number of card indicators below health bar?
 //TODO
 </string>
           </argument>

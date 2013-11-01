@@ -6,7 +6,9 @@
   <NewExtensions>
     <extension index="0">extensions\Advanced Arrays</extension>
   </NewExtensions>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\M_title_screen</sound>
+  </sounds>
   <sprites name="sprites">
     <sprites name="cards">
       <sprite>sprites\SPR_card_fire</sprite>
@@ -116,6 +118,7 @@
       <sprite>sprites\SPR_parent</sprite>
       <sprite>sprites\SPR_counter</sprite>
       <sprite>sprites\SPR_controller</sprite>
+      <sprite>sprites\SPR_music</sprite>
       <sprite>sprites\SPR_invis_meter</sprite>
       <sprite>sprites\SPR_invis_button</sprite>
       <sprite>sprites\SPR_null</sprite>
@@ -137,8 +140,9 @@
   </sprites>
   <backgrounds name="background">
     <background>background\BG_overworld</background>
-    <background>background\BG_battlescape</background>
+    <background>background\BG_old_battlescape</background>
     <background>background\BG_store</background>
+    <background>background\BG_battlescape</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -265,6 +269,7 @@
       <object>objects\OBJ_element_container</object>
     </objects>
     <objects name="controllers">
+      <object>objects\OBJ_music_controller</object>
       <object>objects\OBJ_overworld_controller</object>
       <object>objects\OBJ_battle_controller</object>
       <object>objects\OBJ_store_controller</object>
