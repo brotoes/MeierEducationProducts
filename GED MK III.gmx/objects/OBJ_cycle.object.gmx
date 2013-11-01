@@ -84,6 +84,33 @@ chain_ends_listid = ds_list_create()
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//delete cards played
+for (i = 1; i &lt; ds_list_size(elements_listid); i ++) {
+    to_destroy = ds_list_find_value(elements_listid, i)
+    with (to_destroy) instance_destroy()
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -112,7 +139,11 @@ if (previous_element_count != element_count) {
     cur_chain_length = 0
 
     for (i = 0; i &lt; element_count; i ++) {
-        cur_element = ds_list_find_value(elements_listid, i).element
+        cur_element_card = ds_list_find_value(elements_listid, i)
+        show_debug_message("cur_element_card-------------------------")
+        show_debug_message(string(cur_element_card))
+        show_debug_message(string(cur_element_card.id))
+        cur_element = cur_element_card.element
         if ((last_element + 1) % 5 == cur_element
             or last_element == ELEMENT_NULL and cur_element != ELEMENT_NULL) {
             cur_chain_length ++
@@ -208,6 +239,9 @@ if (click) {
             show_debug_message("DAMAGE DEALT-------------------------")
             show_debug_message(string(damage))
         }
+        //set deletion alarm for cards played
+        alarm[0] = 2
+
         //apply damage to target object
         target.hp_current -= total_damage
         //increment turn if no cards left, or cycle is empty
@@ -237,12 +271,12 @@ if (click) {
           <argument>
             <kind>1</kind>
             <string>/*background*/
-draw_set_color(c_gray)
+draw_set_color(c_white)
 draw_set_alpha(0.5)
 draw_circle(center_x, center_y, radius + 20, false)
 
-draw_set_alpha(1)
 draw_set_color(c_black)
+draw_set_alpha(1)
 draw_circle(center_x, center_y, radius + 1, true)
 draw_circle(center_x, center_y, radius, true)
 draw_circle(center_x, center_y, radius - 1, true)

@@ -37,7 +37,7 @@ turn_priority = 0
 hp_total = 10
 hp_current = 10
 max_hand_size = 1
-difficulty = 100
+difficulty = 150
 
 //loot
 //IDEA: have modifiers for experience and gold, rather than
@@ -61,6 +61,7 @@ current_hand_size = 0
 hand_listid = ds_list_create()
 //idea: do I need a discard stack?
 battle_controller = instance_find(OBJ_battle_controller, 0)
+cycle = instance_find(OBJ_cycle, 0)
 targetted = false
 
 flying = false
@@ -131,7 +132,7 @@ fade_out.fade_sprite = sprite_index
 //TODO: assemble combo card
 card_to_play = ds_list_find_value(cards_listid, 0)
 card_played = instance_create(0, 0, card_to_play)
-battle_controller.hp_current -= card_played.strength
+battle_controller.hp_current -= 5
 with (card_played) instance_destroy()
 to_destroy = ds_list_find_index(hand_listid, card_to_play)
 ds_list_delete(hand_listid, to_destroy)
@@ -256,10 +257,10 @@ meter_hp.y = sprite_height + sprite_get_height(SPR_meter) + y
 meter_hp.fill = hp_current / hp_total
 
 //Draw the turn order indicators
-draw_sprite(SPR_turn_flag, 0, x + sprite_width, y)
+//draw_sprite(SPR_turn_flag, 0, x + sprite_width, y)
 //TODO account for player's turn
-draw_set_color(c_black)
-draw_text(x + sprite_width + 9, y + 8, turn_priority + 1)
+//draw_set_color(c_black)
+//draw_text(x + sprite_width + 9, y + 8, turn_priority + 1)
 
 //amount the change y value for flying enemies
 adjust_y = 0
@@ -271,24 +272,31 @@ if (flying) {
 
 //draw shadow
 draw_set_alpha(0.5)
-draw_set_color(c_black)
+if (battle_controller.target == id) {
+    draw_set_color(cycle.element_colors[primary_element])
+} else {
+    draw_set_color(c_black)
+}
 draw_ellipse(x - adjust_y/2, y + sprite_height - 40 - adjust_y/7,
  x + sprite_width + adjust_y/2, y + sprite_height + 10, false)
 draw_set_alpha(1)
 draw_set_color(c_black)
 
+                
 //apply height adjustment
 y += adjust_y
+
 
 //draw targetting indicator
 battle_controller = instance_find(OBJ_battle_controller, 0)
 if (battle_controller.target == id) {
-    scale = sprite_width/sprite_get_width(SPR_target)
-    draw_sprite_ext(SPR_target, 1, x, 
-                y + (sprite_height - sprite_get_height(SPR_target)),
-                scale, 1, 0, c_white, 1)
+    //scale = sprite_width/sprite_get_width(SPR_target)
+    //draw_sprite_ext(SPR_target, 1, x, 
+    //            y - adjust_y + (sprite_height - sprite_get_height(SPR_target)),
+    //            scale, 1, 0, c_white, 1)
+
     draw_self()
-    draw_sprite_ext(SPR_target, 0, x, y + sprite_height, scale, 1, 0, c_white, 1)
+    //draw_sprite_ext(SPR_target, 0, x, y + sprite_height - adjust_y, scale, 1, 0, c_white, 1)
 } else {
     draw_self()
 }

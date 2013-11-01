@@ -8,6 +8,8 @@
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\M_title_screen</sound>
+    <sound>sound\M_store_theme</sound>
+    <sound>sound\M_battle_theme</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="cards">
