@@ -64,6 +64,7 @@
       <sprites name="buttons">
         <sprite>sprites\SPR_back</sprite>
         <sprite>sprites\SPR_inventory</sprite>
+        <sprite>sprites\SPR_fight</sprite>
         <sprite>sprites\SPR_shop</sprite>
         <sprite>sprites\SPR_button</sprite>
       </sprites>
@@ -139,12 +140,16 @@
       <sprite>sprites\SPR_card_icon</sprite>
       <sprite>sprites\SPR_gold_icon</sprite>
     </sprites>
+    <sprite>sprites\SPR_star</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\BG_overworld</background>
     <background>background\BG_old_battlescape</background>
     <background>background\BG_store</background>
     <background>background\BG_battlescape</background>
+    <background>background\BG_title</background>
+    <background>background\BG_title_text</background>
+    <background>background\BG_shop</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -164,6 +169,9 @@
       <script>scripts\SCR_null_action.gml</script>
       <script>scripts\SCR_play_hand.gml</script>
       <script>scripts\SCR_combine.gml</script>
+      <script>scripts\SCR_continue.gml</script>
+      <script>scripts\SCR_load.gml</script>
+      <script>scripts\SCR_settings.gml</script>
     </scripts>
     <scripts name="enemy AIs">
       <script>scripts\SCR_AI_sample.gml</script>
@@ -279,9 +287,14 @@
       <object>objects\OBJ_deck</object>
       <object>objects\OBJ_floor</object>
       <object>objects\OBJ_reference</object>
+      <object>objects\OBJ_menu_controller</object>
+    </objects>
+    <objects name="Particles">
+      <object>objects\OBJ_star_particle</object>
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\menu_room</room>
     <room>rooms\overworld_room</room>
     <room>rooms\loot_room</room>
     <room>rooms\test_room</room>
@@ -302,7 +315,13 @@
       <room>rooms\Armor_Store_Room</room>
     </rooms>
   </rooms>
-  <constants number="9">
+  <constants number="15">
+    <constant name="MENU_CONF">5</constant>
+    <constant name="MENU_LOAD">4</constant>
+    <constant name="MENU_SHOP">3</constant>
+    <constant name="MENU_GAME">2</constant>
+    <constant name="MENU_START">1</constant>
+    <constant name="MENU_TITLE">0</constant>
     <constant name="DMG_NORMAL">1</constant>
     <constant name="DMG_FEED">-1</constant>
     <constant name="DMG_COUNTER">2</constant>

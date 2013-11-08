@@ -219,7 +219,7 @@ animation_counter ++
             <kind>1</kind>
             <string>if (battle_controller.target == id) {
     //remove self from target variable in battle_controller
-    battle_controller.target = 0
+    battle_controller.target = OBJ_null
 } else {
     battle_controller.target = id
 }
