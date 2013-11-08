@@ -140,9 +140,6 @@ if (previous_element_count != element_count) {
 
     for (i = 0; i &lt; element_count; i ++) {
         cur_element_card = ds_list_find_value(elements_listid, i)
-        show_debug_message("cur_element_card-------------------------")
-        show_debug_message(string(cur_element_card))
-        show_debug_message(string(cur_element_card.id))
         cur_element = cur_element_card.element
         if ((last_element + 1) % 5 == cur_element
             or last_element == ELEMENT_NULL and cur_element != ELEMENT_NULL) {
@@ -236,14 +233,16 @@ if (click) {
             damage = persistent_variables.base_damage
             damage += element_levels[element] * multiplier
             total_damage += damage
-            show_debug_message("DAMAGE DEALT-------------------------")
-            show_debug_message(string(damage))
         }
         //set deletion alarm for cards played
         alarm[0] = 2
 
         //apply damage to target object
         target.hp_current -= total_damage
+        //create damage indicator
+        indicator_offset = sprite_get_width(target.sprite_index)/2
+        indicator = instance_create(target.x + indicator_offset, target.y + 50, OBJ_floating_number)
+        indicator.value = string(total_damage)
         //increment turn if no cards left, or cycle is empty
         battle_controller.whose_turn ++
     }

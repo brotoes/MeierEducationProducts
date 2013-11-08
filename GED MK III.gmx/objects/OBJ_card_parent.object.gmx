@@ -71,7 +71,6 @@ deck = instance_find(OBJ_deck, 0)
 //remove self from cycle
 index = ds_list_find_index(cycle.elements_listid, id)
 if (index != -1) {
-    show_debug_message("removed from list--------------------------")
     ds_list_delete(cycle.elements_listid, index)
 }
 </string>

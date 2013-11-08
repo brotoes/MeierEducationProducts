@@ -153,18 +153,6 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\SCR_CheckConditions.gml</script>
-    <script>scripts\SCR_CheckTurnOrder.gml</script>
-    <script>scripts\SCR_ResetToBattle.gml</script>
-    <script>scripts\SCR_ShuffleDeck.gml</script>
-    <script>scripts\SCR_MyHealthBar.gml</script>
-    <script>scripts\SCR_EnemyHealthBar.gml</script>
-    <script>scripts\SCR_ExperienceBar.gml</script>
-    <script>scripts\SCR_GoldIndicator.gml</script>
-    <script>scripts\SCR_TextBox.gml</script>
-    <script>scripts\SCR_DrawQuestion.gml</script>
-    <script>scripts\SCR_QuestionGenerator.gml</script>
-    <script>scripts\SCR_ComboCheck.gml</script>
     <scripts name="button actions">
       <script>scripts\SCR_null_action.gml</script>
       <script>scripts\SCR_play_hand.gml</script>
@@ -176,81 +164,30 @@
     <scripts name="enemy AIs">
       <script>scripts\SCR_AI_sample.gml</script>
     </scripts>
+    <script>scripts\SCR_draw_background.gml</script>
     <script>scripts\SCR_get_children.gml</script>
     <script>scripts\SCR_increase_exp.gml</script>
+    <scripts name="LEGACY">
+      <script>scripts\SCR_ComboCheck.gml</script>
+      <script>scripts\SCR_QuestionGenerator.gml</script>
+      <script>scripts\SCR_DrawQuestion.gml</script>
+      <script>scripts\SCR_TextBox.gml</script>
+      <script>scripts\SCR_GoldIndicator.gml</script>
+      <script>scripts\SCR_ExperienceBar.gml</script>
+      <script>scripts\SCR_EnemyHealthBar.gml</script>
+      <script>scripts\SCR_MyHealthBar.gml</script>
+      <script>scripts\SCR_ShuffleDeck.gml</script>
+      <script>scripts\SCR_ResetToBattle.gml</script>
+      <script>scripts\SCR_CheckTurnOrder.gml</script>
+      <script>scripts\SCR_CheckConditions.gml</script>
+    </scripts>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\FONT_big_arial</font>
+    <font>fonts\FONT_normal</font>
+  </fonts>
   <objects name="objects">
     <object>objects\OBJ_null</object>
-    <objects name="examples">
-      <object>objects\OBJ_mod_card_example</object>
-    </objects>
-    <objects name="kyle objects">
-      <objects name="Inventory">
-        <object>objects\OBJ_ClothArmor</object>
-        <object>objects\OBJ_LeatherArmor</object>
-        <object>objects\OBJ_KnittedArmor</object>
-        <object>objects\OBJ_LightArmor</object>
-        <object>objects\OBJ_UltraLightArmor</object>
-        <object>objects\OBJ_RegularArmor</object>
-        <object>objects\OBJ_InventoryController</object>
-      </objects>
-      <objects name="Buttons">
-        <object>objects\OBJ_Armor_Selection_Store_Button</object>
-        <object>objects\OBJ_Inventory_Button</object>
-        <object>objects\OBJ_Store_Button</object>
-        <object>objects\OBJ_BackToGame</object>
-        <object>objects\OBJ_ExitButton</object>
-      </objects>
-      <objects name="Store Icons">
-        <object>objects\OBJ_Pets_Button</object>
-        <objects name="Armour Selection">
-          <object>objects\OBJ_Regular_Armor_Button</object>
-          <object>objects\OBJ_Light_Armor_Button</object>
-          <object>objects\OBJ_Ultra_Light_Armor_Button</object>
-          <object>objects\OBJ_Leather_Armor_Button</object>
-          <object>objects\OBJ_Cloth_Armor_Button</object>
-          <object>objects\OBJ_Store_Boots_Button</object>
-          <object>objects\OBJ_Knitted_Armor_Button</object>
-        </objects>
-        <object>objects\OBJ_Weapon_Button</object>
-        <object>objects\OBJ_StorePricesController</object>
-        <object>objects\OBJ_Armour_Button</object>
-      </objects>
-      <objects name="Gameplay Objects">
-        <object>objects\OBJ_LevelUp</object>
-        <object>objects\OBJ_Leveling_CardChoiceParent</object>
-        <object>objects\OBJ_QuestionGenerator</object>
-        <object>objects\OBJ_EnemyAttack2</object>
-        <object>objects\OBJ_ShuffleDeck</object>
-        <object>objects\OBJ_CardBackgroundLayout</object>
-        <object>objects\OBJ_TextInput</object>
-        <object>objects\OBJ_Combo</object>
-      </objects>
-      <objects name="Leveling Up">
-        <object>objects\OBJ_Menu_AnotherTurnCard</object>
-        <object>objects\OBJ_Menu_DoubleAttack</object>
-        <object>objects\OBJ_Menu_Stab1</object>
-      </objects>
-      <objects name="Cards">
-        <object>objects\OBJ_CardParent</object>
-        <object>objects\OBJ_Horiz1</object>
-        <object>objects\OBJ_Vert1</object>
-        <object>objects\OBJ_AnotherTurnCard</object>
-        <object>objects\OBJ_DoubleAttack</object>
-        <object>objects\OBJ_Stab1</object>
-      </objects>
-      <objects name="Message Objects">
-        <object>objects\OBJ_LevelUpMessage1</object>
-        <object>objects\OBJ_NotEnoughGoldMessage</object>
-      </objects>
-    </objects>
-    <objects name="worlds">
-      <object>objects\OBJ_conflict_indicator</object>
-    </objects>
-    <objects name="overworld">
-      <object>objects\OBJ_stage_indicator</object>
-      <object>objects\OBJ_cloud</object>
-    </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
       <object>objects\OBJ_enemy_tiger</object>
@@ -260,11 +197,7 @@
       <object>objects\OBJ_button</object>
       <object>objects\OBJ_meter</object>
       <object>objects\OBJ_discrete_meter</object>
-      <object>objects\OBJ_merchandise</object>
-      <object>objects\OBJ_shop</object>
-      <object>objects\OBJ_inventory</object>
       <object>objects\OBJ_back_button</object>
-      <object>objects\OBJ_gold_display</object>
       <object>objects\OBJ_fade_out</object>
       <object>objects\OBJ_animation</object>
       <object>objects\OBJ_cycle</object>
@@ -280,7 +213,6 @@
     </objects>
     <objects name="controllers">
       <object>objects\OBJ_music_controller</object>
-      <object>objects\OBJ_overworld_controller</object>
       <object>objects\OBJ_battle_controller</object>
       <object>objects\OBJ_store_controller</object>
       <object>objects\OBJ_persistent_variables</object>
@@ -291,6 +223,84 @@
     </objects>
     <objects name="Particles">
       <object>objects\OBJ_star_particle</object>
+      <object>objects\OBJ_floating_number</object>
+    </objects>
+    <objects name="LEGACY">
+      <objects name="kyle objects">
+        <objects name="Inventory">
+          <object>objects\OBJ_ClothArmor</object>
+          <object>objects\OBJ_LeatherArmor</object>
+          <object>objects\OBJ_KnittedArmor</object>
+          <object>objects\OBJ_LightArmor</object>
+          <object>objects\OBJ_UltraLightArmor</object>
+          <object>objects\OBJ_RegularArmor</object>
+          <object>objects\OBJ_InventoryController</object>
+        </objects>
+        <objects name="Buttons">
+          <object>objects\OBJ_Armor_Selection_Store_Button</object>
+          <object>objects\OBJ_Inventory_Button</object>
+          <object>objects\OBJ_Store_Button</object>
+          <object>objects\OBJ_BackToGame</object>
+          <object>objects\OBJ_ExitButton</object>
+        </objects>
+        <objects name="Store Icons">
+          <object>objects\OBJ_Pets_Button</object>
+          <objects name="Armour Selection">
+            <object>objects\OBJ_Regular_Armor_Button</object>
+            <object>objects\OBJ_Light_Armor_Button</object>
+            <object>objects\OBJ_Ultra_Light_Armor_Button</object>
+            <object>objects\OBJ_Leather_Armor_Button</object>
+            <object>objects\OBJ_Cloth_Armor_Button</object>
+            <object>objects\OBJ_Store_Boots_Button</object>
+            <object>objects\OBJ_Knitted_Armor_Button</object>
+          </objects>
+          <object>objects\OBJ_Weapon_Button</object>
+          <object>objects\OBJ_StorePricesController</object>
+          <object>objects\OBJ_Armour_Button</object>
+        </objects>
+        <objects name="Gameplay Objects">
+          <object>objects\OBJ_LevelUp</object>
+          <object>objects\OBJ_Leveling_CardChoiceParent</object>
+          <object>objects\OBJ_QuestionGenerator</object>
+          <object>objects\OBJ_EnemyAttack2</object>
+          <object>objects\OBJ_ShuffleDeck</object>
+          <object>objects\OBJ_CardBackgroundLayout</object>
+          <object>objects\OBJ_TextInput</object>
+          <object>objects\OBJ_Combo</object>
+        </objects>
+        <objects name="Leveling Up">
+          <object>objects\OBJ_Menu_AnotherTurnCard</object>
+          <object>objects\OBJ_Menu_DoubleAttack</object>
+          <object>objects\OBJ_Menu_Stab1</object>
+        </objects>
+        <objects name="Cards">
+          <object>objects\OBJ_CardParent</object>
+          <object>objects\OBJ_Horiz1</object>
+          <object>objects\OBJ_Vert1</object>
+          <object>objects\OBJ_AnotherTurnCard</object>
+          <object>objects\OBJ_DoubleAttack</object>
+          <object>objects\OBJ_Stab1</object>
+        </objects>
+        <objects name="Message Objects">
+          <object>objects\OBJ_LevelUpMessage1</object>
+          <object>objects\OBJ_NotEnoughGoldMessage</object>
+        </objects>
+      </objects>
+      <object>objects\OBJ_overworld_controller</object>
+      <object>objects\OBJ_inventory</object>
+      <object>objects\OBJ_shop</object>
+      <object>objects\OBJ_gold_display</object>
+      <object>objects\OBJ_merchandise</object>
+      <objects name="overworld">
+        <object>objects\OBJ_stage_indicator</object>
+        <object>objects\OBJ_cloud</object>
+      </objects>
+      <objects name="worlds">
+        <object>objects\OBJ_conflict_indicator</object>
+      </objects>
+      <objects name="examples">
+        <object>objects\OBJ_mod_card_example</object>
+      </objects>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -315,7 +325,8 @@
       <room>rooms\Armor_Store_Room</room>
     </rooms>
   </rooms>
-  <constants number="15">
+  <constants number="16">
+    <constant name="PRIORITY_MUSIC">0</constant>
     <constant name="MENU_CONF">5</constant>
     <constant name="MENU_LOAD">4</constant>
     <constant name="MENU_SHOP">3</constant>
