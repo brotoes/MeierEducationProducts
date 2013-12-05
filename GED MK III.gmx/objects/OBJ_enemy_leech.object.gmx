@@ -41,6 +41,8 @@
             <kind>1</kind>
             <string>flying = true
 primary_element = ELEMENT_METAL
+hp_total = 30
+hp_current = 30
 </string>
           </argument>
         </arguments>

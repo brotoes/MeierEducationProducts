@@ -71,7 +71,7 @@ y_shop = y_center - sprite_get_height(SPR_shop)
 //create menu particles
 if (room == menu_room) {
     for (i = 0; i &lt; particles_persec/room_speed; i ++) {
-      // instance_create(random(room_width), room_height, OBJ_star_particle)
+        instance_create(random(room_width), room_height, OBJ_star_particle)
     }
 }
 </string>
@@ -103,8 +103,8 @@ if (room == menu_room) {
     create_x = 300
     create_y = 300
     continue_button = instance_create(create_x, create_y, OBJ_button)
-    load_button = instance_create(create_x, create_y + 40, OBJ_button)
-    settings_button = instance_create(create_x, create_y + 80, OBJ_button)
+    load_button = instance_create(create_x, create_y + 80, OBJ_button)
+    settings_button = instance_create(create_x, create_y + 160, OBJ_button)
     
     continue_button.button_text = "               Continue             "
     load_button.button_text     = "              Load Game             "

@@ -27,12 +27,13 @@
             <kind>1</kind>
             <string>audio_play_sound(M_title_screen, PRIORITY_MUSIC, true)
 prev_room = room
+recently_off = true
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="4">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -49,25 +50,32 @@ prev_room = room
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room != prev_room) {
-    prev_room = room
-    switch (room) {
-        case store_room: {
-            audio_stop_all()
-            audio_play_sound(M_store_theme, PRIORITY_MUSIC, true)
-        } break
-        case battle_room: {
-            audio_stop_all()
-            audio_play_sound(M_battle_theme, PRIORITY_MUSIC, true)
-        } break
-        case waterfall_windmill_room: {
-            audio_stop_all()
-            audio_play_sound(M_store_theme, PRIORITY_MUSIC, true)
-        } break
-        default:
-            audio_stop_all()
-            audio_play_sound(M_title_screen, PRIORITY_MUSIC, true)
+            <string>mtoggle = instance_find(OBJ_mtoggle, 0)
+if (mtoggle.image_index == 0) {
+    if (room != prev_room or recently_off) {
+        recently_off = false
+        prev_room = room
+        switch (room) {
+            case store_room: {
+                audio_stop_all()
+                audio_play_sound(M_store_theme, PRIORITY_MUSIC, true)
+            } break
+            case battle_room: {
+                audio_stop_all()
+                audio_play_sound(M_battle_theme, PRIORITY_MUSIC, true)
+            } break
+            case waterfall_windmill_room: {
+                audio_stop_all()
+                audio_play_sound(M_store_theme, PRIORITY_MUSIC, true)
+            } break
+            default:
+                audio_stop_all()
+                audio_play_sound(M_title_screen, PRIORITY_MUSIC, true)
+        }
     }
+} else {
+    audio_stop_all()
+    recently_off = true
 }
 </string>
           </argument>

@@ -40,6 +40,8 @@
           <argument>
             <kind>1</kind>
             <string>primary_element = ELEMENT_EARTH
+hp_total = 35
+hp_current = 35
 </string>
           </argument>
         </arguments>

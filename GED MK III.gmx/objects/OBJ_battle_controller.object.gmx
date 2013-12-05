@@ -152,17 +152,9 @@ for (i = 0; difficulty &gt; 0; i ++) {
 reference_hp = instance_find(OBJ_reference, 0)
 reference_mp = instance_find(OBJ_reference, 1)
 meter_hp = instance_create(reference_hp.x, reference_hp.y, OBJ_meter)
-meter_hp.length = sprite_get_width(SPR_card_stack)
+meter_hp.length = room_width - 32
 meter_hp.fill_color = c_red
 meter_hp.fill = hp_current/persistent_variables.hp
-
-meter_mp = instance_create(reference_mp.x, reference_mp.y, OBJ_discrete_meter)
-meter_mp.wrap_length = sprite_get_width(SPR_card_stack)
-meter_mp.circle_size = 13
-meter_mp.circle_spacing = 2
-meter_mp.circle_color = c_blue
-meter_mp.total_circles = persistent_variables.mp
-meter_mp.filled_count = mp_current
 </string>
           </argument>
         </arguments>

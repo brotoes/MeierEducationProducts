@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>//Upon instancing, change this to the sprite you wanted faded out
 fade_sprite = SPR_walking_tiger
+target_destroy = OBJ_null
 
 //change this to the number of seconds you would like the fade out to take
 fade_time = 1
@@ -62,6 +63,9 @@ draw_sprite(fade_sprite, 0, x, y)
 draw_set_alpha(1)
 
 if (alpha &lt;= 0) {
+    if (target_destroy != OBJ_null) {
+        with (target_destroy) instance_destroy()
+    }
     instance_destroy()
 }
 

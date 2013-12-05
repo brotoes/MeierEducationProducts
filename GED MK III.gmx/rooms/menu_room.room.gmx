@@ -53,6 +53,8 @@
     <instance objName="OBJ_persistent_variables" x="64" y="0" name="inst_803C794E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_music_controller" x="0" y="0" name="inst_C175812B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_menu_controller" x="32" y="0" name="inst_5A102E54" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="OBJ_mtoggle" x="864" y="32" name="inst_8EB1F571" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="OBJ_stoggle" x="768" y="32" name="inst_11097F51" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

@@ -50,6 +50,9 @@
     <sprites name="enemies">
       <sprite>sprites\SPR_walking_tiger</sprite>
       <sprite>sprites\SPR_leech_butts</sprite>
+      <sprite>sprites\SPR_crying_idol</sprite>
+      <sprite>sprites\SPR_firespirit</sprite>
+      <sprite>sprites\SPR_deliquent</sprite>
     </sprites>
     <sprites name="interface">
       <sprites name="battle elements">
@@ -67,6 +70,11 @@
         <sprite>sprites\SPR_fight</sprite>
         <sprite>sprites\SPR_shop</sprite>
         <sprite>sprites\SPR_button</sprite>
+        <sprite>sprites\SPR_stoggle</sprite>
+        <sprite>sprites\SPR_mtoggle</sprite>
+      </sprites>
+      <sprites name="shoppe">
+        <sprite>sprites\SPR_purse</sprite>
       </sprites>
     </sprites>
     <sprites name="overworld">
@@ -140,7 +148,10 @@
       <sprite>sprites\SPR_card_icon</sprite>
       <sprite>sprites\SPR_gold_icon</sprite>
     </sprites>
-    <sprite>sprites\SPR_star</sprite>
+    <sprites name="particles">
+      <sprite>sprites\SPR_star</sprite>
+      <sprite>sprites\SPR_purse_particle</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\BG_overworld</background>
@@ -191,6 +202,9 @@
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
       <object>objects\OBJ_enemy_tiger</object>
+      <object>objects\OBJ_enemy_ent</object>
+      <object>objects\OBJ_enemy_idol</object>
+      <object>objects\OBJ_enemy_spirit</object>
       <object>objects\OBJ_enemy_leech</object>
     </objects>
     <objects name="interface">
@@ -201,6 +215,8 @@
       <object>objects\OBJ_fade_out</object>
       <object>objects\OBJ_animation</object>
       <object>objects\OBJ_cycle</object>
+      <object>objects\OBJ_mtoggle</object>
+      <object>objects\OBJ_stoggle</object>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>
@@ -215,14 +231,15 @@
       <object>objects\OBJ_music_controller</object>
       <object>objects\OBJ_battle_controller</object>
       <object>objects\OBJ_store_controller</object>
+      <object>objects\OBJ_menu_controller</object>
       <object>objects\OBJ_persistent_variables</object>
       <object>objects\OBJ_deck</object>
       <object>objects\OBJ_floor</object>
       <object>objects\OBJ_reference</object>
-      <object>objects\OBJ_menu_controller</object>
     </objects>
     <objects name="Particles">
       <object>objects\OBJ_star_particle</object>
+      <object>objects\OBJ_purse_particle</object>
       <object>objects\OBJ_floating_number</object>
     </objects>
     <objects name="LEGACY">
@@ -301,6 +318,9 @@
       <objects name="examples">
         <object>objects\OBJ_mod_card_example</object>
       </objects>
+    </objects>
+    <objects name="shoppe">
+      <object>objects\OBJ_purse</object>
     </objects>
   </objects>
   <rooms name="rooms">

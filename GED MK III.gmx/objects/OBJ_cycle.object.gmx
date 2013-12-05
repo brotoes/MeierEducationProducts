@@ -210,12 +210,17 @@ if (previous_element_count != element_count) {
             <string>/*detect click, and play cycle*/
 //detect click, and set flag
 click = false
+target_exists = false
+
+if (battle_controller.target != OBJ_null) {
+    target_exists = true
+}
 
 if (point_distance(mouse_x, mouse_y, center_x, center_y) &lt; radius + 20) {
     click = true
 }
 //play cycle if clicked
-if (click) {
+if (click &amp;&amp; target_exists) {
     //get target object
     target = battle_controller.target
     if (target.object_index != OBJ_null) {
@@ -231,7 +236,30 @@ if (click) {
                 multiplier = DMG_FEED
             }
             damage = persistent_variables.base_damage
-            damage += element_levels[element] * multiplier
+            damage += element_levels[element]
+            damage *= multiplier
+            //perform element specific actions
+            switch (element) {
+                case ELEMENT_FIRE: {
+                    damage *= 2
+                } break
+                case ELEMENT_EARTH: {
+                    //TODO: find GOOD formula for amount healed
+                    battle_controller.hp_current += 10 * element_levels[element]
+                    if (battle_controller.hp_current &gt; persistent_variables.hp) {
+                        battle_controller.hp_current = persistent_variables.hp
+                    }
+                } break
+                case ELEMENT_METAL: {
+                    target.stun = true
+                } break
+                case ELEMENT_WATER: {
+                    //TODO: action points gained
+                } break
+                case ELEMENT_WOOD: {
+                    target.poison = element_levels[element]
+                }
+            }
             total_damage += damage
         }
         //set deletion alarm for cards played
@@ -239,9 +267,13 @@ if (click) {
 
         //apply damage to target object
         target.hp_current -= total_damage
+        if (target.hp_current &gt; target.hp_total) {
+            target.hp_current = target.hp_total
+        }
         //create damage indicator
         indicator_offset = sprite_get_width(target.sprite_index)/2
-        indicator = instance_create(target.x + indicator_offset, target.y + 50, OBJ_floating_number)
+        indicator = instance_create(target.x + indicator_offset, target.y + 50,
+                                    OBJ_floating_number)
         indicator.value = string(total_damage)
         //increment turn if no cards left, or cycle is empty
         battle_controller.whose_turn ++

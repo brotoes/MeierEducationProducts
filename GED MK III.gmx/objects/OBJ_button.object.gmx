@@ -117,16 +117,20 @@ sprite_index_modifier = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_black)
+            <string>char_width = 10
+char_height = 10
+h_segs = char_width*string_length(button_text)/sprite_get_width(SPR_button)
+
 draw_sprite(SPR_button, sprite_index_modifier, x, y)
-for (i = 1; i &lt; string_length(button_text); i ++) {
+for (i = 1; i &lt; h_segs-1; i ++) {
     draw_sprite(SPR_button, 1 + sprite_index_modifier,
                  x + sprite_get_width(SPR_button)*i, y)
 }
 draw_sprite(SPR_button, 2 + sprite_index_modifier,
-            x + sprite_get_width(SPR_button)*(string_length(button_text)),
-            y)
-draw_text(x + sprite_get_width(SPR_button), y + 8, button_text)
+            x + floor(h_segs)*sprite_get_width(SPR_button), y)
+
+draw_text(x + sprite_get_width(SPR_button),
+          y + sprite_get_height(SPR_button)/2 - char_height/2, button_text)
 </string>
           </argument>
         </arguments>

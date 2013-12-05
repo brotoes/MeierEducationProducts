@@ -37,6 +37,8 @@ length = 80
 
 //amount of bar filled. value should be &lt; 1
 fill = 1
+//amount shown on bar for animated value change
+visualized = fill
 
 //color of the fill of the bar
 fill_color = c_red
@@ -44,6 +46,44 @@ fill_color = c_red
 //if true, bar will be vertical, instead of horizontal
 //TODO
 vertical = false
+
+//speed the bar empties or fills when value is changed
+animate_speed = .05
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//animate
+difference = fill - visualized
+if (difference &gt; 0) {
+    visualized += animate_speed
+    if (fill - visualized &lt; 0) {
+        visualized = fill
+    }
+} else if (difference &lt; 0) {
+    visualized -= animate_speed
+    if (fill - visualized &gt; visualized) {
+        visualized = fill
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -66,16 +106,20 @@ vertical = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//TODO: account for a differently sized bar sprite
-//TODO: change the bar sprite so that the caps don't show any fill?
-//TODO: fix vertical, it goes too low
+            <string>//todo animation messed things up a bit, fix it
+
 draw_set_color(fill_color)
 
+//bound fill
 if (fill &lt; 0) {
     fill = 0
 }
+if (fill &gt; 1) {
+    fill = 1
+}
 
 line_len = (length - 8) * fill - length % 8
+vis_line_len = (length - 8) * visualized - length % 8
 segment_count = (length - (length % 8))/8
 if (segment_count &lt; 3) {
     segment_count = 3
@@ -90,8 +134,12 @@ if (vertical) {
     }
     draw_sprite_ext(SPR_meter, 2, x, y - (segment_count - 1) * 8, 1, 1, 90, c_white, 1)
 } else {
+    //draw visualized amount
+    draw_line_width(x + 3, y + 7, x + 3 + vis_line_len, y + 7, 13)
+    draw_set_color(c_yellow)
+    //draw fill amount
     draw_line_width(x + 3, y + 7, x + 3 + line_len, y + 7, 13)
-
+    
     draw_sprite(SPR_meter, 0, x, y)
     for (i = 1; i &lt; segment_count - 1; i ++) {
         draw_sprite(SPR_meter, 1, x + i * 8, y)

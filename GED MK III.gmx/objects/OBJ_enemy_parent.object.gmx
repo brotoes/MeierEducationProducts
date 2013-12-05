@@ -38,6 +38,7 @@ hp_total = 10
 hp_current = 10
 max_hand_size = 1
 difficulty = 150
+//TODO poison resist
 
 //loot
 //IDEA: have modifiers for experience and gold, rather than
@@ -49,6 +50,10 @@ gold = irandom_range(0,1)
 primary_element = ELEMENT_NULL
 native_environment = 0
 
+//status ailments
+stun = false
+poison = 0
+
 //enemy will draw from this deck.
 deck_listid = ds_list_create()
 //Idea: perhaps add a random element to the enemy's deck?
@@ -59,7 +64,7 @@ enemy_ai = SCR_AI_sample
 
 current_hand_size = 0
 hand_listid = ds_list_create()
-//idea: do I need a discard stack?
+
 battle_controller = instance_find(OBJ_battle_controller, 0)
 cycle = instance_find(OBJ_cycle, 0)
 targetted = false
@@ -88,10 +93,7 @@ animation_counter = random(100)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//TODO: death animation
-with (meter_hp) instance_destroy()
-
-battle_controller.target = OBJ_null
+            <string>battle_controller.target = OBJ_null
 battle_controller.gold_earned += gold
 battle_controller.experience_earned += experience_value
 
@@ -103,7 +105,9 @@ for (i = 0; i &lt; instance_number(OBJ_enemy_parent); i ++) {
     }
 }
 
+meter_hp.fill = 0
 fade_out = instance_create(x, y, OBJ_fade_out)
+fade_out.target_destroy = meter_hp
 fade_out.fade_time = 1
 fade_out.fade_sprite = sprite_index
 </string>
@@ -128,15 +132,10 @@ fade_out.fade_sprite = sprite_index
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>cards_listid = script_execute(enemy_ai, id)
-//TODO: assemble combo card
-card_to_play = ds_list_find_value(cards_listid, 0)
-card_played = instance_create(0, 0, card_to_play)
-battle_controller.hp_current -= 5
-with (card_played) instance_destroy()
-to_destroy = ds_list_find_index(hand_listid, card_to_play)
-ds_list_delete(hand_listid, to_destroy)
-ds_list_add(deck_listid, card_to_play)
+            <string>if (not stun) {
+    //todo: actually chose a move well
+    battle_controller.hp_current -= 5
+}
 //queue up the next turn
 if (turn_priority == instance_number(OBJ_enemy_parent)) {
     deck = instance_find(OBJ_deck, 0)
@@ -175,20 +174,24 @@ if (hp_current &lt;= 0) {
 //check if it is this instance's turn
 if (battle_controller.whose_turn == turn_priority and 
     hp_current &gt; 0 and alarm[0] == -1) {
-    //draw new cards from deck
-    //check how many cards need to be drawn
-    cards_to_pop = max_hand_size - current_hand_size
-    //randomize what cards are drawn from the deck
-    randomize()
-    ds_list_shuffle(deck_listid)
-    //walk through the top of the deck until enough cards have been drawn
-    for (i = 0; i &lt; cards_to_pop; i ++) {
-        if (ds_list_size(deck_listid) &gt; 0) {
-            //remove item from deck and place it in the hand
-            popped_card = ds_list_find_value(deck_listid, 0)
-            ds_list_delete(deck_listid, 0)
-            ds_list_add(hand_listid, popped_card)
+    if (not stun) {
+        //draw new cards from deck
+        //check how many cards need to be drawn
+        cards_to_pop = max_hand_size - current_hand_size
+        //randomize what cards are drawn from the deck
+        randomize()
+        ds_list_shuffle(deck_listid)
+        //walk through the top of the deck until enough cards have been drawn
+        for (i = 0; i &lt; cards_to_pop; i ++) {
+            if (ds_list_size(deck_listid) &gt; 0) {
+                //remove item from deck and place it in the hand
+                popped_card = ds_list_find_value(deck_listid, 0)
+                ds_list_delete(deck_listid, 0)
+                ds_list_add(hand_listid, popped_card)
+            }
         }
+    } else {
+        //todo: indicate being stunned?
     }
     alarm[0] = 30
 }
@@ -277,7 +280,7 @@ if (battle_controller.target == id) {
 } else {
     draw_set_color(c_black)
 }
-draw_ellipse(x - adjust_y/2, y + sprite_height - 40 - adjust_y/7,
+draw_ellipse(x - adjust_y/2, y + sprite_height - 40 - (sprite_width - 100)/5 - adjust_y/7,
  x + sprite_width + adjust_y/2, y + sprite_height + 10, false)
 draw_set_alpha(1)
 draw_set_color(c_black)
@@ -301,8 +304,10 @@ if (battle_controller.target == id) {
     draw_self()
 }
 
-//draw correct number of card indicators below health bar?
-//TODO
+//TODO do this well
+if (stun) {
+    draw_text(x, y, "STUNNED")
+}
 </string>
           </argument>
         </arguments>

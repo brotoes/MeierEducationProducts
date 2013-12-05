@@ -28,8 +28,6 @@
             <string>icon = SPR_icon_placeholder
 
 //stats
-//How much the card costs to play (MP?)
-cost = 0
 element = ELEMENT_NULL
 
 //list of effects the card has
@@ -139,69 +137,6 @@ x = deck.x + (index)*(sprite_width + 8)
     /*add card into cycle*/
     ds_list_add(cycle.elements_listid, id)
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_set_color(c_black)
-//draw the face of the card
-draw_self()
-//draw the card image
-card_center = sprite_width/2
-icon_offset = card_center - sprite_get_width(icon)/2
-draw_sprite(icon, 0, x + icon_offset, y + icon_offset)
-//draw card type in the top left
-draw_sprite(SPR_offense, 0, x + 5, y + 5)
-
-//draw squares in the top right to represent mana cost
-draw_set_color(c_blue)
-width = sprite_width
-for (i = 0; i &lt; cost; i ++) {
-    start_x = x + (width - 13 - i*9)
-    start_y = y + 3
-    end_x =  x + (width - 6 - i*9)
-    end_y = y + 9
-    draw_rectangle(start_x, start_y, end_x, end_y, false)
-}
-
-//draw card effects
-/*
-effect_icon = 0
-switch(type) {
-    case ELEMENT_FIRE:
-        effect_icon = SPR_burn
-    case ELEMENT_EARTH:
-        effect_icon = SPR_defense
-    case ELEMENT_METAL:
-        effect_icon = SPR_offense
-    case ELEMENT_WATER:
-        effect_icon = SPR_restore
-    case ELEMENT_WOOD:
-        effect_icon = SPR_poison
-}
-
-draw_sprite(effect_icon, -1, 5, 5)
-
-draw_set_color(c_black)
-*/
 </string>
           </argument>
         </arguments>
