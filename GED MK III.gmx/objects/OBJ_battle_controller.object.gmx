@@ -152,7 +152,7 @@ for (i = 0; difficulty &gt; 0; i ++) {
 reference_hp = instance_find(OBJ_reference, 0)
 reference_mp = instance_find(OBJ_reference, 1)
 meter_hp = instance_create(reference_hp.x, reference_hp.y, OBJ_meter)
-meter_hp.length = room_width - 32
+meter_hp.length = room_width - 16
 meter_hp.fill_color = c_red
 meter_hp.fill = hp_current/persistent_variables.hp
 </string>

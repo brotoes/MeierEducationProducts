@@ -48,7 +48,6 @@ gold = irandom_range(0,1)
 
 //this is used to determine damages
 primary_element = ELEMENT_NULL
-native_environment = 0
 
 //status ailments
 stun = false
