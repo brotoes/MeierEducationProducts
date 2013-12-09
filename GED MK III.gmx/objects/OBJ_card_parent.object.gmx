@@ -37,14 +37,14 @@ effects = ds_list_create()
 
 selected = false
 
-enemy_floor = instance_find(OBJ_floor, 0)
-
-cycle = instance_find(OBJ_cycle, 0)
-
 deck_count = instance_number(OBJ_deck)
 deck = instance_find(OBJ_deck, 0)
 
+enemy_floor = instance_find(OBJ_floor, 0)
+cycle = instance_find(OBJ_cycle, 0)
 action_bar = instance_find(OBJ_action_bar, 0)
+
+level_played = 0
 </string>
           </argument>
         </arguments>
@@ -132,12 +132,15 @@ x = deck.x + (index)*(sprite_width + 8)
             <string>if (selected) {
     selected = false
     /*remove card from cycle*/
-    action_bar.points -= 1
     index = ds_list_find_index(cycle.elements_listid, id)
     ds_list_delete(cycle.elements_listid, index)
 } else {
-    if (action_bar.points &lt; MAX_POINTS) {
-        action_bar.points += 1
+    index = element - 1
+    if (index &lt; 0) {
+        index = 4
+    }
+    if (action_bar.points &lt; MAX_POINTS or 
+        cycle.element_levels[index] == 4) {
         selected = true
         /*add card into cycle*/
         ds_list_add(cycle.elements_listid, id)

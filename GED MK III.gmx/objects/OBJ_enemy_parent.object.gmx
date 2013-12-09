@@ -28,7 +28,8 @@
             <string>//create health bar
 meter_hp = instance_create(x, y + sprite_height, OBJ_meter)
 meter_hp.length = sprite_width
-meter_hp.fill_color = make_color_rgb(255, 0, 0)
+meter_hp.fill_color = c_red
+//TODO base fill on element?
 
 //determines the order in which turns will be performed
 turn_priority = 0
@@ -38,38 +39,30 @@ hp_total = 10
 hp_current = 10
 max_hand_size = 1
 difficulty = 150
-//TODO poison resist
+poison_resist = 0.5
+
+flying = false
 
 //loot
-//IDEA: have modifiers for experience and gold, rather than
-//a set value for a given enemy?
-experience_value = 50
-gold = irandom_range(0,1)
-
-//this is used to determine damages
-primary_element = ELEMENT_NULL
+gold = irandom(50)
 
 //status ailments
 stun = false
 poison = 0
+
+//this is used to determine damages
+primary_element = ELEMENT_NULL
 
 //enemy will draw from this deck.
 deck_listid = ds_list_create()
 //Idea: perhaps add a random element to the enemy's deck?
 ds_list_add(deck_listid, OBJ_card_fire)
 
-//determines how the enemy will chose cards to play
-enemy_ai = SCR_AI_sample
-
-current_hand_size = 0
-hand_listid = ds_list_create()
-
 battle_controller = instance_find(OBJ_battle_controller, 0)
 cycle = instance_find(OBJ_cycle, 0)
 targetted = false
 
-flying = false
-animation_counter = random(100)
+animation_counter = irandom(100)
 </string>
           </argument>
         </arguments>
@@ -94,7 +87,6 @@ animation_counter = random(100)
             <kind>1</kind>
             <string>battle_controller.target = OBJ_null
 battle_controller.gold_earned += gold
-battle_controller.experience_earned += experience_value
 
 //update the turn priorities of enemies whose turns come after
 for (i = 0; i &lt; instance_number(OBJ_enemy_parent); i ++) {
@@ -132,8 +124,18 @@ fade_out.fade_sprite = sprite_index
           <argument>
             <kind>1</kind>
             <string>if (not stun) {
-    //todo: actually chose a move well
+    //todo: perform a proper turn
     battle_controller.hp_current -= 5
+}
+if (poison) {
+    dmg = ceil(poison/poison_resist)
+    hp_current -= dmg
+    indicator_offset = sprite_width/2
+    indicator = instance_create(x + indicator_offset, y + 50,
+                                OBJ_floating_number)
+    indicator.value = dmg
+    indicator.color = c_green
+    poison --
 }
 //queue up the next turn
 if (turn_priority == instance_number(OBJ_enemy_parent)) {
@@ -174,23 +176,9 @@ if (hp_current &lt;= 0) {
 if (battle_controller.whose_turn == turn_priority and 
     hp_current &gt; 0 and alarm[0] == -1) {
     if (not stun) {
-        //draw new cards from deck
-        //check how many cards need to be drawn
-        cards_to_pop = max_hand_size - current_hand_size
-        //randomize what cards are drawn from the deck
-        randomize()
-        ds_list_shuffle(deck_listid)
-        //walk through the top of the deck until enough cards have been drawn
-        for (i = 0; i &lt; cards_to_pop; i ++) {
-            if (ds_list_size(deck_listid) &gt; 0) {
-                //remove item from deck and place it in the hand
-                popped_card = ds_list_find_value(deck_listid, 0)
-                ds_list_delete(deck_listid, 0)
-                ds_list_add(hand_listid, popped_card)
-            }
-        }
+        //TODO: Do normal turn
     } else {
-        //todo: indicate being stunned?
+        //todo: Do stuff while stunned
     }
     alarm[0] = 30
 }
@@ -288,24 +276,14 @@ draw_set_color(c_black)
 //apply height adjustment
 y += adjust_y
 
+draw_self()
 
-//draw targetting indicator
-battle_controller = instance_find(OBJ_battle_controller, 0)
-if (battle_controller.target == id) {
-    //scale = sprite_width/sprite_get_width(SPR_target)
-    //draw_sprite_ext(SPR_target, 1, x, 
-    //            y - adjust_y + (sprite_height - sprite_get_height(SPR_target)),
-    //            scale, 1, 0, c_white, 1)
-
-    draw_self()
-    //draw_sprite_ext(SPR_target, 0, x, y + sprite_height - adjust_y, scale, 1, 0, c_white, 1)
-} else {
-    draw_self()
-}
-
-//TODO do this well
+//TODO do this properly
 if (stun) {
     draw_text(x, y, "STUNNED")
+}
+if (poison) {
+    draw_text(x, y, poison)
 }
 </string>
           </argument>

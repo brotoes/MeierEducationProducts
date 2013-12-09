@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>life = 30
 value = "hello"
+color = c_black
 </string>
           </argument>
         </arguments>
@@ -78,7 +79,7 @@ if (life &lt;= 0) {
           <argument>
             <kind>1</kind>
             <string>draw_set_font(FONT_big_arial)
-draw_set_color(c_red)
+draw_set_color(color)
 draw_text(x, y, value)
 draw_set_font(FONT_normal)
 </string>

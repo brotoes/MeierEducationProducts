@@ -39,6 +39,7 @@ card_null.element = ELEMENT_NULL
 ds_list_add(elements_listid, card_null)
 persistent_variables = instance_find(OBJ_persistent_variables, 0)
 battle_controller = instance_find(OBJ_battle_controller, 0)
+action_bar = instance_find(OBJ_action_bar, 0)
 
 //size of the cycle, change this to have the cycle rendered differently
 size = sprite_get_width(SPR_card_stack)
@@ -131,22 +132,34 @@ for (i = 1; i &lt; ds_list_size(elements_listid); i ++) {
             <string>//find and set element levels
 element_count = ds_list_size(elements_listid)
 if (previous_element_count != element_count) {
+    //number of action points gained from played water cards
+    water_reductions = 0
+    
+    //set elements to their respective base levels
     for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
         element_levels[i] = element_bases[i]
     }
+    
     chains_listid = ds_list_create()
     last_element = ELEMENT_NULL
     cur_chain_length = 0
 
+    //find all chains of elements and their respective lengths
     for (i = 0; i &lt; element_count; i ++) {
         cur_element_card = ds_list_find_value(elements_listid, i)
         cur_element = cur_element_card.element
         if ((last_element + 1) % 5 == cur_element
             or last_element == ELEMENT_NULL and cur_element != ELEMENT_NULL) {
             cur_chain_length ++
+            if (cur_element == ELEMENT_WATER) {
+                water_reductions += cur_chain_length/2
+            }
         } else if (cur_element != ELEMENT_NULL) {
             ds_list_add(chains_listid, cur_chain_length)
             cur_chain_length = 1
+            if (cur_element == ELEMENT_WATER) {
+                water_reductions += 0.5
+            }
         }
         if (i == element_count - 1) {
             ds_list_add(chains_listid, cur_chain_length)
@@ -154,6 +167,8 @@ if (previous_element_count != element_count) {
         last_element = cur_element
     }
     chain_start = 0
+    
+    //use chains to find levels of each element
     for (chain = 0; chain &lt; ds_list_size(chains_listid); chain ++) {
         for (link = 0; link &lt;= ds_list_find_value(chains_listid, chain); link ++) {
             ds_list_clear(chain_ends_listid)
@@ -184,6 +199,10 @@ if (previous_element_count != element_count) {
     ds_list_destroy(chains_listid)
     
     element_levels[ELEMENT_NULL] = 0
+    //set action bar
+    action_bar.points = element_count - 1
+    //reduce points due to water
+    action_bar.points -= water_reductions
 }
 </string>
           </argument>
@@ -255,6 +274,7 @@ if (click &amp;&amp; target_exists) {
                 } break
                 case ELEMENT_WATER: {
                     //TODO: action points gained
+                    //NOTE: Perhaps this should be done when selecting the card?
                 } break
                 case ELEMENT_WOOD: {
                     target.poison = element_levels[element]
@@ -275,6 +295,7 @@ if (click &amp;&amp; target_exists) {
         indicator = instance_create(target.x + indicator_offset, target.y + 50,
                                     OBJ_floating_number)
         indicator.value = string(total_damage)
+        indicator.color = c_red
         //increment turn if no cards left, or cycle is empty
         battle_controller.whose_turn ++
     }
@@ -323,16 +344,15 @@ recent_card = ds_list_find_value(elements_listid, index)
 recent_element = recent_card.element
 
 for(i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
-    /*yes, this is a valid statement. It sets fill to either true or false*/
-    fill = i != recent_element
-    
-    draw_set_color(c_black)
-    draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius, false)
-    draw_set_color(element_colors[i])
-    draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius, fill)
-    for (j = 0; j &lt; element_levels[i]; j ++) {
-        draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius + (j+1)*3, true)
+    if (i == recent_element) {
+        draw_set_color(c_white)
+    } else {
+        draw_set_color(element_colors[i])
     }
+    draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius, false)
+    //draw text to indicate element level
+    draw_set_color(c_black)
+    draw_text(point_seq_x[i] - 5, point_seq_y[i] - 5, element_levels[i])
 }
 
 draw_set_color(c_black)

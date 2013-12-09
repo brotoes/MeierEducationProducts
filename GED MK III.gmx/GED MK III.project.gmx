@@ -199,6 +199,9 @@
   </fonts>
   <objects name="objects">
     <object>objects\OBJ_null</object>
+    <objects name="shoppe">
+      <object>objects\OBJ_purse</object>
+    </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
       <object>objects\OBJ_enemy_tiger</object>
@@ -319,9 +322,6 @@
       <objects name="examples">
         <object>objects\OBJ_mod_card_example</object>
       </objects>
-    </objects>
-    <objects name="shoppe">
-      <object>objects\OBJ_purse</object>
     </objects>
   </objects>
   <rooms name="rooms">

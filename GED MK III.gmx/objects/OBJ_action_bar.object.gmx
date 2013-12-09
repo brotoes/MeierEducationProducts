@@ -54,13 +54,16 @@ flash_time = 10
             <string>draw_set_alpha(0.5)
 draw_rectangle(x, y, x + width, y + width*MAX_POINTS, false)
 draw_set_alpha(1)
-draw_set_color(c_blue)
-draw_rectangle(x, y, x + width, y + width*points, false)
+if (points &gt; 4) {
+    draw_set_color(c_white)
+} else {
+    draw_set_color(c_blue)
+}
+draw_rectangle(x, y, x + width, y + width*min(points, 4), false)
 if (flash) {
     draw_set_alpha(flash/flash_time)
-    show_debug_message(string(flash/flash_time))
     draw_set_color(c_red)
-    draw_rectangle(x, y, x + width, y + width*points, false)
+    draw_rectangle(x, y, x + width, y + width*min(points, 4), false)
     draw_set_alpha(1)
 }
 draw_set_color(c_white)
