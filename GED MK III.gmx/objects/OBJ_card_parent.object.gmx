@@ -25,13 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>icon = SPR_icon_placeholder
-
-//stats
+            <string>//stats
 element = ELEMENT_NULL
-
-//list of effects the card has
-effects = ds_list_create()
 
 selected = false
 
@@ -42,8 +37,9 @@ action_bar = instance_find(OBJ_action_bar, 0)
 level_played = 0
 
 //choose position dealt from (for animation)
+floor_offset = 64
 x = 0
-y = enemy_floor.y + 32
+y = enemy_floor.y + floor_offset
 dest_x = x
 dest_y = y
 anim_speed = 16
@@ -106,7 +102,7 @@ for (i = 0; i &lt; num_cards; i ++) {
     }
 }
 
-dest_y = enemy_floor.y + 32 - 25*selected
+dest_y = enemy_floor.y + floor_offset - 25*selected
 dest_x = room_width/2 - ((sprite_width + 4)*num_cards/2)
     + (index)*(sprite_width + 8) - 8
 </string>

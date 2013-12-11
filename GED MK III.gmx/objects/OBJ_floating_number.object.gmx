@@ -28,6 +28,8 @@
             <string>life = 30
 value = "hello"
 color = c_black
+
+//TODO implement fade
 </string>
           </argument>
         </arguments>

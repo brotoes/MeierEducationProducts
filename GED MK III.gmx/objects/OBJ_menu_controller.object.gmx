@@ -29,6 +29,8 @@
 particles_persec = 500
 menu = MENU_TITLE
 
+prompt = "Tap to Continue..."
+
 //variables to draw buttons
 size = 300
 mid = room_width/2
@@ -99,16 +101,20 @@ if (room == menu_room) {
             <string>if (menu == MENU_TITLE &amp;&amp; room == menu_room) {
     menu = MENU_START
     //CREATE BUTTONS
-    //TODO calculate x coord to center button
-    create_x = 300
+    button_width = 700
+    create_x = room_width/2 - button_width/2
     create_y = 300
+    
     continue_button = instance_create(create_x, create_y, OBJ_button)
     load_button = instance_create(create_x, create_y + 80, OBJ_button)
     settings_button = instance_create(create_x, create_y + 160, OBJ_button)
     
-    continue_button.button_text = "               Continue             "
-    load_button.button_text     = "              Load Game             "
-    settings_button.button_text = "               Settings             "
+    continue_button.button_text = "Continue"
+    load_button.button_text     = "Load Game"
+    settings_button.button_text = "Settings"
+    continue_button.width = button_width
+    load_button.width = button_width
+    settings_button.width = button_width
     
     continue_button.button_script = SCR_continue
     load_button.button_script = SCR_load
@@ -150,7 +156,6 @@ if (room == menu_room) {
           <argument>
             <kind>1</kind>
             <string>if (room == store_room) {
-    show_debug_message("created!---------------------------")
     border = 10
     back_button = instance_create(0, 0, OBJ_back_button)
     back_button.x = room_width - border - sprite_get_width(back_button.sprite_index)
@@ -186,7 +191,9 @@ if (room == menu_room) {
         draw_background(BG_title_text, 0, 0)
         draw_set_color(c_white)
         draw_set_alpha(cos(animation_counter/10) + 0.5)
-        draw_text(400, 500, "Tap to Continue...")
+        string_x = room_width/2 - string_width(prompt)/2
+        string_y = 400
+        draw_text(string_x, string_y, "Tap to Continue...")
         draw_set_alpha(1)
         draw_set_color(c_black)
     }
@@ -201,7 +208,6 @@ if (room == menu_room) {
         
         draw_sprite_ext(SPR_fight, -1, x_fight, y_fight, 2, 2, 0, c_white, 1)
         draw_sprite_ext(SPR_shop, -1, x_shop, y_shop, 2, 2, 0, c_white, 1)
-        //draw shop button
         //draw_back button
     }
 }

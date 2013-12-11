@@ -30,6 +30,8 @@
 button_text = "Calling object, change me please"
 //set this script to be what the button does
 button_script = SCR_null_action
+//pixel width of the drawn button. must be wider than text
+width = 400
 
 //if you'd like arguments, use these
 arg0 = 0
@@ -117,9 +119,10 @@ sprite_index_modifier = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>char_width = 10
-char_height = 10
-h_segs = char_width*string_length(button_text)/sprite_get_width(SPR_button)
+            <string>h_segs = width/sprite_get_width(SPR_button)
+string_x = x + (h_segs*sprite_get_width(SPR_button))/2 - 
+           string_width(button_text)/2
+string_y = y + sprite_get_height(SPR_button)/2 - string_height(button_text)/2
 
 draw_sprite(SPR_button, sprite_index_modifier, x, y)
 for (i = 1; i &lt; h_segs-1; i ++) {
@@ -129,8 +132,9 @@ for (i = 1; i &lt; h_segs-1; i ++) {
 draw_sprite(SPR_button, 2 + sprite_index_modifier,
             x + floor(h_segs)*sprite_get_width(SPR_button), y)
 
-draw_text(x + sprite_get_width(SPR_button),
-          y + sprite_get_height(SPR_button)/2 - char_height/2, button_text)
+draw_set_color(c_teal)
+draw_text(string_x, string_y, button_text)
+draw_set_color(c_black)
 </string>
           </argument>
         </arguments>

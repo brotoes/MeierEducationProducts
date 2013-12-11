@@ -76,6 +76,10 @@
       <sprites name="shoppe">
         <sprite>sprites\SPR_purse</sprite>
       </sprites>
+      <sprites name="cycle">
+        <sprite>sprites\SPR_cycle</sprite>
+        <sprite>sprites\SPR_cycle_elems</sprite>
+      </sprites>
     </sprites>
     <sprites name="overworld">
       <sprite>sprites\cloud</sprite>
@@ -138,7 +142,7 @@
       <sprite>sprites\SPR_location_reference</sprite>
       <sprite>sprites\SPR_merchandise</sprite>
       <sprite>sprites\SPR_animate</sprite>
-      <sprite>sprites\SPR_cycle</sprite>
+      <sprite>sprites\SPR_invis_cycle</sprite>
     </sprites>
     <sprites name="battle animations">
       <sprite>sprites\SPR_explosion</sprite>

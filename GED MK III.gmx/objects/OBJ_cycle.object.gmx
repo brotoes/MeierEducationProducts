@@ -41,18 +41,14 @@ persistent_variables = instance_find(OBJ_persistent_variables, 0)
 battle_controller = instance_find(OBJ_battle_controller, 0)
 action_bar = instance_find(OBJ_action_bar, 0)
 
-//size of the cycle, change this to have the cycle rendered differently
-size = sprite_get_width(SPR_card_stack)
-
 //generate data to draw self
-center_x = x + size/2
-center_y = y + size/2
-radius = size/2
+center_x = x + sprite_width/2
+center_y = y + sprite_width/2
+radius = 51
 angle_increment = 360.0/5
 angle_start = -90
 point_seq_x[0] = 0
 point_seq_y[0] = 0
-subcircle_radius = radius/5
 for (i = 0; i &lt; 5; i ++) {
     angle = angle_start + angle_increment*i
     point_seq_x[i] = cos(degtorad(angle))*radius + center_x
@@ -103,10 +99,17 @@ chain_ends_listid = ds_list_create()
           <argument>
             <kind>1</kind>
             <string>//delete cards played
-for (i = 1; i &lt; ds_list_size(elements_listid); i ++) {
-    to_destroy = ds_list_find_value(elements_listid, i)
-    with (to_destroy) instance_destroy()
+del_listid = SCR_get_children(OBJ_card_parent)
+for (i = 0; i &lt; ds_list_size(del_listid); i ++) {
+    obj = ds_list_find_value(del_listid, i)
+    for (j = 0; j &lt; instance_number(obj); j ++) {
+        inst = instance_find(obj, j)
+        if (inst.selected) {
+            with (inst) instance_destroy()
+        }
+    }
 }
+ds_list_destroy(del_listid)
 </string>
           </argument>
         </arguments>
@@ -322,21 +325,7 @@ if (click &amp;&amp; target_exists) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*background*/
-draw_set_color(c_white)
-draw_set_alpha(0.5)
-draw_circle(center_x, center_y, radius + 20, false)
-
-draw_set_color(c_black)
-draw_set_alpha(1)
-draw_circle(center_x, center_y, radius + 1, true)
-draw_circle(center_x, center_y, radius, true)
-draw_circle(center_x, center_y, radius - 1, true)
-
-for(i = 0; i &lt; 5; i ++) {
-    draw_line(point_seq_x[i], point_seq_y[i], 
-        point_seq_x[(i + 2) % 5], point_seq_y[(i + 2) % 5])
-}
+            <string>draw_self()
 
 index = ds_list_size(elements_listid) - 1
 recent_card = ds_list_find_value(elements_listid, index)
@@ -349,10 +338,14 @@ for(i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     } else {
         draw_set_color(element_colors[i])
     }
-    draw_circle(point_seq_x[i], point_seq_y[i], subcircle_radius, false)
+    if (element_levels[i] == 0) {
+        draw_sprite(SPR_cycle_elems, i*2, point_seq_x[i], point_seq_y[i])
+    } else {
+        draw_sprite(SPR_cycle_elems, i*2+1, point_seq_x[i], point_seq_y[i])
+    }
     //draw text to indicate element level
-    draw_set_color(c_black)
-    draw_text(point_seq_x[i] - 5, point_seq_y[i] - 5, element_levels[i])
+    //draw_set_color(c_black)
+    //draw_text(point_seq_x[i] - 5, point_seq_y[i] - 5, element_levels[i])
 }
 
 draw_set_color(c_black)
