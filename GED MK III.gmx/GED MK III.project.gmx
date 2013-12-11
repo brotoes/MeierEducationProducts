@@ -180,6 +180,7 @@
       <script>scripts\SCR_AI_sample.gml</script>
     </scripts>
     <script>scripts\SCR_draw_background.gml</script>
+    <script>scripts\SCR_get_heal_amnt.gml</script>
     <script>scripts\SCR_get_children.gml</script>
     <script>scripts\SCR_increase_exp.gml</script>
     <scripts name="LEGACY">
