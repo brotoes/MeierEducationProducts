@@ -126,13 +126,29 @@ x_offset = x + (length mod spr_width)/2
 
 bar_start = x_offset + bar_in
 bar_end = x_offset + spr_width*seg_count - bar_in
-bar_len = (bar_end - bar_start)*fill
-vis_len = (bar_end - bar_start)*visualized
+bar_len = floor((bar_end - bar_start)*fill)
+vis_len = floor((bar_end - bar_start)*visualized)
 
 //draw meter bar
-draw_set_color(fill_color)
-draw_rectangle(bar_start, y + vert_in, bar_start + bar_len,
+if (bar_len == vis_len) {
+    draw_set_color(fill_color)
+    draw_rectangle(bar_start, y + vert_in, bar_start + bar_len,
                    y + spr_height - vert_in, false)
+} else if (bar_len &lt; vis_len) {
+    draw_set_color(vis_color)
+    draw_rectangle(bar_start, y + vert_in, bar_start + vis_len,
+                   y + spr_height - vert_in, false) 
+    draw_set_color(fill_color)
+    draw_rectangle(bar_start, y + vert_in, bar_start + bar_len,
+                   y + spr_height - vert_in, false)
+} else if (bar_len &gt; vis_len) {
+    draw_set_color(vis_color)
+    draw_rectangle(bar_start, y + vert_in, bar_start + bar_len,
+                   y + spr_height - vert_in, false)
+    draw_set_color(fill_color)
+    draw_rectangle(bar_start, y + vert_in, bar_start + vis_len,
+                   y + spr_height - vert_in, false) 
+}
                    
 //draw meter box
 draw_sprite(SPR_meter, 0, x_offset, y)

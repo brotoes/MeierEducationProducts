@@ -133,7 +133,9 @@ draw_sprite(SPR_button, 2 + sprite_index_modifier,
             x + floor(h_segs)*sprite_get_width(SPR_button), y)
 
 draw_set_color(c_teal)
+draw_set_blend_mode(bm_add)
 draw_text(string_x, string_y, button_text)
+draw_set_blend_mode(bm_normal)
 draw_set_color(c_black)
 </string>
           </argument>

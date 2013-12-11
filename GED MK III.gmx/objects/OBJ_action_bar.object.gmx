@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>points = 0
+prev_points = 0
 width = 64
 flash = 0
 flash_time = 10
@@ -66,6 +67,8 @@ if (flash) {
     draw_rectangle(x, y, x + width, y + width*min(points, 4), false)
     draw_set_alpha(1)
 }
+draw_set_color(c_yellow)
+draw_rectangle(x, y, x + width, y + width*prev_points, false)
 draw_set_color(c_white)
 for (i = 1; i &lt; MAX_POINTS; i ++) {
     draw_line(x, y + i*width, x + width, y + i*64)

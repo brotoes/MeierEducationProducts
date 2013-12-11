@@ -124,7 +124,7 @@ if (previous_element_count &lt; element_count) {
     ds_list_clear(elements_listid)
     previous_element_count = 0
     last_played = ELEMENT_NULL
-    action_bar.points = 0
+    action_bar.points = action_bar.prev_points
     
     for (i = 0; i &lt; ELEMENT_NULL; i ++) {
         element_levels[i] = 0
@@ -206,7 +206,6 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected) {
         }
         total_damage += damage
         //delete cards played
-        show_debug_message("Deleting " + string(ds_list_size(elements_listid)) + " cards")
         for (i = 0; i &lt; ds_list_size(elements_listid); i ++) {
             to_destroy = ds_list_find_value(elements_listid, i)
             with (to_destroy) instance_destroy()
@@ -231,8 +230,13 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected) {
         
         previous_element_count = 0
         //increment turn if no cards left, or cycle is empty, or action bar full TODO
-        battle_controller.whose_turn ++
-        action_bar.points = 0
+        if (action_bar.points &gt;= MAX_POINTS or action_bar.points == action_bar.prev_points) {
+            battle_controller.whose_turn ++
+            action_bar.points = 0
+            action_bar.prev_points = 0
+        } else {
+            action_bar.prev_points = action_bar.points
+        }
     }
 }
 </string>
