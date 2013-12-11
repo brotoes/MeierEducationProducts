@@ -37,11 +37,12 @@ whose_turn = 0
 target = OBJ_null
 persistent_variables = instance_find(OBJ_persistent_variables, 0)
 hp_current = persistent_variables.hp
-mp_current = persistent_variables.mp
 
 //rewards accumulated. This is given to the player upon winning the battle
 experience_earned = 0
 gold_earned = 0
+
+ready_to_draw = true
 </string>
           </argument>
         </arguments>
@@ -99,10 +100,36 @@ room_goto(parent_room)
 
 if (instance_number(OBJ_enemy_parent) == 0) {
     instance_destroy()
+} else if (hp_current &lt;= 0) {
+    instance_destroy()
 }
 
 if (whose_turn != 0) {
     target = OBJ_null
+} else if (ready_to_draw) {
+    ready_to_draw = false
+    randomize()
+    cards_to_pop = persistent_variables.hand_size - instance_number(OBJ_card_parent)
+    for (i = 0; i &lt; cards_to_pop; i ++) {
+        //randomly create a card to put into the hand
+        switch (irandom(ELEMENT_NULL - 1)) {
+            case ELEMENT_FIRE: {
+                card = instance_create(0, 0, OBJ_card_fire)
+            } break
+            case ELEMENT_EARTH: {
+                card = instance_create(0, 0, OBJ_card_earth)
+            } break
+            case ELEMENT_METAL: {
+                card = instance_create(0, 0, OBJ_card_metal)
+            } break
+            case ELEMENT_WATER: {
+                card = instance_create(0, 0, OBJ_card_water)
+            } break
+            case ELEMENT_WOOD: {
+                card = instance_create(0, 0, OBJ_card_wood)
+            }
+        }
+    }
 }
 </string>
           </argument>

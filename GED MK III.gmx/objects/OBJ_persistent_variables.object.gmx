@@ -25,32 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//number of stages the player has passed
-stages_passed = 0
-
-//allowable number of cards for player to hold in hand
-hand_size = 7
-//player stats
-//TODO: change these to the starting value
-level = 0.00
+            <string>hand_size = 7
 hp = 50
-mp = 5
 base_damage = 5
 gold = 0
-
-pdeck_listid = ds_list_create()
-
-//This is the player's starting deck
-ds_list_add(pdeck_listid, OBJ_card_fire)
-ds_list_add(pdeck_listid, OBJ_card_earth)
-ds_list_add(pdeck_listid, OBJ_card_metal)
-ds_list_add(pdeck_listid, OBJ_card_water)
-ds_list_add(pdeck_listid, OBJ_card_wood)
-ds_list_add(pdeck_listid, OBJ_card_fire)
-ds_list_add(pdeck_listid, OBJ_card_earth)
-ds_list_add(pdeck_listid, OBJ_card_metal)
-ds_list_add(pdeck_listid, OBJ_card_water)
-ds_list_add(pdeck_listid, OBJ_card_wood)
 
 element_base[0] = 0
 for (element = ELEMENT_FIRE; element &lt; ELEMENT_NULL; element ++) {

@@ -29,19 +29,18 @@
 meter_hp = instance_create(x, y + sprite_height, OBJ_meter)
 meter_hp.length = sprite_width
 meter_hp.fill_color = c_red
-//TODO base fill on element?
+//TODO fill based on element?
 
 //determines the order in which turns will be performed
 turn_priority = 0
 
 //stats
 hp_total = 10
-hp_current = 10
-max_hand_size = 1
 difficulty = 150
 poison_resist = 0.5
 
 flying = false
+hp_current = 10
 
 //loot
 gold = irandom(50)
@@ -52,11 +51,6 @@ poison = 0
 
 //this is used to determine damages
 primary_element = ELEMENT_NULL
-
-//enemy will draw from this deck.
-deck_listid = ds_list_create()
-//Idea: perhaps add a random element to the enemy's deck?
-ds_list_add(deck_listid, OBJ_card_fire)
 
 battle_controller = instance_find(OBJ_battle_controller, 0)
 cycle = instance_find(OBJ_cycle, 0)
@@ -139,9 +133,8 @@ if (poison) {
 }
 //queue up the next turn
 if (turn_priority == instance_number(OBJ_enemy_parent)) {
-    deck = instance_find(OBJ_deck, 0)
     battle_controller.whose_turn = 0
-    deck.ready_to_draw = true
+    battle_controller.ready_to_draw = true
 } else {
     battle_controller.whose_turn ++
 }

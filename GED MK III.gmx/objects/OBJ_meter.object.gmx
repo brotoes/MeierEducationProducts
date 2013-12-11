@@ -3,7 +3,7 @@
   <spriteName>SPR_invis_meter</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10000</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -33,22 +33,24 @@
 //the calling object should
 
 //length of bar in pixels, rounded down to multiple of 8
-length = 80 
+length = 80
 
-//amount of bar filled. value should be &lt; 1
+//amount of bar filled. value should be &lt; 1 &amp; &gt; 0
 fill = 1
+
 //amount shown on bar for animated value change
 visualized = fill
 
 //color of the fill of the bar
 fill_color = c_red
-
-//if true, bar will be vertical, instead of horizontal
-//TODO
-vertical = false
+vis_color = c_yellow
 
 //speed the bar empties or fills when value is changed
 animate_speed = .05
+
+//amount in the bar starts (to account for rounded sprites
+bar_in = 4
+vert_in = 2
 </string>
           </argument>
         </arguments>
@@ -106,10 +108,7 @@ if (difference &gt; 0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//todo animation messed things up a bit, fix it
-
-draw_set_color(fill_color)
-
+            <string>//TODO: animate again
 //bound fill
 if (fill &lt; 0) {
     fill = 0
@@ -118,34 +117,31 @@ if (fill &gt; 1) {
     fill = 1
 }
 
-line_len = (length - 8) * fill - length % 8
-vis_line_len = (length - 8) * visualized - length % 8
-segment_count = (length - (length % 8))/8
-if (segment_count &lt; 3) {
-    segment_count = 3
-}
+//calculate values
+spr_width = sprite_get_width(SPR_meter)
+spr_height = sprite_get_height(SPR_meter)
+seg_count = floor(length/spr_width)
+seg_count = max(2, seg_count)
+x_offset = x + (length mod spr_width)/2
 
-if (vertical) {
-    draw_line_width(x + 8, y - 3, x + 8, y - 6 - line_len, 13)
+bar_start = x_offset + bar_in
+bar_end = x_offset + spr_width*seg_count - bar_in
+bar_len = (bar_end - bar_start)*fill
+vis_len = (bar_end - bar_start)*visualized
 
-    draw_sprite_ext(SPR_meter, 0, x, y, 1, 1, 90, c_white, 1)
-    for (i = 1; i &lt; segment_count - 1; i ++) {
-        draw_sprite_ext(SPR_meter, 1, x, y - i * 8, 1, 1, 90, c_white, 1)
-    }
-    draw_sprite_ext(SPR_meter, 2, x, y - (segment_count - 1) * 8, 1, 1, 90, c_white, 1)
-} else {
-    //draw visualized amount
-    draw_line_width(x + 3, y + 7, x + 3 + vis_line_len, y + 7, 13)
-    draw_set_color(c_yellow)
-    //draw fill amount
-    draw_line_width(x + 3, y + 7, x + 3 + line_len, y + 7, 13)
-    
-    draw_sprite(SPR_meter, 0, x, y)
-    for (i = 1; i &lt; segment_count - 1; i ++) {
-        draw_sprite(SPR_meter, 1, x + i * 8, y)
-    }
-    draw_sprite(SPR_meter, 2, x + (segment_count - 1) * 8, y)
+//draw meter bar
+draw_set_color(fill_color)
+draw_rectangle(bar_start, y + vert_in, bar_start + bar_len,
+                   y + spr_height - vert_in, false)
+                   
+//draw meter box
+draw_sprite(SPR_meter, 0, x_offset, y)
+for (i=1; i &lt; seg_count - 1; i ++) {
+    draw_sprite(SPR_meter, 1, x_offset + i*spr_width, y)
 }
+draw_sprite(SPR_meter, 2, x_offset + (seg_count-1)*spr_width, y)
+
+draw_set_color(c_black)
 </string>
           </argument>
         </arguments>

@@ -25,18 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//which card back is shown. this can change from player class, or perhaps
-//just let the player choose from a selection.
-card_back = SPR_card_back
-
-//fetch variables for local use. this just makes later code cleaner
+            <string>//fetch variables for local use. this just makes later code cleaner
 persistent_variables = instance_find(OBJ_persistent_variables, 0)
 battle_controller = instance_find(OBJ_battle_controller, 0)
-deck_listid = persistent_variables.pdeck_listid
 max_hand_size = persistent_variables.hand_size
 
-//gameplay variables
-hand_listid = ds_list_create()
 ready_to_draw = true
 </string>
           </argument>
@@ -64,69 +57,30 @@ ready_to_draw = true
 if (battle_controller.whose_turn == 0 and ready_to_draw) {
     ready_to_draw = false
     //check how many cards need to be drawn
-    cards_to_pop = max_hand_size - ds_list_size(hand_listid)
-    //randomize what cards are drawn from the deck
+    cards_to_pop = max_hand_size - instance_number(OBJ_card_parent)
     randomize()
-    ds_list_shuffle(deck_listid)
-    //compensate for not having enough cards in the deck
-    card_deficit = 0
     //walk through the top of the deck until enough cards have been drawn
     for (i = 0; i &lt; cards_to_pop; i ++) {
-        if (ds_list_size(deck_listid) &gt; 0) {
-            //remove item from deck and place it in the hand
-            popped_card = ds_list_find_value(deck_listid, 0)
-            ds_list_delete(deck_listid, 0)
-            ds_list_add(hand_listid, popped_card)
+        //randomly create a card to put into the hand
+        switch (irandom(ELEMENT_NULL)) {
+            case ELEMENT_FIRE: {
+                card = instance_create(0, 0, OBJ_card_fire)
+            } break
+            case ELEMENT_EARTH: {
+                card = instance_create(0, 0, OBJ_card_earth)
+            } break
+            case ELEMENT_METAL: {
+                card = instance_create(0, 0, OBJ_card_metal)
+            } break
+            case ELEMENT_WATER: {
+                card = instance_create(0, 0, OBJ_card_water)
+            } break
+            case ELEMENT_WOOD: {
+                card = instance_create(0, 0, OBJ_card_wood)
+            }
         }
     }
-    
-    for (i = instance_number(OBJ_card_parent) - 1; i &gt;= 0; i --) {
-        to_destroy = instance_find(OBJ_card_parent, i)
-        with (to_destroy) instance_destroy()
-    }
-    //create newly drawn cards
-    for (i = 0; i &lt; ds_list_size(hand_listid); i ++) {
-        card = ds_list_find_value(hand_listid, i)
-        instance_create(x, y, card)
-    }
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>500</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring>draw_self();</codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_sprite(card_back, 0, x, y)
 </string>
           </argument>
         </arguments>
