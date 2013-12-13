@@ -6,10 +6,10 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>1</bbox_left>
-  <bbox_right>31</bbox_right>
-  <bbox_top>0</bbox_top>
-  <bbox_bottom>29</bbox_bottom>
+  <bbox_left>4</bbox_left>
+  <bbox_right>27</bbox_right>
+  <bbox_top>5</bbox_top>
+  <bbox_bottom>26</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -60,6 +60,5 @@
     <frame index="38">images\SPR_purse_particle_38.png</frame>
     <frame index="39">images\SPR_purse_particle_39.png</frame>
     <frame index="40">images\SPR_purse_particle_40.png</frame>
-    <frame index="41">images\SPR_purse_particle_41.png</frame>
   </frames>
 </sprite>

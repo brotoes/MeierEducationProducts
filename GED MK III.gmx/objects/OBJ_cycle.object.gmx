@@ -51,20 +51,15 @@ element_colors[ELEMENT_METAL] = c_purple
 element_colors[ELEMENT_WATER] = c_blue
 element_colors[ELEMENT_WOOD] = c_green
 
-//the current level of each element (may change throughout the battle) 
+//the current level of each element
 element_levels[ELEMENT_NULL] = 0
-//the current baseline level of each element (only reset after the battle ends)
-element_bases[ELEMENT_NULL] = 0
-
-previous_element_count = 0
 
 for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
-    element_levels[i] = persistent_variables.element_base[i]
-    element_bases[i] = persistent_variables.element_base[i]
+    element_levels[i] = 0
 }
 
 last_played = ELEMENT_NULL
-
+previous_element_count = 0
 menu_waiting = false
 menu_open = false
 </string>
@@ -245,6 +240,9 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
                 target.stun = true
                 audio_play_sound(S_metal, PRIORITY_ATTACK_SOUND, false)
             } break
+            case ELEMENT_WATER: {
+
+            } break
             case ELEMENT_WOOD: {
                 target.poison = element_levels[last_played]
             }
@@ -266,12 +264,19 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
         if (target.hp_current &gt; target.hp_total) {
             target.hp_current = target.hp_total
         }
+        target.flash = target.flash_time
+        target.flash_color = element_colors[last_played]
+        
         //create damage indicator
         indicator_offset = sprite_get_width(target.sprite_index)/2
         indicator = instance_create(target.x + indicator_offset, target.y + 50,
                                     OBJ_floating_number)
         indicator.value = string(total_damage)
-        indicator.color = c_red
+        if (total_damage &gt;= 0) {
+            indicator.color = c_red
+        } else {
+            indicator.color = c_blue
+        }
         
         previous_element_count = 0
         //increment turn if no cards left, or cycle is empty, or action bar full TODO

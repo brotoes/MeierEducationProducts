@@ -62,6 +62,7 @@
         <sprite>sprites\SPR_knife</sprite>
         <sprite>sprites\SPR_testCardImage</sprite>
       </sprites>
+      <sprite>sprites\SPR_inventory</sprite>
     </sprites>
     <sprites name="cards">
       <sprite>sprites\SPR_card_fire</sprite>
@@ -117,7 +118,6 @@
       </sprites>
       <sprites name="buttons">
         <sprite>sprites\SPR_back</sprite>
-        <sprite>sprites\SPR_inventory</sprite>
         <sprite>sprites\SPR_fight</sprite>
         <sprite>sprites\SPR_shop</sprite>
         <sprite>sprites\SPR_button</sprite>
@@ -128,12 +128,15 @@
           <sprite>sprites\SPR_exit</sprite>
         </sprites>
       </sprites>
-      <sprites name="shoppe">
-        <sprite>sprites\SPR_purse</sprite>
-      </sprites>
       <sprites name="cycle">
         <sprite>sprites\SPR_cycle</sprite>
         <sprite>sprites\SPR_cycle_elems</sprite>
+      </sprites>
+      <sprites name="shoppe">
+        <sprite>sprites\SPR_purse</sprite>
+        <sprite>sprites\SPR_heart</sprite>
+        <sprite>sprites\SPR_money_plate</sprite>
+        <sprite>sprites\SPR_upgrade</sprite>
       </sprites>
     </sprites>
     <sprites name="overworld">
@@ -167,12 +170,14 @@
     </sprites>
   </sprites>
   <backgrounds name="background">
-    <background>background\BG_overworld</background>
-    <background>background\BG_old_battlescape</background>
-    <background>background\BG_store</background>
-    <background>background\BG_battlescape</background>
+    <backgrounds name="LEGACY">
+      <background>background\BG_store</background>
+      <background>background\BG_old_battlescape</background>
+      <background>background\BG_overworld</background>
+    </backgrounds>
     <background>background\BG_title</background>
     <background>background\BG_title_text</background>
+    <background>background\BG_battlescape</background>
     <background>background\BG_shop</background>
   </backgrounds>
   <paths name="paths"/>
@@ -188,7 +193,6 @@
     <scripts name="enemy AIs">
       <script>scripts\SCR_AI_sample.gml</script>
     </scripts>
-    <script>scripts\SCR_draw_background.gml</script>
     <script>scripts\SCR_get_heal_amnt.gml</script>
     <script>scripts\SCR_get_children.gml</script>
     <script>scripts\SCR_increase_exp.gml</script>
@@ -214,7 +218,10 @@
   <objects name="objects">
     <object>objects\OBJ_null</object>
     <objects name="shoppe">
+      <object>objects\OBJ_heart</object>
       <object>objects\OBJ_purse</object>
+      <object>objects\OBJ_money_plate</object>
+      <object>objects\OBJ_upgrade_indicator</object>
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
@@ -345,24 +352,24 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\menu_room</room>
-    <room>rooms\overworld_room</room>
     <room>rooms\loot_room</room>
     <room>rooms\test_room</room>
     <room>rooms\store_room</room>
     <room>rooms\battle_room</room>
-    <rooms name="stages">
-      <room>rooms\waterfall_windmill_room</room>
-      <room>rooms\mountain_room</room>
-      <room>rooms\forged_wilds_room</room>
-      <room>rooms\crystal_city_room</room>
-    </rooms>
-    <rooms name="kyle rooms">
+    <rooms name="LEGACY">
       <room>rooms\Main_Room</room>
       <room>rooms\Level_Up_Room</room>
       <room>rooms\Store_Room_OLD</room>
       <room>rooms\Example_Room</room>
       <room>rooms\Inventory_Room</room>
       <room>rooms\Armor_Store_Room</room>
+      <rooms name="stages">
+        <room>rooms\waterfall_windmill_room</room>
+        <room>rooms\mountain_room</room>
+        <room>rooms\forged_wilds_room</room>
+        <room>rooms\crystal_city_room</room>
+      </rooms>
+      <room>rooms\overworld_room</room>
     </rooms>
   </rooms>
   <constants number="18">
