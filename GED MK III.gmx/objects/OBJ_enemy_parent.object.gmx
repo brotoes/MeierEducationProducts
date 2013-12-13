@@ -28,7 +28,6 @@
             <string>//create health bar
 meter_hp = instance_create(x, y + sprite_height, OBJ_meter)
 meter_hp.length = sprite_width
-meter_hp.fill_color = c_red
 //TODO fill based on element?
 
 //determines the order in which turns will be performed
@@ -172,6 +171,7 @@ if (battle_controller.whose_turn == turn_priority and
         //TODO: Do normal turn
     } else {
         //todo: Do stuff while stunned
+        stun = false
     }
     alarm[0] = 30
 }
@@ -276,7 +276,7 @@ if (stun) {
     draw_text(x, y, "STUNNED")
 }
 if (poison) {
-    draw_text(x, y, poison)
+    draw_text(x, y, "POISONED")
 }
 </string>
           </argument>

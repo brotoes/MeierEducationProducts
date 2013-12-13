@@ -42,8 +42,8 @@ fill = 1
 visualized = fill
 
 //color of the fill of the bar
-fill_color = c_red
-vis_color = c_yellow
+fill_color = c_yellow
+vis_color = c_red
 
 //speed the bar empties or fills when value is changed
 animate_speed = .05

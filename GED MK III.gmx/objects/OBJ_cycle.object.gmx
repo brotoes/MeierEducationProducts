@@ -64,6 +64,38 @@ for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
 }
 
 last_played = ELEMENT_NULL
+
+menu_waiting = false
+menu_open = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//OPEN MENU
+if (menu_waiting) {
+    menu_waiting = false
+    menu_open = true
+    //create buttons
+    instance_create(x, y, OBJ_battle_skip)
+}
 </string>
           </argument>
         </arguments>
@@ -135,7 +167,7 @@ if (previous_element_count &lt; element_count) {
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="53">
+    <event eventtype="6" enumb="56">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -157,6 +189,8 @@ if (previous_element_count &lt; element_count) {
 click = false
 target_exists = false
 card_selected = false
+menu_waiting = false
+menu_open = false
 
 if (battle_controller.target != OBJ_null) {
     target_exists = true
@@ -169,8 +203,12 @@ if (ds_list_size(elements_listid) &gt; 0) {
 if (point_distance(mouse_x, mouse_y, center_x, center_y) &lt; radius + 20) {
     click = true
 }
+
+//test for opened menu
+//TODO
+
 //play cycle if clicked
-if (click &amp;&amp; target_exists &amp;&amp; card_selected) {
+if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_open) {
     //get target object
     target = battle_controller.target
     if (target.object_index != OBJ_null) {
@@ -183,7 +221,7 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected) {
             multiplier = DMG_FEED
         }
         damage = persistent_variables.base_damage
-        damage += element_levels[last_played]
+        damage *= element_levels[last_played]
         damage *= multiplier
         //perform element specific actions
         switch (last_played) {
@@ -199,6 +237,7 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected) {
             } break
             case ELEMENT_METAL: {
                 target.stun = true
+                audio_play_sound(S_metal, PRIORITY_ATTACK_SOUND, false)
             } break
             case ELEMENT_WOOD: {
                 target.poison = element_levels[last_played]
@@ -244,6 +283,42 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected) {
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*detect click, and play cycle*/
+//detect click, and set flag
+click = false
+menu_open = false
+
+if (point_distance(mouse_x, mouse_y, center_x, center_y) &lt; radius + 20) {
+    click = true
+}
+
+//play cycle if clicked
+if (click) {
+    menu_waiting = true
+    alarm[0] = 40
+}  
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -278,6 +353,15 @@ for(i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     //draw text to indicate element level
     //draw_set_color(c_black)
     //draw_text(point_seq_x[i] - 5, point_seq_y[i] - 5, element_levels[i])
+}
+
+if (menu_open) {
+    draw_set_alpha(0.5)
+    draw_set_color(c_black)
+    draw_rectangle(0, 0, room_width, room_height, false)
+    draw_set_alpha(0.5)
+    draw_circle(center_x, center_y, 350, false)
+    draw_set_alpha(1)
 }
 
 draw_set_color(c_black)

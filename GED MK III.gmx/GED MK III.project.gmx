@@ -7,9 +7,14 @@
     <extension index="0">extensions\Advanced Arrays</extension>
   </NewExtensions>
   <sounds name="sound">
-    <sound>sound\M_title_screen</sound>
-    <sound>sound\M_store_theme</sound>
-    <sound>sound\M_battle_theme</sound>
+    <sounds name="music">
+      <sound>sound\M_title_screen</sound>
+      <sound>sound\M_store_theme</sound>
+      <sound>sound\M_battle_theme</sound>
+    </sounds>
+    <sounds name="attacks">
+      <sound>sound\S_metal</sound>
+    </sounds>
   </sounds>
   <sprites name="sprites">
     <sprites name="cards">
@@ -72,6 +77,7 @@
         <sprite>sprites\SPR_button</sprite>
         <sprite>sprites\SPR_stoggle</sprite>
         <sprite>sprites\SPR_mtoggle</sprite>
+        <sprite>sprites\SPR_skip</sprite>
       </sprites>
       <sprites name="shoppe">
         <sprite>sprites\SPR_purse</sprite>
@@ -226,6 +232,7 @@
       <object>objects\OBJ_mtoggle</object>
       <object>objects\OBJ_stoggle</object>
       <object>objects\OBJ_action_bar</object>
+      <object>objects\OBJ_battle_skip</object>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>
@@ -351,8 +358,9 @@
       <room>rooms\Armor_Store_Room</room>
     </rooms>
   </rooms>
-  <constants number="17">
+  <constants number="18">
     <constant name="MAX_POINTS">4</constant>
+    <constant name="PRIORITY_ATTACK_SOUND">1</constant>
     <constant name="PRIORITY_MUSIC">0</constant>
     <constant name="MENU_CONF">5</constant>
     <constant name="MENU_LOAD">4</constant>
@@ -361,7 +369,7 @@
     <constant name="MENU_START">1</constant>
     <constant name="MENU_TITLE">0</constant>
     <constant name="DMG_NORMAL">1</constant>
-    <constant name="DMG_FEED">-1</constant>
+    <constant name="DMG_FEED">-0.5</constant>
     <constant name="DMG_COUNTER">2</constant>
     <constant name="ELEMENT_NULL">5</constant>
     <constant name="ELEMENT_WOOD">4</constant>

@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>animation_counter = 0
-particles_persec = 500
+particles_persec = 100
 menu = MENU_TITLE
 
 prompt = "Tap to Continue..."
