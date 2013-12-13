@@ -46,7 +46,7 @@ fill_color = c_yellow
 vis_color = c_red
 
 //speed the bar empties or fills when value is changed
-animate_speed = .05
+animate_speed = 0.05
 
 //amount in the bar starts (to account for rounded sprites
 bar_in = 4
@@ -74,15 +74,14 @@ vert_in = 2
           <argument>
             <kind>1</kind>
             <string>//animate
-difference = fill - visualized
-if (difference &gt; 0) {
+if (fill &gt; visualized) {
     visualized += animate_speed
-    if (fill - visualized &lt; 0) {
+    if (fill &lt; visualized) {
         visualized = fill
     }
-} else if (difference &lt; 0) {
+} else if (fill &lt; visualized) {
     visualized -= animate_speed
-    if (fill - visualized &gt; visualized) {
+    if (fill &gt; visualized) {
         visualized = fill
     }
 }

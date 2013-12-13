@@ -17,6 +17,52 @@
     </sounds>
   </sounds>
   <sprites name="sprites">
+    <sprites name="LEGACY">
+      <sprite>sprites\SPR_DefenseCard</sprite>
+      <sprite>sprites\SPR_CardBackgroundLayout</sprite>
+      <sprite>sprites\SPR_AttackCard</sprite>
+      <sprite>sprites\SPR_AnotherTurnCard</sprite>
+      <sprite>sprites\SPR_DoubleAttack</sprite>
+      <sprite>sprites\SPR_StabCard</sprite>
+      <sprite>sprites\SPR_VerticalCard</sprite>
+      <sprite>sprites\SPR_HorizontalCard</sprite>
+      <sprite>sprites\SPR_Deck</sprite>
+      <sprites name="Buttons">
+        <sprites name="Armor Types">
+          <sprite>sprites\SPR_Ultra_Light_Armor_Button</sprite>
+          <sprite>sprites\SPR_Knitted_Armor_Button</sprite>
+          <sprite>sprites\SPR_Cloth_Armor_Button</sprite>
+          <sprite>sprites\SPR_Leather_Armor_Button</sprite>
+          <sprite>sprites\SPR_Regular_Armor_Button</sprite>
+        </sprites>
+        <sprite>sprites\SPR_Inventory_Button</sprite>
+        <sprite>sprites\SPR_ShuffleDeck</sprite>
+        <sprite>sprites\SPR_Armor_Selection_Store_Button</sprite>
+        <sprite>sprites\SPR_LevelUp</sprite>
+        <sprite>sprites\SPR_ExitButton</sprite>
+        <sprite>sprites\SPR_Store_Button</sprite>
+        <sprite>sprites\SPR_BackToGame</sprite>
+        <sprite>sprites\SPR_Light_Armor_Button</sprite>
+      </sprites>
+      <sprite>sprites\SPR_Coin</sprite>
+      <sprite>sprites\SPR_TextBox</sprite>
+      <sprites name="Level up Icons">
+        <sprite>sprites\SPR_Menu_QuickAttackCard</sprite>
+        <sprite>sprites\SPR_Menu_QuickAttack2Card</sprite>
+        <sprite>sprites\SPR_Menu_Stab1Card</sprite>
+        <sprite>sprites\SCR_Menu_PowerAttack</sprite>
+      </sprites>
+      <sprites name="icons">
+        <sprite>sprites\SPR_card_icon</sprite>
+        <sprite>sprites\SPR_gold_icon</sprite>
+      </sprites>
+      <sprites name="Example Resources">
+        <sprite>sprites\SPR_cardFace</sprite>
+        <sprite>sprites\SPR_testCardFace</sprite>
+        <sprite>sprites\SPR_knife</sprite>
+        <sprite>sprites\SPR_testCardImage</sprite>
+      </sprites>
+    </sprites>
     <sprites name="cards">
       <sprite>sprites\SPR_card_fire</sprite>
       <sprite>sprites\SPR_card_earth</sprite>
@@ -77,7 +123,10 @@
         <sprite>sprites\SPR_button</sprite>
         <sprite>sprites\SPR_stoggle</sprite>
         <sprite>sprites\SPR_mtoggle</sprite>
-        <sprite>sprites\SPR_skip</sprite>
+        <sprites name="battle menu">
+          <sprite>sprites\SPR_skip</sprite>
+          <sprite>sprites\SPR_exit</sprite>
+        </sprites>
       </sprites>
       <sprites name="shoppe">
         <sprite>sprites\SPR_purse</sprite>
@@ -92,48 +141,6 @@
       <sprite>sprites\SPR_level_indicator</sprite>
       <sprite>sprites\SPR_glow</sprite>
       <sprite>sprites\SPR_conflict</sprite>
-    </sprites>
-    <sprites name="kyle">
-      <sprite>sprites\SPR_DefenseCard</sprite>
-      <sprite>sprites\SPR_CardBackgroundLayout</sprite>
-      <sprite>sprites\SPR_AttackCard</sprite>
-      <sprite>sprites\SPR_AnotherTurnCard</sprite>
-      <sprite>sprites\SPR_DoubleAttack</sprite>
-      <sprite>sprites\SPR_StabCard</sprite>
-      <sprite>sprites\SPR_VerticalCard</sprite>
-      <sprite>sprites\SPR_HorizontalCard</sprite>
-      <sprite>sprites\SPR_Deck</sprite>
-      <sprites name="Buttons">
-        <sprites name="Armor Types">
-          <sprite>sprites\SPR_Ultra_Light_Armor_Button</sprite>
-          <sprite>sprites\SPR_Knitted_Armor_Button</sprite>
-          <sprite>sprites\SPR_Cloth_Armor_Button</sprite>
-          <sprite>sprites\SPR_Leather_Armor_Button</sprite>
-          <sprite>sprites\SPR_Regular_Armor_Button</sprite>
-        </sprites>
-        <sprite>sprites\SPR_Inventory_Button</sprite>
-        <sprite>sprites\SPR_ShuffleDeck</sprite>
-        <sprite>sprites\SPR_Armor_Selection_Store_Button</sprite>
-        <sprite>sprites\SPR_LevelUp</sprite>
-        <sprite>sprites\SPR_ExitButton</sprite>
-        <sprite>sprites\SPR_Store_Button</sprite>
-        <sprite>sprites\SPR_BackToGame</sprite>
-        <sprite>sprites\SPR_Light_Armor_Button</sprite>
-      </sprites>
-      <sprite>sprites\SPR_Coin</sprite>
-      <sprite>sprites\SPR_TextBox</sprite>
-    </sprites>
-    <sprites name="Level up Icons">
-      <sprite>sprites\SPR_Menu_QuickAttackCard</sprite>
-      <sprite>sprites\SPR_Menu_QuickAttack2Card</sprite>
-      <sprite>sprites\SPR_Menu_Stab1Card</sprite>
-      <sprite>sprites\SCR_Menu_PowerAttack</sprite>
-    </sprites>
-    <sprites name="Example Resources">
-      <sprite>sprites\SPR_cardFace</sprite>
-      <sprite>sprites\SPR_testCardFace</sprite>
-      <sprite>sprites\SPR_knife</sprite>
-      <sprite>sprites\SPR_testCardImage</sprite>
     </sprites>
     <sprites name="invisible sprites">
       <sprite>sprites\SPR_parent</sprite>
@@ -153,10 +160,6 @@
     <sprites name="battle animations">
       <sprite>sprites\SPR_explosion</sprite>
       <sprite>sprites\SPR_null_animation</sprite>
-    </sprites>
-    <sprites name="icons">
-      <sprite>sprites\SPR_card_icon</sprite>
-      <sprite>sprites\SPR_gold_icon</sprite>
     </sprites>
     <sprites name="particles">
       <sprite>sprites\SPR_star</sprite>
@@ -232,7 +235,11 @@
       <object>objects\OBJ_mtoggle</object>
       <object>objects\OBJ_stoggle</object>
       <object>objects\OBJ_action_bar</object>
-      <object>objects\OBJ_battle_skip</object>
+      <objects name="battle menu">
+        <object>objects\OBJ_skip</object>
+        <object>objects\OBJ_exit</object>
+        <object>objects\OBJ_battle_menu_parent</object>
+      </objects>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>

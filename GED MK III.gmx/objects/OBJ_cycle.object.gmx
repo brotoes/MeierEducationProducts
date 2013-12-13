@@ -94,7 +94,12 @@ if (menu_waiting) {
     menu_waiting = false
     menu_open = true
     //create buttons
-    instance_create(x, y, OBJ_battle_skip)
+    children_listid = SCR_get_children(OBJ_battle_menu_parent)
+    for(i = 0; i &lt; ds_list_size(children_listid); i ++) {
+        obj = ds_list_find_value(children_listid, i)
+        instance_create(x, y, obj)
+    }
+    ds_list_destroy(children_listid)
 }
 </string>
           </argument>
@@ -127,7 +132,8 @@ if (previous_element_count &lt; element_count) {
         last_played = card.element
         action_bar.points += 1
         if (card.element == ELEMENT_WATER) {
-            action_bar.points -= 0.5
+            //uncomment if ceil is not approved of
+            //action_bar.points -= 0.5
         }
     } else if ((ds_list_find_value(elements_listid, element_count - 2).element + 1) mod ELEMENT_NULL
         == card.element) {
@@ -137,7 +143,7 @@ if (previous_element_count &lt; element_count) {
         last_played = card.element
         action_bar.points += 1
         if (card.element == ELEMENT_WATER) {
-            action_bar.points -= 0.5*element_levels[ELEMENT_WATER]
+            action_bar.points -= ceil(0.5*element_levels[ELEMENT_WATER])
         }
     } else {
         //invalid selection
@@ -312,7 +318,7 @@ if (point_distance(mouse_x, mouse_y, center_x, center_y) &lt; radius + 20) {
 //play cycle if clicked
 if (click) {
     menu_waiting = true
-    alarm[0] = 40
+    alarm[0] = 20
 }  
 </string>
           </argument>
