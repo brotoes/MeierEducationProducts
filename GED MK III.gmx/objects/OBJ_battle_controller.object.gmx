@@ -68,7 +68,7 @@ alarm_set = false
           <argument>
             <kind>1</kind>
             <string>//carry out end of battle sequence
-persistent_variables.gold += gold_earned
+persistent_variables.gold += gold_earned*persistent_variables.gold_multiplier
 room_goto(parent_room)
 </string>
           </argument>

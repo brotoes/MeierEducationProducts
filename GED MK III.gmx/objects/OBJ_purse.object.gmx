@@ -37,6 +37,8 @@ for (i = 0; i &lt; 30; i ++) {
 }
 
 anim_cnt = 0
+
+persistent_variables = instance_find(OBJ_persistent_variables, 0)
 </string>
           </argument>
         </arguments>
@@ -85,15 +87,22 @@ y += sin(anim_cnt/30)/5
           <argument>
             <kind>1</kind>
             <string>clicked = false
+enough_gold = false
 
 if (mouse_x &lt;= ref_bot.x and mouse_x &gt;= ref_mid.x
     and mouse_y &gt; ref_mid.y and mouse_y &lt; ref_bot.y) {
     clicked = true
 }
 
-if (clicked) {
-    purse_plate.gold += 10
+if (purse_plate.gold &lt;= gold_ind.gold) {
+    enough_gold = true
+}
+
+if (clicked and enough_gold) {
     purse_ind.level += 1
+    persistent_variables.gold -= purse_plate.gold
+} else if (clicked) {
+    //TODO flash something
 }
 </string>
           </argument>

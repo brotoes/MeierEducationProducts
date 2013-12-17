@@ -66,7 +66,7 @@
     <instance objName="OBJ_reference" x="430" y="93" name="ref_fire" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_reference" x="560" y="187" name="ref_earth" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_reference" x="511" y="328" name="ref_metal" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="OBJ_money_indicator" x="14" y="517" name="inst_2178D252" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="OBJ_money_indicator" x="14" y="517" name="gold_ind" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

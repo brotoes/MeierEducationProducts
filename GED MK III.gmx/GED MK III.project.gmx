@@ -219,6 +219,10 @@
   </fonts>
   <objects name="objects">
     <object>objects\OBJ_null</object>
+    <objects name="battle finish">
+      <object>objects\OBJ_banner</object>
+      <object>objects\OBJ_end_screen</object>
+    </objects>
     <objects name="controllers">
       <object>objects\OBJ_music_controller</object>
       <object>objects\OBJ_battle_controller</object>
@@ -353,15 +357,10 @@
         <object>objects\OBJ_mod_card_example</object>
       </objects>
     </objects>
-    <objects name="battle finish">
-      <object>objects\OBJ_banner</object>
-      <object>objects\OBJ_end_screen</object>
-    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\menu_room</room>
     <room>rooms\loot_room</room>
-    <room>rooms\test_room</room>
     <room>rooms\store_room</room>
     <room>rooms\battle_room</room>
     <rooms name="LEGACY">
@@ -378,6 +377,7 @@
         <room>rooms\crystal_city_room</room>
       </rooms>
       <room>rooms\overworld_room</room>
+      <room>rooms\test_room</room>
     </rooms>
   </rooms>
   <constants number="18">

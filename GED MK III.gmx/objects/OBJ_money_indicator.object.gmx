@@ -26,31 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>persistent_variables = instance_find(OBJ_persistent_variables, 0)
-
-gold = persistent_variables.gold
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="3" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>gold = persistent_variables.gold
 </string>
           </argument>
         </arguments>
@@ -74,6 +49,7 @@ gold = persistent_variables.gold
           <argument>
             <kind>1</kind>
             <string>//todo rewrite this
+gold = persistent_variables.gold
 draw_self()
 draw_set_font(FONT_big_arial)
 draw_set_color(c_black)
