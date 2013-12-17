@@ -361,9 +361,6 @@ for(i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     } else {
         draw_sprite(SPR_cycle_elems, i*2+1, point_seq_x[i], point_seq_y[i])
     }
-    //draw text to indicate element level
-    //draw_set_color(c_black)
-    //draw_text(point_seq_x[i] - 5, point_seq_y[i] - 5, element_levels[i])
 }
 
 if (menu_open) {

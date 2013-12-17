@@ -76,8 +76,6 @@ angle = angle_iter*(index + 1)
 dest_x = cycle.center_x + cos(angle)*dist
 dest_y = cycle.center_y + sin(angle)*dist
 
-show_debug_message(string(radtodeg(angle)))
-
 if (x &lt; dest_x) {
     x += anim_speed
     if (x &gt; dest_x) {

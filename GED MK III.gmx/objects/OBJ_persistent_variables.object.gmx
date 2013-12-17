@@ -29,6 +29,7 @@
 hp = 50
 base_damage = 5
 gold = 0
+
 upgrade[ELEMENT_NULL] = 0
 for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     upgrade[i] = 0

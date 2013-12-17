@@ -54,7 +54,6 @@
       </sprites>
       <sprites name="icons">
         <sprite>sprites\SPR_card_icon</sprite>
-        <sprite>sprites\SPR_gold_icon</sprite>
       </sprites>
       <sprites name="Example Resources">
         <sprite>sprites\SPR_cardFace</sprite>
@@ -137,6 +136,9 @@
         <sprite>sprites\SPR_heart</sprite>
         <sprite>sprites\SPR_money_plate</sprite>
         <sprite>sprites\SPR_upgrade</sprite>
+        <sprite>sprites\SPR_shop_elems</sprite>
+        <sprite>sprites\SPR_shop_sheet</sprite>
+        <sprite>sprites\SPR_gold_icon</sprite>
       </sprites>
     </sprites>
     <sprites name="overworld">
@@ -217,11 +219,23 @@
   </fonts>
   <objects name="objects">
     <object>objects\OBJ_null</object>
+    <objects name="controllers">
+      <object>objects\OBJ_music_controller</object>
+      <object>objects\OBJ_battle_controller</object>
+      <object>objects\OBJ_store_controller</object>
+      <object>objects\OBJ_menu_controller</object>
+      <object>objects\OBJ_persistent_variables</object>
+      <object>objects\OBJ_deck</object>
+      <object>objects\OBJ_floor</object>
+      <object>objects\OBJ_reference</object>
+    </objects>
     <objects name="shoppe">
       <object>objects\OBJ_heart</object>
       <object>objects\OBJ_purse</object>
       <object>objects\OBJ_money_plate</object>
       <object>objects\OBJ_upgrade_indicator</object>
+      <object>objects\OBJ_money_indicator</object>
+      <object>objects\OBJ_sheet</object>
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
@@ -257,17 +271,7 @@
       <object>objects\OBJ_card_wood</object>
       <object>objects\OBJ_element_container</object>
     </objects>
-    <objects name="controllers">
-      <object>objects\OBJ_music_controller</object>
-      <object>objects\OBJ_battle_controller</object>
-      <object>objects\OBJ_store_controller</object>
-      <object>objects\OBJ_menu_controller</object>
-      <object>objects\OBJ_persistent_variables</object>
-      <object>objects\OBJ_deck</object>
-      <object>objects\OBJ_floor</object>
-      <object>objects\OBJ_reference</object>
-    </objects>
-    <objects name="Particles">
+    <objects name="particles">
       <object>objects\OBJ_star_particle</object>
       <object>objects\OBJ_purse_particle</object>
       <object>objects\OBJ_floating_number</object>
@@ -348,6 +352,10 @@
       <objects name="examples">
         <object>objects\OBJ_mod_card_example</object>
       </objects>
+    </objects>
+    <objects name="battle finish">
+      <object>objects\OBJ_banner</object>
+      <object>objects\OBJ_end_screen</object>
     </objects>
   </objects>
   <rooms name="rooms">
