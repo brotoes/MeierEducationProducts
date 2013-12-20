@@ -61,6 +61,7 @@ meter_hp = instance_create(x, y + height, OBJ_meter)
 meter_hp.length = width
 //TODO fill based on element?
 
+name = "Enemy Parent"
 </string>
           </argument>
         </arguments>
@@ -85,6 +86,8 @@ meter_hp.length = width
             <kind>1</kind>
             <string>battle_controller.target = OBJ_null
 battle_controller.gold_earned += gold
+ds_list_add(battle_controller.killname_listid, name)
+ds_list_add(battle_controller.killval_listid, gold)
 
 //update the turn priorities of enemies whose turns come after
 for (i = 0; i &lt; instance_number(OBJ_enemy_parent); i ++) {

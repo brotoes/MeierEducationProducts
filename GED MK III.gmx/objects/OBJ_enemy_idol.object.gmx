@@ -42,6 +42,7 @@
             <string>primary_element = ELEMENT_WATER
 hp_total = 15
 hp_current = 15
+name = "Crying Idol"
 </string>
           </argument>
         </arguments>

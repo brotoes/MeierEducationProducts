@@ -32,11 +32,12 @@ victory = battle_controller.victory
 gold_earned = battle_controller.gold_earned
 gold = persistent_variables.gold
 
-gold_total = gold_earned + gold
+gold_total = floor(gold_earned*persistent_variables.gold_multiplier) + gold
 
 //TODO gather any stats worth being displayed
 
 //drawing variables
+anim_counter = 0
 margin = 50
 text_margin = 10
 
@@ -50,24 +51,34 @@ earn_top = banner_bottom + margin
 earn_right = room_width/2 - margin/2
 earn_bottom = room_height - margin
 
+avail_left = room_width/2 + margin/2
+avail_top = banner_bottom + margin
+avail_right = room_width - margin
+avail_bottom = room_height - margin
+
 //drawing strings
-draw_set_font(FONT_big_arial)
 banner_str = ""
 if (victory) {
     banner_str = "VICTORY!"
 } else {
     banner_str = "DEFEAT . . ."
 }
-banner_x = room_width/2 - string_width(banner_str)/2
-banner_y = banner_top + (banner_bottom - banner_top)/2
-             - string_height(banner_str)/2
-draw_set_font(FONT_normal)
 
-earned_str = "Zennis Earned:"
-earned_x = earn_left + text_margin
-earned_y = earn_top + text_margin
+earnstr_listid = battle_controller.killname_listid
+earnval_listid = battle_controller.killval_listid
 
-totals_right = earn_right - text_margin
+ds_list_insert(earnstr_listid, 0, "Spoils")
+ds_list_insert(earnval_listid, 0, "")
+
+ds_list_add(earnstr_listid, "")
+ds_list_add(earnval_listid, "")
+
+ds_list_add(earnstr_listid, "Zennis Earned")
+ds_list_add(earnval_listid, string(gold_earned) + " x " + 
+    string(persistent_variables.gold_multiplier))
+
+ds_list_add(earnstr_listid, "Total Zennis")
+ds_list_add(earnval_listid, gold_total)
 </string>
           </argument>
         </arguments>
@@ -128,18 +139,50 @@ draw_set_color(c_blue)
 draw_roundrect(earn_left, earn_top, earn_right, earn_bottom, false)
 draw_set_color(c_white)
 draw_roundrect(earn_left, earn_top, earn_right, earn_bottom, true)
-//draw rightmost box TODO
+draw_set_color(c_blue)
+draw_roundrect(avail_left, avail_top, avail_right, avail_bottom, false)
+draw_set_color(c_white)
+draw_roundrect(avail_left, avail_top, avail_right, avail_bottom, true)
 
 //draw text
 draw_set_color(c_white)
 draw_set_font(FONT_big_arial)
+banner_x = room_width/2 - string_width(banner_str)/2
+banner_y = (banner_bottom - banner_top)/2 + banner_top - string_height(banner_str)/2
 draw_text(banner_x, banner_y, banner_str)
 
-draw_text(earned_x, earned_y, earned_str)
-draw_text(totals_right - string_width(string(gold_earned)),
-            earned_y, string(gold_earned))
+text_left = earn_left + text_margin
+text_right = earn_right - text_margin
+cur_y = earn_top + text_margin
+line_iter = text_margin + string_height("A")
+line_time = 20
+
+draw_line(text_left, cur_y + line_iter - text_margin/2, 
+            text_right, cur_y + line_iter - text_margin/2)
+
+for (i = 0; i &lt; min(ds_list_size(earnstr_listid), anim_counter/line_time); i ++) {
+    str = ds_list_find_value(earnstr_listid, i)
+    val = ds_list_find_value(earnval_listid, i)
+    
+    draw_text(text_left, cur_y, str)
+    if (i &gt; min(ds_list_size(earnstr_listid), anim_counter/line_time) - 1
+        and not is_string(val)) {
+        val = floor((val/line_time)*(anim_counter mod line_time))
+    }
+    draw_text(text_right - string_width(string(val)), cur_y, val)
+    
+    cur_y += line_iter
+}
+
+if (anim_counter/line_time + 1 &gt; ds_list_size(earnstr_listid)) {
+    cur_y -= line_iter + text_margin/2
+    draw_line(text_left, cur_y, text_right, cur_y)
+}
+anim_counter ++
+
 
 draw_set_color(c_black)
+draw_set_font(FONT_normal)
 </string>
           </argument>
         </arguments>

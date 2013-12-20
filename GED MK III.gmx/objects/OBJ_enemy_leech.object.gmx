@@ -43,6 +43,7 @@
 primary_element = ELEMENT_METAL
 hp_total = 30
 hp_current = 30
+name = "Leech Butts"
 </string>
           </argument>
         </arguments>

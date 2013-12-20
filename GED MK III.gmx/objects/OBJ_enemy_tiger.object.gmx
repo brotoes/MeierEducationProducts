@@ -42,6 +42,7 @@
             <string>primary_element = ELEMENT_EARTH
 hp_total = 35
 hp_current = 35
+name = "Walking Tiger"
 </string>
           </argument>
         </arguments>

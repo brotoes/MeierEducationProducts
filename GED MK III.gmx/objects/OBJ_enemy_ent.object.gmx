@@ -42,6 +42,7 @@
             <string>primary_element = ELEMENT_WOOD
 hp_total = 70
 hp_current = 70
+name = "DelinqEnt"
 </string>
           </argument>
         </arguments>
