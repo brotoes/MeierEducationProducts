@@ -102,7 +102,7 @@ if (clicked and enough_gold) {
     purse_ind.level += 1
     persistent_variables.gold -= purse_plate.gold
 } else if (clicked) {
-    //TODO flash something
+    gold_ind.flash = gold_ind.flash_time
 }
 </string>
           </argument>

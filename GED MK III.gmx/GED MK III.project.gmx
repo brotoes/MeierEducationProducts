@@ -380,7 +380,8 @@
       <room>rooms\test_room</room>
     </rooms>
   </rooms>
-  <constants number="18">
+  <constants number="19">
+    <constant name="MAX_LEVEL">9</constant>
     <constant name="MAX_POINTS">4</constant>
     <constant name="PRIORITY_ATTACK_SOUND">1</constant>
     <constant name="PRIORITY_MUSIC">0</constant>

@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>points_x[ELEMENT_FIRE] = ref_fire.x
+            <string>persistent_variables = instance_find(OBJ_persistent_variables, 0)
+
+points_x[ELEMENT_FIRE] = ref_fire.x
 points_y[ELEMENT_FIRE] = ref_fire.y
 
 points_x[ELEMENT_EARTH] = ref_earth.x
@@ -40,9 +42,10 @@ points_y[ELEMENT_WATER] = ref_water.y
 points_x[ELEMENT_WOOD] = ref_wood.x
 points_y[ELEMENT_WOOD] = ref_wood.y
 
-persistent_variables = instance_find(OBJ_persistent_variables, 0)
-
 button_radius = 60
+
+vert_offset = 32
+hor_offset = 64
 </string>
           </argument>
         </arguments>
@@ -65,10 +68,22 @@ button_radius = 60
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
+            <string>element = ELEMENT_NULL
+for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     distance = point_distance(mouse_x, mouse_y, points_x[i], points_y[i])
     if (distance &lt; button_radius) {
-        //TODO perform upgrade
+        element = i
+    }
+}
+cost = persistent_variables.upg_cost[persistent_variables.upgrade[element] + 1]
+enough_gold = persistent_variables.gold &gt;= cost
+if (element != ELEMENT_NULL and persistent_variables.upgrade[element] &lt; MAX_LEVEL 
+    and not is_string(cost)) {
+    if (enough_gold) {
+        persistent_variables.gold -= cost
+        persistent_variables.upgrade[element] ++
+    } else {
+        gold_ind.flash = gold_ind.flash_time
     }
 }
 </string>
@@ -94,12 +109,29 @@ button_radius = 60
           <argument>
             <kind>1</kind>
             <string>draw_self()
-
+draw_set_font(FONT_big_arial)
 for(i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     draw_sprite(SPR_shop_elems, i, points_x[i], points_y[i])
+    
+    level = persistent_variables.upgrade[i]
+    cost = string(persistent_variables.upg_cost[level + 1]) + "z"
+    
+    ind_x = points_x[i] - hor_offset
+    ind_y = points_y[i] + vert_offset
+    
+    lvltxt_x = ind_x + sprite_get_width(SPR_upgrade)/2 - string_width(string(level))/2
+    lvltxt_y = ind_y + sprite_get_height(SPR_upgrade)/2 - string_height(string(level))/2
+    
+    valtxt_x = points_x[i] + hor_offset - string_width(cost)
+    valtxt_y = lvltxt_y
+    
+    draw_sprite(SPR_upgrade, 0, ind_x, ind_y)
+    draw_set_color(c_green)
+    draw_text(lvltxt_x, lvltxt_y, level)
+    draw_set_color(c_black)
+    draw_text(valtxt_x, valtxt_y, cost)
 }
-
-//draw levels and prices
+draw_set_font(FONT_normal)
 </string>
           </argument>
         </arguments>

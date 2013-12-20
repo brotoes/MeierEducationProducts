@@ -38,6 +38,18 @@ upgrade[ELEMENT_NULL] = 0
 for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     upgrade[i] = 0
 }
+
+upg_cost[0] = 0
+upg_cost[1] = 50
+upg_cost[2] = 100
+upg_cost[3] = 200
+upg_cost[4] = 300
+upg_cost[5] = 500
+upg_cost[6] = 700
+upg_cost[7] = 900
+upg_cost[8] = 1000
+upg_cost[9] = 2000
+upg_cost[10] = "----"
 </string>
           </argument>
         </arguments>

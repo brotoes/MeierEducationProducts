@@ -64,7 +64,7 @@ if (clicked and enough_gold) {
     heart_ind.level += 1
     persistent_variables.gold -= heart_plate.gold
 } else if (clicked) {
-    //todo flash something
+    gold_ind.flash = gold_ind.flash_time
 }
 </string>
           </argument>
