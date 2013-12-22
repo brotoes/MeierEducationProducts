@@ -125,6 +125,7 @@
         <sprites name="battle menu">
           <sprite>sprites\SPR_skip</sprite>
           <sprite>sprites\SPR_exit</sprite>
+          <sprite>sprites\SPR_dump</sprite>
         </sprites>
       </sprites>
       <sprites name="cycle">
@@ -214,14 +215,26 @@
     </scripts>
   </scripts>
   <fonts name="fonts">
-    <font>fonts\FONT_big_arial</font>
+    <font>fonts\FONT_big</font>
     <font>fonts\FONT_normal</font>
   </fonts>
   <objects name="objects">
     <object>objects\OBJ_null</object>
-    <objects name="battle finish">
+    <objects name="battle">
       <object>objects\OBJ_banner</object>
       <object>objects\OBJ_end_screen</object>
+      <object>objects\OBJ_cycle</object>
+      <object>objects\OBJ_action_bar</object>
+      <object>objects\OBJ_fade_out</object>
+      <object>objects\OBJ_animation</object>
+      <object>objects\OBJ_discrete_meter</object>
+      <object>objects\OBJ_meter</object>
+      <objects name="battle menu">
+        <object>objects\OBJ_skip</object>
+        <object>objects\OBJ_dump</object>
+        <object>objects\OBJ_exit</object>
+        <object>objects\OBJ_battle_menu_parent</object>
+      </objects>
     </objects>
     <objects name="controllers">
       <object>objects\OBJ_music_controller</object>
@@ -251,20 +264,9 @@
     </objects>
     <objects name="interface">
       <object>objects\OBJ_button</object>
-      <object>objects\OBJ_meter</object>
-      <object>objects\OBJ_discrete_meter</object>
       <object>objects\OBJ_back_button</object>
-      <object>objects\OBJ_fade_out</object>
-      <object>objects\OBJ_animation</object>
-      <object>objects\OBJ_cycle</object>
       <object>objects\OBJ_mtoggle</object>
       <object>objects\OBJ_stoggle</object>
-      <object>objects\OBJ_action_bar</object>
-      <objects name="battle menu">
-        <object>objects\OBJ_skip</object>
-        <object>objects\OBJ_exit</object>
-        <object>objects\OBJ_battle_menu_parent</object>
-      </objects>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>

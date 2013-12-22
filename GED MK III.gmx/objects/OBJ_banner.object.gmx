@@ -25,34 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = 60
-battle_controller = instance_find(OBJ_battle_controller, 0)
-
-victory = battle_controller.victory
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>instance_create(0, 0, OBJ_end_screen)
-instance_destroy()
+            <string>banner = ""
+prev_banner = banner
+move_speed = 10
+y = room_height/2
 </string>
           </argument>
         </arguments>
@@ -75,17 +51,21 @@ instance_destroy()
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(FONT_big_arial)
-victory_string = "YOU WON!"
-defeat_string = "YOU LOST..."
-if (victory) {
-    x = room_width/2 - string_width(victory_string)/2
-    y = room_height/2 - string_height(victory_string)/2
-    draw_text(x, y, victory_string)
+            <string>draw_set_font(FONT_big)
+x -= move_speed
+if (banner != prev_banner) {
+    show_debug_message(banner)
+    prev_banner = banner
+    x = room_width
+    y = room_height/2
+    if (is_string(banner)) {
+        y -= string_height(banner)/2
+    }
+}
+if (is_string(banner)) {
+    draw_text(x, y, banner)
 } else {
-    x = room_width/2 - string_width(defeat_string)/2
-    y = room_height/2 - string_height(defeat_string)/2
-    draw_text(x, y, defeat_string)
+    draw_sprite(banner, 0, x, y)
 }
 draw_set_font(FONT_normal)
 </string>

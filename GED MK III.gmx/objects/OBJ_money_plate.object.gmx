@@ -49,7 +49,7 @@ align = 90
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(FONT_big_arial)
+            <string>draw_set_font(FONT_big)
 text_x = x + align - string_width(string(gold))
 text_y = y + sprite_height/2 - string_height(string(gold))/2
 

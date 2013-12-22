@@ -85,6 +85,29 @@ ds_list_destroy(killval_listid)
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_create(0, 0, OBJ_end_screen)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
@@ -102,7 +125,13 @@ ds_list_destroy(killval_listid)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>banner = instance_create(0, 0, OBJ_banner)
+            <string>battle_banner = instance_find(OBJ_banner, 0)
+if (victory) {
+    battle_banner.banner = "Victory!"
+} else {
+    battle_banner.banner = "Defeat..."
+}
+alarm[1] = 60
 </string>
           </argument>
         </arguments>
@@ -163,6 +192,10 @@ if (whose_turn != 0) {
             }
         }
     }
+}
+
+if (instance_number(OBJ_card_parent) == 0 and whose_turn == 0) {
+    whose_turn ++
 }
 </string>
           </argument>

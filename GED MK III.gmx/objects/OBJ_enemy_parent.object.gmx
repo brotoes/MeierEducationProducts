@@ -182,7 +182,7 @@ if (hp_current &lt;= 0) {
 
 //check if it is this instance's turn
 if (battle_controller.whose_turn == turn_priority and 
-    hp_current &gt; 0 and alarm[0] == -1) {
+    hp_current &gt; 0 and alarm[0] == -1 and battle_controller.hp_current != 0) {
     alarm[0] = 30
 }
 

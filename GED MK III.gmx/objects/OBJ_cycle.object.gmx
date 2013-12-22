@@ -62,6 +62,8 @@ last_played = ELEMENT_NULL
 previous_element_count = 0
 menu_waiting = false
 menu_open = false
+
+anim_counter = 0
 </string>
           </argument>
         </arguments>
@@ -163,6 +165,8 @@ if (previous_element_count &lt; element_count) {
         element_levels[i] = 0
     }
 }
+
+anim_counter ++
 </string>
           </argument>
         </arguments>
@@ -321,7 +325,7 @@ if (point_distance(mouse_x, mouse_y, center_x, center_y) &lt; radius + 20) {
 }
 
 //play cycle if clicked
-if (click) {
+if (click and battle_controller.whose_turn == 0) {
     menu_waiting = true
     alarm[0] = 20
 }  
@@ -360,6 +364,13 @@ for(i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
         draw_sprite(SPR_cycle_elems, i*2, point_seq_x[i], point_seq_y[i])
     } else {
         draw_sprite(SPR_cycle_elems, i*2+1, point_seq_x[i], point_seq_y[i])
+        if (i == last_played) {
+            draw_set_alpha(sin(anim_counter/3))
+            draw_set_blend_mode(bm_add)
+            draw_sprite(SPR_cycle_elems, i*2+1, point_seq_x[i], point_seq_y[i])
+            draw_set_blend_mode(bm_normal)
+            draw_set_alpha(1)
+        }
     }
 }
 

@@ -34,8 +34,6 @@ gold = persistent_variables.gold
 
 gold_total = floor(gold_earned*persistent_variables.gold_multiplier) + gold
 
-//TODO gather any stats worth being displayed
-
 //drawing variables
 anim_counter = 0
 margin = 50
@@ -146,7 +144,7 @@ draw_roundrect(avail_left, avail_top, avail_right, avail_bottom, true)
 
 //draw text
 draw_set_color(c_white)
-draw_set_font(FONT_big_arial)
+draw_set_font(FONT_big)
 banner_x = room_width/2 - string_width(banner_str)/2
 banner_y = (banner_bottom - banner_top)/2 + banner_top - string_height(banner_str)/2
 draw_text(banner_x, banner_y, banner_str)

@@ -55,8 +55,8 @@ purse_ind.level = persistent_variables.purse_lvl
 persistent_variables.purse_lvl = purse_ind.level
 
 //TODO create cost function
-purse_plate.gold = persistent_variables.purse_lvl*10
-heart_plate.gold = persistent_variables.hp_lvl*10
+purse_plate.gold = (persistent_variables.purse_lvl + 1)*10
+heart_plate.gold = (persistent_variables.hp_lvl + 1)*10
 </string>
           </argument>
         </arguments>
