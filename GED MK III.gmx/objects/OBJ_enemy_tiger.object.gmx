@@ -43,6 +43,8 @@
 hp_total = 35
 hp_current = 35
 name = "Walking Tiger"
+ail_x = 30
+ail_y = 25
 </string>
           </argument>
         </arguments>

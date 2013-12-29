@@ -30,53 +30,20 @@ persistent_variables = instance_find(OBJ_persistent_variables, 0)
 
 victory = battle_controller.victory
 gold_earned = battle_controller.gold_earned
-gold = persistent_variables.gold
 
-gold_total = floor(gold_earned*persistent_variables.gold_multiplier) + gold
+gold_total = floor(gold_earned*persistent_variables.gold_multiplier)
 
 //drawing variables
 anim_counter = 0
-margin = 50
-text_margin = 10
-
-banner_left = margin
-banner_top = margin
-banner_right = room_width - margin
-banner_bottom = margin + 100
-
-earn_left = margin
-earn_top = banner_bottom + margin
-earn_right = room_width/2 - margin/2
-earn_bottom = room_height - margin
-
-avail_left = room_width/2 + margin/2
-avail_top = banner_bottom + margin
-avail_right = room_width - margin
-avail_bottom = room_height - margin
-
-//drawing strings
-banner_str = ""
-if (victory) {
-    banner_str = "VICTORY!"
-} else {
-    banner_str = "DEFEAT . . ."
-}
+main_col = make_color_rgb(73, 169, 129)
+out_col = make_color_rgb(11, 74, 63)
+margin = 10
+line_time = 15
+left_indent = 56
+right_indent = 20
 
 earnstr_listid = battle_controller.killname_listid
 earnval_listid = battle_controller.killval_listid
-
-ds_list_insert(earnstr_listid, 0, "Spoils")
-ds_list_insert(earnval_listid, 0, "")
-
-ds_list_add(earnstr_listid, "")
-ds_list_add(earnval_listid, "")
-
-ds_list_add(earnstr_listid, "Zennis Earned")
-ds_list_add(earnval_listid, string(gold_earned) + " x " + 
-    string(persistent_variables.gold_multiplier))
-
-ds_list_add(earnstr_listid, "Total Zennis")
-ds_list_add(earnval_listid, gold_total)
 </string>
           </argument>
         </arguments>
@@ -125,57 +92,72 @@ with (battle_controller) instance_destroy()
             <kind>1</kind>
             <string>//draw backdrop
 draw_set_alpha(0.5)
-draw_set_color(c_blue)
+draw_set_color(c_gray)
 draw_rectangle(0, 0, room_width, room_height, false)
 draw_set_alpha(1)
 
-draw_set_color(c_blue)
-draw_roundrect(banner_left, banner_top, banner_right, banner_bottom, false)
-draw_set_color(c_white)
-draw_roundrect(banner_left, banner_top, banner_right, banner_bottom, true)
-draw_set_color(c_blue)
-draw_roundrect(earn_left, earn_top, earn_right, earn_bottom, false)
-draw_set_color(c_white)
-draw_roundrect(earn_left, earn_top, earn_right, earn_bottom, true)
-draw_set_color(c_blue)
-draw_roundrect(avail_left, avail_top, avail_right, avail_bottom, false)
-draw_set_color(c_white)
-draw_roundrect(avail_left, avail_top, avail_right, avail_bottom, true)
+if (victory) {
+    //draw banners
+    draw_sprite(SPR_victory_banner, 0, room_width/2 - 
+                sprite_get_width(SPR_victory_banner)/2, margin*2)
+    draw_sprite(SPR_got_banner, 0, room_width/2 - 
+                sprite_get_width(SPR_victory_banner)/2,
+                sprite_get_height(SPR_victory_banner) + margin*4)
 
-//draw text
-draw_set_color(c_white)
-draw_set_font(FONT_big)
-banner_x = room_width/2 - string_width(banner_str)/2
-banner_y = (banner_bottom - banner_top)/2 + banner_top - string_height(banner_str)/2
-draw_text(banner_x, banner_y, banner_str)
-
-text_left = earn_left + text_margin
-text_right = earn_right - text_margin
-cur_y = earn_top + text_margin
-line_iter = text_margin + string_height("A")
-line_time = 20
-
-draw_line(text_left, cur_y + line_iter - text_margin/2, 
-            text_right, cur_y + line_iter - text_margin/2)
-
-for (i = 0; i &lt; min(ds_list_size(earnstr_listid), anim_counter/line_time); i ++) {
-    str = ds_list_find_value(earnstr_listid, i)
-    val = ds_list_find_value(earnval_listid, i)
-    
-    draw_text(text_left, cur_y, str)
-    if (i &gt; min(ds_list_size(earnstr_listid), anim_counter/line_time) - 1
-        and not is_string(val)) {
-        val = floor((val/line_time)*(anim_counter mod line_time))
+    draw_set_font(FONT_big)
+    //draw breakdown
+    cur_y = sprite_get_height(SPR_victory_banner) + 
+            sprite_get_height(SPR_got_banner) + margin*5
+    cur_x = room_width/2 - sprite_get_width(SPR_earn_banner)/2
+    val_rightalign = cur_x + sprite_get_width(SPR_earn_banner) - right_indent
+    for (i = 0; i &lt; min(ds_list_size(earnstr_listid), anim_counter/line_time); i ++) {
+        str = ds_list_find_value(earnstr_listid, i)
+        val = ds_list_find_value(earnval_listid, i)
+        if (i &gt; min(ds_list_size(earnstr_listid), anim_counter/line_time) - 1) {
+            val = floor((val/line_time)*(anim_counter mod line_time))
+        }
+        val = string(val) + " z" 
+           
+        val_x = val_rightalign - string_width(val)
+        
+        draw_sprite(SPR_earn_banner, 0, cur_x, cur_y)
+        draw_text_outlined_shadow(cur_x + left_indent, cur_y, str, main_col, out_col)
+        draw_text_outlined_shadow(val_x, cur_y, val, main_col, out_col)
+                
+        cur_y += sprite_get_height(SPR_earn_banner) + margin
     }
-    draw_text(text_right - string_width(string(val)), cur_y, val)
+    if (anim_counter/line_time &gt; ds_list_size(earnstr_listid)) {
+        //draw premult total
+        str = "Earned"
+        val = string(gold_earned) + " z"
+        val_x = val_rightalign - string_width(val)
+        banner_x = cur_x + (sprite_get_width(SPR_earn_banner) - 
+                    sprite_get_width(SPR_mult_banner))
+        draw_sprite(SPR_mult_banner, 0, banner_x, cur_y)
+        draw_text_outlined_shadow(banner_x + left_indent, cur_y, str, main_col, out_col)
+        draw_text_outlined_shadow(val_x, cur_y, val, main_col, out_col)
+        cur_y += sprite_get_height(SPR_earn_banner) + margin
+
+        //draw multiplier
+        str = "Multiplier"
+        val = string(persistent_variables.gold_multiplier) + " x"
+        val_x = val_rightalign - string_width(val)
+        draw_sprite(SPR_mult_banner, 0, banner_x, cur_y)
+        draw_text_outlined_shadow(banner_x + left_indent, cur_y, str, main_col, out_col)
+        draw_text_outlined_shadow(val_x, cur_y, val, main_col, out_col)
+        cur_y += sprite_get_height(SPR_earn_banner) + margin
     
-    cur_y += line_iter
+        //draw final total
+        draw_set_font(FONT_xl)
+        str = "Total Zenni"
+        val = string(gold_total) + " z"
+        val_x = val_rightalign - string_width(val)
+        draw_sprite(SPR_tot_banner, 0, cur_x, cur_y + 10)
+        draw_text_outlined_shadow(cur_x + left_indent, cur_y, str, main_col, out_col)
+        draw_text_outlined_shadow(val_x, cur_y, val, main_col, out_col)
+    }
 }
 
-if (anim_counter/line_time + 1 &gt; ds_list_size(earnstr_listid)) {
-    cur_y -= line_iter + text_margin/2
-    draw_line(text_left, cur_y, text_right, cur_y)
-}
 anim_counter ++
 
 

@@ -49,7 +49,13 @@ image_speed = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>visible = room != battle_room &amp;&amp; room != store_room
+            <string>menu = instance_find(OBJ_menu_controller, 0)
+menu = menu.menu
+if (room != battle_room &amp;&amp; room != store_room &amp;&amp; menu != MENU_TITLE) {
+    visible = true
+} else {
+    visible = false
+}
 </string>
           </argument>
         </arguments>

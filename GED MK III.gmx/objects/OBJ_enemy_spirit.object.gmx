@@ -43,6 +43,8 @@
 hp_total = 20
 hp_current = 20
 name = "Fire Spirit"
+ail_x = 50
+ail_y = 50
 </string>
           </argument>
         </arguments>

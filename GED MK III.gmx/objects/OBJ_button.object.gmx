@@ -3,7 +3,7 @@
   <spriteName>SPR_invis_button</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -160,15 +160,13 @@ for (i = 1; i &lt; h_segs-1; i ++) {
 draw_sprite(SPR_button, 2 + sprite_index_modifier,
             x + floor(h_segs)*sprite_get_width(SPR_button), y)
 
-draw_set_color(c_teal)
-draw_set_blend_mode(bm_add)
+//draw_set_blend_mode(bm_add)
 draw_set_font(FONT_big)
-draw_text(string_x, string_y, button_text)
+draw_text_outlined(string_x, string_y, button_text, c_teal, c_white)
 if (sprite_index_modifier == 3) {
     draw_text(string_x, string_y, button_text)
 }
 draw_set_blend_mode(bm_normal)
-draw_set_color(c_black)
 </string>
           </argument>
         </arguments>

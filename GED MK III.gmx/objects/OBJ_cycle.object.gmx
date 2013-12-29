@@ -30,6 +30,7 @@ elements_listid = ds_list_create()
 persistent_variables = instance_find(OBJ_persistent_variables, 0)
 battle_controller = instance_find(OBJ_battle_controller, 0)
 action_bar = instance_find(OBJ_action_bar, 0)
+battle_banner = instance_find(OBJ_banner, 0)
 
 //generate data to draw self
 center_x = x + sprite_width/2
@@ -264,6 +265,7 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
         }
 
         //apply damage to target object
+        total_damage = floor(total_damage)
         target.hp_current -= total_damage
         if (target.hp_current &gt; target.hp_total) {
             target.hp_current = target.hp_total
@@ -365,7 +367,7 @@ for(i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     } else {
         draw_sprite(SPR_cycle_elems, i*2+1, point_seq_x[i], point_seq_y[i])
         if (i == last_played) {
-            draw_set_alpha(sin(anim_counter/3))
+            draw_set_alpha(cos(anim_counter/3))
             draw_set_blend_mode(bm_add)
             draw_sprite(SPR_cycle_elems, i*2+1, point_seq_x[i], point_seq_y[i])
             draw_set_blend_mode(bm_normal)

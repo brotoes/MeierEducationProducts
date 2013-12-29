@@ -43,6 +43,8 @@
 hp_total = 70
 hp_current = 70
 name = "DelinqEnt"
+ail_x = 75
+ail_y = 50
 </string>
           </argument>
         </arguments>

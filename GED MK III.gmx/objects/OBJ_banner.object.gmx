@@ -25,10 +25,50 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>banner = ""
+            <string>total = 30
+fade = 10
+anim_count = 0
+
+banner = ""
 prev_banner = banner
-move_speed = 10
 y = room_height/2
+
+battle_controller = instance_find(OBJ_battle_controller, 0)
+last_turn = 0
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>turn = battle_controller.whose_turn
+if (last_turn != turn) {
+    last_turn = turn
+    switch (turn) {
+        case 0: {
+            banner = SPR_player_banner
+        }break
+        case 1: {
+            banner = SPR_enemy_banner
+        }
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -52,22 +92,37 @@ y = room_height/2
           <argument>
             <kind>1</kind>
             <string>draw_set_font(FONT_big)
-x -= move_speed
-if (banner != prev_banner) {
-    show_debug_message(banner)
+if (string(banner) != string(prev_banner)) {
+    anim_count = 0
     prev_banner = banner
-    x = room_width
+    x = room_width/2
     y = room_height/2
     if (is_string(banner)) {
+        x -= string_width(banner)/2
         y -= string_height(banner)/2
+    } else {
+        x -= sprite_get_width(banner)/2
+        y -= sprite_get_height(banner)/2
     }
 }
 if (is_string(banner)) {
+    draw_set_alpha((fade - (anim_count - total))/fade)
+    draw_text_outlined_shadow(x, y, banner, c_black, c_white)
+    draw_set_alpha((fade - anim_count)/fade)
+    draw_set_color(c_white)
     draw_text(x, y, banner)
+    draw_set_alpha(1)
 } else {
+    draw_set_alpha((fade - (anim_count - total))/fade)
     draw_sprite(banner, 0, x, y)
+    draw_set_alpha((fade - anim_count)/fade)
+    draw_sprite(banner, 1, x, y)
+    draw_set_alpha(1)
 }
+
+anim_count ++
 draw_set_font(FONT_normal)
+draw_set_color(c_black)
 </string>
           </argument>
         </arguments>

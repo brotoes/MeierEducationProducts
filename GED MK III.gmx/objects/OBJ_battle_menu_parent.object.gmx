@@ -28,6 +28,7 @@
             <string>cycle = instance_find(OBJ_cycle, 0)
 action_bar = instance_find(OBJ_action_bar, 0)
 battle_controller = instance_find(OBJ_battle_controller, 0)
+battle_banner = instance_find(OBJ_banner, 0)
 
 anim_speed = 64
 
@@ -70,9 +71,9 @@ angle_min = 0
 angle_max = pi/2
 
 if(num_butts) {
-    angle_iter = (angle_max - angle_min)/(num_butts + 1)
+    angle_iter = (angle_max - angle_min)/num_butts
 }
-angle = angle_iter*(index + 1)
+angle = angle_iter*index
 dest_x = cycle.center_x + cos(angle)*dist
 dest_y = cycle.center_y + sin(angle)*dist
 

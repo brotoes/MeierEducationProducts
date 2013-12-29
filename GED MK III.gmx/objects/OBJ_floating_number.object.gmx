@@ -81,8 +81,7 @@ if (life &lt;= 0) {
           <argument>
             <kind>1</kind>
             <string>draw_set_font(FONT_big)
-draw_set_color(color)
-draw_text(x, y, value)
+draw_text_outlined_shadow(x, y, value, color, c_white)
 draw_set_font(FONT_normal)
 </string>
           </argument>

@@ -62,6 +62,9 @@ meter_hp.length = width
 //TODO fill based on element?
 
 name = "Enemy Parent"
+
+ail_x = 0
+ail_y = 0
 </string>
           </argument>
         </arguments>
@@ -125,10 +128,16 @@ fade_out.fade_sprite = sprite_index
           <argument>
             <kind>1</kind>
             <string>if (not stun) {
-    //todo: perform a proper turn
-    battle_controller.hp_current -= 5
-        flash = flash_time
+    //todo: perform moves and stuff
+    damage = 5
+    battle_controller.hp_current -= damage
+    flash = flash_time
     flash_color = c_white
+    meter = battle_controller.meter_hp
+    indicator = instance_create(meter.x + meter.length*meter.fill - 20,
+                                meter.y, OBJ_floating_number)
+    indicator.value = damage
+    indicator.color = c_red
 } else {
     stun = false
     flash = flash_time
@@ -303,12 +312,16 @@ y += adjust_y
 draw_sprite(sprite_index, 0, x, y)
 draw_sprite_ext(sprite_index, 1, x, y, 1, 1, 0, flash_color, flash/flash_time)
 
-//TODO do this properly
 if (stun) {
-    draw_text(x, y, "STUNNED")
+    draw_sprite(SPR_ailstun, floor(animation_counter/10), x + ail_x, y + ail_y)
 }
 if (poison) {
-    draw_text(x, y, "POISONED")
+    if (stun) {
+        draw_sprite(SPR_ailpoison, floor(animation_counter/10),
+            x + ail_x + sprite_get_width(SPR_ailstun), y + ail_y)
+    } else {
+        draw_sprite(SPR_ailpoison, floor(animation_counter/10), x + ail_x, y + ail_y)
+    }
 }
 </string>
           </argument>

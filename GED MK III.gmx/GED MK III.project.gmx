@@ -11,8 +11,10 @@
       <sound>sound\M_title_screen</sound>
       <sound>sound\M_store_theme</sound>
       <sound>sound\M_battle_theme</sound>
+      <sound>sound\M_victory</sound>
+      <sound>sound\M_defeat</sound>
     </sounds>
-    <sounds name="attacks">
+    <sounds name="effects">
       <sound>sound\S_metal</sound>
     </sounds>
   </sounds>
@@ -126,6 +128,7 @@
           <sprite>sprites\SPR_skip</sprite>
           <sprite>sprites\SPR_exit</sprite>
           <sprite>sprites\SPR_dump</sprite>
+          <sprite>sprites\SPR_help</sprite>
         </sprites>
       </sprites>
       <sprites name="cycle">
@@ -163,13 +166,23 @@
       <sprite>sprites\SPR_animate</sprite>
       <sprite>sprites\SPR_invis_cycle</sprite>
     </sprites>
-    <sprites name="battle animations">
-      <sprite>sprites\SPR_explosion</sprite>
-      <sprite>sprites\SPR_null_animation</sprite>
+    <sprites name="ailments">
+      <sprite>sprites\SPR_ailpoison</sprite>
+      <sprite>sprites\SPR_ailstun</sprite>
     </sprites>
     <sprites name="particles">
       <sprite>sprites\SPR_star</sprite>
       <sprite>sprites\SPR_purse_particle</sprite>
+    </sprites>
+    <sprites name="banners">
+      <sprite>sprites\SPR_victory_banner</sprite>
+      <sprite>sprites\SPR_defeat_banner</sprite>
+      <sprite>sprites\SPR_player_banner</sprite>
+      <sprite>sprites\SPR_enemy_banner</sprite>
+      <sprite>sprites\SPR_got_banner</sprite>
+      <sprite>sprites\SPR_mult_banner</sprite>
+      <sprite>sprites\SPR_earn_banner</sprite>
+      <sprite>sprites\SPR_tot_banner</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -185,20 +198,6 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <scripts name="button actions">
-      <script>scripts\SCR_null_action.gml</script>
-      <script>scripts\SCR_play_hand.gml</script>
-      <script>scripts\SCR_combine.gml</script>
-      <script>scripts\SCR_continue.gml</script>
-      <script>scripts\SCR_load.gml</script>
-      <script>scripts\SCR_settings.gml</script>
-    </scripts>
-    <scripts name="enemy AIs">
-      <script>scripts\SCR_AI_sample.gml</script>
-    </scripts>
-    <script>scripts\SCR_get_heal_amnt.gml</script>
-    <script>scripts\SCR_get_children.gml</script>
-    <script>scripts\SCR_increase_exp.gml</script>
     <scripts name="LEGACY">
       <script>scripts\SCR_ComboCheck.gml</script>
       <script>scripts\SCR_QuestionGenerator.gml</script>
@@ -213,9 +212,27 @@
       <script>scripts\SCR_CheckTurnOrder.gml</script>
       <script>scripts\SCR_CheckConditions.gml</script>
     </scripts>
+    <scripts name="button actions">
+      <script>scripts\SCR_null_action.gml</script>
+      <script>scripts\SCR_play_hand.gml</script>
+      <script>scripts\SCR_combine.gml</script>
+      <script>scripts\SCR_continue.gml</script>
+      <script>scripts\SCR_load.gml</script>
+      <script>scripts\SCR_settings.gml</script>
+    </scripts>
+    <scripts name="enemy AIs">
+      <script>scripts\SCR_AI_sample.gml</script>
+    </scripts>
+    <script>scripts\SCR_get_heal_amnt.gml</script>
+    <script>scripts\SCR_get_children.gml</script>
+    <script>scripts\SCR_increase_exp.gml</script>
+    <script>scripts\draw_text_outlined.gml</script>
+    <script>scripts\draw_text_outlined_shadow.gml</script>
   </scripts>
+  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\FONT_big</font>
+    <font>fonts\FONT_xl</font>
     <font>fonts\FONT_normal</font>
   </fonts>
   <objects name="objects">
@@ -259,7 +276,7 @@
       <object>objects\OBJ_enemy_tiger</object>
       <object>objects\OBJ_enemy_ent</object>
       <object>objects\OBJ_enemy_idol</object>
-      <object>objects\OBJ_enemy_spirit</object>
+      <object>objects\OBJ_enemy_fury</object>
       <object>objects\OBJ_enemy_leech</object>
     </objects>
     <objects name="interface">

@@ -43,6 +43,8 @@
 hp_total = 15
 hp_current = 15
 name = "Crying Idol"
+ail_x = 5
+ail_y = 5
 </string>
           </argument>
         </arguments>
