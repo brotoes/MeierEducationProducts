@@ -29,6 +29,8 @@
 hp_total = 10
 difficulty = 150
 poison_resist = 0.5
+dmg_max = 7
+dmg_min = 4
 
 hp_current = 10
 gold = irandom(50)
@@ -127,9 +129,10 @@ fade_out.fade_sprite = sprite_index
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (not stun) {
+            <string>randomize()
+if (not stun) {
     //todo: perform moves and stuff
-    damage = 5
+    damage = floor(random(dmg_max - dmg_min)) + dmg_min
     battle_controller.hp_current -= damage
     flash = flash_time
     flash_color = c_white
@@ -295,11 +298,7 @@ if (flying) {
 
 //draw shadow
 draw_set_alpha(0.5)
-if (battle_controller.target == id) {
-    draw_set_color(cycle.element_colors[primary_element])
-} else {
-    draw_set_color(c_black)
-}
+
 draw_ellipse(x - adjust_y/2, y + height - 40 - (width - 100)/5 - adjust_y/7,
  x + width + adjust_y/2, y + height + 10, false)
 draw_set_alpha(1)
@@ -322,6 +321,13 @@ if (poison) {
     } else {
         draw_sprite(SPR_ailpoison, floor(animation_counter/10), x + ail_x, y + ail_y)
     }
+}
+
+//draw selection indicator
+if (battle_controller.target == id) {
+    draw_sprite(SPR_elem_select, primary_element,
+                x + sprite_width/2 - sprite_get_width(SPR_elem_select)/2,
+                max(y - sprite_get_height(SPR_elem_select)/2, 0))
 }
 </string>
           </argument>

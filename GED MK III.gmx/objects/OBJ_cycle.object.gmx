@@ -237,8 +237,8 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
             case ELEMENT_EARTH: {
                 battle_controller.hp_current += 
                     SCR_get_heal_amnt(element_levels[ELEMENT_EARTH])
-                if (battle_controller.hp_current &gt; persistent_variables.hp) {
-                    battle_controller.hp_current = persistent_variables.hp
+                if (battle_controller.hp_current &gt; battle_controller.hp_max) {
+                    battle_controller.hp_current = battle_controller.hp_max
                 }
             } break
             case ELEMENT_METAL: {

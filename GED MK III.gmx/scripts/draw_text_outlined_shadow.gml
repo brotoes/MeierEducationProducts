@@ -1,10 +1,11 @@
 var c;
-c = draw_get_color();
+c = draw_get_color()
+alpha = draw_get_alpha()
 //draw the shadow
 draw_set_color(c_black)
-draw_set_alpha(0.5)
+draw_set_alpha(alpha/2)
 draw_text(argument0 + 3, argument1 + 3, argument2)
-draw_set_alpha(1)
+draw_set_alpha(alpha)
 
 //draw the outline
 draw_set_color(argument4);

@@ -37,7 +37,8 @@ backgrounds[0] = BG_battlescape
 whose_turn = 0
 //stores which enemy is targetted by the player
 target = OBJ_null
-hp_current = persistent_variables.hp
+hp_current = persistent_variables.hp_amount[persistent_variables.hp_lvl]
+hp_max = hp_current
 
 //rewards accumulated. This is given to the player upon winning the battle
 gold_earned = 0
@@ -50,8 +51,6 @@ ready_to_draw = true
 final_menu = false
 victory = false
 alarm_set = false
-
-
 </string>
           </argument>
         </arguments>
@@ -157,7 +156,7 @@ alarm[1] = 60
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>meter_hp.fill = hp_current/persistent_variables.hp
+            <string>meter_hp.fill = hp_current/hp_max
 
 if (instance_number(OBJ_enemy_parent) == 0 and not alarm_set) {
     victory = true

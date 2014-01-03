@@ -99,7 +99,8 @@ if (room == menu_room) {
           <argument>
             <kind>1</kind>
             <string>if (menu == MENU_TITLE &amp;&amp; room == menu_room) {
-    menu = MENU_START
+    menu = MENU_GAME
+    /*
     //CREATE BUTTONS
     button_width = 700
     create_x = room_width/2 - button_width/2
@@ -119,6 +120,7 @@ if (room == menu_room) {
     continue_button.button_script = SCR_continue
     load_button.button_script = SCR_load
     settings_button.button_script = SCR_settings
+    */
 } else if (menu == MENU_GAME &amp;&amp; room == menu_room) {
     if (mouse_x &gt; x1 &amp;&amp; mouse_x &lt; x2 &amp;&amp; mouse_y &gt; y1 &amp;&amp; mouse_y &lt; y2) {
         //create battle conroller
@@ -191,9 +193,10 @@ if (room == menu_room) {
         draw_background(BG_title_text, 0, 0)
         draw_set_color(c_white)
         draw_set_alpha(cos(animation_counter/10) + 0.5)
+        draw_set_font(FONT_big)
         string_x = room_width/2 - string_width(prompt)/2
         string_y = 400
-        draw_text(string_x, string_y, "Tap to Continue...")
+        draw_text(string_x, string_y, prompt)
         draw_set_alpha(1)
         draw_set_color(c_black)
     }

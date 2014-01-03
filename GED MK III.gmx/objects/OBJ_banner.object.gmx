@@ -29,6 +29,7 @@
 fade = 10
 anim_count = 0
 
+green = true
 banner = ""
 prev_banner = banner
 y = room_height/2

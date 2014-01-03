@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>hand_size = 7
-hp = 50
 base_damage = 5
 gold = 0
 gold_multiplier = 1
@@ -50,6 +49,43 @@ upg_cost[7] = 900
 upg_cost[8] = 1000
 upg_cost[9] = 2000
 upg_cost[10] = "----"
+
+
+purse_cost[0] = 0
+purse_cost[1] = 50
+purse_cost[2] = 100
+purse_cost[3] = 200
+purse_cost[4] = 300
+purse_cost[5] = 500
+purse_cost[6] = 700
+purse_cost[7] = 900
+purse_cost[8] = 1000
+purse_cost[9] = 2000
+purse_cost[10] = "----"
+
+hp_cost[0] = 0
+hp_cost[1] = 50
+hp_cost[2] = 100
+hp_cost[3] = 200
+hp_cost[4] = 300
+hp_cost[5] = 500
+hp_cost[6] = 700
+hp_cost[7] = 900
+hp_cost[8] = 1000
+hp_cost[9] = 2000
+hp_cost[10] = "----"
+
+hp_amount[0] = 50
+hp_amount[1] = 60
+hp_amount[2] = 70
+hp_amount[3] = 80
+hp_amount[4] = 90
+hp_amount[5] = 100
+hp_amount[6] = 150
+hp_amount[7] = 200
+hp_amount[8] = 250
+hp_amount[9] = 500
+hp_amount[10] = 1000
 </string>
           </argument>
         </arguments>

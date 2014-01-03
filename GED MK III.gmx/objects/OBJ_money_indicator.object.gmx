@@ -60,11 +60,11 @@ draw_set_color(c_black)
 text_x = x + sprite_width + 5
 text_y = y + sprite_height/2 - string_height(string(gold))/2
 
-draw_text(text_x, text_y, string(gold) + "z")
+draw_text(text_x, text_y, string(gold) + " z")
 
 draw_set_alpha(flash/flash_time)
 draw_set_color(c_red)
-draw_text(text_x, text_y, string(gold) + "z")
+draw_text(text_x, text_y, string(gold) + " z")
 draw_set_alpha(1)
 draw_sprite_ext(sprite_index, 1, x, y, 1, 1, 0, c_red, flash/flash_time)
 if (flash &gt; 0) {

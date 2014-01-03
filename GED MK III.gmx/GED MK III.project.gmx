@@ -113,6 +113,7 @@
         <sprite>sprites\SPR_card_back</sprite>
         <sprite>sprites\SPR_card_stack</sprite>
         <sprite>sprites\SPR_target</sprite>
+        <sprite>sprites\SPR_elem_select</sprite>
       </sprites>
       <sprites name="bars">
         <sprite>sprites\SPR_meter</sprite>
@@ -229,7 +230,6 @@
     <script>scripts\draw_text_outlined.gml</script>
     <script>scripts\draw_text_outlined_shadow.gml</script>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\FONT_big</font>
     <font>fonts\FONT_xl</font>
@@ -399,7 +399,7 @@
       <room>rooms\test_room</room>
     </rooms>
   </rooms>
-  <constants number="19">
+  <constants number="20">
     <constant name="MAX_LEVEL">9</constant>
     <constant name="MAX_POINTS">4</constant>
     <constant name="PRIORITY_ATTACK_SOUND">1</constant>
@@ -413,6 +413,7 @@
     <constant name="DMG_NORMAL">1</constant>
     <constant name="DMG_FEED">-0.5</constant>
     <constant name="DMG_COUNTER">2</constant>
+    <constant name="DMG_INSULT">0.75</constant>
     <constant name="ELEMENT_NULL">5</constant>
     <constant name="ELEMENT_WOOD">4</constant>
     <constant name="ELEMENT_WATER">3</constant>
