@@ -32,7 +32,7 @@ poison_resist = 0.5
 dmg_max = 7
 dmg_min = 4
 
-hp_current = 10
+hp_current = hp_total
 gold = irandom(50)
 
 //status ailments
@@ -51,6 +51,7 @@ flash_color = c_red
 flying = false
 width = bbox_right - bbox_left
 height = bbox_bottom - bbox_top
+mouseover = false
 
 //this is used to determine damages
 primary_element = ELEMENT_NULL
@@ -129,24 +130,8 @@ fade_out.fade_sprite = sprite_index
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>randomize()
-if (not stun) {
-    //todo: perform moves and stuff
-    damage = floor(random(dmg_max - dmg_min)) + dmg_min
-    battle_controller.hp_current -= damage
-    flash = flash_time
-    flash_color = c_white
-    meter = battle_controller.meter_hp
-    indicator = instance_create(meter.x + meter.length*meter.fill - 20,
-                                meter.y, OBJ_floating_number)
-    indicator.value = damage
-    indicator.color = c_red
-} else {
-    stun = false
-    flash = flash_time
-    flash_color = c_yellow
-}
-if (poison) {
+            <string>if (poison) {
+    //TODO calculate this better
     dmg = ceil(poison/poison_resist)
     hp_current -= dmg
     indicator_offset = sprite_width/2
@@ -204,6 +189,11 @@ animation_counter ++
 if (flash &gt; 0) {
     flash --
 }
+
+//cap hp
+if (hp_current &gt; hp_total) {
+    hp_current = hp_total
+}
 </string>
           </argument>
         </arguments>
@@ -232,7 +222,55 @@ if (flash &gt; 0) {
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="4">
+    <event eventtype="6" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>mouseover = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (mouse_check_button(mb_left)) {
+    mouseover = true
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="7">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -255,6 +293,30 @@ if (flash &gt; 0) {
 } else {
     battle_controller.target = id
 }
+mouseover = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>mouseover = true
 </string>
           </argument>
         </arguments>
@@ -328,6 +390,15 @@ if (battle_controller.target == id) {
     draw_sprite(SPR_elem_select, primary_element,
                 x + sprite_width/2 - sprite_get_width(SPR_elem_select)/2,
                 max(y - sprite_get_height(SPR_elem_select)/2, 0))
+}
+if (mouseover) {
+    draw_set_alpha(0.8)
+    draw_set_blend_mode(bm_add)
+    draw_sprite(SPR_elem_select, primary_element,
+                x + sprite_width/2 - sprite_get_width(SPR_elem_select)/2,
+                max(y - sprite_get_height(SPR_elem_select)/2, 0))
+    draw_set_blend_mode(bm_normal)
+    draw_set_alpha(1)
 }
 </string>
           </argument>

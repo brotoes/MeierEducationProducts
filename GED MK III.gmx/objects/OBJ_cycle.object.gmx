@@ -217,6 +217,8 @@ if (point_distance(mouse_x, mouse_y, center_x, center_y) &lt; radius + 20) {
 if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_open) {
     //get target object
     target = battle_controller.target
+    //deselect target
+    battle_controller.target  = OBJ_null
     if (target.object_index != OBJ_null) {
         //calculate damage
         total_damage = 0
@@ -225,6 +227,8 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
             multiplier = DMG_COUNTER
         } else if ((last_played + 1) mod ELEMENT_NULL == target.primary_element) {
             multiplier = DMG_FEED
+        } else if ((last_played + 3) mod ELEMENT_NULL == target.primary_element) {
+            multiplier = DMG_INSULT
         }
         damage = persistent_variables.base_damage
         damage *= element_levels[last_played]

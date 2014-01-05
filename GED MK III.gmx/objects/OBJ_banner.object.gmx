@@ -28,6 +28,10 @@
             <string>total = 30
 fade = 10
 anim_count = 0
+main_col = make_color_rgb(73, 169, 129)
+out_col = make_color_rgb(11, 74, 63)
+left_indent = 75
+top_indent = -15
 
 green = true
 banner = ""
@@ -70,6 +74,63 @@ if (last_turn != turn) {
         }
     }
 }
+if (green) {
+    main_col = make_color_rgb(73, 169, 129)
+    out_col = make_color_rgb(11, 74, 63)
+    spr = SPR_blank_banner
+} else {
+    main_col = make_color_rgb(180, 80, 80)
+    out_col = make_color_rgb(130, 40, 40)
+    spr = SPR_blank_banner
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="83">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>banner = "how are you?"
+green = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="65">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>banner = "hello"
+green = true
 </string>
           </argument>
         </arguments>
@@ -92,27 +153,31 @@ if (last_turn != turn) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(FONT_big)
+            <string>draw_set_font(FONT_xl)
 if (string(banner) != string(prev_banner)) {
     anim_count = 0
     prev_banner = banner
     x = room_width/2
     y = room_height/2
     if (is_string(banner)) {
-        x -= string_width(banner)/2
-        y -= string_height(banner)/2
+        x -= sprite_get_width(SPR_blank_banner)/2
+        y -= sprite_get_height(SPR_blank_banner)/2
     } else {
         x -= sprite_get_width(banner)/2
         y -= sprite_get_height(banner)/2
     }
 }
 if (is_string(banner)) {
-    draw_set_alpha((fade - (anim_count - total))/fade)
-    draw_text_outlined_shadow(x, y, banner, c_black, c_white)
-    draw_set_alpha((fade - anim_count)/fade)
-    draw_set_color(c_white)
-    draw_text(x, y, banner)
-    draw_set_alpha(1)
+    if (banner != "") {
+        draw_set_alpha((fade - (anim_count - total))/fade)
+        draw_sprite(SPR_blank_banner, 0 + 2*!green, x, y)
+        draw_text_outlined_shadow(x + left_indent, y + top_indent, banner, main_col, out_col)
+        draw_set_alpha((fade - anim_count)/fade)
+        draw_set_color(c_white)
+        draw_sprite(SPR_blank_banner, 1 + 2*!green, x, y)
+        draw_text(x + left_indent, y + top_indent, banner)  
+        draw_set_alpha(1)
+    }
 } else {
     draw_set_alpha((fade - (anim_count - total))/fade)
     draw_sprite(banner, 0, x, y)

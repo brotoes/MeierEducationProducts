@@ -102,6 +102,7 @@
     </sprites>
     <sprites name="enemies">
       <sprite>sprites\SPR_tiger</sprite>
+      <sprite>sprites\SPR_panther</sprite>
       <sprite>sprites\SPR_cub</sprite>
       <sprite>sprites\SPR_white_tiger</sprite>
       <sprite>sprites\SPR_birdwing</sprite>
@@ -189,6 +190,7 @@
       <sprite>sprites\SPR_mult_banner</sprite>
       <sprite>sprites\SPR_earn_banner</sprite>
       <sprite>sprites\SPR_tot_banner</sprite>
+      <sprite>sprites\SPR_blank_banner</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -217,23 +219,24 @@
       <script>scripts\SCR_ResetToBattle.gml</script>
       <script>scripts\SCR_CheckTurnOrder.gml</script>
       <script>scripts\SCR_CheckConditions.gml</script>
+      <script>scripts\SCR_increase_exp.gml</script>
+      <scripts name="button actions">
+        <script>scripts\SCR_null_action.gml</script>
+        <script>scripts\SCR_play_hand.gml</script>
+        <script>scripts\SCR_combine.gml</script>
+        <script>scripts\SCR_continue.gml</script>
+        <script>scripts\SCR_load.gml</script>
+        <script>scripts\SCR_settings.gml</script>
+      </scripts>
+      <scripts name="enemy AIs">
+        <script>scripts\SCR_AI_sample.gml</script>
+      </scripts>
     </scripts>
-    <scripts name="button actions">
-      <script>scripts\SCR_null_action.gml</script>
-      <script>scripts\SCR_play_hand.gml</script>
-      <script>scripts\SCR_combine.gml</script>
-      <script>scripts\SCR_continue.gml</script>
-      <script>scripts\SCR_load.gml</script>
-      <script>scripts\SCR_settings.gml</script>
-    </scripts>
-    <scripts name="enemy AIs">
-      <script>scripts\SCR_AI_sample.gml</script>
-    </scripts>
-    <script>scripts\SCR_get_heal_amnt.gml</script>
-    <script>scripts\SCR_get_children.gml</script>
-    <script>scripts\SCR_increase_exp.gml</script>
+    <script>scripts\get_children.gml</script>
     <script>scripts\draw_text_outlined.gml</script>
     <script>scripts\draw_text_outlined_shadow.gml</script>
+    <script>scripts\basic_attack.gml</script>
+    <script>scripts\get_heal.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\FONT_big</font>
@@ -278,11 +281,18 @@
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
-      <object>objects\OBJ_enemy_tiger</object>
-      <object>objects\OBJ_enemy_ent</object>
-      <object>objects\OBJ_enemy_idol</object>
-      <object>objects\OBJ_enemy_fury</object>
-      <object>objects\OBJ_enemy_leech</object>
+      <object>objects\OBJ_tiger</object>
+      <object>objects\OBJ_white_tiger</object>
+      <object>objects\OBJ_cub</object>
+      <object>objects\OBJ_panther</object>
+      <object>objects\OBJ_crying_idol</object>
+      <object>objects\OBJ_blood_idol</object>
+      <object>objects\OBJ_birdwing</object>
+      <object>objects\OBJ_monarch</object>
+      <objects name="unused">
+        <object>objects\OBJ_enemy_ent</object>
+        <object>objects\OBJ_enemy_fury</object>
+      </objects>
     </objects>
     <objects name="interface">
       <object>objects\OBJ_button</object>
