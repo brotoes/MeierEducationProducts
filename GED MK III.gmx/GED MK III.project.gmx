@@ -101,9 +101,14 @@
       </sprites>
     </sprites>
     <sprites name="enemies">
-      <sprite>sprites\SPR_walking_tiger</sprite>
-      <sprite>sprites\SPR_leech_butts</sprite>
+      <sprite>sprites\SPR_tiger</sprite>
+      <sprite>sprites\SPR_cub</sprite>
+      <sprite>sprites\SPR_white_tiger</sprite>
+      <sprite>sprites\SPR_birdwing</sprite>
+      <sprite>sprites\SPR_monarch</sprite>
       <sprite>sprites\SPR_crying_idol</sprite>
+      <sprite>sprites\SPR_black_idol</sprite>
+      <sprite>sprites\SPR_blood_idol</sprite>
       <sprite>sprites\SPR_firespirit</sprite>
       <sprite>sprites\SPR_deliquent</sprite>
     </sprites>
