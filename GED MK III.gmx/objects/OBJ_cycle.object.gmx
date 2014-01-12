@@ -271,7 +271,7 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
             target.hp_current = 0
         }
         target.flash = target.flash_time
-        target.flash_color = element_colors[last_played]
+        target.flash_color = persistent_variables.element_colors[last_played]
         
         //create damage indicator
         indicator_offset = sprite_get_width(target.sprite_index)/2
