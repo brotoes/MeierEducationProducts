@@ -418,7 +418,7 @@
       <room>rooms\test_room</room>
     </rooms>
   </rooms>
-  <constants number="21">
+  <constants number="23">
     <constant name="MAX_LEVEL">9</constant>
     <constant name="MAX_POINTS">4</constant>
     <constant name="PRIORITY_ATTACK_SOUND">1</constant>
@@ -439,7 +439,9 @@
     <constant name="ELEMENT_METAL">2</constant>
     <constant name="ELEMENT_EARTH">1</constant>
     <constant name="ELEMENT_FIRE">0</constant>
-    <constant name="C_HEAL">c_green</constant>
+    <constant name="C_POISON">c_purple</constant>
+    <constant name="C_STUN">c_yellow</constant>
+    <constant name="C_HEAL">c_white</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

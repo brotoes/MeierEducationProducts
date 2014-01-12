@@ -87,9 +87,10 @@ ail_y = 25
     indicator = instance_create(x + indicator_offset, y + 50,
                                 OBJ_floating_number)
     indicator.value = "Stunned!"
-    indicator.color = c_yellow
+    indicator.color = C_STUN
     flash = flash_time
-    flash_color = c_yellow
+    flash_color = C_STUN
+    stun --
 }
 </string>
           </argument>

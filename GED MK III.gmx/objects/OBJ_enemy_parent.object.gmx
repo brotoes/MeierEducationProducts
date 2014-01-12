@@ -142,10 +142,10 @@ fade_out.fade_sprite = sprite_index
     indicator = instance_create(x + indicator_offset, y + 50,
                                 OBJ_floating_number)
     indicator.value = dmg
-    indicator.color = c_green
+    indicator.color = C_POISON
     poison --
     flash = flash_time
-    flash_color = c_green
+    flash_color = C_POISON
 }
 //queue up the next turn
 if (turn_priority == instance_number(OBJ_enemy_parent)) {
@@ -200,6 +200,7 @@ if (hp_current &gt; hp_total) {
 }
 
 if (anim_heal) {
+    randomize()
     anim_heal = false
     //create particles
     for (i = 0; i &lt; 100; i ++) {
@@ -209,6 +210,29 @@ if (anim_heal) {
     flash = flash_time
     flash_color = C_HEAL
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="81">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>anim_heal = true
 </string>
           </argument>
         </arguments>

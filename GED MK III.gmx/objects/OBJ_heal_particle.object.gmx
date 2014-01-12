@@ -3,7 +3,7 @@
   <spriteName>SPR_star</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>10000</depth>
+  <depth>-10000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -52,7 +52,7 @@ radius = random(2.5) + 1
           <argument>
             <kind>1</kind>
             <string>y -= radius*3
-life --
+life -= 3
 
 if (life &lt;= 0) {
     with (id) instance_destroy()
@@ -79,9 +79,9 @@ if (life &lt;= 0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//draw_set_color(C_HEAL)
-//draw_set_alpha(life/max_life)
-//draw_set_blend_mode(bm_add)
+            <string>draw_set_color(C_HEAL)
+draw_set_alpha(life/max_life)
+draw_set_blend_mode(bm_add)
 draw_circle(x, y, radius, false)
 draw_set_blend_mode(bm_normal)
 draw_set_color(c_black)

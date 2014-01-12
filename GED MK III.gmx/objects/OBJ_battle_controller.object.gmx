@@ -27,9 +27,11 @@
             <kind>1</kind>
             <string>persistent_variables = instance_find(OBJ_persistent_variables, 0)
 battle_banner = instance_find(OBJ_banner, 0)
-difficulty = 0
-environment = 0
+stage = 0
 parent_room = room
+
+//will create these enemies when they become available
+queue_listid = ds_list_create()
 
 //list of backgrounds
 backgrounds[0] = BG_battlescape
@@ -77,11 +79,13 @@ alarm_set = false
 if (victory) {
     persistent_variables.gold += 
     floor(gold_earned*persistent_variables.gold_multiplier)
+    persistent_variables.stage = max(stage, persistent_variables.stage)
 }
 room_goto(parent_room)
 
 ds_list_destroy(killname_listid)
 ds_list_destroy(killval_listid)
+ds_list_destroy(queue_listid)
 </string>
           </argument>
         </arguments>
@@ -158,7 +162,8 @@ alarm[1] = 60
             <kind>1</kind>
             <string>meter_hp.fill = hp_current/hp_max
 
-if (instance_number(OBJ_enemy_parent) == 0 and not alarm_set) {
+if (instance_number(OBJ_enemy_parent) == 0 and not 
+    alarm_set and ds_list_size(queue_listid) == 0) {
     victory = true
     alarm[0] = 70
     alarm_set = true
@@ -219,24 +224,18 @@ if (whose_turn != 0) {
             <kind>1</kind>
             <string>background_assign(0, backgrounds[0])
 
-//right now, I'm treating difficulty as a "currency" the generator
-//has to spend. It creates objects of random difficulty until it runs out
-//this is a really simply way to treat the model. I'll definitely improve it
-//in the future
-enemy_listid = get_children(OBJ_enemy_parent)
 next_x = 0
-for (i = 0; difficulty &gt; 0; i ++) { 
-    //TODO: choose position properly
-    //TODO: a better way to determine turn order
-    //TODO: smarter enemy selection
-    //idea: create things other than enemies? e.g. environment pieces?
+counter = 0
+while (ds_list_size(queue_listid)) {
     randomize()
-    new_index = irandom(ds_list_size(enemy_listid) - 1)
+    show_debug_message("before create")
     new_enemy = instance_create(room_width/6 + next_x, 0,
-                                ds_list_find_value(enemy_listid, new_index))
+                                ds_list_find_value(queue_listid, 0))
+    ds_list_delete(queue_listid, 0)
+    show_debug_message("after create")
     next_x += new_enemy.sprite_width + 10
-    new_enemy.turn_priority = i + 1
-    difficulty -= new_enemy.difficulty
+    new_enemy.turn_priority = counter + 1
+    counter ++
 }
 
 //create meters

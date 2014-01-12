@@ -88,8 +88,9 @@ anim_counter ++
             <string>if (persistent_variables.stage + 1 &gt;= stage and visible) {
     controller = instance_create(0, 0, OBJ_battle_controller)
     //TODO fill enemy creation queue
-    //change battle parameters according to prior variables
-    controller.difficulty = 350
+    ds_list_clear(controller.queue_listid)
+    ds_list_add(controller.queue_listid, OBJ_tiger)
+    ds_list_add(controller.queue_listid, OBJ_cub)
     controller.stage = stage
     //change room, this will tell the battle controller to generate the battle
     room_goto(battle_room)

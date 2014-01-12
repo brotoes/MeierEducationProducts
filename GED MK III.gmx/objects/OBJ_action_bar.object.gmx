@@ -30,6 +30,12 @@ prev_points = 0
 width = 64
 flash = 0
 flash_time = 10
+
+spent_color = make_color_rgb(51, 149, 83)
+tent_color = make_color_rgb(56, 56, 210)
+line_color = c_white
+bg_color = c_black
+flash_color = c_red
 </string>
           </argument>
         </arguments>
@@ -56,25 +62,25 @@ flash_time = 10
 draw_rectangle(x, y, x + width, y + width*MAX_POINTS, false)
 draw_set_alpha(1)
 if (points &gt; 4) {
-    draw_set_color(c_white)
+    draw_set_color(line_color)
 } else {
-    draw_set_color(c_blue)
+    draw_set_color(tent_color)
 }
 draw_rectangle(x, y, x + width, y + width*min(points, 4), false)
 if (flash) {
     draw_set_alpha(flash/flash_time)
-    draw_set_color(c_red)
+    draw_set_color(flash_color)
     draw_rectangle(x, y, x + width, y + width*min(points, 4), false)
     draw_set_alpha(1)
 }
-draw_set_color(c_yellow)
+draw_set_color(spent_color)
 draw_rectangle(x, y, x + width, y + width*prev_points, false)
-draw_set_color(c_white)
+draw_set_color(line_color)
 for (i = 1; i &lt; MAX_POINTS; i ++) {
     draw_line(x, y + i*width, x + width, y + i*64)
 }
 draw_rectangle(x, y, x + width, y + width*MAX_POINTS, true)
-draw_set_color(c_black)
+draw_set_color(bg_color)
 
 if (flash) {
     flash --
