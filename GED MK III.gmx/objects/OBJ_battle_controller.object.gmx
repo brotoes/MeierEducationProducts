@@ -267,7 +267,6 @@ meter_hp.fill = hp_current/persistent_variables.hp
             <kind>1</kind>
             <string>//draw background
 draw_background_stretched(BG_battlescape, 0, 0, room_width, room_height)
-draw_text(0, 0, string(whose_turn))
 </string>
           </argument>
         </arguments>
