@@ -152,7 +152,8 @@ if (turn_priority == instance_number(OBJ_enemy_parent)) {
     battle_controller.whose_turn = 0
     battle_controller.ready_to_draw = true
 } else {
-    battle_controller.whose_turn ++
+    battle_controller.whose_turn = (battle_controller.whose_turn + 1)
+                                     mod instance_number(OBJ_enemy_parent)
 }
 </string>
           </argument>
