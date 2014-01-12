@@ -121,20 +121,7 @@ if (room == menu_room) {
     load_button.button_script = SCR_load
     settings_button.button_script = SCR_settings
     */
-} else if (menu == MENU_GAME &amp;&amp; room == menu_room) {
-    if (mouse_x &gt; x1 &amp;&amp; mouse_x &lt; x2 &amp;&amp; mouse_y &gt; y1 &amp;&amp; mouse_y &lt; y2) {
-        //create battle conroller
-        controller = instance_create(0, 0, OBJ_battle_controller)
-        //change battle parameters according to prior variables
-        controller.difficulty = 350
-        //change room, this will tell the battle controller to generate the battle
-        room_goto(battle_room)
-    } else if (mouse_x &gt; x1 + mid &amp;&amp; mouse_x &lt; x2 + mid &amp;&amp;
-                 mouse_y &gt; y1 &amp;&amp; mouse_y &lt; y2) {
-        room_goto(store_room)
-    }
 }
-
 </string>
           </argument>
         </arguments>
@@ -199,19 +186,6 @@ if (room == menu_room) {
         draw_text(string_x, string_y, prompt)
         draw_set_alpha(1)
         draw_set_color(c_black)
-    }
-    if (menu = MENU_GAME) {
-        //draw fight button
-        draw_set_color(c_white)
-        draw_set_alpha(0.5)
-        draw_rectangle(x1, y1, x2, y2, false)
-        draw_rectangle(x1 + mid, y1, x2 + mid, y2, false)
-        draw_set_alpha(1)
-        draw_set_color(c_black)
-        
-        draw_sprite_ext(SPR_fight, -1, x_fight, y_fight, 2, 2, 0, c_white, 1)
-        draw_sprite_ext(SPR_shop, -1, x_shop, y_shop, 2, 2, 0, c_white, 1)
-        //draw_back button
     }
 }
 </string>

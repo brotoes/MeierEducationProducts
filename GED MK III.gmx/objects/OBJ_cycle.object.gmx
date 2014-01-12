@@ -45,12 +45,6 @@ for (i = 0; i &lt; 5; i ++) {
     point_seq_x[i] = cos(degtorad(angle))*radius + center_x
     point_seq_y[i] = sin(degtorad(angle))*radius + center_y
 }
-element_colors[ELEMENT_NULL] = c_black
-element_colors[ELEMENT_FIRE] = c_red
-element_colors[ELEMENT_EARTH] = c_yellow
-element_colors[ELEMENT_METAL] = c_purple
-element_colors[ELEMENT_WATER] = c_blue
-element_colors[ELEMENT_WOOD] = c_green
 
 //the current level of each element
 element_levels[ELEMENT_NULL] = 0
@@ -65,6 +59,7 @@ menu_waiting = false
 menu_open = false
 
 anim_counter = 0
+flash_counter = 0
 </string>
           </argument>
         </arguments>
@@ -92,7 +87,7 @@ if (menu_waiting) {
     menu_waiting = false
     menu_open = true
     //create buttons
-    children_listid = SCR_get_children(OBJ_battle_menu_parent)
+    children_listid = get_children(OBJ_battle_menu_parent)
     for(i = 0; i &lt; ds_list_size(children_listid); i ++) {
         obj = ds_list_find_value(children_listid, i)
         instance_create(x, y, obj)
@@ -230,8 +225,7 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
         } else if ((last_played + 3) mod ELEMENT_NULL == target.primary_element) {
             multiplier = DMG_INSULT
         }
-        damage = persistent_variables.base_damage
-        damage *= element_levels[last_played]
+        damage = persistent_variables.damage[persistent_variables.upgrade[last_played]]
         damage *= multiplier
         //perform element specific actions
         switch (last_played) {
@@ -240,7 +234,7 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
             } break
             case ELEMENT_EARTH: {
                 battle_controller.hp_current += 
-                    SCR_get_heal_amnt(element_levels[ELEMENT_EARTH])
+                    get_heal(element_levels[ELEMENT_EARTH])
                 if (battle_controller.hp_current &gt; battle_controller.hp_max) {
                     battle_controller.hp_current = battle_controller.hp_max
                 }
@@ -273,6 +267,8 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
         target.hp_current -= total_damage
         if (target.hp_current &gt; target.hp_total) {
             target.hp_current = target.hp_total
+        } else if (target.hp_current &lt; 0) {
+            target.hp_current = 0
         }
         target.flash = target.flash_time
         target.flash_color = element_colors[last_played]
@@ -360,24 +356,26 @@ if (click and battle_controller.whose_turn == 0) {
             <string>draw_self()
 
 index = ds_list_size(elements_listid) - 1
+reset_flash = true
 for(i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
-    if (i == last_played) {
-        draw_set_color(c_white)
-    } else {
-        draw_set_color(element_colors[i])
-    }
     if (element_levels[i] == 0) {
         draw_sprite(SPR_cycle_elems, i*2, point_seq_x[i], point_seq_y[i])
     } else {
         draw_sprite(SPR_cycle_elems, i*2+1, point_seq_x[i], point_seq_y[i])
         if (i == last_played) {
-            draw_set_alpha(cos(anim_counter/3))
+            draw_set_alpha(max(cos(flash_counter/6), cos(flash_counter/6 + pi)))
+            reset_flash = false
             draw_set_blend_mode(bm_add)
             draw_sprite(SPR_cycle_elems, i*2+1, point_seq_x[i], point_seq_y[i])
             draw_set_blend_mode(bm_normal)
             draw_set_alpha(1)
         }
     }
+}
+if (reset_flash) {
+    flash_counter = 0
+} else {
+    flash_counter ++
 }
 
 if (menu_open) {

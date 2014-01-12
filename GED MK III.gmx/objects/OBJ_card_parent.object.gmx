@@ -33,6 +33,7 @@ selected = false
 enemy_floor = instance_find(OBJ_floor, 0)
 cycle = instance_find(OBJ_cycle, 0)
 action_bar = instance_find(OBJ_action_bar, 0)
+persistent_variables = instance_find(OBJ_persistent_variables, 0)
 
 level_played = 0
 
@@ -143,6 +144,33 @@ if (y &lt; dest_y) {
         action_bar.flash = action_bar.flash_time
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//TODO: test to draw status effect
+draw_sprite(sprite_index, 0, x, y)
+draw_set_font(FONT_big)
+draw_text(x + 20, y + 110, persistent_variables.damage[persistent_variables.upgrade[element]])
+draw_set_font(FONT_normal)
 </string>
           </argument>
         </arguments>

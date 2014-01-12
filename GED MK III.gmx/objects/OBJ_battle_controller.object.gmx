@@ -223,7 +223,7 @@ if (whose_turn != 0) {
 //has to spend. It creates objects of random difficulty until it runs out
 //this is a really simply way to treat the model. I'll definitely improve it
 //in the future
-enemy_listid = SCR_get_children(OBJ_enemy_parent)
+enemy_listid = get_children(OBJ_enemy_parent)
 next_x = 0
 for (i = 0; difficulty &gt; 0; i ++) { 
     //TODO: choose position properly

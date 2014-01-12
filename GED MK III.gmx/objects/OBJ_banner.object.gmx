@@ -154,14 +154,15 @@ green = true
           <argument>
             <kind>1</kind>
             <string>draw_set_font(FONT_xl)
+spr = SPR_blank_banner
 if (string(banner) != string(prev_banner)) {
     anim_count = 0
     prev_banner = banner
     x = room_width/2
     y = room_height/2
     if (is_string(banner)) {
-        x -= sprite_get_width(SPR_blank_banner)/2
-        y -= sprite_get_height(SPR_blank_banner)/2
+        x -= sprite_get_width(spr) + string_width(banner)/2
+        y -= sprite_get_height(spr)/2
     } else {
         x -= sprite_get_width(banner)/2
         y -= sprite_get_height(banner)/2
@@ -169,12 +170,23 @@ if (string(banner) != string(prev_banner)) {
 }
 if (is_string(banner)) {
     if (banner != "") {
+        seg_width = sprite_get_width(spr)
+        segs = ceil(string_width(banner)/seg_width)
         draw_set_alpha((fade - (anim_count - total))/fade)
-        draw_sprite(SPR_blank_banner, 0 + 2*!green, x, y)
+        draw_sprite(spr, 3*green, x, y)
+        for (i = 0; i &lt; segs; i ++) {
+            draw_sprite(spr, 3*green + 1, x + seg_width*(i + 1), y)
+        }
+        draw_sprite(spr, 3*green + 2, x + (segs + 1)*seg_width, y)
         draw_text_outlined_shadow(x + left_indent, y + top_indent, banner, main_col, out_col)
+        
         draw_set_alpha((fade - anim_count)/fade)
         draw_set_color(c_white)
-        draw_sprite(SPR_blank_banner, 1 + 2*!green, x, y)
+        draw_sprite(spr, 6, x, y)
+        for (i = 0; i &lt; segs; i ++) {
+            draw_sprite(spr, 7, x + seg_width*(i + 1), y)
+        }
+        draw_sprite(spr, 8, x + (segs + 1)*seg_width, y)
         draw_text(x + left_indent, y + top_indent, banner)  
         draw_set_alpha(1)
     }

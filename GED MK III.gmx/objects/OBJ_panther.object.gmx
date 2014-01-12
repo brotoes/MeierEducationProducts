@@ -71,15 +71,17 @@ ail_y = 25
     randomize()
     switch (irandom(1)) {
         case 0: {
-            basic_attack(8)
+            basic_attack(8, id)
         } break
         case 1: {
-            for (i = 0; i &lt; instance_number(OBJ_enemy_parent); i ++) {
+            //heal everything
+            for (i = 0; i &lt; instance_number(OBJ_cub); i ++) {
                 heal_target = instance_find(OBJ_cub, i)
                 heal_target.hp_current += get_heal(7)
                 if (heal_target.hp_current &gt; heal_target.hp_total) {
                     heal_target.hp_current = heal_target.hp_total
                 }
+                heal_target.anim_heal = true
             }
         }
     }

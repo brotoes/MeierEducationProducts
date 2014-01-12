@@ -28,7 +28,6 @@
             <string>//stats
 hp_total = 10
 difficulty = 150
-poison_resist = 0.5
 dmg_max = 7
 dmg_min = 4
 
@@ -52,6 +51,9 @@ flying = false
 width = bbox_right - bbox_left
 height = bbox_bottom - bbox_top
 mouseover = false
+bounce_time = 10
+bounce_distance = 10
+bounce_counter = 0
 
 //this is used to determine damages
 primary_element = ELEMENT_NULL
@@ -68,6 +70,8 @@ name = "Enemy Parent"
 
 ail_x = 0
 ail_y = 0
+
+anim_heal = false
 </string>
           </argument>
         </arguments>
@@ -132,7 +136,7 @@ fade_out.fade_sprite = sprite_index
             <kind>1</kind>
             <string>if (poison) {
     //TODO calculate this better
-    dmg = ceil(poison/poison_resist)
+    dmg = poison
     hp_current -= dmg
     indicator_offset = sprite_width/2
     indicator = instance_create(x + indicator_offset, y + 50,
@@ -193,6 +197,17 @@ if (flash &gt; 0) {
 //cap hp
 if (hp_current &gt; hp_total) {
     hp_current = hp_total
+}
+
+if (anim_heal) {
+    anim_heal = false
+    //create particles
+    for (i = 0; i &lt; 100; i ++) {
+        instance_create(x + irandom(sprite_width), y + irandom(sprite_height), OBJ_heal_particle)
+    }
+    //flash self
+    flash = flash_time
+    flash_color = C_HEAL
 }
 </string>
           </argument>
@@ -386,19 +401,25 @@ if (poison) {
 }
 
 //draw selection indicator
+bounce_counter ++
+theta = bounce_counter/bounce_time
+bounce_offset = max(sin(theta), sin(theta+pi))*bounce_distance
 if (battle_controller.target == id) {
     draw_sprite(SPR_elem_select, primary_element,
                 x + sprite_width/2 - sprite_get_width(SPR_elem_select)/2,
-                max(y - sprite_get_height(SPR_elem_select)/2, 0))
+                max(y - sprite_get_height(SPR_elem_select)/2 - bounce_offset, 0))
 }
 if (mouseover) {
     draw_set_alpha(0.8)
     draw_set_blend_mode(bm_add)
     draw_sprite(SPR_elem_select, primary_element,
                 x + sprite_width/2 - sprite_get_width(SPR_elem_select)/2,
-                max(y - sprite_get_height(SPR_elem_select)/2, 0))
+                max(y - sprite_get_height(SPR_elem_select)/2 - bounce_offset, 0))
     draw_set_blend_mode(bm_normal)
     draw_set_alpha(1)
+}
+if (not mouseover and not battle_controller.target == id) {
+    bounce_counter = 0
 }
 </string>
           </argument>

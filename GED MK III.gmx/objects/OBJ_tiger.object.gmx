@@ -71,12 +71,14 @@ ail_y = 25
     randomize()
     switch (irandom(1)) {
         case 0: {
-            basic_attack(5)
+            basic_attack(5, id)
         } break
         case 1: {
+            //heal cubs
             for (i = 0; i &lt; instance_number(OBJ_cub); i ++) {
                 cub = instance_find(OBJ_cub, i)
                 cub.hp_current += get_heal(5)
+                cub.anim_heal = true
             }
         }
     }

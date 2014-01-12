@@ -26,18 +26,38 @@
           <argument>
             <kind>1</kind>
             <string>hand_size = 7
-base_damage = 5
+
 gold = 0
 gold_multiplier = 1
 
+//how many stages of the current runthrough has the player completed?
+stage = 2
+//which runthrough is the player on?
+run = 1
+
+//upgrades of non-element items
 hp_lvl = 0
 purse_lvl = 0
 
+//what level gives what damage?
+damage[0] = 1
+damage[1] = 2
+damage[2] = 3
+damage[3] = 5
+damage[4] = 7
+damage[5] = 10
+damage[6] = 13
+damage[7] = 17
+damage[8] = 21
+damage[9] = 26
+
+//store player upgrades
 upgrade[ELEMENT_NULL] = 0
 for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     upgrade[i] = 0
 }
 
+//the cost to purchase a given level
 upg_cost[0] = 0
 upg_cost[1] = 50
 upg_cost[2] = 100
@@ -49,7 +69,6 @@ upg_cost[7] = 900
 upg_cost[8] = 1000
 upg_cost[9] = 2000
 upg_cost[10] = "----"
-
 
 purse_cost[0] = 0
 purse_cost[1] = 50
@@ -75,6 +94,7 @@ hp_cost[8] = 1000
 hp_cost[9] = 2000
 hp_cost[10] = "----"
 
+//amount of hp the player will have given a level
 hp_amount[0] = 50
 hp_amount[1] = 60
 hp_amount[2] = 70
@@ -86,6 +106,13 @@ hp_amount[7] = 200
 hp_amount[8] = 250
 hp_amount[9] = 500
 hp_amount[10] = 1000
+
+element_colors[ELEMENT_NULL] = c_black
+element_colors[ELEMENT_FIRE] = c_red
+element_colors[ELEMENT_EARTH] = c_yellow
+element_colors[ELEMENT_METAL] = c_purple
+element_colors[ELEMENT_WATER] = c_blue
+element_colors[ELEMENT_WOOD] = c_green
 </string>
           </argument>
         </arguments>

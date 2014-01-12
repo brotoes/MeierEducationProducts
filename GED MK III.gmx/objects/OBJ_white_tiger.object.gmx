@@ -68,14 +68,20 @@ ail_y = 25
           <argument>
             <kind>1</kind>
             <string>if (not stun) {
+    //heal everything
     for (i = 0; i &lt; instance_number(OBJ_enemy_parent); i ++) {
         heal_target = instance_find(OBJ_enemy_parent, i)
         if (heal_target == id) {
-                    
+            //don't heal self
+            continue
         } else if (heal_target.object_index == OBJ_cub) {
+            //max heal cubs
             heal_target.hp_current = heal_target.hp_total
+            heal_target.anim_heal = true
         } else {
+            //partially heal everything else
             heal_target.hp_current += get_heal(5)
+            heal_target.anim_heal = true
         }
     }
 } else {

@@ -64,6 +64,13 @@
         <sprite>sprites\SPR_testCardImage</sprite>
       </sprites>
       <sprite>sprites\SPR_inventory</sprite>
+      <sprites name="overworld">
+        <sprite>sprites\cloud</sprite>
+        <sprite>sprites\SPR_level_indicator</sprite>
+        <sprite>sprites\SPR_glow</sprite>
+        <sprite>sprites\SPR_conflict</sprite>
+      </sprites>
+      <sprite>sprites\SPR_fight</sprite>
     </sprites>
     <sprites name="cards">
       <sprite>sprites\SPR_card_fire</sprite>
@@ -72,7 +79,7 @@
       <sprite>sprites\SPR_card_water</sprite>
       <sprite>sprites\SPR_card_wood</sprite>
       <sprite>sprites\SPR_card_null</sprite>
-      <sprites name="legacy cards">
+      <sprites name="LEGACY">
         <sprite>sprites\SPR_card_image_slash</sprite>
         <sprite>sprites\SPR_card_melee</sprite>
         <sprite>sprites\SPR_card_engineering</sprite>
@@ -82,22 +89,22 @@
         <sprite>sprites\SPR_card_image_pressure</sprite>
         <sprite>sprites\SPR_card_image_stab</sprite>
         <sprite>sprites\SPR_card_image_hydrogen</sprite>
-      </sprites>
-      <sprites name="icons">
-        <sprite>sprites\SPR_icon_placeholder</sprite>
-        <sprite>sprites\SPR_icon_fire</sprite>
-        <sprite>sprites\SPR_icon_earth</sprite>
-        <sprite>sprites\SPR_icon_metal</sprite>
-        <sprite>sprites\SPR_icon_water</sprite>
-        <sprite>sprites\SPR_icon_wood</sprite>
-        <sprite>sprites\SPR_icon_null</sprite>
-      </sprites>
-      <sprites name="type">
-        <sprite>sprites\SPR_offense</sprite>
-        <sprite>sprites\SPR_defense</sprite>
-        <sprite>sprites\SPR_restore</sprite>
-        <sprite>sprites\SPR_poison</sprite>
-        <sprite>sprites\SPR_burn</sprite>
+        <sprites name="icons">
+          <sprite>sprites\SPR_icon_placeholder</sprite>
+          <sprite>sprites\SPR_icon_fire</sprite>
+          <sprite>sprites\SPR_icon_earth</sprite>
+          <sprite>sprites\SPR_icon_metal</sprite>
+          <sprite>sprites\SPR_icon_water</sprite>
+          <sprite>sprites\SPR_icon_wood</sprite>
+          <sprite>sprites\SPR_icon_null</sprite>
+        </sprites>
+        <sprites name="type">
+          <sprite>sprites\SPR_offense</sprite>
+          <sprite>sprites\SPR_defense</sprite>
+          <sprite>sprites\SPR_restore</sprite>
+          <sprite>sprites\SPR_poison</sprite>
+          <sprite>sprites\SPR_burn</sprite>
+        </sprites>
       </sprites>
     </sprites>
     <sprites name="enemies">
@@ -126,11 +133,11 @@
       </sprites>
       <sprites name="buttons">
         <sprite>sprites\SPR_back</sprite>
-        <sprite>sprites\SPR_fight</sprite>
         <sprite>sprites\SPR_shop</sprite>
         <sprite>sprites\SPR_button</sprite>
         <sprite>sprites\SPR_stoggle</sprite>
         <sprite>sprites\SPR_mtoggle</sprite>
+        <sprite>sprites\SPR_stage_ind</sprite>
         <sprites name="battle menu">
           <sprite>sprites\SPR_skip</sprite>
           <sprite>sprites\SPR_exit</sprite>
@@ -151,12 +158,6 @@
         <sprite>sprites\SPR_shop_sheet</sprite>
         <sprite>sprites\SPR_gold_icon</sprite>
       </sprites>
-    </sprites>
-    <sprites name="overworld">
-      <sprite>sprites\cloud</sprite>
-      <sprite>sprites\SPR_level_indicator</sprite>
-      <sprite>sprites\SPR_glow</sprite>
-      <sprite>sprites\SPR_conflict</sprite>
     </sprites>
     <sprites name="invisible sprites">
       <sprite>sprites\SPR_parent</sprite>
@@ -187,10 +188,10 @@
       <sprite>sprites\SPR_player_banner</sprite>
       <sprite>sprites\SPR_enemy_banner</sprite>
       <sprite>sprites\SPR_got_banner</sprite>
+      <sprite>sprites\SPR_blank_banner</sprite>
       <sprite>sprites\SPR_mult_banner</sprite>
       <sprite>sprites\SPR_earn_banner</sprite>
       <sprite>sprites\SPR_tot_banner</sprite>
-      <sprite>sprites\SPR_blank_banner</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -299,6 +300,8 @@
       <object>objects\OBJ_back_button</object>
       <object>objects\OBJ_mtoggle</object>
       <object>objects\OBJ_stoggle</object>
+      <object>objects\OBJ_stage_ind</object>
+      <object>objects\OBJ_shop_button</object>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>
@@ -311,6 +314,7 @@
     </objects>
     <objects name="particles">
       <object>objects\OBJ_star_particle</object>
+      <object>objects\OBJ_heal_particle</object>
       <object>objects\OBJ_purse_particle</object>
       <object>objects\OBJ_floating_number</object>
     </objects>
@@ -414,7 +418,7 @@
       <room>rooms\test_room</room>
     </rooms>
   </rooms>
-  <constants number="20">
+  <constants number="21">
     <constant name="MAX_LEVEL">9</constant>
     <constant name="MAX_POINTS">4</constant>
     <constant name="PRIORITY_ATTACK_SOUND">1</constant>
@@ -435,6 +439,7 @@
     <constant name="ELEMENT_METAL">2</constant>
     <constant name="ELEMENT_EARTH">1</constant>
     <constant name="ELEMENT_FIRE">0</constant>
+    <constant name="C_HEAL">c_green</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
