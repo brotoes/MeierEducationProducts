@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>audio_play_sound(M_title_screen, PRIORITY_MUSIC, true)
 prev_room = room
-recently_off = true
+recently_off = false
 </string>
           </argument>
         </arguments>
