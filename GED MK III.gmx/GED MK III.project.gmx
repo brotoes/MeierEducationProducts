@@ -72,6 +72,16 @@
       </sprites>
       <sprite>sprites\SPR_fight</sprite>
     </sprites>
+    <sprites name="shoppe">
+      <sprite>sprites\SPR_purse</sprite>
+      <sprite>sprites\SPR_heart</sprite>
+      <sprite>sprites\SPR_money_plate</sprite>
+      <sprite>sprites\SPR_upgrade</sprite>
+      <sprite>sprites\SPR_shop_elems</sprite>
+      <sprite>sprites\SPR_shop_sheet</sprite>
+      <sprite>sprites\SPR_gold_icon</sprite>
+      <sprite>sprites\SPR_shopkeep</sprite>
+    </sprites>
     <sprites name="cards">
       <sprite>sprites\SPR_card_fire</sprite>
       <sprite>sprites\SPR_card_earth</sprite>
@@ -148,15 +158,6 @@
       <sprites name="cycle">
         <sprite>sprites\SPR_cycle</sprite>
         <sprite>sprites\SPR_cycle_elems</sprite>
-      </sprites>
-      <sprites name="shoppe">
-        <sprite>sprites\SPR_purse</sprite>
-        <sprite>sprites\SPR_heart</sprite>
-        <sprite>sprites\SPR_money_plate</sprite>
-        <sprite>sprites\SPR_upgrade</sprite>
-        <sprite>sprites\SPR_shop_elems</sprite>
-        <sprite>sprites\SPR_shop_sheet</sprite>
-        <sprite>sprites\SPR_gold_icon</sprite>
       </sprites>
     </sprites>
     <sprites name="invisible sprites">
@@ -279,6 +280,7 @@
       <object>objects\OBJ_upgrade_indicator</object>
       <object>objects\OBJ_money_indicator</object>
       <object>objects\OBJ_sheet</object>
+      <object>objects\OBJ_shopkeep</object>
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
