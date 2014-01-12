@@ -147,15 +147,8 @@ fade_out.fade_sprite = sprite_index
     flash = flash_time
     flash_color = C_POISON
 }
-//queue up the next turn
-if (turn_priority == instance_number(OBJ_enemy_parent)) {
-    battle_controller.whose_turn = 0
-    battle_controller.ready_to_draw = true
-} else {
-    battle_controller.whose_turn = (battle_controller.whose_turn + 1)
-                                     mod instance_number(OBJ_enemy_parent)
-    battle_controller.ready_to_draw = true
-}
+battle_controller.whose_turn = (battle_controller.whose_turn + 1)
+                                mod (instance_number(OBJ_enemy_parent) + 1)
 </string>
           </argument>
         </arguments>

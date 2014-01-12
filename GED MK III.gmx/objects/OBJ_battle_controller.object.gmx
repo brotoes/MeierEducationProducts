@@ -175,6 +175,7 @@ if (instance_number(OBJ_enemy_parent) == 0 and not
 
 if (whose_turn != 0) {
     target = OBJ_null
+    ready_to_draw = true
 } else if (ready_to_draw) {
     ready_to_draw = false
     randomize()
