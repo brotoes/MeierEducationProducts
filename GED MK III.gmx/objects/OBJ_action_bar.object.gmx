@@ -31,7 +31,7 @@ width = 64
 flash = 0
 flash_time = 10
 
-spent_color = make_color_rgb(51, 149, 83)
+spent_color = make_color_rgb(61, 200, 50)
 tent_color = make_color_rgb(56, 56, 210)
 line_color = c_white
 bg_color = c_black

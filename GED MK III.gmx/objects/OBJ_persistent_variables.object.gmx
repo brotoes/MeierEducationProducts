@@ -46,67 +46,75 @@ ini_close()
 
 save_counter = 0
 
-//what level gives what damage?
-damage[0] = 1
-damage[1] = 2
-damage[2] = 3
-damage[3] = 5
-damage[4] = 7
-damage[5] = 10
-damage[6] = 13
-damage[7] = 17
-damage[8] = 21
-damage[9] = 26
+ini_open("gamedata.ini")
 
-//the cost to purchase a given level
-upg_cost[0] = 0
-upg_cost[1] = 50
-upg_cost[2] = 100
-upg_cost[3] = 200
-upg_cost[4] = 300
-upg_cost[5] = 500
-upg_cost[6] = 700
-upg_cost[7] = 900
-upg_cost[8] = 1000
-upg_cost[9] = 2000
-upg_cost[10] = "----"
+//what element level gives what base damage?
+for (i = 0; i &lt;= MAX_LEVEL; i ++) {
+    damage[i] = ini_read_real("elemDmg", "dmgAtLevel" + string(i), i)
+    ini_write_real("elemDmg", "dmgAtLevel" + string(i), i)
+}
 
-purse_cost[0] = 0
-purse_cost[1] = 50
-purse_cost[2] = 100
-purse_cost[3] = 200
-purse_cost[4] = 300
-purse_cost[5] = 500
-purse_cost[6] = 700
-purse_cost[7] = 900
-purse_cost[8] = 1000
-purse_cost[9] = 2000
-purse_cost[10] = "----"
+//the cost to purchase a given upgrade
+//element levels
+for (i = 0; i &lt;= MAX_LEVEL; i ++) {
+    upg_cost[i] = ini_read_real("elemUpgCost", "toLevel" + string(i), 50*i)
+    ini_write_real("elemUpgCost", "toLevel" + string(i), upg_cost[i])
+}
+upg_cost[MAX_LEVEL + 1] = ini_read_string("elemUpgCost", 
+                            "toLevel" + string(MAX_LEVEL + 1), "--")
+ini_write_string("elemUpgCost", "toLevel" + string(MAX_LEVEL + 1), upg_cost[MAX_LEVEL + 1])
 
-hp_cost[0] = 0
-hp_cost[1] = 50
-hp_cost[2] = 100
-hp_cost[3] = 200
-hp_cost[4] = 300
-hp_cost[5] = 500
-hp_cost[6] = 700
-hp_cost[7] = 900
-hp_cost[8] = 1000
-hp_cost[9] = 2000
-hp_cost[10] = "----"
+//purse levels
+purse_cost[MAX_LEVEL + 1] = ini_read_string("elemUpgCost", 
+                            "toLevel" + string(MAX_LEVEL + 1), "--")
+ini_write_string("elemUpgCost", "toLevel" + string(MAX_LEVEL + 1), purse_cost[MAX_LEVEL + 1])
+for (i = 0; i &lt;= MAX_LEVEL; i ++) {
+    purse_cost[i] = ini_read_real("purseUpgCost", "toLevel" + string(i), 50*i)
+    ini_write_real("purseUpgCost", "toLevel" + string(i), purse_cost[i])
+}
+
+                            
+//hp levels
+hp_cost[MAX_LEVEL + 1] = ini_read_string("hpUpgCost", 
+                            "toLevel" + string(MAX_LEVEL + 1), "--")
+ini_write_string("hpUpgCost", "toLevel" + string(MAX_LEVEL + 1), hp_cost[MAX_LEVEL + 1])
+for (i = 0; i &lt;= MAX_LEVEL; i ++) {
+    hp_cost[i] = ini_read_real("hpUpgCost", "toLevel" + string(i), 50*i)
+    ini_write_real("hpUpgCost", "toLevel" + string(i), hp_cost[i])
+}
 
 //amount of hp the player will have given a level
-hp_amount[0] = 50
-hp_amount[1] = 60
-hp_amount[2] = 70
-hp_amount[3] = 80
-hp_amount[4] = 90
-hp_amount[5] = 100
-hp_amount[6] = 150
-hp_amount[7] = 200
-hp_amount[8] = 250
-hp_amount[9] = 500
-hp_amount[10] = 1000
+hp_amount[0] = 0
+for (i = 0; i &lt;= MAX_LEVEL; i ++) {
+    hp_amount[i] = ini_read_real("hpAmnt", "hpAtLevel" + string(i), 50*(i+1))
+    ini_write_real("hpAmnt", "hpAtLevel" + string(i), hp_amount[i])
+}
+
+//Object string map
+enemy_mapid = ds_map_create()
+children_listid = get_children(OBJ_enemy_parent)
+for (i = 0; i &lt; ds_list_size(children_listid); i ++) {
+    enemy_id = ds_list_find_value(children_listid, i)
+    enemy_string = object_get_name(enemy_id)
+    ds_map_add(enemy_mapid, enemy_string, enemy_id)
+}
+ds_list_destroy(children_listid)
+
+//establish a list of stages and what enemies they will contain
+stages[0] = 0
+for (cur_stage = 0; cur_stage &lt; STAGE_COUNT; cur_stage ++) {
+    stages[cur_stage] = ds_list_create()
+    num_enemies = ini_read_real("stage" + string(cur_stage), "enemyCount", 2)
+    ini_write_real("stage" + string(cur_stage), "enemyCount", num_enemies)
+    for (cur_enemy = 0; cur_enemy &lt; num_enemies; cur_enemy ++) {
+        enemy_name = ini_read_string("stage" + string(cur_stage), "enemy" + string(cur_enemy), "tiger")
+        ini_write_string("stage" + string(cur_stage), "enemy" + string(cur_enemy), enemy_name)
+        enemy_name = "OBJ_" + enemy_name
+        ds_list_add(stages[cur_stage], ds_map_find_value(enemy_mapid, enemy_name))
+    }
+}
+
+ini_close()
 
 element_colors[ELEMENT_NULL] = c_black
 element_colors[ELEMENT_FIRE] = c_red
@@ -146,7 +154,7 @@ if (stage == instance_number(OBJ_stage_ind)) {
     run ++
 }
 
-save_counter = (save_counter + 1) mod 300
+save_counter = (save_counter + 1) mod 100
 if (save_counter == 0) {
     //write save data
     ini_open("savedata.ini")

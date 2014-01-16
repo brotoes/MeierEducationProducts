@@ -89,8 +89,10 @@ anim_counter ++
     controller = instance_create(0, 0, OBJ_battle_controller)
     //TODO fill enemy creation queue
     ds_list_clear(controller.queue_listid)
-    ds_list_add(controller.queue_listid, OBJ_tiger)
-    ds_list_add(controller.queue_listid, OBJ_cub)
+    for (i = 0; i &lt; ds_list_size(persistent_variables.stages[stage - 1]); i ++) {
+        new_enemy = ds_list_find_value(persistent_variables.stages[stage - 1], i)
+        ds_list_add(controller.queue_listid, new_enemy)
+    }
     controller.stage = stage
     //change room, this will tell the battle controller to generate the battle
     room_goto(battle_room)
