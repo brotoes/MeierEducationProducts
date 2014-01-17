@@ -20,5 +20,6 @@
   <height>128</height>
   <frames>
     <frame index="0">images\SPR_dump_0.png</frame>
+    <frame index="1">images\SPR_dump_1.png</frame>
   </frames>
 </sprite>
