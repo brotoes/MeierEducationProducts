@@ -39,7 +39,7 @@ purse_lvl = ini_read_real("data", "purse", 0)
 //store player upgrades
 upgrade[ELEMENT_NULL] = 0
 for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
-    upgrade[i] = ini_read_real("data", "elem" + string(i), 0)
+    upgrade[i] = ini_read_real("data", "elem" + string(i), 1)
 }
 hand_size = ini_read_real("data", "hand", 7)
 ini_close()
