@@ -32,6 +32,7 @@ parent_room = room
 
 //will create these enemies when they become available
 queue_listid = ds_list_create()
+succession_listid = ds_list_create()
 
 //list of backgrounds
 backgrounds[0] = BG_battlescape
@@ -233,11 +234,14 @@ while (ds_list_size(queue_listid)) {
     randomize()
     new_enemy = instance_create(room_width/6 + next_x, 0,
                                 ds_list_find_value(queue_listid, 0))
+    new_enemy.successor = ds_list_find_value(succession_listid, 0)
     ds_list_delete(queue_listid, 0)
+    ds_list_delete(succession_listid, 0)
     next_x += new_enemy.sprite_width + 10
     new_enemy.turn_priority = counter + 1
     counter ++
 }
+ds_list_destroy(succession_listid)
 
 //create meters
 reference_hp = instance_find(OBJ_reference, 0)

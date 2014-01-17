@@ -98,18 +98,24 @@ for (i = 0; i &lt; ds_list_size(children_listid); i ++) {
     enemy_string = object_get_name(enemy_id)
     ds_map_add(enemy_mapid, enemy_string, enemy_id)
 }
+ds_map_add(enemy_mapid, "OBJ_null", OBJ_null)
 ds_list_destroy(children_listid)
 
 //establish a list of stages and what enemies they will contain
 stages[0] = 0
+succession[0] = 0
 for (cur_stage = 0; cur_stage &lt; STAGE_COUNT; cur_stage ++) {
     stages[cur_stage] = ds_list_create()
+    succession[cur_stage] = ds_list_create()
     num_enemies = ini_read_real("stage" + string(cur_stage), "enemyCount", 2)
     ini_write_real("stage" + string(cur_stage), "enemyCount", num_enemies)
     for (cur_enemy = 0; cur_enemy &lt; num_enemies; cur_enemy ++) {
         enemy_name = ini_read_string("stage" + string(cur_stage), "enemy" + string(cur_enemy), "tiger")
+        successor = ini_read_string("stage" + string(cur_stage), "successor" + string(cur_enemy), "null")
         ini_write_string("stage" + string(cur_stage), "enemy" + string(cur_enemy), enemy_name)
         enemy_name = "OBJ_" + enemy_name
+        successor = "OBJ_" + successor
+        ds_list_add(succession[cur_stage], ds_map_find_value(enemy_mapid, successor))
         ds_list_add(stages[cur_stage], ds_map_find_value(enemy_mapid, enemy_name))
     }
 }

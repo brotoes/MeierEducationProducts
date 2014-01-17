@@ -214,6 +214,8 @@ if (anim_heal) {
     flash = flash_time
     flash_color = C_HEAL
 }
+
+show_debug_message(string(successor))
 </string>
           </argument>
         </arguments>
