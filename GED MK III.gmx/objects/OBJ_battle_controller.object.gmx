@@ -229,11 +229,9 @@ next_x = 0
 counter = 0
 while (ds_list_size(queue_listid)) {
     randomize()
-    show_debug_message("before create")
     new_enemy = instance_create(room_width/6 + next_x, 0,
                                 ds_list_find_value(queue_listid, 0))
     ds_list_delete(queue_listid, 0)
-    show_debug_message("after create")
     next_x += new_enemy.sprite_width + 10
     new_enemy.turn_priority = counter + 1
     counter ++

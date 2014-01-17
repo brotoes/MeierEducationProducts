@@ -260,6 +260,7 @@
         <object>objects\OBJ_skip</object>
         <object>objects\OBJ_dump</object>
         <object>objects\OBJ_exit</object>
+        <object>objects\OBJ_help</object>
         <object>objects\OBJ_battle_menu_parent</object>
       </objects>
     </objects>
@@ -312,7 +313,6 @@
       <object>objects\OBJ_card_metal</object>
       <object>objects\OBJ_card_water</object>
       <object>objects\OBJ_card_wood</object>
-      <object>objects\OBJ_element_container</object>
     </objects>
     <objects name="particles">
       <object>objects\OBJ_star_particle</object>

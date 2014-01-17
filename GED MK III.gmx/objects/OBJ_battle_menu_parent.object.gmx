@@ -33,6 +33,25 @@ battle_banner = instance_find(OBJ_banner, 0)
 anim_speed = 64
 
 dist = 300
+
+angles_listid = ds_list_create()
+//angles[0] = 45
+//ds_list_add(angles_listid, angles)
+angles[0, 0] = 45
+
+angles[1, 0] = 45
+
+angles[2, 0] = 22.5
+angles[2, 1] = 67.5
+
+angles[3, 0] = 0
+angles[3, 1] = 45
+angles[3, 2] = 90
+
+angles[4, 0] = 0
+angles[4, 1] = 90/3
+angles[4, 2] = 90/3*2
+angles[4, 3] = 90
 </string>
           </argument>
         </arguments>
@@ -67,13 +86,8 @@ for (i = 0; i &lt; num_butts; i ++) {
     }
 }
 
-angle_min = 0
-angle_max = pi/2
+angle = degtorad(angles[num_butts, index])
 
-if(num_butts) {
-    angle_iter = (angle_max - angle_min)/num_butts
-}
-angle = angle_iter*index
 dest_x = cycle.center_x + cos(angle)*dist
 dest_y = cycle.center_y + sin(angle)*dist
 

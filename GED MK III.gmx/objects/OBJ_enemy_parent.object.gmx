@@ -72,6 +72,10 @@ ail_x = 0
 ail_y = 0
 
 anim_heal = false
+
+//this enemy will be queued upon this enemy's death
+//if it is not OBJ_null
+successor = OBJ_null
 </string>
           </argument>
         </arguments>
@@ -112,6 +116,11 @@ fade_out = instance_create(x, y, OBJ_fade_out)
 fade_out.target_destroy = meter_hp
 fade_out.fade_time = 1
 fade_out.fade_sprite = sprite_index
+
+//queue successor
+if (successor != OBJ_null) {
+    instance_create(x, y, successor)
+}
 </string>
           </argument>
         </arguments>
