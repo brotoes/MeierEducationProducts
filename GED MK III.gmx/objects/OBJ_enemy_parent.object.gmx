@@ -54,28 +54,27 @@ mouseover = false
 bounce_time = 10
 bounce_distance = 10
 bounce_counter = 0
+ail_x = 0
+ail_y = 0
+anim_heal = false
 
 //this is used to determine damages
 primary_element = ELEMENT_NULL
 
-battle_controller = instance_find(OBJ_battle_controller, 0)
-cycle = instance_find(OBJ_cycle, 0)
-
 //create health bar
 meter_hp = instance_create(x, y + height, OBJ_meter)
 meter_hp.length = width
-//TODO fill based on element?
 
 name = "Enemy Parent"
-
-ail_x = 0
-ail_y = 0
-
-anim_heal = false
 
 //this enemy will be queued upon this enemy's death
 //if it is not OBJ_null
 successor = OBJ_null
+
+battle_controller = instance_find(OBJ_battle_controller, 0)
+cycle = instance_find(OBJ_cycle, 0)
+
+battle_controller.used_space += bbox_right - bbox_left
 </string>
           </argument>
         </arguments>
@@ -116,11 +115,8 @@ fade_out = instance_create(x, y, OBJ_fade_out)
 fade_out.target_destroy = meter_hp
 fade_out.fade_time = 1
 fade_out.fade_sprite = sprite_index
-
-//queue successor
-if (successor != OBJ_null) {
-    instance_create(x, y, successor)
-}
+fade_out.successor = successor
+fade_out.new_priority = turn_priority
 </string>
           </argument>
         </arguments>
@@ -214,8 +210,6 @@ if (anim_heal) {
     flash = flash_time
     flash_color = C_HEAL
 }
-
-show_debug_message(string(successor))
 </string>
           </argument>
         </arguments>
@@ -284,7 +278,7 @@ show_debug_message(string(successor))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_check_button(mb_left)) {
+            <string>if (mouse_check_button(mb_left) and cycle.menu_open = false) {
     mouseover = true
 }
 </string>

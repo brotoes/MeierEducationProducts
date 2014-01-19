@@ -227,6 +227,8 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
         }
         damage = persistent_variables.damage[persistent_variables.upgrade[last_played]]
         damage *= multiplier
+        damage *= element_levels[last_played]
+        
         //perform element specific actions
         switch (last_played) {
             case ELEMENT_FIRE: {

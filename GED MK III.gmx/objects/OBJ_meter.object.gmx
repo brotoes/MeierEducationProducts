@@ -51,6 +51,8 @@ animate_speed = 0.05
 //amount in the bar starts (to account for rounded sprites
 bar_in = 4
 vert_in = 2
+
+alpha = 1
 </string>
           </argument>
         </arguments>
@@ -129,6 +131,7 @@ bar_len = floor((bar_end - bar_start)*fill)
 vis_len = floor((bar_end - bar_start)*visualized)
 
 //draw meter bar
+draw_set_alpha(alpha)
 if (bar_len == vis_len) {
     draw_set_color(fill_color)
     draw_rectangle(bar_start, y + vert_in, bar_start + bar_len,
@@ -157,6 +160,7 @@ for (i=1; i &lt; seg_count - 1; i ++) {
 draw_sprite(SPR_meter, 2, x_offset + (seg_count-1)*spr_width, y)
 
 draw_set_color(c_black)
+draw_set_alpha(1)
 </string>
           </argument>
         </arguments>

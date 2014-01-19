@@ -28,11 +28,45 @@
             <string>//Upon instancing, change this to the sprite you wanted faded out
 fade_sprite = SPR_null
 target_destroy = OBJ_null
+successor = OBJ_null
+new_priority = 0
 
 //change this to the number of seconds you would like the fade out to take
 fade_time = 1
+//time to wait, after alpha &lt; 0, before destroying self
+invis_time = 1
 
 age = 0
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>controller = instance_find(OBJ_battle_controller, 0)
+controller.used_space -= sprite_get_bbox_right(fade_sprite) - sprite_get_bbox_left(fade_sprite)
+
+if (successor != OBJ_null) {
+    enemy = instance_create(x, y, successor)
+    enemy.turn_priority = new_priority
+    enemy.anim_heal = true
+}
 </string>
           </argument>
         </arguments>
@@ -57,12 +91,13 @@ age = 0
             <kind>1</kind>
             <string>age_seconds = age/room_speed
 alpha = 1 - age_seconds/fade_time
+target_destroy.alpha = alpha
 
 draw_set_alpha(alpha)
 draw_sprite(fade_sprite, 0, x, y)
 draw_set_alpha(1)
 
-if (alpha &lt;= 0) {
+if (age_seconds &gt; fade_time + invis_time) {
     if (target_destroy != OBJ_null) {
         with (target_destroy) instance_destroy()
     }
