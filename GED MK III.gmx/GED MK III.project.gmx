@@ -239,6 +239,7 @@
     <script>scripts\draw_text_outlined_shadow.gml</script>
     <script>scripts\basic_attack.gml</script>
     <script>scripts\get_heal.gml</script>
+    <script>scripts\position_enemies.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\FONT_big</font>
@@ -420,7 +421,9 @@
       <room>rooms\test_room</room>
     </rooms>
   </rooms>
-  <constants number="24">
+  <constants number="26">
+    <constant name="SCR_R_MARGIN">10</constant>
+    <constant name="SCR_L_MARGIN">144</constant>
     <constant name="MAX_LEVEL">9</constant>
     <constant name="MAX_POINTS">4</constant>
     <constant name="PRIORITY_ATTACK_SOUND">1</constant>

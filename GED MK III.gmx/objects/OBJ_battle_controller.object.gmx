@@ -56,8 +56,11 @@ victory = false
 alarm_set = false
 
 //number of pixels available to draw enemies in (width)
-screen_space = room_width - 144
+screen_space = room_width - (SCR_L_MARGIN + SCR_R_MARGIN)
 used_space = 0
+
+//stores x coords of all enemies
+positions[0] = 0
 </string>
           </argument>
         </arguments>
@@ -221,6 +224,8 @@ while (whose_turn == 0 and ds_list_size(queue_listid) &gt; 0 and screen_space &g
     
     ds_list_delete(queue_listid, 0)
     ds_list_delete(succession_listid, 0)
+    
+    position_enemies(used_space, screen_space)
 }
 </string>
           </argument>
@@ -246,19 +251,17 @@ while (whose_turn == 0 and ds_list_size(queue_listid) &gt; 0 and screen_space &g
             <kind>1</kind>
             <string>background_assign(0, backgrounds[0])
 
-next_x = 0
-counter = 0
 while (ds_list_size(queue_listid) and screen_space &gt; used_space) {
     randomize()
-    new_enemy = instance_create(room_width/6 + next_x, 0, 
+    new_enemy = instance_create(0, 0, 
                                 ds_list_find_value(queue_listid, 0))
     new_enemy.successor = ds_list_find_value(succession_listid, 0)
     ds_list_delete(queue_listid, 0)
     ds_list_delete(succession_listid, 0)
-    next_x += new_enemy.sprite_width + 10
-    new_enemy.turn_priority = counter + 1
-    counter ++
+    new_enemy.turn_priority = instance_number(OBJ_enemy_parent)
 }
+
+position_enemies(used_space, screen_space)
 
 //create meters
 reference_hp = instance_find(OBJ_reference, 0)
@@ -290,8 +293,7 @@ meter_hp.fill = hp_current/persistent_variables.hp
             <string>//draw background
 draw_background_stretched(BG_battlescape, 0, 0, room_width, room_height)
 draw_text(0, 0, whose_turn)
-draw_text(0, 20, ds_list_size(queue_listid))
-draw_text(0, 40, screen_space - used_space)
+draw_text(0, 20, instance_number(OBJ_enemy_parent))
 </string>
           </argument>
         </arguments>

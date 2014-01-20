@@ -118,6 +118,9 @@ if (fill &gt; 1) {
     fill = 1
 }
 
+x = floor(x)
+y = floor(y)
+
 //calculate values
 spr_width = sprite_get_width(SPR_meter)
 spr_height = sprite_get_height(SPR_meter)

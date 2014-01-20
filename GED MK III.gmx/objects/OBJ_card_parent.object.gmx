@@ -79,6 +79,7 @@ for (i = 0; i &lt; num_cards; i ++) {
 dest_y = enemy_floor.y + floor_offset - 25*selected
 dest_x = room_width/2 - ((sprite_width + 4)*num_cards/2)
     + (index)*(sprite_width + 8) - 8
+dest_x = floor(dest_x)
     
 if (x &lt; dest_x) {
     x += anim_speed
@@ -103,6 +104,8 @@ if (y &lt; dest_y) {
     }
 }
 
+x = floor(x)
+y = floor(y)
 </string>
           </argument>
         </arguments>

@@ -75,6 +75,7 @@ battle_controller = instance_find(OBJ_battle_controller, 0)
 cycle = instance_find(OBJ_cycle, 0)
 
 battle_controller.used_space += bbox_right - bbox_left
+
 </string>
           </argument>
         </arguments>
@@ -303,10 +304,10 @@ if (anim_heal) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (battle_controller.target == id) {
+            <string>if (battle_controller.target == id and mouseover) {
     //remove self from target variable in battle_controller
     battle_controller.target = OBJ_null
-} else {
+} else if (mouseover){
     battle_controller.target = id
 }
 mouseover = false
