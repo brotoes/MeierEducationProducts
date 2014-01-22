@@ -76,9 +76,11 @@ for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     }
 }
 cost = persistent_variables.upg_cost[persistent_variables.upgrade[element] + 1]
-enough_gold = persistent_variables.gold &gt;= cost
-if (element != ELEMENT_NULL and persistent_variables.upgrade[element] &lt; MAX_LEVEL 
-    and not is_string(cost)) {
+enough_gold = not is_string(cost)
+if (enough_gold) {
+    enough_gold = persistent_variables.gold &gt;= cost
+}
+if (element != ELEMENT_NULL and persistent_variables.upgrade[element] &lt; MAX_LEVEL) {
     if (enough_gold) {
         persistent_variables.gold -= cost
         persistent_variables.upgrade[element] ++

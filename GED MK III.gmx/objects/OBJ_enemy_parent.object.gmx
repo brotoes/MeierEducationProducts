@@ -57,13 +57,16 @@ bounce_counter = 0
 ail_x = 0
 ail_y = 0
 anim_heal = false
+stagger = 32
 
 //this is used to determine damages
 primary_element = ELEMENT_NULL
 
 //create health bar
-meter_hp = instance_create(x, y + height, OBJ_meter)
+bar_overlap = 32
+meter_hp = instance_create(x, y + height - bar_overlap, OBJ_meter)
 meter_hp.length = width
+meter_hp.skinny = true
 
 name = "Enemy Parent"
 
@@ -73,6 +76,7 @@ successor = OBJ_null
 
 battle_controller = instance_find(OBJ_battle_controller, 0)
 cycle = instance_find(OBJ_cycle, 0)
+floor_inst = instance_find(OBJ_floor, 0)
 
 battle_controller.used_space += bbox_right - bbox_left
 
@@ -357,13 +361,22 @@ mouseover = false
           <argument>
             <kind>1</kind>
             <string>//change vertical height to match floor
-floor_inst = instance_find(OBJ_floor, 0)
 y = floor_inst.y - height - 30
+
+//if there are lots of enemies on the screen, stagger them.
+avail = battle_controller.screen_space
+used = battle_controller.used_space
+count = instance_number(OBJ_enemy_parent)
+spacing = floor((avail - used) / max(count - 1, 1))
+if (spacing &lt;= 0) {
+    y -= stagger*(turn_priority mod 2)
+    depth = turn_priority mod 2
+}
 
 //Change variables. This doesn't need to be in draw, but it was
 //convenient to put it here, at the time.
 meter_hp.x = x + (width mod sprite_get_width(SPR_meter))
-meter_hp.y = height + sprite_get_height(SPR_meter) + y
+meter_hp.y = height + sprite_get_height(SPR_meter) + y  - bar_overlap
 //meter_hp.length = sprite_width
 meter_hp.fill = hp_current / hp_total
 

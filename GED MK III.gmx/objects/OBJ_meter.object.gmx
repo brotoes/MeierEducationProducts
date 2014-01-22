@@ -3,7 +3,7 @@
   <spriteName>SPR_invis_meter</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-100</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -53,6 +53,8 @@ bar_in = 4
 vert_in = 2
 
 alpha = 1
+
+skinny = false
 </string>
           </argument>
         </arguments>
@@ -123,7 +125,7 @@ y = floor(y)
 
 //calculate values
 spr_width = sprite_get_width(SPR_meter)
-spr_height = sprite_get_height(SPR_meter)
+spr_height = sprite_get_height(SPR_meter)/(1 + skinny)
 seg_count = floor(length/spr_width)
 seg_count = max(2, seg_count)
 x_offset = x + (length mod spr_width)/2
@@ -156,11 +158,11 @@ if (bar_len == vis_len) {
 }
                    
 //draw meter box
-draw_sprite(SPR_meter, 0, x_offset, y)
+draw_sprite(SPR_meter, 3*skinny, x_offset, y)
 for (i=1; i &lt; seg_count - 1; i ++) {
-    draw_sprite(SPR_meter, 1, x_offset + i*spr_width, y)
+    draw_sprite(SPR_meter, 1 + 3*skinny, x_offset + i*spr_width, y)
 }
-draw_sprite(SPR_meter, 2, x_offset + (seg_count-1)*spr_width, y)
+draw_sprite(SPR_meter, 2 + 3*skinny, x_offset + (seg_count-1)*spr_width, y)
 
 draw_set_color(c_black)
 draw_set_alpha(1)

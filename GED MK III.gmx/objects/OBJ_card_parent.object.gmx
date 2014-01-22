@@ -3,7 +3,7 @@
   <spriteName>SPR_parent</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-150</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -38,7 +38,7 @@ persistent_variables = instance_find(OBJ_persistent_variables, 0)
 level_played = 0
 
 //choose position dealt from (for animation)
-floor_offset = 64
+floor_offset = 0
 x = 0
 y = enemy_floor.y + floor_offset
 dest_x = x

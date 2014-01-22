@@ -137,8 +137,6 @@
         <sprite>sprites\SPR_card_stack</sprite>
         <sprite>sprites\SPR_target</sprite>
         <sprite>sprites\SPR_elem_select</sprite>
-      </sprites>
-      <sprites name="bars">
         <sprite>sprites\SPR_meter</sprite>
       </sprites>
       <sprites name="buttons">
