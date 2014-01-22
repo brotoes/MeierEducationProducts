@@ -130,8 +130,9 @@ if (persistent_variables.stage + 1 == stage) {
 }
 
 str = string(persistent_variables.run) + " - " + string(stage)
-draw_text(x + sprite_width/2 - string_width(str)/2,
-          y + sprite_height/2 - string_height(str)/2, str)
+draw_text_outlined(x + sprite_width/2 - string_width(str)/2,
+            y + sprite_height/2 - string_height(str)/2, str,
+            c_black, c_gray)
 draw_set_font(FONT_normal)
 </string>
           </argument>

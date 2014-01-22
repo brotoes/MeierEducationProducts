@@ -70,7 +70,7 @@
     <instance objName="OBJ_stage_ind" x="288" y="448" name="inst_0B9A792B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_stage_ind" x="416" y="448" name="inst_75A951E6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="OBJ_stage_ind" x="544" y="448" name="inst_C66FC576" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="OBJ_shop_button" x="760" y="160" name="inst_339B39CD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="OBJ_shop_button" x="960" y="160" name="inst_339B39CD" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
