@@ -57,7 +57,9 @@ bounce_counter = 0
 ail_x = 0
 ail_y = 0
 anim_heal = false
-stagger = 32
+stagger_amnt = 32
+stagger_index = turn_priority
+stagger = false
 
 //this is used to determine damages
 primary_element = ELEMENT_NULL
@@ -364,13 +366,9 @@ mouseover = false
 y = floor_inst.y - height - 30
 
 //if there are lots of enemies on the screen, stagger them.
-avail = battle_controller.screen_space
-used = battle_controller.used_space
-count = instance_number(OBJ_enemy_parent)
-spacing = floor((avail - used) / max(count - 1, 1))
-if (spacing &lt;= 0) {
-    y -= stagger*(turn_priority mod 2)
-    depth = turn_priority mod 2
+if (stagger) {
+    y -= stagger_amnt*(stagger_index mod 2)
+    depth = stagger_index mod 2
 }
 
 //Change variables. This doesn't need to be in draw, but it was

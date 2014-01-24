@@ -123,11 +123,11 @@ for (cur_stage = 0; cur_stage &lt; STAGE_COUNT; cur_stage ++) {
 ini_close()
 
 element_colors[ELEMENT_NULL] = c_black
-element_colors[ELEMENT_FIRE] = c_red
-element_colors[ELEMENT_EARTH] = c_yellow
-element_colors[ELEMENT_METAL] = c_purple
-element_colors[ELEMENT_WATER] = c_blue
-element_colors[ELEMENT_WOOD] = c_green
+element_colors[ELEMENT_FIRE] = make_color_rgb(219, 15, 19)
+element_colors[ELEMENT_EARTH] = make_color_rgb(189, 127, 28)
+element_colors[ELEMENT_METAL] = make_color_rgb(175, 132, 188)
+element_colors[ELEMENT_WATER] = make_color_rgb(54, 71, 204)
+element_colors[ELEMENT_WOOD] = make_color_rgb(23, 126, 35)
 </string>
           </argument>
         </arguments>

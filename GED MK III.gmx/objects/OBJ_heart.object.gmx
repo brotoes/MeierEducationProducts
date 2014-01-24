@@ -52,7 +52,8 @@
 enough_gold = false
 
 if (mouse_x &lt;= ref_bot.x and mouse_x &gt;= ref_mid.x
-    and mouse_y &gt; ref_top.y and mouse_y &lt; ref_mid.y) {
+    and mouse_y &gt; ref_top.y and mouse_y &lt; ref_mid.y
+    and instance_number(OBJ_confirm_scr) == 0) {
     clicked = true
 }
 

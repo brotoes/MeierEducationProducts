@@ -16,4 +16,8 @@ for (i = 0; i < count; i ++) {
     enemy = instance_find(OBJ_enemy_parent, i)
     enemy.x = next_x
     next_x += spacing + sprite_get_bbox_right(enemy.sprite_index) - sprite_get_bbox_left(enemy.sprite_index)
+    if(spacing <= 0) {
+        enemy.stagger = true
+        enemy.stagger_index = i
+    }
 }

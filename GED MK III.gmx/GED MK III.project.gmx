@@ -13,6 +13,7 @@
       <sound>sound\M_battle_theme</sound>
       <sound>sound\M_victory</sound>
       <sound>sound\M_defeat</sound>
+      <sound>sound\M_fanfare</sound>
     </sounds>
     <sounds name="effects">
       <sound>sound\S_metal</sound>
@@ -71,6 +72,8 @@
         <sprite>sprites\SPR_conflict</sprite>
       </sprites>
       <sprite>sprites\SPR_fight</sprite>
+      <sprite>sprites\SPR_card_back</sprite>
+      <sprite>sprites\SPR_card_stack</sprite>
     </sprites>
     <sprites name="shoppe">
       <sprite>sprites\SPR_purse</sprite>
@@ -81,6 +84,7 @@
       <sprite>sprites\SPR_shop_sheet</sprite>
       <sprite>sprites\SPR_gold_icon</sprite>
       <sprite>sprites\SPR_shopkeep</sprite>
+      <sprite>sprites\SPR_confirm_elems</sprite>
     </sprites>
     <sprites name="cards">
       <sprite>sprites\SPR_card_fire</sprite>
@@ -133,8 +137,6 @@
     <sprites name="interface">
       <sprites name="battle elements">
         <sprite>sprites\SPR_turn_flag</sprite>
-        <sprite>sprites\SPR_card_back</sprite>
-        <sprite>sprites\SPR_card_stack</sprite>
         <sprite>sprites\SPR_target</sprite>
         <sprite>sprites\SPR_elem_select</sprite>
         <sprite>sprites\SPR_meter</sprite>
@@ -242,6 +244,8 @@
   <fonts name="fonts">
     <font>fonts\FONT_big</font>
     <font>fonts\FONT_xl</font>
+    <font>fonts\FONT_72p</font>
+    <font>fonts\FONT_120p</font>
     <font>fonts\FONT_normal</font>
   </fonts>
   <objects name="objects">
@@ -269,7 +273,6 @@
       <object>objects\OBJ_store_controller</object>
       <object>objects\OBJ_menu_controller</object>
       <object>objects\OBJ_persistent_variables</object>
-      <object>objects\OBJ_deck</object>
       <object>objects\OBJ_floor</object>
       <object>objects\OBJ_reference</object>
     </objects>
@@ -281,6 +284,8 @@
       <object>objects\OBJ_money_indicator</object>
       <object>objects\OBJ_sheet</object>
       <object>objects\OBJ_shopkeep</object>
+      <object>objects\OBJ_confirm_scr</object>
+      <object>objects\OBJ_back_button</object>
     </objects>
     <objects name="enemies">
       <object>objects\OBJ_enemy_parent</object>
@@ -299,7 +304,6 @@
     </objects>
     <objects name="interface">
       <object>objects\OBJ_button</object>
-      <object>objects\OBJ_back_button</object>
       <object>objects\OBJ_mtoggle</object>
       <object>objects\OBJ_stoggle</object>
       <object>objects\OBJ_stage_ind</object>
@@ -419,7 +423,8 @@
       <room>rooms\test_room</room>
     </rooms>
   </rooms>
-  <constants number="26">
+  <constants number="27">
+    <constant name="GOLD_RAT">1.618</constant>
     <constant name="SCR_R_MARGIN">10</constant>
     <constant name="SCR_L_MARGIN">144</constant>
     <constant name="MAX_LEVEL">9</constant>

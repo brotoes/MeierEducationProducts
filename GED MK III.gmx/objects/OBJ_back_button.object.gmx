@@ -3,7 +3,7 @@
   <spriteName>SPR_back</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10000</depth>
+  <depth>-8000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>previous_room = room
+            <string>previous_room = menu_room
 </string>
           </argument>
         </arguments>
@@ -48,7 +48,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(previous_room)
+            <string>if (instance_number(OBJ_confirm_scr) == 0) {
+    room_goto(previous_room)
+}
 </string>
           </argument>
         </arguments>

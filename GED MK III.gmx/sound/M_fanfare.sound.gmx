@@ -2,7 +2,7 @@
 <sound>
   <kind>0</kind>
   <extension>.wav</extension>
-  <origname>E:\Users\Brock\Documents\GitHub\MeierEducationProducts\GED MK III.gmx\\sound\audio\M_victory.wav</origname>
+  <origname>Victory Music Fanfare.wav</origname>
   <effects>0</effects>
   <volume>
     <volume>1</volume>
@@ -21,7 +21,7 @@
     <bitDepth>16</bitDepth>
   </bitDepths>
   <preload>-1</preload>
-  <data>M_victory.wav</data>
+  <data>M_fanfare.wav</data>
   <compressed>0</compressed>
   <streamed>0</streamed>
   <uncompressOnLoad>0</uncompressOnLoad>

@@ -46,6 +46,34 @@ button_radius = 60
 
 vert_offset = 32
 hor_offset = 64
+
+//load description information for upgrades
+ini_open("desc.ini")
+//stores strings for describing each level upgrade
+//the first index is the element. the second index is the level
+descriptions[ELEMENT_FIRE, 0] = "text goes here!"
+
+elem_str[ELEMENT_FIRE] = "fire"
+elem_str[ELEMENT_METAL] = "metal"
+elem_str[ELEMENT_EARTH] = "earth"
+elem_str[ELEMENT_WATER] = "water"
+elem_str[ELEMENT_WOOD] = "wood"
+elem_str[ELEMENT_NULL] = "null"
+
+default_str = "The description will go here. Now I'm making it really really really long 
+                just so that the scren will be filled with stuff and we get to see how it 
+                wraps and stuff"
+
+for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
+    for(j = 1; j &lt;= MAX_LEVEL; j ++) {
+        descriptions[i, j] = ini_read_string(elem_str[i],
+                                 "level" + string(j), default_str)
+        if (descriptions[i, j] == default_str) {
+            ini_write_string(elem_str[i], "level" + string(j), default_str)
+        }
+    }
+}
+ini_close()
 </string>
           </argument>
         </arguments>
@@ -68,24 +96,30 @@ hor_offset = 64
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>element = ELEMENT_NULL
-for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
-    distance = point_distance(mouse_x, mouse_y, points_x[i], points_y[i])
-    if (distance &lt; button_radius) {
-        element = i
+            <string>if (instance_number(OBJ_confirm_scr) == 0) {
+    element = ELEMENT_NULL
+    for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
+        distance = point_distance(mouse_x, mouse_y, points_x[i], points_y[i])
+        if (distance &lt; button_radius) {
+            element = i
+        }
     }
-}
-cost = persistent_variables.upg_cost[persistent_variables.upgrade[element] + 1]
-enough_gold = not is_string(cost)
-if (enough_gold) {
-    enough_gold = persistent_variables.gold &gt;= cost
-}
-if (element != ELEMENT_NULL and persistent_variables.upgrade[element] &lt; MAX_LEVEL) {
+    cost = persistent_variables.upg_cost[persistent_variables.upgrade[element] + 1]
+    enough_gold = not is_string(cost)
     if (enough_gold) {
-        persistent_variables.gold -= cost
-        persistent_variables.upgrade[element] ++
-    } else {
-        gold_ind.flash = gold_ind.flash_time
+        enough_gold = persistent_variables.gold &gt;= cost
+    }
+    if (element != ELEMENT_NULL and persistent_variables.upgrade[element] &lt; MAX_LEVEL) {
+        if (enough_gold) {
+
+            confirm = instance_create(0, 0, OBJ_confirm_scr)
+            confirm.element = element
+            confirm.level = persistent_variables.upgrade[element] + 1
+            confirm.cost = cost
+            confirm.description = descriptions[element, confirm.level]
+        } else {
+            gold_ind.flash = gold_ind.flash_time
+        }
     }
 }
 </string>

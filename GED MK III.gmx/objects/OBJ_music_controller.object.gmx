@@ -28,6 +28,11 @@
             <string>audio_play_sound(M_title_screen, PRIORITY_MUSIC, true)
 prev_room = room
 recently_off = false
+
+//control music at the end of a battle
+battle_over = false
+victory = false
+fanfare_done = false
 </string>
           </argument>
         </arguments>
