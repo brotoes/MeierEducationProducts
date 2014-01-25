@@ -35,7 +35,7 @@
 //length of bar in pixels, rounded down to multiple of 8
 length = 80
 
-//amount of bar filled. value should be &lt; 1 &amp; &gt; 0
+//amount of bar filled. value should be &lt;= 1 &amp;&amp; &gt;= 0
 fill = 1
 
 //amount shown on bar for animated value change
@@ -55,6 +55,15 @@ vert_in = 2
 alpha = 1
 
 skinny = false
+
+text = true
+cur_num = 50
+
+col_count = 4
+text_colors[0] = c_red
+text_colors[1] = c_orange
+text_colors[2] = c_yellow
+text_colors[3] = c_green
 </string>
           </argument>
         </arguments>
@@ -164,8 +173,23 @@ for (i=1; i &lt; seg_count - 1; i ++) {
 }
 draw_sprite(SPR_meter, 2 + 3*skinny, x_offset + (seg_count-1)*spr_width, y)
 
+//draw number
+draw_set_font(FONT_big)
+str = string(cur_num)
+divide = 2 + 2*skinny
+body_color = c_black
+for (i = col_count - 1; i &gt;= 0; i --) {
+    if (visualized &lt;= (i + 1)*(1/col_count)) {
+        body_color = text_colors[i]
+    }
+}
+draw_text_outlined(x + (bar_end - bar_start)/2,
+                y + sprite_get_height(SPR_meter)/divide - string_height(str)/2,
+                str, body_color, c_black)
+
 draw_set_color(c_black)
 draw_set_alpha(1)
+
 </string>
           </argument>
         </arguments>

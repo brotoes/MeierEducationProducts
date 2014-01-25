@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>persistent_variables = instance_find(OBJ_persistent_variables, 0)
 battle_banner = instance_find(OBJ_banner, 0)
+music_cont = instance_find(OBJ_music_controller, 0)
 stage = 0
 parent_room = room
 
@@ -142,8 +143,12 @@ ds_list_destroy(queue_listid)
             <string>battle_banner = instance_find(OBJ_banner, 0)
 if (victory) {
     battle_banner.banner = SPR_victory_banner
+    music_cont.victory = true
+    music_cont.battle_over = true
 } else {
     battle_banner.banner = SPR_defeat_banner
+    music_cont.victory = false
+    music_cont.battle_over = true
 }
 alarm[1] = 60
 </string>
@@ -169,6 +174,7 @@ alarm[1] = 60
           <argument>
             <kind>1</kind>
             <string>meter_hp.fill = hp_current/hp_max
+meter_hp.cur_num = hp_current
 
 if (instance_number(OBJ_enemy_parent) == 0 and not 
     alarm_set and ds_list_size(queue_listid) == 0

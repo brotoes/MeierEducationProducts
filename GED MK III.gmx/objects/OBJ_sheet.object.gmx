@@ -60,9 +60,7 @@ elem_str[ELEMENT_WATER] = "water"
 elem_str[ELEMENT_WOOD] = "wood"
 elem_str[ELEMENT_NULL] = "null"
 
-default_str = "The description will go here. Now I'm making it really really really long 
-                just so that the scren will be filled with stuff and we get to see how it 
-                wraps and stuff"
+default_str = "The description will go here."
 
 for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     for(j = 1; j &lt;= MAX_LEVEL; j ++) {

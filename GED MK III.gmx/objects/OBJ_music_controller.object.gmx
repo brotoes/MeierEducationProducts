@@ -69,10 +69,6 @@ if (mtoggle.image_index == 0) {
                 audio_stop_all()
                 audio_play_sound(M_battle_theme, PRIORITY_MUSIC, true)
             } break
-            case waterfall_windmill_room: {
-                audio_stop_all()
-                audio_play_sound(M_store_theme, PRIORITY_MUSIC, true)
-            } break
             default:
                 audio_stop_all()
                 audio_play_sound(M_title_screen, PRIORITY_MUSIC, true)
@@ -81,6 +77,20 @@ if (mtoggle.image_index == 0) {
 } else {
     audio_stop_all()
     recently_off = true
+}
+//control victory music
+if (room == battle_room and battle_over and victory) {
+    audio_stop_all()
+    audio_play_sound(M_fanfare, PRIORITY_MUSIC, false)
+    battle_over = false
+    fanfare_done = true
+} else if (room == battle_room and fanfare_done and victory and not audio_is_playing(M_fanfare)) {
+    fanfare_done = false
+    audio_play_sound(M_victory, PRIORITY_MUSIC, true)
+} else if (room == battle_room and battle_over) {
+    audio_stop_all()
+    audio_play_sound(M_defeat, PRIORITY_MUSIC, true)
+    battle_over = false
 }
 </string>
           </argument>

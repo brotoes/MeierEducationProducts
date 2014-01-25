@@ -61,7 +61,7 @@ if (heart_plate.gold &lt;= gold_ind.gold) {
     enough_gold = true
 }
 
-if (clicked and enough_gold) {
+if (clicked and enough_gold and heart_ind.level &lt; MAX_LEVEL) {
     heart_ind.level += 1
     persistent_variables.gold -= heart_plate.gold
 } else if (clicked) {

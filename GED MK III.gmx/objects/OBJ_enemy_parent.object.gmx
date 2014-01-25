@@ -377,6 +377,7 @@ meter_hp.x = x + (width mod sprite_get_width(SPR_meter))
 meter_hp.y = height + sprite_get_height(SPR_meter) + y  - bar_overlap
 //meter_hp.length = sprite_width
 meter_hp.fill = hp_current / hp_total
+meter_hp.cur_num = hp_current
 
 //amount the change y value for flying enemies
 adjust_y = 0
