@@ -128,12 +128,12 @@ y = floor(y)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (selected) {
+            <string>if (selected and instance_number(OBJ_battle_overlay_parent) == 0) {
     selected = false
     /*remove card from cycle*/
     index = ds_list_find_index(cycle.elements_listid, id)
     ds_list_delete(cycle.elements_listid, index)
-} else {
+} else if (instance_number(OBJ_battle_overlay_parent) == 0) {
     index = element - 1
     if (index &lt; 0) {
         index = 4

@@ -26,9 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>//end turn
-battle_controller.whose_turn ++
-action_bar.points = 0
-action_bar.prev_points = 0
+if (x - dest_x &lt; anim_speed and y - dest_y &lt; anim_speed) {
+    battle_controller.whose_turn ++
+    action_bar.points = 0
+    action_bar.prev_points = 0
+}
 </string>
           </argument>
         </arguments>

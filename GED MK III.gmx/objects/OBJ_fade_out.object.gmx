@@ -36,6 +36,10 @@ fade_time = 1
 invis_time = 1
 
 age = 0
+
+scale = 1
+scale_xoffset = 0
+scale_yoffset = 0
 </string>
           </argument>
         </arguments>
@@ -91,9 +95,7 @@ if (successor != OBJ_null) {
 alpha = 1 - age_seconds/fade_time
 target_destroy.alpha = alpha
 
-draw_set_alpha(alpha)
-draw_sprite(fade_sprite, 0, x, y)
-draw_set_alpha(1)
+draw_sprite_ext(fade_sprite, 0, x + scale_xoffset, y + scale_yoffset, scale, scale, 0, c_white, alpha)
 
 if (age_seconds &gt; fade_time + invis_time) {
     if (target_destroy != OBJ_null) {

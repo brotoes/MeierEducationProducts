@@ -329,7 +329,7 @@ if (point_distance(mouse_x, mouse_y, center_x, center_y) &lt; radius + 20) {
 }
 
 //play cycle if clicked
-if (click and battle_controller.whose_turn == 0) {
+if (click and battle_controller.whose_turn == 0 and instance_number(OBJ_battle_overlay_parent) == 0) {
     menu_waiting = true
     alarm[0] = 20
 }  

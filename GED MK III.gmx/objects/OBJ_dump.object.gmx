@@ -26,16 +26,17 @@
           <argument>
             <kind>1</kind>
             <string>//dump hand
-//TODO: get this to skip properly and animate properly
-bar = instance_find(OBJ_action_bar, 0)
-if (bar.prev_points == 0) {
-    while(instance_number(OBJ_card_parent) &gt; 0) {
-        card = instance_find(OBJ_card_parent, 0)
-        with (card) instance_destroy()
+if (x - dest_x &lt; anim_speed and y - dest_y &lt; anim_speed) {
+    bar = instance_find(OBJ_action_bar, 0)
+    if (bar.prev_points == 0) {
+        while(instance_number(OBJ_card_parent) &gt; 0) {
+            card = instance_find(OBJ_card_parent, 0)
+            with (card) instance_destroy()
+        }
+        bar.prev_points = MAX_POINTS
+    } else {
+        bar.flash = bar.flash_time
     }
-    bar.prev_points = MAX_POINTS
-} else {
-    bar.flash = bar.flash_time
 }
 </string>
           </argument>

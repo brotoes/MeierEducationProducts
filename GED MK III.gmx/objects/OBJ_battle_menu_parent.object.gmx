@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-10000</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>OBJ_battle_overlay_parent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -34,9 +34,6 @@ anim_speed = 64
 
 dist = 300
 
-angles_listid = ds_list_create()
-//angles[0] = 45
-//ds_list_add(angles_listid, angles)
 angles[0, 0] = 45
 
 angles[1, 0] = 45

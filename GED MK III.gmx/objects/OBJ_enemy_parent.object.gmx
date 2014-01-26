@@ -61,9 +61,11 @@ bounce_counter = 0
 ail_x = 0
 ail_y = 0
 anim_heal = false
-stagger_amnt = 32
+stagger_amnt = 64
+stagger_shrink = 0.15
 stagger_index = ds_list_find_index(battle_controller.enemy_listid, id)
 stagger = false
+shadow_alpha = 0.5
 
 //this is used to determine damages
 primary_element = ELEMENT_NULL
@@ -126,6 +128,11 @@ fade_out.target_destroy = meter_hp
 fade_out.fade_time = 1
 fade_out.fade_sprite = sprite_index
 fade_out.successor = successor
+if (stagger) {
+    fade_out.scale = 1 - (stagger_index mod 2)*stagger_shrink
+    fade_out.scale_xoffset = ((sprite_width*stagger_shrink)/2)*(stagger_index mod 2)
+    fade_out.scale_yoffset = (sprite_height*stagger_shrink)*(stagger_index mod 2)
+}
 //fade_out.new_priority = turn_priority
 </string>
           </argument>
@@ -198,7 +205,9 @@ if (ds_list_find_value(battle_controller.enemy_listid, battle_controller.whose_t
 }
 
 //step animation
-animation_counter ++
+if (instance_number(OBJ_battle_overlay_parent) == 0) {
+    animation_counter ++
+}
 
 if (flash &gt; 0) {
     flash --
@@ -220,6 +229,52 @@ if (anim_heal) {
     flash = flash_time
     flash_color = C_HEAL
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="39">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>stagger_shrink += 0.01
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="37">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>stagger_shrink -= 0.01
 </string>
           </argument>
         </arguments>
@@ -265,7 +320,7 @@ if (anim_heal) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_check_button(mb_left) and cycle.menu_open = false) {
+            <string>if (mouse_check_button(mb_left) and instance_number(OBJ_battle_overlay_parent) == 0) {
     mouseover = true
 }
 </string>
@@ -342,7 +397,9 @@ mouseover = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>mouseover = true
+            <string>if (instance_number(OBJ_battle_overlay_parent) == 0) {
+    mouseover = true
+}
 </string>
           </argument>
         </arguments>
@@ -376,7 +433,7 @@ if (stagger) {
 
 //Change variables. This doesn't need to be in draw, but it was
 //convenient to put it here, at the time.
-meter_hp.x = x + (width mod sprite_get_width(SPR_meter))
+meter_hp.x = x
 meter_hp.y = height + sprite_get_height(SPR_meter) + y  - bar_overlap
 //meter_hp.length = sprite_width
 meter_hp.fill = hp_current / hp_total
@@ -388,13 +445,18 @@ adjust_y = 0
 if (flying) {
     adjust_y -= 100
     adjust_y -= sin(animation_counter/15)*20
+    alpha = shadow_alpha + (adjust_y + 100)/300
 }
 
 //draw shadow
-draw_set_alpha(0.5)
+draw_set_alpha(alpha)
 
-draw_ellipse(x - adjust_y/2, y + height - 40 - (width - 100)/5 - adjust_y/7,
- x + width + adjust_y/2, y + height + 10, false)
+shadow_left = x - adjust_y/2
+shadow_right = x + width + adjust_y/2
+shadow_top = y + height - 20 - (width - 100)/5 - adjust_y/7
+shadow_bottom = y + height + 10
+
+draw_ellipse(shadow_left, shadow_top, shadow_right, shadow_bottom, false)
 draw_set_alpha(1)
 draw_set_color(c_black)
 
@@ -402,9 +464,20 @@ draw_set_color(c_black)
 //apply height adjustment
 y += adjust_y
 
-draw_sprite(sprite_index, 0, x, y)
-draw_sprite_ext(sprite_index, 1, x, y, 1, 1, 0, flash_color, flash/flash_time)
+scale = 1
+scale_xoffset = 0
+scale_yoffset = 0
+if (stagger) {
+    scale = 1 - (stagger_index mod 2)*stagger_shrink
+    scale_xoffset = ((sprite_width*stagger_shrink)/2)*(stagger_index mod 2)
+    scale_yoffset = (sprite_height*stagger_shrink)*(stagger_index mod 2)
+}
 
+//draw self
+draw_sprite_ext(sprite_index, 0, x + scale_xoffset, y + scale_yoffset, scale, scale, 0, c_white, 1)
+draw_sprite_ext(sprite_index, 1, x + scale_xoffset, y + scale_yoffset, scale, scale, 0, flash_color, flash/flash_time)
+
+//draw ailments
 if (stun) {
     draw_sprite(SPR_ailstun, floor(animation_counter/10), x + ail_x, y + ail_y)
 }
