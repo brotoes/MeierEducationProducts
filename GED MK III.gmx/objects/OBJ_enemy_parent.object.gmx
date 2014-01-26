@@ -442,6 +442,7 @@ meter_hp.cur_num = hp_current
 //amount the change y value for flying enemies
 adjust_y = 0
 //adjust height for flying
+alpha = shadow_alpha
 if (flying) {
     adjust_y -= 100
     adjust_y -= sin(animation_counter/15)*20
