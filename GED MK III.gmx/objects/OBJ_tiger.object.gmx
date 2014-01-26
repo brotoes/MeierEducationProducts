@@ -45,6 +45,7 @@ hp_current = hp_total
 name = "Walking Tiger"
 ail_x = 30
 ail_y = 25
+speed_stat = 10
 </string>
           </argument>
         </arguments>

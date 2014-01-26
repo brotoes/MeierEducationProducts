@@ -46,6 +46,7 @@ hp_current = 30
 name = "Dire Birdwing"
 ail_x = 30
 ail_y = 30
+speed_stat = 16
 </string>
           </argument>
         </arguments>

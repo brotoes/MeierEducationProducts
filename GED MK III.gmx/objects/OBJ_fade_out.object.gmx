@@ -29,7 +29,6 @@
 fade_sprite = SPR_null
 target_destroy = OBJ_null
 successor = OBJ_null
-new_priority = 0
 
 //change this to the number of seconds you would like the fade out to take
 fade_time = 1
@@ -64,7 +63,6 @@ controller.used_space -= sprite_get_bbox_right(fade_sprite) - sprite_get_bbox_le
 
 if (successor != OBJ_null) {
     enemy = instance_create(x, y, successor)
-    enemy.turn_priority = new_priority
     enemy.anim_heal = true
 }
 </string>

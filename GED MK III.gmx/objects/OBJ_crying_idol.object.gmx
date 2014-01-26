@@ -45,6 +45,7 @@ hp_current = 15
 name = "Crying Idol"
 ail_x = 5
 ail_y = 5
+speed_stat = 14
 </string>
           </argument>
         </arguments>

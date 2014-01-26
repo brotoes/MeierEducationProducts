@@ -46,6 +46,7 @@ hp_current = 30
 name = "Dire Monarch"
 ail_x = 30
 ail_y = 30
+speed_stat = 17
 </string>
           </argument>
         </arguments>

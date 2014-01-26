@@ -31,6 +31,9 @@ music_cont = instance_find(OBJ_music_controller, 0)
 stage = 0
 parent_room = room
 
+//list of enemies on screen currently. sorted by speed_stat, descending
+enemy_listid = ds_list_create()
+
 //will create these enemies when they become available
 queue_listid = ds_list_create()
 succession_listid = ds_list_create()
@@ -188,7 +191,7 @@ if (instance_number(OBJ_enemy_parent) == 0 and not
     alarm_set = true
 }
 
-whose_turn = whose_turn mod (instance_number(OBJ_enemy_parent) + 1)
+//whose_turn = whose_turn mod (instance_number(OBJ_enemy_parent) + 1)
 
 if (whose_turn != 0) {
     target = OBJ_null
@@ -228,10 +231,13 @@ while (whose_turn == 0 and ds_list_size(queue_listid) &gt; 0 and screen_space &g
     new_enemy.anim_heal = true
     new_enemy.turn_priority = instance_number(OBJ_enemy_parent)
     
+    //maintain lists
+    ds_list_add(enemy_listid, new_enemy)
     ds_list_delete(queue_listid, 0)
     ds_list_delete(succession_listid, 0)
     
-    position_enemies(used_space, screen_space)
+    sort(enemy_listid, speed_comp)
+    position_enemies(used_space, screen_space, enemy_listid)
 }
 </string>
           </argument>
@@ -265,9 +271,11 @@ while (ds_list_size(queue_listid) and screen_space &gt; used_space) {
     ds_list_delete(queue_listid, 0)
     ds_list_delete(succession_listid, 0)
     new_enemy.turn_priority = instance_number(OBJ_enemy_parent)
+    ds_list_add(enemy_listid, new_enemy)
 }
 
-position_enemies(used_space, screen_space)
+sort(enemy_listid, speed_comp)
+position_enemies(used_space, screen_space, enemy_listid)
 
 //create meters
 reference_hp = instance_find(OBJ_reference, 0)

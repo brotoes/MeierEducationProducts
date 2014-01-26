@@ -240,6 +240,9 @@
     <script>scripts\basic_attack.gml</script>
     <script>scripts\get_heal.gml</script>
     <script>scripts\position_enemies.gml</script>
+    <script>scripts\sort.gml</script>
+    <script>scripts\compare.gml</script>
+    <script>scripts\speed_comp.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\FONT_big</font>
