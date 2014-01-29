@@ -246,6 +246,7 @@
     <script>scripts\compare.gml</script>
     <script>scripts\speed_comp.gml</script>
   </scripts>
+  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\FONT_big</font>
     <font>fonts\FONT_xl</font>
@@ -327,6 +328,7 @@
     <objects name="particles">
       <object>objects\OBJ_star_particle</object>
       <object>objects\OBJ_heal_particle</object>
+      <object>objects\OBJ_charge_particle</object>
       <object>objects\OBJ_purse_particle</object>
       <object>objects\OBJ_floating_number</object>
     </objects>
@@ -406,6 +408,7 @@
       <objects name="examples">
         <object>objects\OBJ_mod_card_example</object>
       </objects>
+      <object>objects\OBJ_OLD_end_screen_with_code_I_dont_want_to_throw_out</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -430,7 +433,8 @@
       <room>rooms\test_room</room>
     </rooms>
   </rooms>
-  <constants number="27">
+  <constants number="28">
+    <constant name="SPLASH_MULT">0.6</constant>
     <constant name="GOLD_RAT">1.618</constant>
     <constant name="SCR_R_MARGIN">10</constant>
     <constant name="SCR_L_MARGIN">144</constant>

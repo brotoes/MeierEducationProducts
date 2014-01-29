@@ -54,10 +54,12 @@ gold_earned = 0
 killname_listid = ds_list_create()
 killval_listid = ds_list_create()
 
+//state variables
 ready_to_draw = true
 final_menu = false
 victory = false
 alarm_set = false
+player_dmg_mult = 1
 
 //number of pixels available to draw enemies in (width)
 screen_space = room_width - (SCR_L_MARGIN + SCR_R_MARGIN)
@@ -197,6 +199,7 @@ if (whose_turn != 0) {
     target = OBJ_null
     ready_to_draw = true
 } else if (ready_to_draw) {
+    player_dmg_mult = 1
     ready_to_draw = false
     randomize()
     cards_to_pop = persistent_variables.hand_size - instance_number(OBJ_card_parent)

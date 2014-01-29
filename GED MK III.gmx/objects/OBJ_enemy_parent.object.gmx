@@ -40,8 +40,9 @@ hp_current = hp_total
 gold = irandom(50)
 
 //status ailments
-stun = false
+stun = 0
 poison = 0
+leech = 0
 
 //control variables
 targetted = false
@@ -133,7 +134,6 @@ if (stagger) {
     fade_out.scale_xoffset = ((sprite_width*stagger_shrink)/2)*(stagger_index mod 2)
     fade_out.scale_yoffset = (sprite_height*stagger_shrink)*(stagger_index mod 2)
 }
-//fade_out.new_priority = turn_priority
 </string>
           </argument>
         </arguments>
@@ -168,6 +168,11 @@ if (stagger) {
     poison --
     flash = flash_time
     flash_color = C_POISON
+    if (leech) {
+        restore = leech
+        battle_controller.hp_current += restore
+        leech --
+    }
 }
 battle_controller.whose_turn = (battle_controller.whose_turn + 1) mod 
                                 (ds_list_size(battle_controller.enemy_listid) + 1)
@@ -475,6 +480,7 @@ if (stagger) {
 }
 
 //draw self
+
 draw_sprite_ext(sprite_index, 0, x + scale_xoffset, y + scale_yoffset, scale, scale, 0, c_white, 1)
 draw_sprite_ext(sprite_index, 1, x + scale_xoffset, y + scale_yoffset, scale, scale, 0, flash_color, flash/flash_time)
 

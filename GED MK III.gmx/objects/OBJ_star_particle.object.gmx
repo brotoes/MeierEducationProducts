@@ -53,7 +53,7 @@ radius = random(2.5) + 1
             <string>y -= radius
 life --
 
-if (life &lt;= 0) {
+if (life &lt;= 0 or y &lt; -radius) {
     with (id) instance_destroy()
 }
 </string>

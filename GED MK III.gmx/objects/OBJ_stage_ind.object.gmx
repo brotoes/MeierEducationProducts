@@ -124,7 +124,7 @@ anim_counter ++
             <string>draw_set_font(FONT_big)
 draw_sprite(sprite_index, persistent_variables.stage &gt;= stage, x, y)
 if (persistent_variables.stage + 1 == stage) {
-    draw_set_alpha(max(cos(anim_counter/6), cos(anim_counter/6 + pi)))
+    draw_set_alpha(max(cos(anim_counter/30), cos(anim_counter/30 + pi)))
     draw_sprite(sprite_index, 1, x, y)
     draw_set_alpha(1)
 }
