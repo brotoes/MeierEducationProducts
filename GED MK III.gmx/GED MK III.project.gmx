@@ -160,6 +160,7 @@
         <sprite>sprites\SPR_cycle</sprite>
         <sprite>sprites\SPR_cycle_elems</sprite>
       </sprites>
+      <sprite>sprites\SPR_tab</sprite>
     </sprites>
     <sprites name="invisible sprites">
       <sprite>sprites\SPR_parent</sprite>
@@ -247,7 +248,6 @@
     <script>scripts\compare.gml</script>
     <script>scripts\speed_comp.gml</script>
   </scripts>
-  <shaders name="shaders"/>
   <fonts name="fonts">
     <font>fonts\FONT_big</font>
     <font>fonts\FONT_xl</font>
@@ -273,7 +273,6 @@
         <object>objects\OBJ_help</object>
         <object>objects\OBJ_battle_menu_parent</object>
         <object>objects\OBJ_battle_overlay_parent</object>
-        <object>objects\OBJ_help_overlay</object>
       </objects>
     </objects>
     <objects name="controllers">
@@ -317,6 +316,9 @@
       <object>objects\OBJ_stoggle</object>
       <object>objects\OBJ_stage_ind</object>
       <object>objects\OBJ_shop_button</object>
+      <object>objects\OBJ_help_overlay</object>
+      <object>objects\OBJ_help_tab</object>
+      <object>objects\OBJ_done_button</object>
     </objects>
     <objects name="cards">
       <object>objects\OBJ_card_parent</object>
