@@ -111,6 +111,30 @@ y = floor(y)
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>persistent_variables.upgrade[element] ++
+persistent_variables.upgrade[element] = persistent_variables.upgrade[element] % 10
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="7">
       <action>
         <libid>1</libid>
@@ -169,11 +193,23 @@ y = floor(y)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//TODO: test to draw status effect
-draw_sprite(sprite_index, 0, x, y)
+            <string>draw_sprite(sprite_index, 0, x, y)
 draw_set_font(FONT_big)
 draw_text(x + 20, y + 110, persistent_variables.damage[persistent_variables.upgrade[element]])
 draw_set_font(FONT_normal)
+
+upgrade = persistent_variables.upgrade[element]
+tier = 0
+if (upgrade &gt;= 9) {
+    tier = 3
+} else if (upgrade &gt;= 6) {
+    tier = 2
+} else if (upgrade &gt;= 3) {
+    tier = 1
+}
+index = element*4 + tier
+
+draw_sprite(SPR_badges, index, x + 72, y + 109)
 </string>
           </argument>
         </arguments>

@@ -87,6 +87,7 @@
       <sprite>sprites\SPR_confirm_elems</sprite>
     </sprites>
     <sprites name="cards">
+      <sprite>sprites\SPR_badges</sprite>
       <sprite>sprites\SPR_card_fire</sprite>
       <sprite>sprites\SPR_card_earth</sprite>
       <sprite>sprites\SPR_card_metal</sprite>
