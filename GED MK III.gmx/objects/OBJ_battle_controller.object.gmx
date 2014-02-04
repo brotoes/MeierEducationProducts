@@ -284,7 +284,8 @@ position_enemies(used_space, screen_space, enemy_listid)
 reference_hp = instance_find(OBJ_reference, 0)
 meter_hp = instance_create(reference_hp.x, reference_hp.y, OBJ_meter)
 meter_hp.length = room_width - 16
-meter_hp.fill = hp_current/persistent_variables.hp
+meter_hp.fill = hp_current/persistent_variables.hp_amount[persistent_variables.hp_lvl]
+meter_hp.auto_ind = true
 </string>
           </argument>
         </arguments>
@@ -309,8 +310,6 @@ meter_hp.fill = hp_current/persistent_variables.hp
             <kind>1</kind>
             <string>//draw background
 draw_background_stretched(BG_battlescape, 0, 0, room_width, room_height)
-draw_text(0, 0, whose_turn)
-draw_text(0, 20, instance_number(OBJ_enemy_parent))
 </string>
           </argument>
         </arguments>

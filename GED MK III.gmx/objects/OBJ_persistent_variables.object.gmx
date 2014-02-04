@@ -122,12 +122,38 @@ for (cur_stage = 0; cur_stage &lt; STAGE_COUNT; cur_stage ++) {
 
 ini_close()
 
+prev_val[0] = gold
+prev_val[1] = gold_multiplier
+prev_val[2] = stage
+prev_val[3] = run
+prev_val[4] = hp_lvl
+prev_val[5] = purse_lvl
+prev_val[6] = upgrade[ELEMENT_FIRE]
+prev_val[7] = upgrade[ELEMENT_EARTH]
+prev_val[8] = upgrade[ELEMENT_METAL]
+prev_val[9] = upgrade[ELEMENT_WATER]
+prev_val[10] = upgrade[ELEMENT_WOOD]
+prev_val[11] = hand_size
+
 element_colors[ELEMENT_NULL] = c_black
 element_colors[ELEMENT_FIRE] = make_color_rgb(219, 15, 19)
 element_colors[ELEMENT_EARTH] = make_color_rgb(189, 127, 28)
 element_colors[ELEMENT_METAL] = make_color_rgb(175, 132, 188)
 element_colors[ELEMENT_WATER] = make_color_rgb(54, 71, 204)
 element_colors[ELEMENT_WOOD] = make_color_rgb(23, 126, 35)
+
+//create map of name strings to sprite indices
+sprite_mapid = ds_map_create()
+children_listid = get_children(OBJ_ref_parent)
+for (i = 0; i &lt; ds_list_size(children_listid); i ++) {
+    obj_id = ds_list_find_value(children_listid, i)
+    inst = instance_create(0, 0, obj_id)
+    sprite_string = sprite_get_name(inst.sprite_index)
+    ds_map_add(sprite_mapid, sprite_string, inst.sprite_index)
+    with (inst) instance_destroy()
+    show_debug_message("#######"+sprite_string)
+}
+ds_list_destroy(children_listid)
 </string>
           </argument>
         </arguments>
@@ -150,18 +176,43 @@ element_colors[ELEMENT_WOOD] = make_color_rgb(23, 126, 35)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//TODO do this well
-hp = 20 + hp_lvl*10
-
-gold_multiplier = (purse_lvl/10) + 1
+            <string>gold_multiplier = (purse_lvl/10) + 1
 
 if (stage == instance_number(OBJ_stage_ind)) {
     stage = 0
     run ++
 }
 
-save_counter = (save_counter + 1) mod 100
-if (save_counter == 0) {
+//save_counter = (save_counter + 1) mod 100
+
+//find if any data has changed that needs to be updated
+changes_listid = ds_list_create()
+if (prev_val[0] != gold)
+    ds_list_add(changes_listid, 0)
+if (prev_val[1] != gold_multiplier)
+    ds_list_add(changes_listid, 1)
+if (prev_val[2] != stage)
+    ds_list_add(changes_listid, 2)
+if (prev_val[3] != run)
+    ds_list_add(changes_listid, 3)
+if (prev_val[4] != hp_lvl)
+    ds_list_add(changes_listid, 4)
+if (prev_val[5] != purse_lvl)
+    ds_list_add(changes_listid, 5)
+if (prev_val[6] != upgrade[ELEMENT_FIRE])
+    ds_list_add(changes_listid, 6)
+if (prev_val[7] != upgrade[ELEMENT_EARTH])
+    ds_list_add(changes_listid, 7)
+if (prev_val[8] != upgrade[ELEMENT_METAL])
+    ds_list_add(changes_listid, 8)
+if (prev_val[9] != upgrade[ELEMENT_WATER])
+    ds_list_add(changes_listid, 9)
+if (prev_val[10] != upgrade[ELEMENT_WOOD])
+    ds_list_add(changes_listid, 10)
+if (prev_val[11] != hand_size)
+    ds_list_add(changes_listid, 11)
+
+/*if (save_counter == 0) {
     //write save data
     ini_open("savedata.ini")
     ini_write_real("data", "gold", gold)
@@ -179,7 +230,67 @@ if (save_counter == 0) {
     }
     ini_write_real("data", "hand", hand_size)
     ini_close()
+}*/
+len = ds_list_size(changes_listid)
+
+if (len) {
+    ini_open("savedata.ini")
+    for (i = 0; i &lt; len; i ++) {
+        index = ds_list_find_value(changes_listid, i)
+        switch (index) {
+            case 0: {
+                prev_val[0] = gold
+                ini_write_real("data", "gold", gold)
+            } break
+            case 1: {
+                prev_val[1] = gold
+                ini_write_real("data", "gmult", gold_multiplier)
+            } break
+            case 2: {
+                prev_val[2] = gold
+                ini_write_real("data", "stage", stage)
+            } break
+            case 3: {
+                prev_val[3] = gold
+                ini_write_real("data", "run", run)
+            } break
+            case 4: {
+                prev_val[4] = gold
+                ini_write_real("data", "hp", hp_lvl)
+            } break
+            case 5: {
+                prev_val[5] = gold
+                ini_write_real("data", "purse", purse_lvl)
+            } break
+            case 6: {
+                prev_val[6] = gold
+                ini_write_real("data", "elem0", upgrade[ELEMENT_FIRE])
+            } break
+            case 7: {
+                prev_val[7] = gold
+                ini_write_real("data", "elem1", upgrade[ELEMENT_EARTH])
+            } break
+            case 8: {
+                prev_val[8] = gold
+                ini_write_real("data", "elem2", upgrade[ELEMENT_METAL])
+            } break
+            case 9: {
+                prev_val[9] = gold
+                ini_write_real("data", "elem3", upgrade[ELEMENT_WATER])
+            } break
+            case 10: {
+                prev_val[10] = gold
+                ini_write_real("data", "elem4", upgrade[ELEMENT_WOOD])
+            } break
+            case 11: {
+                prev_val[11] = gold
+                ini_write_real("data", "hand", hand_size)
+            } break
+        }
+    }
+    ini_close()
 }
+ds_list_destroy(changes_listid)
 </string>
           </argument>
         </arguments>

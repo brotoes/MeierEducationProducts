@@ -49,6 +49,8 @@ speed_stat = 0
 
 //unique animation variables
 anim_charge = false
+atk_cnt = 1
+atk_freq = 3
 </string>
           </argument>
         </arguments>
@@ -73,12 +75,15 @@ anim_charge = false
             <kind>1</kind>
             <string>if (not stun) {
     randomize()
-    switch (irandom(3)) {
+    switch (atk_cnt) {
         case 0: {
             battle_controller.hp_current = 1
+            flash = attacker.flash_time
+            flash_color = persistent_variables.element_colors[primary_element]
         }break
         default: {
             anim_charge = true
+            atk_cnt = (atk_cnt + 1) mod atk_freq
         }
     }
 } else {

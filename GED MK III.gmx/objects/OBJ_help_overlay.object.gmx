@@ -25,7 +25,19 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>current_disp = 0
+            <string>pers_vars = instance_find(OBJ_persistent_variables, 0)
+current_disp = 0
+
+//drawing variables
+margin = 10
+border = 4
+tile_width = sprite_get_width(SPR_body)
+tile_height = sprite_get_height(SPR_body)
+start_x = margin + sprite_get_width(SPR_tab)
+start_y = margin
+end_x = room_width - margin
+end_y = room_height - margin
+scroll_offset = 0
 
 //load data from help.ini
 title_listid = ds_list_create()
@@ -42,24 +54,39 @@ while (next_title != "default") {
     next_index ++
 }
 
-/*for (i = 0; i &lt; ds_list_size(title_listid); i ++) {
-    str = ds_list_find_value(title_listid, i)
-    show_debug_message(str)
-}*/
-
 for (i = 0; i &lt; ds_list_size(title_listid); i ++) {
     title = ds_list_find_value(title_listid, i)
-    body = ini_read_string(title, "body", "ERROR: COULD NOT PARSE INI")
-    ds_list_add(body_listid, body)
+    next_body = ds_list_create()
+    str = ""
+    section = 0
+    loop = true
+    while (loop) {
+        str = ini_read_string(title, "body" + string(section), "default")
+        if (str == "default") {
+            str = ini_read_string(title, "pic" + string(section), "default")
+            if (str == "default") {
+                loop = false
+            } else {
+                spr = ds_map_find_value(pers_vars.sprite_mapid, "SPR_" + str)
+                show_debug_message(str)
+                ds_list_add(next_body, spr)
+            }
+        } else {
+            ds_list_add(next_body, str)
+        }
+        section ++
+    }
+    ds_list_add(body_listid, next_body)
 }
 
 ini_close()
 
 //spawn tabs
 for (i = 0; i &lt; ds_list_size(title_listid); i ++) {
-    tab = instance_create(0, 0, OBJ_help_tab)
+    tab = instance_create(margin + border, 0, OBJ_help_tab)
     tab.title = ds_list_find_value(title_listid, i)
     tab.index = i
+    tab.margin = margin
 }
 
 instance_create(room_width - 128, room_height - 64, OBJ_done_button)
@@ -92,6 +119,52 @@ ds_list_destroy(body_listid)
         </arguments>
       </action>
     </event>
+    <event eventtype="5" enumb="40">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scroll_offset += 10
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="38">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scroll_offset -= 10
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -109,12 +182,75 @@ ds_list_destroy(body_listid)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_alpha(0.5)
+            <string> draw_set_alpha(0.5)
 draw_rectangle(0, 0, room_width, room_height, false)
 draw_set_alpha(1)
 
-str = ds_list_find_value(body_listid, current_disp)
-draw_text(260, 0, str)
+body_str_listid = ds_list_find_value(body_listid, current_disp)
+
+//draw box
+for (cur_y = start_y; cur_y &lt; end_y; cur_y += tile_height) {
+    for (cur_x = start_x; cur_x &lt; end_x; cur_x += tile_width) {
+        if (cur_x == start_x) {
+            if (cur_y == start_y) {
+                draw_sprite(SPR_body, 0, cur_x, cur_y)
+            } else if (cur_y == end_y) {
+                draw_sprite(SPR_body, 6, cur_x, cur_y)
+            } else {
+                draw_sprite(SPR_body, 3, cur_x, cur_y)
+            }
+        } else if (cur_x == end_x) {
+            if (cur_y == start_y) {
+                draw_sprite(SPR_body, 2, cur_x, cur_y)
+            } else if (cur_y == end_y) {
+                draw_sprite(SPR_body, 8, cur_x, cur_y)
+            } else {
+                draw_sprite(SPR_body, 5, cur_x, cur_y)
+            }
+        } else {
+            if (cur_y == start_y) {
+                draw_sprite(SPR_body, 1, cur_x, cur_y)
+            } else if (cur_y == end_y) {
+                draw_sprite(SPR_body, 7, cur_x, cur_y)
+            } else {
+                draw_sprite(SPR_body, 4, cur_x, cur_y)
+            }
+        }
+    }
+}
+
+//draw body text
+draw_set_font(FONT_big)
+y_offset = 0
+row_sep = string_height("A")
+for (i = 0; i &lt; ds_list_size(body_str_listid); i ++) {
+    to_draw = ds_list_find_value(body_str_listid, i)
+    if (is_string(to_draw)) {
+        row_width = end_x - start_x - tile_width
+        draw_text_ext(start_x + tile_width, start_y + tile_height + y_offset + scroll_offset, 
+                to_draw, row_sep, row_width)
+        y_offset += string_height_ext(to_draw, row_sep, row_width)
+    } else {
+        draw_x = start_x + tile_height
+        draw_y = start_y + tile_height + y_offset + scroll_offset
+        over_bottom = (draw_y + sprite_get_height(to_draw)) - (end_y - tile_height)
+        over_top = (start_y + tile_height) - draw_y
+        if (over_bottom and over_bottom &lt; sprite_get_height(to_draw)) {
+            //off bottom of box, crop
+            bottom = sprite_get_height(to_draw) - over_bottom
+            draw_sprite_part(to_draw, 0, 0, 0, sprite_get_width(to_draw),
+                             bottom, draw_x, draw_y)
+        } else if (over_top and over_top &lt; sprite_get_height(to_draw)) {
+            //off top of box, crop
+            draw_sprite_part(to_draw, 0, 0, over_top, sprite_get_width(to_draw),
+                             sprite_get_height(to_draw) - over_top, draw_x, draw_y + over_top)
+        } else if (over_bottom &lt; 0 and over_top &lt; 0) {
+            draw_sprite(to_draw, 0, draw_x, draw_y)
+        }
+        y_offset += sprite_get_height(to_draw)
+    }
+}
+draw_set_font(FONT_normal)
 </string>
           </argument>
         </arguments>

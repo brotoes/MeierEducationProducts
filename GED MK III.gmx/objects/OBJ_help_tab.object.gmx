@@ -28,6 +28,7 @@
             <string>overlay = instance_find(OBJ_help_overlay, 0)
 index = 0
 title = "NO TITLE"
+margin = 0
 </string>
           </argument>
         </arguments>
@@ -50,7 +51,7 @@ title = "NO TITLE"
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>y = index*sprite_height
+            <string>y = (index + 1)*(sprite_height + margin) + margin
 
 if (instance_number(OBJ_help_overlay) == 0) {
     instance_destroy()
@@ -100,7 +101,7 @@ if (instance_number(OBJ_help_overlay) == 0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self()
+            <string>draw_sprite(SPR_tab, overlay.current_disp != index, x, y)
 draw_text(x + 10, y + 10, title)
 </string>
           </argument>

@@ -56,14 +56,23 @@ alpha = 1
 
 skinny = false
 
+text_x = 0
+text_y = 0
+
 text = true
+auto_ind = false
 cur_num = 50
+last_num = cur_num
+first = true
+second = false
 
 col_count = 4
 text_colors[0] = c_red
 text_colors[1] = c_orange
 text_colors[2] = c_yellow
 text_colors[3] = c_green
+
+font = FONT_big
 </string>
           </argument>
         </arguments>
@@ -97,6 +106,32 @@ if (fill &gt; visualized) {
     if (fill &gt; visualized) {
         visualized = fill
     }
+}
+
+dmg = last_num - cur_num
+if (dmg != 0 and auto_ind and not first and not second) {
+    last_num = cur_num
+    ind = instance_create(text_x, text_y, OBJ_floating_number)
+    draw_set_font(ind.font)
+    ind_w = string_width(string(dmg))
+    width = string_width(string(cur_num))
+    
+    ind.x = text_x
+    
+    ind.value = string(dmg)
+    if (dmg &gt;= 0) {
+        ind.color = c_red
+    } else {
+        ind.color = c_blue
+    }
+    draw_set_font(FONT_normal)
+} else if (auto_ind and first) {
+    first = false
+    second = true
+    last_num = cur_num
+} else if (second) {
+    second = false
+    last_num = cur_num
 }
 </string>
           </argument>
@@ -174,19 +209,24 @@ for (i=1; i &lt; seg_count - 1; i ++) {
 draw_sprite(SPR_meter, 2 + 3*skinny, x_offset + (seg_count-1)*spr_width, y)
 
 //draw number
-draw_set_font(FONT_big)
-str = string(cur_num)
-divide = 2 + 2*skinny
-body_color = c_black
-for (i = col_count - 1; i &gt;= 0; i --) {
-    if (visualized &lt;= (i + 1)*(1/col_count)) {
-        body_color = text_colors[i]
+if (text) {
+    draw_set_font(font)
+    str = string(cur_num)
+    divide = 2 + 2*skinny
+    body_color = c_black
+    for (i = col_count - 1; i &gt;= 0; i --) {
+        if (visualized &lt;= (i + 1)*(1/col_count)) {
+            body_color = text_colors[i]
+        }
     }
+    draw_set_halign(fa_center)
+    draw_set_valign(fa_middle)
+    text_x = x + (bar_end - bar_start)/2
+    text_y = y + sprite_get_height(SPR_meter)/divide
+    draw_text_outlined(text_x, text_y, str, body_color, c_black)
 }
-draw_text_outlined(x + (bar_end - bar_start)/2,
-                y + sprite_get_height(SPR_meter)/divide - string_height(str)/2,
-                str, body_color, c_black)
-
+draw_set_halign(fa_left)
+draw_set_valign(fa_top)
 draw_set_color(c_black)
 draw_set_alpha(1)
 

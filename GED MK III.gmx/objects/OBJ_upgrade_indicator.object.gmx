@@ -29,12 +29,16 @@
 draw_set_font(FONT_big)
 draw_set_color(c_green)
 
-text_x = x + sprite_width/2 - string_width(string(level))/2
-text_y = y + sprite_height/2 - string_height(string(level))/2
+draw_set_halign(fa_center)
+draw_set_valign(fa_middle)
+text_x = x + sprite_width/2
+text_y = y + sprite_height/2
 
 draw_text(text_x, text_y, string(level))
 draw_set_color(c_black)
 draw_set_font(FONT_normal)
+draw_set_halign(fa_left)
+draw_set_valign(fa_top)
 </string>
           </argument>
         </arguments>

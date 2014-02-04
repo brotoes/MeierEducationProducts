@@ -76,6 +76,7 @@ bar_overlap = 32
 meter_hp = instance_create(x, y + height - bar_overlap, OBJ_meter)
 meter_hp.length = width
 meter_hp.skinny = true
+meter_hp.text = false
 
 name = "Enemy Parent"
 
@@ -234,52 +235,6 @@ if (anim_heal) {
     flash = flash_time
     flash_color = C_HEAL
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="39">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>stagger_shrink += 0.01
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="37">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>stagger_shrink -= 0.01
 </string>
           </argument>
         </arguments>
@@ -506,7 +461,7 @@ if (battle_controller.target == id) {
                 x + sprite_width/2 - sprite_get_width(SPR_elem_select)/2,
                 max(y - sprite_get_height(SPR_elem_select)/2 - bounce_offset, 0))
 }
-if (mouseover) {
+if (mouseover and instance_number(OBJ_battle_overlay_parent) == 0) {
     draw_set_alpha(0.8)
     draw_set_blend_mode(bm_add)
     draw_sprite(SPR_elem_select, primary_element,

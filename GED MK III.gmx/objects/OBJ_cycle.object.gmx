@@ -232,12 +232,14 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
         //perform element specific actions
         switch (last_played) {
             case ELEMENT_FIRE: {
-                if (persistent_variables.upgrade[ELEMENT_FIRE] &gt;= 9) {
+                //uncomment to damage all enemies at max level
+                /*if (persistent_variables.upgrade[ELEMENT_FIRE] &gt;= 9) {
                     //make list of splash targets
                     ds_list_copy(splash_listid, battle_controller.enemy_listid)
                     del_ind = ds_list_find_index(splash_listid, target)
                     ds_list_delete(splash_listid, del_ind)
-                } else if (persistent_variables.upgrade[ELEMENT_FIRE] &gt;= 6) {
+                } else */
+                if (persistent_variables.upgrade[ELEMENT_FIRE] &gt;= 6) {
                     //make list of splash targets
                     middle_ind = ds_list_find_index(battle_controller.enemy_listid, target)
                     if (middle_ind != 0) {
@@ -302,7 +304,7 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
         }
 
         //apply damage to target object
-        total_damage = floor(total_damage)
+        total_damage = battle_round(total_damage)
         target.hp_current -= total_damage
         if (target.hp_current &gt; target.hp_total) {
             target.hp_current = target.hp_total
@@ -324,7 +326,7 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
         }
         
         //apply splash damage
-        splash_damage = abs(floor(total_damage*SPLASH_MULT))
+        splash_damage = abs(battle_round(total_damage*SPLASH_MULT))
         for (i = 0; i &lt; ds_list_size(splash_listid); i ++) {
             splash_target = ds_list_find_value(splash_listid, i)
             splash_target.hp_current -= splash_damage
