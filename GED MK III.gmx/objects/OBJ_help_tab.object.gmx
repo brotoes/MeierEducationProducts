@@ -79,6 +79,7 @@ if (instance_number(OBJ_help_overlay) == 0) {
           <argument>
             <kind>1</kind>
             <string>overlay.current_disp = index
+overlay.scroll_offset = 0
 </string>
           </argument>
         </arguments>

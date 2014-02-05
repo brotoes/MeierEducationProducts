@@ -38,6 +38,9 @@ start_y = margin
 end_x = room_width - margin
 end_y = room_height - margin
 scroll_offset = 0
+row_width = end_x - start_x - tile_width*2
+last_mouse_y = mouse_y
+max_y_offset = 0
 
 //load data from help.ini
 title_listid = ds_list_create()
@@ -68,7 +71,6 @@ for (i = 0; i &lt; ds_list_size(title_listid); i ++) {
                 loop = false
             } else {
                 spr = ds_map_find_value(pers_vars.sprite_mapid, "SPR_" + str)
-                show_debug_message(str)
                 ds_list_add(next_body, spr)
             }
         } else {
@@ -80,6 +82,25 @@ for (i = 0; i &lt; ds_list_size(title_listid); i ++) {
 }
 
 ini_close()
+
+//modify body text to fit width
+draw_set_font(FONT_big)
+for (i = 0; i &lt; ds_list_size(body_listid); i ++) {
+    cur_listid = ds_list_find_value(body_listid, i)
+    for (j = 0; j &lt; ds_list_size(cur_listid); j ++) {
+        str = ds_list_find_value(cur_listid, j)
+        if (is_string(str)) {
+            shorts_listid = split_string_w(str, row_width)
+            ds_list_delete(cur_listid, j)
+            for (k = 0; k &lt; ds_list_size(shorts_listid); k ++) {
+                ds_list_insert(cur_listid, j + k, ds_list_find_value(shorts_listid, k))
+            }
+            j += k + 1
+            ds_list_destroy(shorts_listid)
+        }
+    }
+}
+draw_set_font(FONT_normal)
 
 //spawn tabs
 for (i = 0; i &lt; ds_list_size(title_listid); i ++) {
@@ -119,7 +140,7 @@ ds_list_destroy(body_listid)
         </arguments>
       </action>
     </event>
-    <event eventtype="5" enumb="40">
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -136,13 +157,16 @@ ds_list_destroy(body_listid)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scroll_offset += 10
+            <string>if (mouse_button == mb_left and mouse_x &gt;= start_x and mouse_x &lt;= end_x) {
+    scroll_offset += mouse_y - last_mouse_y
+}
+last_mouse_y = mouse_y
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="5" enumb="38">
+    <event eventtype="6" enumb="56">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -159,7 +183,13 @@ ds_list_destroy(body_listid)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scroll_offset -= 10
+            <string>if (scroll_offset &gt; 0) {
+    scroll_offset = 0
+}
+
+if (scroll_offset &lt; end_y - tile_height*2 - max_y_offset - 100) {
+    scroll_offset = end_y - tile_height*2 - max_y_offset - 100
+}
 </string>
           </argument>
         </arguments>
@@ -189,47 +219,25 @@ draw_set_alpha(1)
 body_str_listid = ds_list_find_value(body_listid, current_disp)
 
 //draw box
-for (cur_y = start_y; cur_y &lt; end_y; cur_y += tile_height) {
-    for (cur_x = start_x; cur_x &lt; end_x; cur_x += tile_width) {
-        if (cur_x == start_x) {
-            if (cur_y == start_y) {
-                draw_sprite(SPR_body, 0, cur_x, cur_y)
-            } else if (cur_y == end_y) {
-                draw_sprite(SPR_body, 6, cur_x, cur_y)
-            } else {
-                draw_sprite(SPR_body, 3, cur_x, cur_y)
-            }
-        } else if (cur_x == end_x) {
-            if (cur_y == start_y) {
-                draw_sprite(SPR_body, 2, cur_x, cur_y)
-            } else if (cur_y == end_y) {
-                draw_sprite(SPR_body, 8, cur_x, cur_y)
-            } else {
-                draw_sprite(SPR_body, 5, cur_x, cur_y)
-            }
-        } else {
-            if (cur_y == start_y) {
-                draw_sprite(SPR_body, 1, cur_x, cur_y)
-            } else if (cur_y == end_y) {
-                draw_sprite(SPR_body, 7, cur_x, cur_y)
-            } else {
-                draw_sprite(SPR_body, 4, cur_x, cur_y)
-            }
-        }
+for (cur_y = start_y + tile_height; cur_y &lt; end_y - tile_height; cur_y += tile_height) {
+    for (cur_x = start_x + tile_width; cur_x &lt; end_x - tile_width; cur_x += tile_width) {
+        draw_sprite(SPR_body, 4, cur_x, cur_y) 
     }
 }
 
 //draw body text
 draw_set_font(FONT_big)
 y_offset = 0
-row_sep = string_height("A")
 for (i = 0; i &lt; ds_list_size(body_str_listid); i ++) {
     to_draw = ds_list_find_value(body_str_listid, i)
     if (is_string(to_draw)) {
-        row_width = end_x - start_x - tile_width
-        draw_text_ext(start_x + tile_width, start_y + tile_height + y_offset + scroll_offset, 
-                to_draw, row_sep, row_width)
-        y_offset += string_height_ext(to_draw, row_sep, row_width)
+        text_x = start_x + tile_width
+        text_y = start_y + tile_height + y_offset + scroll_offset
+        next_offset = string_height(to_draw)
+        if (text_y + next_offset &lt; end_y and text_y &gt; start_y) {
+            draw_text(text_x, text_y, to_draw)
+        }
+        y_offset += next_offset
     } else {
         draw_x = start_x + tile_height
         draw_y = start_y + tile_height + y_offset + scroll_offset
@@ -250,7 +258,31 @@ for (i = 0; i &lt; ds_list_size(body_str_listid); i ++) {
         y_offset += sprite_get_height(to_draw)
     }
 }
+max_y_offset = max(y_offset, max_y_offset)
 draw_set_font(FONT_normal)
+
+//draw outline of box
+draw_sprite(SPR_body, 0, start_x, start_y)
+draw_sprite(SPR_body, 2, end_x - tile_width, start_y)
+draw_sprite(SPR_body, 6, start_x, end_y - tile_height)
+draw_sprite(SPR_body, 8, end_x - tile_width, end_y - tile_height)
+
+cur_y = start_y
+for(cur_x = start_x + tile_width; cur_x &lt;= end_x - tile_width*2; cur_x ++) {
+    draw_sprite(SPR_body, 1, cur_x, cur_y)
+}
+cur_x = start_x
+for(cur_y = start_y + tile_height; cur_y &lt;= end_y - tile_height*2; cur_y ++) {
+    draw_sprite(SPR_body, 3, cur_x, cur_y)
+}
+cur_x = end_x - tile_width
+for(cur_y = start_y + tile_height; cur_y &lt;= end_y - tile_height*2; cur_y ++) {
+    draw_sprite(SPR_body, 5, cur_x, cur_y)
+}
+cur_y = end_y - tile_height
+for(cur_x = start_x + tile_width; cur_x &lt;= end_x - tile_width*2; cur_x ++) {
+    draw_sprite(SPR_body, 7, cur_x, cur_y)
+}
 </string>
           </argument>
         </arguments>
