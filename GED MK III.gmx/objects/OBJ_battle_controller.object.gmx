@@ -231,7 +231,6 @@ while (whose_turn == 0 and ds_list_size(queue_listid) &gt; 0 and screen_space &g
     enemy_size = sprite_get_bbox_right(new_enemy.sprite_index) - 
                     sprite_get_bbox_left(new_enemy.sprite_index)
     new_enemy.successor = ds_list_find_value(succession_listid, 0)
-    new_enemy.anim_heal = true
     new_enemy.turn_priority = instance_number(OBJ_enemy_parent)
     
     //maintain lists

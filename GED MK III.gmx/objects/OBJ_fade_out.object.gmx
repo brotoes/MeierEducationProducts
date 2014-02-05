@@ -67,7 +67,6 @@ controller.used_space -= sprite_get_bbox_right(fade_sprite) - sprite_get_bbox_le
 
 if (successor != OBJ_null) {
     enemy = instance_create(x, y, successor)
-    enemy.anim_heal = true
 }
 </string>
           </argument>

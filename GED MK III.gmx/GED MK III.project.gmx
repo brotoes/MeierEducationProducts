@@ -182,6 +182,7 @@
       <sprite>sprites\SPR_invis_cycle</sprite>
       <sprite>sprites\SPR_overlay</sprite>
       <sprite>sprites\SPR_indicator</sprite>
+      <sprite>sprites\SPR_action</sprite>
     </sprites>
     <sprites name="ailments">
       <sprite>sprites\SPR_ailpoison</sprite>

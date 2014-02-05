@@ -67,6 +67,9 @@ stagger_shrink = 0.15
 stagger_index = ds_list_find_index(battle_controller.enemy_listid, id)
 stagger = false
 shadow_alpha = 0.5
+spawn_time = 30
+spawn_counter = 0
+anim_spawn = true
 
 //this is used to determine damages
 primary_element = ELEMENT_NULL
@@ -211,7 +214,7 @@ if (ds_list_find_value(battle_controller.enemy_listid, battle_controller.whose_t
 }
 
 //step animation
-if (instance_number(OBJ_battle_overlay_parent) == 0) {
+if (instance_number(OBJ_battle_overlay_parent) == 0 and not anim_spawn) {
     animation_counter ++
 }
 
@@ -390,6 +393,14 @@ if (stagger) {
     y -= stagger_amnt*(stagger_index mod 2)
     depth = stagger_index mod 2
 }
+scale = 1
+scale_xoffset = 0
+scale_yoffset = 0
+if (stagger) {
+    scale = 1 - (stagger_index mod 2)*stagger_shrink
+    scale_xoffset = ((sprite_width*stagger_shrink)/2)*(stagger_index mod 2)
+    scale_yoffset = (sprite_height*stagger_shrink)*(stagger_index mod 2)
+}
 
 //Change variables. This doesn't need to be in draw, but it was
 //convenient to put it here, at the time.
@@ -420,58 +431,78 @@ shadow_bottom = y + height + 10
 draw_ellipse(shadow_left, shadow_top, shadow_right, shadow_bottom, false)
 draw_set_alpha(1)
 draw_set_color(c_black)
-
-                
+               
 //apply height adjustment
 y += adjust_y
 
-scale = 1
-scale_xoffset = 0
-scale_yoffset = 0
-if (stagger) {
-    scale = 1 - (stagger_index mod 2)*stagger_shrink
-    scale_xoffset = ((sprite_width*stagger_shrink)/2)*(stagger_index mod 2)
-    scale_yoffset = (sprite_height*stagger_shrink)*(stagger_index mod 2)
-}
-
-//draw self
-
-draw_sprite_ext(sprite_index, 0, x + scale_xoffset, y + scale_yoffset, scale, scale, 0, c_white, 1)
-draw_sprite_ext(sprite_index, 1, x + scale_xoffset, y + scale_yoffset, scale, scale, 0, flash_color, flash/flash_time)
-
-//draw ailments
-if (stun) {
-    draw_sprite(SPR_ailstun, floor(animation_counter/10), x + ail_x, y + ail_y)
-}
-if (poison) {
-    if (stun) {
-        draw_sprite(SPR_ailpoison, floor(animation_counter/10),
-            x + ail_x + sprite_get_width(SPR_ailstun), y + ail_y)
-    } else {
-        draw_sprite(SPR_ailpoison, floor(animation_counter/10), x + ail_x, y + ail_y)
-    }
-}
-
-//draw selection indicator
-bounce_counter ++
-theta = bounce_counter/bounce_time
-bounce_offset = max(sin(theta), sin(theta+pi))*bounce_distance
-if (battle_controller.target == id) {
-    draw_sprite(SPR_elem_select, primary_element,
-                x + sprite_width/2 - sprite_get_width(SPR_elem_select)/2,
-                max(y - sprite_get_height(SPR_elem_select)/2 - bounce_offset, 0))
-}
-if (mouseover and instance_number(OBJ_battle_overlay_parent) == 0) {
-    draw_set_alpha(0.8)
+if (anim_spawn) {
+    //spawn animation
+    part_height = sprite_height*(spawn_counter/spawn_time)
+    part_top = sprite_height - part_height
+    draw_sprite_part_ext(sprite_index, 0, 0, part_top, sprite_width, part_height,
+          x + scale_xoffset, y + scale_yoffset + part_top*scale, scale, scale, c_white, 1)
     draw_set_blend_mode(bm_add)
-    draw_sprite(SPR_elem_select, primary_element,
-                x + sprite_width/2 - sprite_get_width(SPR_elem_select)/2,
-                max(y - sprite_get_height(SPR_elem_select)/2 - bounce_offset, 0))
+    dark = make_color_rgb(75, 75, 75)
+    draw_sprite_part_ext(sprite_index, 1, 0, 0, sprite_width, part_top,
+                x + scale_xoffset, y + scale_yoffset, scale, scale, dark, 1)
+    for (i = 0; i &lt; 30; i ++) {
+        glow_height =  i*(1-spawn_counter/spawn_time)
+        if (glow_height + part_top &gt; sprite_height) {
+            glow_height = sprite_height - part_top
+        }
+        draw_sprite_part_ext(sprite_index, 0, 0, part_top, sprite_width, glow_height,
+            x + scale_xoffset - sprite_width*i/200, 
+            y + scale_yoffset + part_top*scale, scale + i/100, scale, c_white, 1)
+    }
+    //for (i = 0; i &lt; sprite_height*scale; i ++) {
+    //    draw_sprite_part_ext(sprite_index, 1, 0, part_top, sprite_width, max(part_height - i, 0),
+    //        x + scale_xoffset, y + scale_yoffset + part_top*scale, scale, scale, dark, 1)
+    //}
     draw_set_blend_mode(bm_normal)
-    draw_set_alpha(1)
-}
-if (not mouseover and not battle_controller.target == id) {
-    bounce_counter = 0
+    if (spawn_counter &gt;= spawn_time) {
+        anim_spawn = false
+    } else {
+        spawn_counter ++
+    }
+} else {
+    //draw self
+    draw_sprite_ext(sprite_index, 0, x + scale_xoffset, y + scale_yoffset, scale, scale, 0, c_white, 1)
+    draw_sprite_ext(sprite_index, 1, x + scale_xoffset, y + scale_yoffset, scale, scale, 0, flash_color, flash/flash_time)
+
+    //draw ailments
+    if (stun) {
+        draw_sprite(SPR_ailstun, floor(animation_counter/10), x + ail_x, y + ail_y)
+    }
+    if (poison) {
+        if (stun) {
+            draw_sprite(SPR_ailpoison, floor(animation_counter/10),
+                x + ail_x + sprite_get_width(SPR_ailstun), y + ail_y)
+        } else {
+            draw_sprite(SPR_ailpoison, floor(animation_counter/10), x + ail_x, y + ail_y)
+        }
+    }
+
+    //draw selection indicator
+    bounce_counter ++
+    theta = bounce_counter/bounce_time
+    bounce_offset = max(sin(theta), sin(theta+pi))*bounce_distance
+    if (battle_controller.target == id) {
+        draw_sprite(SPR_elem_select, primary_element,
+                    x + sprite_width/2 - sprite_get_width(SPR_elem_select)/2,
+                    max(y - sprite_get_height(SPR_elem_select)/2 - bounce_offset, 0))
+    }
+    if (mouseover and instance_number(OBJ_battle_overlay_parent) == 0) {
+        draw_set_alpha(0.8)
+        draw_set_blend_mode(bm_add)
+        draw_sprite(SPR_elem_select, primary_element,
+                    x + sprite_width/2 - sprite_get_width(SPR_elem_select)/2,
+                    max(y - sprite_get_height(SPR_elem_select)/2 - bounce_offset, 0))
+        draw_set_blend_mode(bm_normal)
+        draw_set_alpha(1)
+    }
+    if (not mouseover and not battle_controller.target == id) {
+        bounce_counter = 0
+    }
 }
 </string>
           </argument>
