@@ -124,10 +124,6 @@ if (previous_element_count &lt; element_count) {
         element_levels[card.element] = 1
         last_played = card.element
         action_bar.points += 1
-        if (card.element == ELEMENT_WATER) {
-            //uncomment if ceil is not approved of
-            //action_bar.points -= 0.5
-        }
     } else if ((ds_list_find_value(elements_listid, element_count - 2).element + 1) mod ELEMENT_NULL
         == card.element) {
         //valid selection
@@ -135,9 +131,6 @@ if (previous_element_count &lt; element_count) {
                                         (ELEMENT_NULL - 1)) mod ELEMENT_NULL] + 1
         last_played = card.element
         action_bar.points += 1
-        if (card.element == ELEMENT_WATER) {
-            action_bar.points -= ceil(0.5*element_levels[ELEMENT_WATER])
-        }
     } else {
         //invalid selection
         card.selected = false

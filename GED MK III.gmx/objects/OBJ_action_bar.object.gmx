@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>points = 0
 prev_points = 0
+water_points = 0
+
 width = 64
 flash = 0
 flash_time = 10
@@ -38,6 +40,10 @@ bg_color = c_black
 flash_color = c_red
 
 battle_controller = instance_find(OBJ_battle_controller, 0)
+cycle = instance_find(OBJ_cycle, 0)
+pers_vars = instance_find(OBJ_persistent_variables, 0)
+
+element_selection = ELEMENT_NULL
 </string>
           </argument>
         </arguments>
@@ -64,7 +70,25 @@ battle_controller = instance_find(OBJ_battle_controller, 0)
     battle_controller.whose_turn ++
     points = 0
     prev_points = 0
-} 
+}
+
+if (cycle.last_played != element_selection) {
+    if (pers_vars.upgrade[ELEMENT_WATER] &gt;= 3) {
+        if (cycle.last_played == ELEMENT_WATER) {
+            //take points from cycle
+            water_points = ceil(cycle.element_levels[ELEMENT_WATER]*0.5)
+            points -= water_points
+            if (points &lt; 0) {
+                points = 0
+            }
+        } else if (element_selection == ELEMENT_WATER) {
+            if (points &gt; 0) {
+                points += water_points
+            }
+        }
+        element_selection = cycle.last_played
+    }
+}
 </string>
           </argument>
         </arguments>
