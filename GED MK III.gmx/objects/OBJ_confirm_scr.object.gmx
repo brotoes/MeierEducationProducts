@@ -28,6 +28,7 @@
             <string>pers_vars = instance_find(OBJ_persistent_variables, 0)
 
 gold = pers_vars.gold
+enough_gold = true
 //set these when creating an instance
 element = ELEMENT_NULL
 cost = 0
@@ -46,6 +47,10 @@ text_color = c_blue
 
 main_col = c_blue
 outline_col = c_black
+
+insuf_main_col = c_red
+insuf_outline_col = c_black
+insuf_block_col = c_purple
 
 //derived drawing variables
 bg_l = margin
@@ -96,7 +101,7 @@ icon_y = (desc_b - desc_t)/2 + desc_t
     mouse_y &lt;= but_b and mouse_y &gt;= but_t) {
     instance_destroy()
 } else if (mouse_x &lt;= desc_r and mouse_x &gt;= buy_l and
-    mouse_y &lt;= but_b and mouse_y &gt;= but_t) {
+    mouse_y &lt;= but_b and mouse_y &gt;= but_t and enough_gold) {
     pers_vars.upgrade[element] ++
     pers_vars.gold -= cost
     instance_destroy()
@@ -133,12 +138,19 @@ draw_set_alpha(overlay_alpha)
 draw_rectangle(ind_l, desc_t, ind_r, desc_b, false)
 draw_rectangle(desc_l, desc_t, desc_r, desc_b, false)
 draw_rectangle(ind_l, but_t, can_r, but_b, false)
+if (not enough_gold) {
+    draw_set_color(insuf_block_col)
+}
 draw_rectangle(buy_l, but_t, desc_r, but_b, false)
 //draw overlay outlines
 draw_set_alpha(1)
+draw_set_color(overlay_color)
 draw_rectangle(ind_l, desc_t, ind_r, desc_b, true)
 draw_rectangle(desc_l, desc_t, desc_r, desc_b, true)
 draw_rectangle(ind_l, but_t, can_r, but_b, true)
+if (not enough_gold) {
+    draw_set_color(insuf_block_col)
+}
 draw_rectangle(buy_l, but_t, desc_r, but_b, true)
 
 //draw indicators
@@ -156,9 +168,15 @@ buy_str = "Buy: " + string(cost) + "z"
 draw_text_outlined_shadow((can_r - ind_l)/2 + ind_l - string_width(cancel_str)/2,
                             (but_b - but_t)/2 + but_t - string_height(cancel_str)/2,
                             cancel_str, main_col, outline_col)
-draw_text_outlined_shadow((desc_r - buy_l)/2 + buy_l - string_width(buy_str)/2,
-                            (but_b - but_t)/2 + but_t - string_height(buy_str)/2,
-                            buy_str, main_col, outline_col)
+if (enough_gold) {
+    draw_text_outlined_shadow((desc_r - buy_l)/2 + buy_l - string_width(buy_str)/2,
+                                (but_b - but_t)/2 + but_t - string_height(buy_str)/2,
+                                buy_str, main_col, outline_col)
+} else {
+    draw_text_outlined_shadow((desc_r - buy_l)/2 + buy_l - string_width(buy_str)/2,
+                                (but_b - but_t)/2 + but_t - string_height(buy_str)/2,
+                                buy_str, insuf_main_col, insuf_outline_col)
+}
 //draw description
 draw_set_font(FONT_big)
 draw_set_color(main_col)

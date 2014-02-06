@@ -108,16 +108,12 @@ ini_close()
         enough_gold = persistent_variables.gold &gt;= cost
     }
     if (element != ELEMENT_NULL and persistent_variables.upgrade[element] &lt; MAX_LEVEL) {
-        if (enough_gold) {
-
-            confirm = instance_create(0, 0, OBJ_confirm_scr)
-            confirm.element = element
-            confirm.level = persistent_variables.upgrade[element] + 1
-            confirm.cost = cost
-            confirm.description = descriptions[element, confirm.level]
-        } else {
-            gold_ind.flash = gold_ind.flash_time
-        }
+        confirm = instance_create(0, 0, OBJ_confirm_scr)
+        confirm.element = element
+        confirm.level = persistent_variables.upgrade[element] + 1
+        confirm.cost = cost
+        confirm.description = descriptions[element, confirm.level]
+        confirm.enough_gold = enough_gold
     }
 }
 </string>

@@ -205,9 +205,6 @@ if (point_distance(mouse_x, mouse_y, center_x, center_y) &lt; radius + 20) {
     click = true
 }
 
-//test for opened menu
-//TODO
-
 //play cycle if clicked
 if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_open) {
     //get target object
@@ -272,11 +269,11 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
             } break
             case ELEMENT_METAL: {
                 if (persistent_variables.upgrade[ELEMENT_METAL] &gt;= 3) {
-                    target.stun = 1
+                    target.stun = max(1, target.stun)
                 } else if (persistent_variables.upgrade[ELEMENT_METAL] &gt;= 6) {
-                    target.stun = 2
+                    target.stun = max(2, target.stun)
                 } else if (persistent_variables.upgrade[ELEMENT_METAL] &gt;= 9) {
-                    target.stun = 3
+                    target.stun = max(3, target.stun)
                 }
             } break
             case ELEMENT_WATER: {
@@ -284,10 +281,10 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
             } break
             case ELEMENT_WOOD: {
                 if (persistent_variables.upgrade[ELEMENT_WOOD] &gt;= 3) {
-                    target.poison = element_levels[last_played]
+                    target.poison += element_levels[last_played]
                 }
                 if (persistent_variables.upgrade[ELEMENT_WOOD] &gt;= 6) {
-                    target.leech = element_levels[last_played]
+                    target.leech += element_levels[last_played]
                 }
             }
         }
@@ -328,8 +325,21 @@ if (click &amp;&amp; target_exists &amp;&amp; card_selected &amp;&amp; not menu_
         //apply splash damage
         splash_damage = abs(battle_round(total_damage*SPLASH_MULT))
         for (i = 0; i &lt; ds_list_size(splash_listid); i ++) {
+            multiplier = DMG_NORMAL
             splash_target = ds_list_find_value(splash_listid, i)
+            
+            if ((last_played + 2) mod ELEMENT_NULL == splash_target.primary_element) {
+                multiplier = DMG_COUNTER
+            } else if ((last_played + 1) mod ELEMENT_NULL == splash_target.primary_element) {
+                multiplier = DMG_FEED
+            } else if ((last_played + 3) mod ELEMENT_NULL == splash_target.primary_element) {
+                multiplier = DMG_INSULT
+            }
+            
+            splash_damage *= multiplier
+            splash_damage = battle_round(splash_damage)
             splash_target.hp_current -= splash_damage
+            
             if (splash_target.hp_current &gt; splash_target.hp_total) {
                 splash_target.hp_current = splash_target.hp_total
             } else if (splash_target.hp_current &lt; 0) {

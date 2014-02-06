@@ -50,7 +50,7 @@ animate_speed = 0.05
 
 //amount in the bar starts (to account for rounded sprites
 bar_in = 4
-vert_in = 2
+vert_in = 1
 
 alpha = 1
 
@@ -155,8 +155,7 @@ if (dmg != 0 and auto_ind and not first and not second) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//TODO: animate again
-//bound fill
+            <string>//bound fill
 if (fill &lt; 0) {
     fill = 0
 }
@@ -229,7 +228,6 @@ draw_set_halign(fa_left)
 draw_set_valign(fa_top)
 draw_set_color(c_black)
 draw_set_alpha(1)
-
 </string>
           </argument>
         </arguments>

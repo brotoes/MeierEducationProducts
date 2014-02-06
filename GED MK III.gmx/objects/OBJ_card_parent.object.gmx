@@ -45,6 +45,8 @@ y = enemy_floor.y + floor_offset
 dest_x = x
 dest_y = y
 anim_speed = 16
+
+ignore_click = 0
 </string>
           </argument>
         </arguments>
@@ -107,6 +109,10 @@ if (y &lt; dest_y) {
 
 x = floor(x)
 y = floor(y)
+
+if (ignore_click) {
+    ignore_click --
+}
 </string>
           </argument>
         </arguments>
@@ -154,7 +160,7 @@ persistent_variables.upgrade[element] = persistent_variables.upgrade[element] % 
           <argument>
             <kind>1</kind>
             <string>selectable = instance_number(OBJ_battle_overlay_parent) == 0 and 
-                battle.whose_turn == 0
+                battle.whose_turn == 0 and not ignore_click
 if (selected and selectable) {
     selected = false
     /*remove card from cycle*/

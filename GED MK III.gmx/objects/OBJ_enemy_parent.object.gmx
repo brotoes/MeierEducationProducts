@@ -391,8 +391,10 @@ y = floor_inst.y - height - 30
 //if there are lots of enemies on the screen, stagger them.
 if (stagger) {
     y -= stagger_amnt*(stagger_index mod 2)
-    depth = stagger_index mod 2
+    depth = (stagger_index mod 2)*10
 }
+meter_hp.depth = depth - 1
+
 scale = 1
 scale_xoffset = 0
 scale_yoffset = 0
