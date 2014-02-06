@@ -46,23 +46,23 @@ ini_close()
 
 save_counter = 0
 
-ini_open("gamedata.ini")
+ini_open("gamedata")
 
 //what element level gives what base damage?
 for (i = 0; i &lt;= MAX_LEVEL; i ++) {
     damage[i] = ini_read_real("elemDmg", "dmgAtLevel" + string(i), i)
-    ini_write_real("elemDmg", "dmgAtLevel" + string(i), i)
+    //ini_write_real("elemDmg", "dmgAtLevel" + string(i), i)
 }
 
 //the cost to purchase a given upgrade
 //element levels
 for (i = 0; i &lt;= MAX_LEVEL; i ++) {
     upg_cost[i] = ini_read_real("elemUpgCost", "toLevel" + string(i), 50*i)
-    ini_write_real("elemUpgCost", "toLevel" + string(i), upg_cost[i])
+    //ini_write_real("elemUpgCost", "toLevel" + string(i), upg_cost[i])
 }
 upg_cost[MAX_LEVEL + 1] = ini_read_string("elemUpgCost", 
                             "toLevel" + string(MAX_LEVEL + 1), "--")
-ini_write_string("elemUpgCost", "toLevel" + string(MAX_LEVEL + 1), upg_cost[MAX_LEVEL + 1])
+//ini_write_string("elemUpgCost", "toLevel" + string(MAX_LEVEL + 1), upg_cost[MAX_LEVEL + 1])
 
 //purse levels
 purse_cost[MAX_LEVEL + 1] = ini_read_string("elemUpgCost", 
@@ -70,24 +70,24 @@ purse_cost[MAX_LEVEL + 1] = ini_read_string("elemUpgCost",
 ini_write_string("elemUpgCost", "toLevel" + string(MAX_LEVEL + 1), purse_cost[MAX_LEVEL + 1])
 for (i = 0; i &lt;= MAX_LEVEL; i ++) {
     purse_cost[i] = ini_read_real("purseUpgCost", "toLevel" + string(i), 50*i)
-    ini_write_real("purseUpgCost", "toLevel" + string(i), purse_cost[i])
+    //ini_write_real("purseUpgCost", "toLevel" + string(i), purse_cost[i])
 }
 
                             
 //hp levels
 hp_cost[MAX_LEVEL + 1] = ini_read_string("hpUpgCost", 
                             "toLevel" + string(MAX_LEVEL + 1), "--")
-ini_write_string("hpUpgCost", "toLevel" + string(MAX_LEVEL + 1), hp_cost[MAX_LEVEL + 1])
+//ini_write_string("hpUpgCost", "toLevel" + string(MAX_LEVEL + 1), hp_cost[MAX_LEVEL + 1])
 for (i = 0; i &lt;= MAX_LEVEL; i ++) {
     hp_cost[i] = ini_read_real("hpUpgCost", "toLevel" + string(i), 50*i)
-    ini_write_real("hpUpgCost", "toLevel" + string(i), hp_cost[i])
+    //ini_write_real("hpUpgCost", "toLevel" + string(i), hp_cost[i])
 }
 
 //amount of hp the player will have given a level
 hp_amount[0] = 0
 for (i = 0; i &lt;= MAX_LEVEL; i ++) {
     hp_amount[i] = ini_read_real("hpAmnt", "hpAtLevel" + string(i), 50*(i+1))
-    ini_write_real("hpAmnt", "hpAtLevel" + string(i), hp_amount[i])
+    //ini_write_real("hpAmnt", "hpAtLevel" + string(i), hp_amount[i])
 }
 
 //Object string map
@@ -108,11 +108,11 @@ for (cur_stage = 0; cur_stage &lt; STAGE_COUNT; cur_stage ++) {
     stages[cur_stage] = ds_list_create()
     succession[cur_stage] = ds_list_create()
     num_enemies = ini_read_real("stage" + string(cur_stage), "enemyCount", 2)
-    ini_write_real("stage" + string(cur_stage), "enemyCount", num_enemies)
+    //ini_write_real("stage" + string(cur_stage), "enemyCount", num_enemies)
     for (cur_enemy = 0; cur_enemy &lt; num_enemies; cur_enemy ++) {
         enemy_name = ini_read_string("stage" + string(cur_stage), "enemy" + string(cur_enemy), "tiger")
         successor = ini_read_string("stage" + string(cur_stage), "successor" + string(cur_enemy), "null")
-        ini_write_string("stage" + string(cur_stage), "enemy" + string(cur_enemy), enemy_name)
+        //ini_write_string("stage" + string(cur_stage), "enemy" + string(cur_enemy), enemy_name)
         enemy_name = "OBJ_" + enemy_name
         successor = "OBJ_" + successor
         ds_list_add(succession[cur_stage], ds_map_find_value(enemy_mapid, successor))

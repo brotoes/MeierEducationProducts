@@ -48,7 +48,7 @@ vert_offset = 32
 hor_offset = 64
 
 //load description information for upgrades
-ini_open("desc.ini")
+ini_open("desc")
 //stores strings for describing each level upgrade
 //the first index is the element. the second index is the level
 descriptions[ELEMENT_FIRE, 0] = "text goes here!"
@@ -66,9 +66,9 @@ for (i = ELEMENT_FIRE; i &lt; ELEMENT_NULL; i ++) {
     for(j = 1; j &lt;= MAX_LEVEL; j ++) {
         descriptions[i, j] = ini_read_string(elem_str[i],
                                  "level" + string(j), default_str)
-        if (descriptions[i, j] == default_str) {
-            ini_write_string(elem_str[i], "level" + string(j), default_str)
-        }
+        //if (descriptions[i, j] == default_str) {
+        //    ini_write_string(elem_str[i], "level" + string(j), default_str)
+        //}
     }
 }
 ini_close()

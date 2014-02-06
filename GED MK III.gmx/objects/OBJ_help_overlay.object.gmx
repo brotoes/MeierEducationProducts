@@ -41,12 +41,13 @@ scroll_offset = 0
 row_width = end_x - start_x - tile_width*2
 last_mouse_y = mouse_y
 max_y_offset = 0
+pressed_last = false
 
 //load data from help.ini
 title_listid = ds_list_create()
 body_listid = ds_list_create()
 
-ini_open("help.ini")
+ini_open("help")
 
 //load section titles
 next_title = ini_read_string("titles", "section0", "default")
@@ -157,8 +158,13 @@ ds_list_destroy(body_listid)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_button == mb_left and mouse_x &gt;= start_x and mouse_x &lt;= end_x) {
-    scroll_offset += mouse_y - last_mouse_y
+            <string>if (mouse_check_button(mb_left) and mouse_x &gt;= start_x and mouse_x &lt;= end_x) {
+    if (pressed_last) {
+        scroll_offset += mouse_y - last_mouse_y
+    }
+    pressed_last = true
+} else {
+    pressed_last = false
 }
 last_mouse_y = mouse_y
 </string>
@@ -190,6 +196,12 @@ last_mouse_y = mouse_y
 if (scroll_offset &lt; end_y - tile_height*2 - max_y_offset - 100) {
     scroll_offset = end_y - tile_height*2 - max_y_offset - 100
 }
+
+if (max_y_offset &lt; end_y - tile_height*2) {
+    scroll_offset = 0
+}
+
+show_debug_message(string(max_y_offset))
 </string>
           </argument>
         </arguments>

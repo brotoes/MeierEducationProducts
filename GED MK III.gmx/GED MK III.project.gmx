@@ -5,7 +5,7 @@
   </Configs>
   <datafiles number="4" name="datafiles">
     <datafile>
-      <name>help.ini</name>
+      <name>help</name>
       <exists>-1</exists>
       <size>1453</size>
       <exportAction>2</exportAction>
@@ -22,7 +22,7 @@
       <filename>help.ini</filename>
     </datafile>
     <datafile>
-      <name>desc.ini</name>
+      <name>desc</name>
       <exists>-1</exists>
       <size>1683</size>
       <exportAction>2</exportAction>
@@ -33,13 +33,13 @@
       <store>0</store>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>49385710</CopyToMask>
         </Config>
       </ConfigOptions>
       <filename>desc.ini</filename>
     </datafile>
     <datafile>
-      <name>gamedata.ini</name>
+      <name>gamedata</name>
       <exists>-1</exists>
       <size>2599</size>
       <exportAction>2</exportAction>
