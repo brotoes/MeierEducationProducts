@@ -178,8 +178,7 @@ if (stagger) {
         leech --
     }
 }
-battle_controller.whose_turn = (battle_controller.whose_turn + 1) mod 
-                                (ds_list_size(battle_controller.enemy_listid) + 1)
+battle_controller.whose_turn ++
 </string>
           </argument>
         </arguments>

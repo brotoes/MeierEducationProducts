@@ -28,7 +28,6 @@
             <string>cycle = instance_find(OBJ_cycle, 0)
 action_bar = instance_find(OBJ_action_bar, 0)
 battle_controller = instance_find(OBJ_battle_controller, 0)
-battle_banner = instance_find(OBJ_banner, 0)
 
 anim_speed = 64
 

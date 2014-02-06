@@ -110,6 +110,7 @@ if (victory) {
             sprite_get_height(SPR_got_banner) + margin*5
     cur_x = room_width/2 - sprite_get_width(SPR_earn_banner)/2
     val_rightalign = cur_x + sprite_get_width(SPR_earn_banner) - right_indent
+    /*
     for (i = 0; i &lt; min(ds_list_size(earnstr_listid), anim_counter/line_time); i ++) {
         str = ds_list_find_value(earnstr_listid, i)
         val = ds_list_find_value(earnval_listid, i)
@@ -125,8 +126,8 @@ if (victory) {
         draw_text_outlined_shadow(val_x, cur_y, val, main_col, out_col)
                 
         cur_y += sprite_get_height(SPR_earn_banner) + margin
-    }
-    if (anim_counter/line_time &gt; ds_list_size(earnstr_listid)) {
+    }*/
+    //if (anim_counter/line_time &gt; ds_list_size(earnstr_listid)) {
         //draw premult total
         str = "Earned"
         val = string(gold_earned) + " z"
@@ -155,7 +156,7 @@ if (victory) {
         draw_sprite(SPR_tot_banner, 0, cur_x, cur_y + 10)
         draw_text_outlined_shadow(cur_x + left_indent, cur_y, str, main_col, out_col)
         draw_text_outlined_shadow(val_x, cur_y, val, main_col, out_col)
-    }
+    //}
 } else {
     draw_set_font(FONT_72p)
     str = "Tap to Return"

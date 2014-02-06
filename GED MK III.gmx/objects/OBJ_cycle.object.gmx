@@ -30,7 +30,6 @@ elements_listid = ds_list_create()
 persistent_variables = instance_find(OBJ_persistent_variables, 0)
 battle_controller = instance_find(OBJ_battle_controller, 0)
 action_bar = instance_find(OBJ_action_bar, 0)
-battle_banner = instance_find(OBJ_banner, 0)
 
 //generate data to draw self
 center_x = x + sprite_width/2

@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>persistent_variables = instance_find(OBJ_persistent_variables, 0)
-battle_banner = instance_find(OBJ_banner, 0)
 music_cont = instance_find(OBJ_music_controller, 0)
 stage = 0
 parent_room = room
@@ -57,6 +56,7 @@ final_menu = false
 victory = false
 alarm_set = false
 player_dmg_mult = 1
+turn_end_waiting = false
 
 //number of pixels available to draw enemies in (width)
 screen_space = room_width - (SCR_L_MARGIN + SCR_R_MARGIN)
@@ -102,6 +102,31 @@ ds_list_destroy(queue_listid)
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>ready_to_draw = true
+whose_turn = 0
+turn_end_waiting = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
@@ -142,8 +167,7 @@ ds_list_destroy(queue_listid)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>battle_banner = instance_find(OBJ_banner, 0)
-if (victory) {
+            <string>if (victory) {
     battle_banner.banner = SPR_victory_banner
     music_cont.victory = true
     music_cont.battle_over = true
@@ -192,7 +216,6 @@ if (instance_number(OBJ_enemy_parent) == 0 and not
 
 if (whose_turn != 0) {
     target = OBJ_null
-    ready_to_draw = true
 } else if (ready_to_draw) {
     player_dmg_mult = 1
     ready_to_draw = false
@@ -204,7 +227,13 @@ if (whose_turn != 0) {
 }
 
 //spawn new enemies if queued and space available
-while (whose_turn == 0 and ds_list_size(queue_listid) &gt; 0 and screen_space &gt; used_space) {
+first_loop = true
+while (whose_turn == instance_number(OBJ_enemy_parent) + 1 and 
+        ds_list_size(queue_listid) &gt; 0 and screen_space &gt; used_space) {
+    if (first_loop) {
+        battle_banner.banner = "Reinforcements!"
+        first_loop = false
+    }
     new_enemy = instance_create(0, 0, ds_list_find_value(queue_listid, 0))
     enemy_size = sprite_get_bbox_right(new_enemy.sprite_index) - 
                     sprite_get_bbox_left(new_enemy.sprite_index)
@@ -219,6 +248,12 @@ while (whose_turn == 0 and ds_list_size(queue_listid) &gt; 0 and screen_space &g
     sort(enemy_listid, speed_comp)
     position_enemies(used_space, screen_space, enemy_listid)
 }
+
+if (whose_turn == instance_number(OBJ_enemy_parent) + 1 and not turn_end_waiting) {
+    alarm[2] = 60
+    turn_end_waiting = true
+}
+
 </string>
           </argument>
         </arguments>
