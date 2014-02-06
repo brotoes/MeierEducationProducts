@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>randomize()
 life = irandom(500)
-radius = random(2.5) + 1
+radius = random(5) + 1
 </string>
           </argument>
         </arguments>
@@ -50,7 +50,7 @@ radius = random(2.5) + 1
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>y -= radius
+            <string>y -= radius/2
 life --
 
 if (life &lt;= 0 or y &lt; -radius) {

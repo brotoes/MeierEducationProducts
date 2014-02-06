@@ -3,6 +3,59 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="4" name="datafiles">
+    <datafile>
+      <name>help.ini</name>
+      <exists>-1</exists>
+      <size>1453</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>49385710</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>help.ini</filename>
+    </datafile>
+    <datafile>
+      <name>desc.ini</name>
+      <exists>-1</exists>
+      <size>1683</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>desc.ini</filename>
+    </datafile>
+    <datafile>
+      <name>gamedata.ini</name>
+      <exists>-1</exists>
+      <size>2599</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>gamedata.ini</filename>
+    </datafile>
+  </datafiles>
   <NewExtensions>
     <extension index="0">extensions\Advanced Arrays</extension>
   </NewExtensions>
@@ -154,7 +207,6 @@
       <object>objects\OBJ_action_bar</object>
       <object>objects\OBJ_fade_out</object>
       <object>objects\OBJ_animation</object>
-      <object>objects\OBJ_discrete_meter</object>
       <object>objects\OBJ_meter</object>
       <objects name="battle menu">
         <object>objects\OBJ_skip</object>

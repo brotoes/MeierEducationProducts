@@ -49,8 +49,8 @@
           <argument>
             <kind>1</kind>
             <string>with (overlay) instance_destroy()
-for (i = 0; i &lt; instance_number(OBJ_card_parent); i ++) {
-    card = instance_find(OBJ_card_parent, i)
+for (i = 0; i &lt; instance_number(OBJ_card); i ++) {
+    card = instance_find(OBJ_card, i)
     card.ignore_click = 2
 }
 instance_destroy()
