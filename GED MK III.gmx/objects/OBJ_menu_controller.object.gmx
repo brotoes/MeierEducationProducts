@@ -40,12 +40,6 @@ x1 = x_center - size/2
 x2 = x_center + size/2
 y1 = y_center - size/2
 y2 = y_center + size/2
-        
-//variables to draw sprites for buttons
-x_fight = x_center - sprite_get_width(SPR_fight)
-y_fight = y_center - sprite_get_height(SPR_fight)
-x_shop = x_center + mid - sprite_get_width(SPR_shop)
-y_shop = y_center - sprite_get_height(SPR_shop)
 </string>
           </argument>
         </arguments>
@@ -148,7 +142,7 @@ if (room == menu_room) {
 if (room == menu_room) {
     //draw floaty star thingys
     if (menu = MENU_TITLE) {
-        draw_background(BG_title_text, 0, 0)
+        draw_sprite(SPR_title, 0, room_width/2 - sprite_get_width(SPR_title)/2, 80)
         draw_set_color(c_white)
         draw_set_alpha(cos(animation_counter/10) + 0.5)
         draw_set_font(FONT_big)

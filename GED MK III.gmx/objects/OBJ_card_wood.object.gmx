@@ -26,8 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>event_inherited()
-icon = SPR_icon_wood
-cost = 0
 element = ELEMENT_WOOD
 </string>
           </argument>

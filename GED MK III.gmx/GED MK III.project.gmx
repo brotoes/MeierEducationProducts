@@ -20,61 +20,6 @@
     </sounds>
   </sounds>
   <sprites name="sprites">
-    <sprites name="LEGACY">
-      <sprite>sprites\SPR_DefenseCard</sprite>
-      <sprite>sprites\SPR_CardBackgroundLayout</sprite>
-      <sprite>sprites\SPR_AttackCard</sprite>
-      <sprite>sprites\SPR_AnotherTurnCard</sprite>
-      <sprite>sprites\SPR_DoubleAttack</sprite>
-      <sprite>sprites\SPR_StabCard</sprite>
-      <sprite>sprites\SPR_VerticalCard</sprite>
-      <sprite>sprites\SPR_HorizontalCard</sprite>
-      <sprite>sprites\SPR_Deck</sprite>
-      <sprites name="Buttons">
-        <sprites name="Armor Types">
-          <sprite>sprites\SPR_Ultra_Light_Armor_Button</sprite>
-          <sprite>sprites\SPR_Knitted_Armor_Button</sprite>
-          <sprite>sprites\SPR_Cloth_Armor_Button</sprite>
-          <sprite>sprites\SPR_Leather_Armor_Button</sprite>
-          <sprite>sprites\SPR_Regular_Armor_Button</sprite>
-        </sprites>
-        <sprite>sprites\SPR_Inventory_Button</sprite>
-        <sprite>sprites\SPR_ShuffleDeck</sprite>
-        <sprite>sprites\SPR_Armor_Selection_Store_Button</sprite>
-        <sprite>sprites\SPR_LevelUp</sprite>
-        <sprite>sprites\SPR_ExitButton</sprite>
-        <sprite>sprites\SPR_Store_Button</sprite>
-        <sprite>sprites\SPR_BackToGame</sprite>
-        <sprite>sprites\SPR_Light_Armor_Button</sprite>
-      </sprites>
-      <sprite>sprites\SPR_Coin</sprite>
-      <sprite>sprites\SPR_TextBox</sprite>
-      <sprites name="Level up Icons">
-        <sprite>sprites\SPR_Menu_QuickAttackCard</sprite>
-        <sprite>sprites\SPR_Menu_QuickAttack2Card</sprite>
-        <sprite>sprites\SPR_Menu_Stab1Card</sprite>
-        <sprite>sprites\SCR_Menu_PowerAttack</sprite>
-      </sprites>
-      <sprites name="icons">
-        <sprite>sprites\SPR_card_icon</sprite>
-      </sprites>
-      <sprites name="Example Resources">
-        <sprite>sprites\SPR_cardFace</sprite>
-        <sprite>sprites\SPR_testCardFace</sprite>
-        <sprite>sprites\SPR_knife</sprite>
-        <sprite>sprites\SPR_testCardImage</sprite>
-      </sprites>
-      <sprite>sprites\SPR_inventory</sprite>
-      <sprites name="overworld">
-        <sprite>sprites\cloud</sprite>
-        <sprite>sprites\SPR_level_indicator</sprite>
-        <sprite>sprites\SPR_glow</sprite>
-        <sprite>sprites\SPR_conflict</sprite>
-      </sprites>
-      <sprite>sprites\SPR_fight</sprite>
-      <sprite>sprites\SPR_card_back</sprite>
-      <sprite>sprites\SPR_card_stack</sprite>
-    </sprites>
     <sprites name="shoppe">
       <sprite>sprites\SPR_purse</sprite>
       <sprite>sprites\SPR_heart</sprite>
@@ -88,39 +33,7 @@
     </sprites>
     <sprites name="cards">
       <sprite>sprites\SPR_badges</sprite>
-      <sprite>sprites\SPR_card_fire</sprite>
-      <sprite>sprites\SPR_card_earth</sprite>
-      <sprite>sprites\SPR_card_metal</sprite>
-      <sprite>sprites\SPR_card_water</sprite>
-      <sprite>sprites\SPR_card_wood</sprite>
-      <sprite>sprites\SPR_card_null</sprite>
-      <sprites name="LEGACY">
-        <sprite>sprites\SPR_card_image_slash</sprite>
-        <sprite>sprites\SPR_card_melee</sprite>
-        <sprite>sprites\SPR_card_engineering</sprite>
-        <sprite>sprites\SPR_card_chemistry</sprite>
-        <sprite>sprites\SPR_card_image_template</sprite>
-        <sprite>sprites\SPR_card_image_hbomb</sprite>
-        <sprite>sprites\SPR_card_image_pressure</sprite>
-        <sprite>sprites\SPR_card_image_stab</sprite>
-        <sprite>sprites\SPR_card_image_hydrogen</sprite>
-        <sprites name="icons">
-          <sprite>sprites\SPR_icon_placeholder</sprite>
-          <sprite>sprites\SPR_icon_fire</sprite>
-          <sprite>sprites\SPR_icon_earth</sprite>
-          <sprite>sprites\SPR_icon_metal</sprite>
-          <sprite>sprites\SPR_icon_water</sprite>
-          <sprite>sprites\SPR_icon_wood</sprite>
-          <sprite>sprites\SPR_icon_null</sprite>
-        </sprites>
-        <sprites name="type">
-          <sprite>sprites\SPR_offense</sprite>
-          <sprite>sprites\SPR_defense</sprite>
-          <sprite>sprites\SPR_restore</sprite>
-          <sprite>sprites\SPR_poison</sprite>
-          <sprite>sprites\SPR_burn</sprite>
-        </sprites>
-      </sprites>
+      <sprite>sprites\SPR_card</sprite>
     </sprites>
     <sprites name="enemies">
       <sprite>sprites\SPR_tiger</sprite>
@@ -202,47 +115,16 @@
       <sprite>sprites\SPR_mult_banner</sprite>
       <sprite>sprites\SPR_earn_banner</sprite>
       <sprite>sprites\SPR_tot_banner</sprite>
+      <sprite>sprites\SPR_title</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
-    <backgrounds name="LEGACY">
-      <background>background\BG_store</background>
-      <background>background\BG_old_battlescape</background>
-      <background>background\BG_overworld</background>
-    </backgrounds>
     <background>background\BG_title</background>
-    <background>background\BG_title_text</background>
     <background>background\BG_battlescape</background>
     <background>background\BG_shop</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <scripts name="LEGACY">
-      <script>scripts\SCR_ComboCheck.gml</script>
-      <script>scripts\SCR_QuestionGenerator.gml</script>
-      <script>scripts\SCR_DrawQuestion.gml</script>
-      <script>scripts\SCR_TextBox.gml</script>
-      <script>scripts\SCR_GoldIndicator.gml</script>
-      <script>scripts\SCR_ExperienceBar.gml</script>
-      <script>scripts\SCR_EnemyHealthBar.gml</script>
-      <script>scripts\SCR_MyHealthBar.gml</script>
-      <script>scripts\SCR_ShuffleDeck.gml</script>
-      <script>scripts\SCR_ResetToBattle.gml</script>
-      <script>scripts\SCR_CheckTurnOrder.gml</script>
-      <script>scripts\SCR_CheckConditions.gml</script>
-      <script>scripts\SCR_increase_exp.gml</script>
-      <scripts name="button actions">
-        <script>scripts\SCR_null_action.gml</script>
-        <script>scripts\SCR_play_hand.gml</script>
-        <script>scripts\SCR_combine.gml</script>
-        <script>scripts\SCR_continue.gml</script>
-        <script>scripts\SCR_load.gml</script>
-        <script>scripts\SCR_settings.gml</script>
-      </scripts>
-      <scripts name="enemy AIs">
-        <script>scripts\SCR_AI_sample.gml</script>
-      </scripts>
-    </scripts>
     <script>scripts\get_children.gml</script>
     <script>scripts\draw_text_outlined.gml</script>
     <script>scripts\draw_text_outlined_shadow.gml</script>
@@ -265,6 +147,7 @@
   <objects name="objects">
     <object>objects\OBJ_null</object>
     <objects name="battle">
+      <object>objects\OBJ_card</object>
       <object>objects\OBJ_banner</object>
       <object>objects\OBJ_end_screen</object>
       <object>objects\OBJ_cycle</object>
@@ -327,98 +210,12 @@
       <object>objects\OBJ_done_button</object>
       <object>objects\OBJ_battle_overlay_parent</object>
     </objects>
-    <objects name="cards">
-      <object>objects\OBJ_card_parent</object>
-      <object>objects\OBJ_card_fire</object>
-      <object>objects\OBJ_card_earth</object>
-      <object>objects\OBJ_card_metal</object>
-      <object>objects\OBJ_card_water</object>
-      <object>objects\OBJ_card_wood</object>
-    </objects>
     <objects name="particles">
       <object>objects\OBJ_star_particle</object>
       <object>objects\OBJ_heal_particle</object>
       <object>objects\OBJ_charge_particle</object>
       <object>objects\OBJ_purse_particle</object>
       <object>objects\OBJ_floating_number</object>
-    </objects>
-    <objects name="LEGACY">
-      <objects name="kyle objects">
-        <objects name="Inventory">
-          <object>objects\OBJ_ClothArmor</object>
-          <object>objects\OBJ_LeatherArmor</object>
-          <object>objects\OBJ_KnittedArmor</object>
-          <object>objects\OBJ_LightArmor</object>
-          <object>objects\OBJ_UltraLightArmor</object>
-          <object>objects\OBJ_RegularArmor</object>
-          <object>objects\OBJ_InventoryController</object>
-        </objects>
-        <objects name="Buttons">
-          <object>objects\OBJ_Armor_Selection_Store_Button</object>
-          <object>objects\OBJ_Inventory_Button</object>
-          <object>objects\OBJ_Store_Button</object>
-          <object>objects\OBJ_BackToGame</object>
-          <object>objects\OBJ_ExitButton</object>
-        </objects>
-        <objects name="Store Icons">
-          <object>objects\OBJ_Pets_Button</object>
-          <objects name="Armour Selection">
-            <object>objects\OBJ_Regular_Armor_Button</object>
-            <object>objects\OBJ_Light_Armor_Button</object>
-            <object>objects\OBJ_Ultra_Light_Armor_Button</object>
-            <object>objects\OBJ_Leather_Armor_Button</object>
-            <object>objects\OBJ_Cloth_Armor_Button</object>
-            <object>objects\OBJ_Store_Boots_Button</object>
-            <object>objects\OBJ_Knitted_Armor_Button</object>
-          </objects>
-          <object>objects\OBJ_Weapon_Button</object>
-          <object>objects\OBJ_StorePricesController</object>
-          <object>objects\OBJ_Armour_Button</object>
-        </objects>
-        <objects name="Gameplay Objects">
-          <object>objects\OBJ_LevelUp</object>
-          <object>objects\OBJ_Leveling_CardChoiceParent</object>
-          <object>objects\OBJ_QuestionGenerator</object>
-          <object>objects\OBJ_EnemyAttack2</object>
-          <object>objects\OBJ_ShuffleDeck</object>
-          <object>objects\OBJ_CardBackgroundLayout</object>
-          <object>objects\OBJ_TextInput</object>
-          <object>objects\OBJ_Combo</object>
-        </objects>
-        <objects name="Leveling Up">
-          <object>objects\OBJ_Menu_AnotherTurnCard</object>
-          <object>objects\OBJ_Menu_DoubleAttack</object>
-          <object>objects\OBJ_Menu_Stab1</object>
-        </objects>
-        <objects name="Cards">
-          <object>objects\OBJ_CardParent</object>
-          <object>objects\OBJ_Horiz1</object>
-          <object>objects\OBJ_Vert1</object>
-          <object>objects\OBJ_AnotherTurnCard</object>
-          <object>objects\OBJ_DoubleAttack</object>
-          <object>objects\OBJ_Stab1</object>
-        </objects>
-        <objects name="Message Objects">
-          <object>objects\OBJ_LevelUpMessage1</object>
-          <object>objects\OBJ_NotEnoughGoldMessage</object>
-        </objects>
-      </objects>
-      <object>objects\OBJ_overworld_controller</object>
-      <object>objects\OBJ_inventory</object>
-      <object>objects\OBJ_shop</object>
-      <object>objects\OBJ_gold_display</object>
-      <object>objects\OBJ_merchandise</object>
-      <objects name="overworld">
-        <object>objects\OBJ_stage_indicator</object>
-        <object>objects\OBJ_cloud</object>
-      </objects>
-      <objects name="worlds">
-        <object>objects\OBJ_conflict_indicator</object>
-      </objects>
-      <objects name="examples">
-        <object>objects\OBJ_mod_card_example</object>
-      </objects>
-      <object>objects\OBJ_OLD_end_screen_with_code_I_dont_want_to_throw_out</object>
     </objects>
     <objects name="sprite refs">
       <object>objects\OBJ_ref_parent</object>
@@ -427,25 +224,8 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\menu_room</room>
-    <room>rooms\loot_room</room>
     <room>rooms\store_room</room>
     <room>rooms\battle_room</room>
-    <rooms name="LEGACY">
-      <room>rooms\Main_Room</room>
-      <room>rooms\Level_Up_Room</room>
-      <room>rooms\Store_Room_OLD</room>
-      <room>rooms\Example_Room</room>
-      <room>rooms\Inventory_Room</room>
-      <room>rooms\Armor_Store_Room</room>
-      <rooms name="stages">
-        <room>rooms\waterfall_windmill_room</room>
-        <room>rooms\mountain_room</room>
-        <room>rooms\forged_wilds_room</room>
-        <room>rooms\crystal_city_room</room>
-      </rooms>
-      <room>rooms\overworld_room</room>
-      <room>rooms\test_room</room>
-    </rooms>
   </rooms>
   <constants number="28">
     <constant name="SPLASH_MULT">0.4</constant>
