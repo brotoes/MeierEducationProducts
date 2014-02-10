@@ -1,10 +1,13 @@
-/*returns the difference between the speed of two enemies
- *if the first enemy has a lower speed than the second, a negative
- *number will be returned
- */
+left = argument0
+right = argument1
 
-first = argument0
-second = argument1
+left_speed = left.speed_stat
+right_speed = right.speed_stat
 
-//return first.speed_stat - second.speed_stat
-return first - second
+if (left_speed > right_speed) {
+    return 1
+} else if (left_speed < right_speed) {
+    return -1
+} else {
+    return 0
+}

@@ -19,6 +19,6 @@
   <width>32</width>
   <height>32</height>
   <frames>
-    <frame index="0">images\SPR_invis_meter_0.png</frame>
+    <frame index="0">images\spr_invis_meter_0.png</frame>
   </frames>
 </sprite>

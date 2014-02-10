@@ -115,6 +115,8 @@ battle_controller.used_space += bbox_right - bbox_left
 battle_controller.gold_earned += gold
 ds_list_add(battle_controller.killname_listid, name)
 ds_list_add(battle_controller.killval_listid, gold)
+ds_list_add(battle_controller.deaths_listid, x)
+
 //remove self from list of enemies
 index = ds_list_find_index(battle_controller.enemy_listid, id)
 ds_list_delete(battle_controller.enemy_listid, index)

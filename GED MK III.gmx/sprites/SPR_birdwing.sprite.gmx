@@ -19,7 +19,7 @@
   <width>200</width>
   <height>200</height>
   <frames>
-    <frame index="0">images\SPR_birdwing_0.png</frame>
-    <frame index="1">images\SPR_birdwing_1.png</frame>
+    <frame index="0">images\spr_birdwing_0.png</frame>
+    <frame index="1">images\spr_birdwing_1.png</frame>
   </frames>
 </sprite>

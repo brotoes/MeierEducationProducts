@@ -19,7 +19,7 @@
   <width>193</width>
   <height>256</height>
   <frames>
-    <frame index="0">images\SPR_panther_0.png</frame>
-    <frame index="1">images\SPR_panther_1.png</frame>
+    <frame index="0">images\spr_panther_0.png</frame>
+    <frame index="1">images\spr_panther_1.png</frame>
   </frames>
 </sprite>

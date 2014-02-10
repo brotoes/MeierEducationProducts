@@ -2,7 +2,7 @@ used = argument0
 avail = argument1
 enemy_listid = argument2
 
-count = instance_number(OBJ_enemy_parent)
+count = instance_number(obj_enemy_par)
 
 spacing = floor((avail - used) / max(count - 1, 1))
 

@@ -19,6 +19,6 @@
   <width>501</width>
   <height>600</height>
   <frames>
-    <frame index="0">images\SPR_shopkeep_0.png</frame>
+    <frame index="0">images\spr_shopkeep_0.png</frame>
   </frames>
 </sprite>

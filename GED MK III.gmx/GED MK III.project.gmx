@@ -61,120 +61,116 @@
   </NewExtensions>
   <sounds name="sound">
     <sounds name="music">
-      <sound>sound\M_title_screen</sound>
-      <sound>sound\M_store_theme</sound>
-      <sound>sound\M_battle_theme</sound>
-      <sound>sound\M_victory</sound>
-      <sound>sound\M_defeat</sound>
-      <sound>sound\M_fanfare</sound>
+      <sound>sound\m_title</sound>
+      <sound>sound\m_store</sound>
+      <sound>sound\m_battle</sound>
+      <sound>sound\m_victory</sound>
+      <sound>sound\m_defeat</sound>
+      <sound>sound\m_fanfare</sound>
     </sounds>
     <sounds name="effects">
-      <sound>sound\S_metal</sound>
+      <sound>sound\s_metal</sound>
     </sounds>
   </sounds>
   <sprites name="sprites">
     <sprites name="shoppe">
-      <sprite>sprites\SPR_purse</sprite>
-      <sprite>sprites\SPR_heart</sprite>
-      <sprite>sprites\SPR_money_plate</sprite>
-      <sprite>sprites\SPR_upgrade</sprite>
-      <sprite>sprites\SPR_shop_elems</sprite>
-      <sprite>sprites\SPR_shop_sheet</sprite>
-      <sprite>sprites\SPR_gold_icon</sprite>
-      <sprite>sprites\SPR_shopkeep</sprite>
-      <sprite>sprites\SPR_confirm_elems</sprite>
+      <sprite>sprites\spr_purse</sprite>
+      <sprite>sprites\spr_heart</sprite>
+      <sprite>sprites\spr_moneyplate</sprite>
+      <sprite>sprites\spr_upg</sprite>
+      <sprite>sprites\spr_shopelems</sprite>
+      <sprite>sprites\spr_sheet</sprite>
+      <sprite>sprites\spr_gold_ico</sprite>
+      <sprite>sprites\spr_shopkeep</sprite>
+      <sprite>sprites\spr_confirmelems</sprite>
     </sprites>
     <sprites name="cards">
-      <sprite>sprites\SPR_badges</sprite>
-      <sprite>sprites\SPR_card</sprite>
+      <sprite>sprites\spr_badges</sprite>
+      <sprite>sprites\spr_card</sprite>
     </sprites>
     <sprites name="enemies">
-      <sprite>sprites\SPR_tiger</sprite>
-      <sprite>sprites\SPR_panther</sprite>
-      <sprite>sprites\SPR_cub</sprite>
-      <sprite>sprites\SPR_white_tiger</sprite>
-      <sprite>sprites\SPR_birdwing</sprite>
-      <sprite>sprites\SPR_monarch</sprite>
-      <sprite>sprites\SPR_crying_idol</sprite>
-      <sprite>sprites\SPR_black_idol</sprite>
-      <sprite>sprites\SPR_blood_idol</sprite>
-      <sprite>sprites\SPR_firespirit</sprite>
-      <sprite>sprites\SPR_deliquent</sprite>
+      <sprite>sprites\spr_tiger</sprite>
+      <sprite>sprites\spr_panther</sprite>
+      <sprite>sprites\spr_cub</sprite>
+      <sprite>sprites\spr_albinotiger</sprite>
+      <sprite>sprites\spr_siberiantiger</sprite>
+      <sprite>sprites\spr_birdwing</sprite>
+      <sprite>sprites\spr_monarch</sprite>
+      <sprite>sprites\spr_crying</sprite>
+      <sprite>sprites\spr_blood</sprite>
+      <sprite>sprites\spr_fire</sprite>
+      <sprite>sprites\spr_ent</sprite>
     </sprites>
     <sprites name="interface">
       <sprites name="battle elements">
-        <sprite>sprites\SPR_turn_flag</sprite>
-        <sprite>sprites\SPR_target</sprite>
-        <sprite>sprites\SPR_elem_select</sprite>
-        <sprite>sprites\SPR_meter</sprite>
+        <sprite>sprites\spr_select</sprite>
+        <sprite>sprites\spr_bar</sprite>
       </sprites>
       <sprites name="buttons">
-        <sprite>sprites\SPR_back</sprite>
-        <sprite>sprites\SPR_shop</sprite>
-        <sprite>sprites\SPR_button</sprite>
-        <sprite>sprites\SPR_stoggle</sprite>
-        <sprite>sprites\SPR_mtoggle</sprite>
-        <sprite>sprites\SPR_stage_ind</sprite>
+        <sprite>sprites\spr_back</sprite>
+        <sprite>sprites\spr_shop</sprite>
+        <sprite>sprites\spr_button</sprite>
+        <sprite>sprites\spr_stog</sprite>
+        <sprite>sprites\spr_mtog</sprite>
+        <sprite>sprites\spr_stageind</sprite>
         <sprites name="battle menu">
-          <sprite>sprites\SPR_skip</sprite>
-          <sprite>sprites\SPR_exit</sprite>
-          <sprite>sprites\SPR_dump</sprite>
-          <sprite>sprites\SPR_help</sprite>
+          <sprite>sprites\spr_skip</sprite>
+          <sprite>sprites\spr_exit</sprite>
+          <sprite>sprites\spr_dump</sprite>
+          <sprite>sprites\spr_help</sprite>
         </sprites>
       </sprites>
       <sprites name="cycle">
-        <sprite>sprites\SPR_cycle</sprite>
-        <sprite>sprites\SPR_cycle_elems</sprite>
+        <sprite>sprites\spr_cycle</sprite>
+        <sprite>sprites\spr_cycleelems</sprite>
       </sprites>
       <sprites name="help">
-        <sprite>sprites\SPR_tab</sprite>
-        <sprite>sprites\SPR_done_button</sprite>
-        <sprite>sprites\SPR_body</sprite>
+        <sprite>sprites\spr_tab</sprite>
+        <sprite>sprites\spr_donebut</sprite>
+        <sprite>sprites\spr_body</sprite>
       </sprites>
     </sprites>
     <sprites name="invisible sprites">
-      <sprite>sprites\SPR_parent</sprite>
-      <sprite>sprites\SPR_counter</sprite>
-      <sprite>sprites\SPR_controller</sprite>
-      <sprite>sprites\SPR_music</sprite>
-      <sprite>sprites\SPR_invis_meter</sprite>
-      <sprite>sprites\SPR_invis_button</sprite>
-      <sprite>sprites\SPR_null</sprite>
-      <sprite>sprites\SPR_floor</sprite>
-      <sprite>sprites\SPR_discrete_meter</sprite>
-      <sprite>sprites\SPR_location_reference</sprite>
-      <sprite>sprites\SPR_merchandise</sprite>
-      <sprite>sprites\SPR_animate</sprite>
-      <sprite>sprites\SPR_invis_cycle</sprite>
-      <sprite>sprites\SPR_overlay</sprite>
-      <sprite>sprites\SPR_indicator</sprite>
-      <sprite>sprites\SPR_action</sprite>
+      <sprite>sprites\spr_par</sprite>
+      <sprite>sprites\spr_count</sprite>
+      <sprite>sprites\spr_con</sprite>
+      <sprite>sprites\spr_music</sprite>
+      <sprite>sprites\spr_invis_meter</sprite>
+      <sprite>sprites\spr_invis_but</sprite>
+      <sprite>sprites\spr_null</sprite>
+      <sprite>sprites\spr_floor</sprite>
+      <sprite>sprites\spr_ref</sprite>
+      <sprite>sprites\spr_merch</sprite>
+      <sprite>sprites\spr_anim</sprite>
+      <sprite>sprites\spr_overlay</sprite>
+      <sprite>sprites\spr_ind</sprite>
+      <sprite>sprites\spr_action</sprite>
     </sprites>
     <sprites name="ailments">
-      <sprite>sprites\SPR_ailpoison</sprite>
-      <sprite>sprites\SPR_ailstun</sprite>
+      <sprite>sprites\spr_ailpoison</sprite>
+      <sprite>sprites\spr_ailstun</sprite>
     </sprites>
     <sprites name="particles">
-      <sprite>sprites\SPR_star</sprite>
-      <sprite>sprites\SPR_purse_particle</sprite>
+      <sprite>sprites\spr_star_part</sprite>
+      <sprite>sprites\spr_purse_part</sprite>
     </sprites>
     <sprites name="banners">
-      <sprite>sprites\SPR_victory_banner</sprite>
-      <sprite>sprites\SPR_defeat_banner</sprite>
-      <sprite>sprites\SPR_player_banner</sprite>
-      <sprite>sprites\SPR_enemy_banner</sprite>
-      <sprite>sprites\SPR_got_banner</sprite>
-      <sprite>sprites\SPR_blank_banner</sprite>
-      <sprite>sprites\SPR_mult_banner</sprite>
-      <sprite>sprites\SPR_earn_banner</sprite>
-      <sprite>sprites\SPR_tot_banner</sprite>
-      <sprite>sprites\SPR_title</sprite>
+      <sprite>sprites\spr_victory_ban</sprite>
+      <sprite>sprites\spr_defeat_ban</sprite>
+      <sprite>sprites\spr_player_ban</sprite>
+      <sprite>sprites\spr_enemy_ban</sprite>
+      <sprite>sprites\spr_got_ban</sprite>
+      <sprite>sprites\spr_blank_ban</sprite>
+      <sprite>sprites\spr_mult_ban</sprite>
+      <sprite>sprites\spr_earn_ban</sprite>
+      <sprite>sprites\spr_tot_ban</sprite>
+      <sprite>sprites\spr_title</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
-    <background>background\BG_title</background>
-    <background>background\BG_battlescape</background>
-    <background>background\BG_shop</background>
+    <background>background\bg_title</background>
+    <background>background\bg_battle</background>
+    <background>background\bg_shop</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -184,100 +180,100 @@
     <script>scripts\basic_attack.gml</script>
     <script>scripts\get_heal.gml</script>
     <script>scripts\position_enemies.gml</script>
-    <script>scripts\sort.gml</script>
     <script>scripts\compare.gml</script>
+    <script>scripts\sort.gml</script>
     <script>scripts\speed_comp.gml</script>
     <script>scripts\battle_round.gml</script>
     <script>scripts\split_string_w.gml</script>
+    <script>scripts\ds_list_swap.gml</script>
   </scripts>
   <fonts name="fonts">
-    <font>fonts\FONT_big</font>
-    <font>fonts\FONT_xl</font>
-    <font>fonts\FONT_72p</font>
-    <font>fonts\FONT_120p</font>
-    <font>fonts\FONT_normal</font>
+    <font>fonts\f_big</font>
+    <font>fonts\f_xl</font>
+    <font>fonts\f_72</font>
+    <font>fonts\f_120</font>
+    <font>fonts\f_normal</font>
   </fonts>
   <objects name="objects">
-    <object>objects\OBJ_null</object>
+    <object>objects\obj_null</object>
     <objects name="battle">
-      <object>objects\OBJ_card</object>
-      <object>objects\OBJ_banner</object>
-      <object>objects\OBJ_end_screen</object>
-      <object>objects\OBJ_cycle</object>
-      <object>objects\OBJ_action_bar</object>
-      <object>objects\OBJ_fade_out</object>
-      <object>objects\OBJ_animation</object>
-      <object>objects\OBJ_meter</object>
+      <object>objects\obj_card</object>
+      <object>objects\obj_banner</object>
+      <object>objects\obj_endscr</object>
+      <object>objects\obj_cycle</object>
+      <object>objects\obj_actionbar</object>
+      <object>objects\obj_fade</object>
+      <object>objects\obj_meter</object>
       <objects name="battle menu">
-        <object>objects\OBJ_skip</object>
-        <object>objects\OBJ_dump</object>
-        <object>objects\OBJ_exit</object>
-        <object>objects\OBJ_help</object>
-        <object>objects\OBJ_battle_menu_parent</object>
+        <object>objects\obj_skip</object>
+        <object>objects\obj_dump</object>
+        <object>objects\obj_exit</object>
+        <object>objects\obj_help</object>
+        <object>objects\obj_battlemenu_par</object>
       </objects>
     </objects>
     <objects name="controllers">
-      <object>objects\OBJ_music_controller</object>
-      <object>objects\OBJ_battle_controller</object>
-      <object>objects\OBJ_store_controller</object>
-      <object>objects\OBJ_menu_controller</object>
-      <object>objects\OBJ_persistent_variables</object>
-      <object>objects\OBJ_floor</object>
-      <object>objects\OBJ_reference</object>
+      <object>objects\obj_music_con</object>
+      <object>objects\obj_battle_con</object>
+      <object>objects\obj_store_con</object>
+      <object>objects\obj_menu_con</object>
+      <object>objects\obj_persvars</object>
+      <object>objects\obj_floor</object>
+      <object>objects\obj_ref</object>
     </objects>
     <objects name="shoppe">
-      <object>objects\OBJ_heart</object>
-      <object>objects\OBJ_purse</object>
-      <object>objects\OBJ_money_plate</object>
-      <object>objects\OBJ_upgrade_indicator</object>
-      <object>objects\OBJ_money_indicator</object>
-      <object>objects\OBJ_sheet</object>
-      <object>objects\OBJ_shopkeep</object>
-      <object>objects\OBJ_confirm_scr</object>
-      <object>objects\OBJ_back_button</object>
+      <object>objects\obj_heart</object>
+      <object>objects\obj_purse</object>
+      <object>objects\obj_moneyplate</object>
+      <object>objects\obj_upgind</object>
+      <object>objects\obj_moneyind</object>
+      <object>objects\obj_sheet</object>
+      <object>objects\obj_shopkeep</object>
+      <object>objects\obj_confirmscr</object>
+      <object>objects\obj_back</object>
     </objects>
     <objects name="enemies">
-      <object>objects\OBJ_enemy_parent</object>
-      <object>objects\OBJ_tiger</object>
-      <object>objects\OBJ_white_tiger</object>
-      <object>objects\OBJ_cub</object>
-      <object>objects\OBJ_panther</object>
-      <object>objects\OBJ_crying_idol</object>
-      <object>objects\OBJ_blood_idol</object>
-      <object>objects\OBJ_birdwing</object>
-      <object>objects\OBJ_monarch</object>
+      <object>objects\obj_enemy_par</object>
+      <object>objects\obj_tiger</object>
+      <object>objects\obj_whitetiger</object>
+      <object>objects\obj_cub</object>
+      <object>objects\obj_panther</object>
+      <object>objects\obj_crying</object>
+      <object>objects\obj_blood</object>
+      <object>objects\obj_bird</object>
+      <object>objects\obj_monarch</object>
       <objects name="unused">
         <object>objects\OBJ_enemy_ent</object>
         <object>objects\OBJ_enemy_fury</object>
       </objects>
     </objects>
     <objects name="interface">
-      <object>objects\OBJ_button</object>
-      <object>objects\OBJ_mtoggle</object>
-      <object>objects\OBJ_stoggle</object>
-      <object>objects\OBJ_stage_ind</object>
-      <object>objects\OBJ_shop_button</object>
-      <object>objects\OBJ_help_overlay</object>
-      <object>objects\OBJ_help_tab</object>
-      <object>objects\OBJ_done_button</object>
-      <object>objects\OBJ_battle_overlay_parent</object>
+      <object>objects\obj_button</object>
+      <object>objects\obj_mtog</object>
+      <object>objects\obj_stog</object>
+      <object>objects\obj_stageind</object>
+      <object>objects\obj_shopbut</object>
+      <object>objects\obj_help_overlay</object>
+      <object>objects\obj_help_tab</object>
+      <object>objects\obj_done_button</object>
+      <object>objects\obj_battleoverlay_par</object>
     </objects>
     <objects name="particles">
-      <object>objects\OBJ_star_particle</object>
-      <object>objects\OBJ_heal_particle</object>
-      <object>objects\OBJ_charge_particle</object>
-      <object>objects\OBJ_purse_particle</object>
-      <object>objects\OBJ_floating_number</object>
+      <object>objects\obj_star_part</object>
+      <object>objects\obj_heal_part</object>
+      <object>objects\obj_charge_part</object>
+      <object>objects\obj_purse_part</object>
+      <object>objects\obj_text_part</object>
     </objects>
     <objects name="sprite refs">
-      <object>objects\OBJ_ref_parent</object>
-      <object>objects\OBJ_ref_tiger</object>
+      <object>objects\obj_ref_par</object>
+      <object>objects\obj_ref_tiger</object>
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\menu_room</room>
-    <room>rooms\store_room</room>
-    <room>rooms\battle_room</room>
+    <room>rooms\rm_menu</room>
+    <room>rooms\rm_store</room>
+    <room>rooms\rm_battle</room>
   </rooms>
   <constants number="28">
     <constant name="SPLASH_MULT">0.4</constant>
