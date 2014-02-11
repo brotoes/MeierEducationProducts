@@ -58,6 +58,7 @@ victory = false
 alarm_set = false
 player_dmg_mult = 1
 turn_end_waiting = false
+enemy_turn_block = false
 
 //number of pixels available to draw enemies in (width)
 screen_space = room_width - (SCR_L_MARGIN + SCR_R_MARGIN)
@@ -124,6 +125,7 @@ ds_list_destroy(deaths_listid)
             <string>ready_to_draw = true
 whose_turn = 0
 turn_end_waiting = false
+enemy_turn_block = false
 </string>
           </argument>
         </arguments>
@@ -230,16 +232,18 @@ if (whose_turn != 0) {
 
 //spawn new enemies if queued and space available
 first_loop = true
-while (whose_turn == instance_number(obj_enemy_par) + 1 and 
-       ds_list_size(queue_listid) &gt; 0 and screen_space &gt; used_space) {
+enemy_cnt = instance_number(obj_enemy_par)
+while (whose_turn == enemy_cnt + 1 and ds_list_size(queue_listid) &gt; 0 and 
+       screen_space &gt; used_space) {
     if (first_loop) {
         battle_banner.banner = "Reinforcements!"
         first_loop = false
+        enemy_turn_block = true
     }
     
     pos = 0
     //get position of new enemies
-    if (ds_list_size(deaths_listid) &gt; 0) {
+    if (ds_list_size(deaths_listid) &gt; 0 and enemy_cnt &gt; 0) {
         new_x = ds_list_find_value(deaths_listid, 0)
         ds_list_delete(deaths_listid, 0)
         
@@ -267,27 +271,17 @@ while (whose_turn == instance_number(obj_enemy_par) + 1 and
     ds_list_delete(queue_listid, 0)
     ds_list_delete(succession_listid, 0)
     
-    for (i = 0; i &lt; ds_list_size(enemy_listid); i ++) {
-        inst_id = ds_list_find_value(enemy_listid, i)
-        show_debug_message(string(i) + ": " + inst_id.name + " (" + string(inst_id.speed_stat) + "), " + string(inst_id))
-    }
-    show_debug_message(" ")
-    
     sort(enemy_listid, speed_comp)
     
-    for (i = 0; i &lt; ds_list_size(enemy_listid); i ++) {
-        inst_id = ds_list_find_value(enemy_listid, i)
-        show_debug_message(string(i) + ": " + inst_id.name + " (" + string(inst_id.speed_stat) + "), " + string(inst_id))
-    }
-    
     position_enemies(used_space, screen_space, enemy_listid)
-}
-
-if (whose_turn == instance_number(obj_enemy_par) + 1 and not turn_end_waiting) {
     alarm[2] = 60
     turn_end_waiting = true
 }
 
+if (not turn_end_waiting and whose_turn == instance_number(obj_enemy_par) + 1) {
+    alarm[2] = 60
+    turn_end_waiting = true
+}
 </string>
           </argument>
         </arguments>

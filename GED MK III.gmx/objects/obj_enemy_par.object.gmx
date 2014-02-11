@@ -82,7 +82,7 @@ meter_hp.text = false
 name = "Enemy Parent"
 
 //this enemy will be queued upon this enemy's death
-//if it is not OBJ_null
+//if it is not obj_null
 successor = obj_null
 
 battle.used_space += bbox_right - bbox_left
@@ -200,17 +200,29 @@ if (hp_current &lt;= 0) {
 
 //check if it is this instance's turn
 if (ds_list_find_value(battle.enemy_listid, battle.whose_turn - 1) == id and 
-    hp_current &gt; 0 and alarm[0] == -1 and battle.hp_current != 0) {
+    hp_current &gt; 0 and alarm[0] == -1 and battle.hp_current != 0 and
+    ds_list_size(battle.enemy_listid) &gt; battle.whose_turn - 1 and
+    not battle.enemy_turn_block) {
     alarm[0] = 30
 }
 
 //step animation
 if (instance_number(obj_battleoverlay_par) == 0 and not anim_spawn) {
     animation_counter ++
-}
-
-if (flash &gt; 0) {
-    flash --
+    if (flash &gt; 0) {
+        flash --
+    }
+    if (anim_heal) {
+        randomize()
+        anim_heal = false
+        //create particles
+        for (i = 0; i &lt; 100; i ++) {
+            instance_create(x + irandom(sprite_width), y + irandom(sprite_height), obj_heal_part)
+        }
+        //flash self
+        flash = flash_time
+        flash_color = C_HEAL
+    }
 }
 
 //cap hp
@@ -218,17 +230,6 @@ if (hp_current &gt; hp_total) {
     hp_current = hp_total
 }
 
-if (anim_heal) {
-    randomize()
-    anim_heal = false
-    //create particles
-    for (i = 0; i &lt; 100; i ++) {
-        instance_create(x + irandom(sprite_width), y + irandom(sprite_height), obj_heal_part)
-    }
-    //flash self
-    flash = flash_time
-    flash_color = C_HEAL
-}
 </string>
           </argument>
         </arguments>
@@ -324,7 +325,7 @@ if (anim_heal) {
             <kind>1</kind>
             <string>if (battle.target == id and mouseover) {
     //remove self from target variable in battle_controller
-    battle.target = OBJ_null
+    battle.target = obj_null
 } else if (mouseover){
     battle.target = id
 }
@@ -380,10 +381,10 @@ mouseover = false
 y = enemy_floor.y - height - 30
 
 //if there are lots of enemies on the screen, stagger them.
-if (stagger) {
+//if (stagger) {
     y -= stagger_amnt*(stagger_index mod 2)
     depth = (stagger_index mod 2)*10
-}
+//}
 meter_hp.depth = depth - 1
 
 scale = 1
@@ -414,10 +415,18 @@ if (flying) {
 }
 
 //draw shadow
-draw_set_alpha(alpha)
+spawn_alpha = 1
+swoop_x = 0
+swoop_y = 0
+if (flying and anim_spawn) {
+    spawn_alpha = spawn_counter/spawn_time
+    swoop_x = path_get_x(p_swoop, sqrt(spawn_counter/spawn_time))
+    swoop_y = path_get_y(p_swoop, sqrt(spawn_counter/spawn_time))
+}
+draw_set_alpha(alpha - (1 - spawn_alpha))
 
-shadow_left = x - adjust_y/2
-shadow_right = x + width + adjust_y/2
+shadow_left = x - adjust_y/2 + swoop_x
+shadow_right = x + width + adjust_y/2 + swoop_x
 shadow_top = y + height - 20 - (width - 100)/5 - adjust_y/7
 shadow_bottom = y + height + 10
 
@@ -429,25 +438,32 @@ draw_set_color(c_black)
 y += adjust_y
 
 if (anim_spawn) {
-    //spawn animation
-    part_height = sprite_height*(spawn_counter/spawn_time)
-    part_top = sprite_height - part_height
-    draw_sprite_part_ext(sprite_index, 0, 0, part_top, sprite_width, part_height,
-          x + scale_xoffset, y + scale_yoffset + part_top*scale, scale, scale, c_white, 1)
-    draw_set_blend_mode(bm_add)
-    dark = make_color_rgb(75, 75, 75)
-    draw_sprite_part_ext(sprite_index, 1, 0, 0, sprite_width, part_top,
-                x + scale_xoffset, y + scale_yoffset, scale, scale, dark, 1)
-    for (i = 0; i &lt; 30; i ++) {
-        glow_height =  i*(1-spawn_counter/spawn_time)
-        if (glow_height + part_top &gt; sprite_height) {
-            glow_height = sprite_height - part_top
+    if (flying) {
+        //swoop enemy in
+        draw_sprite_ext(sprite_index, 0, x + scale_xoffset + swoop_x,
+                        y + scale_yoffset + swoop_y, scale, scale, 0, c_white, 1)        
+    } else {
+        //spawn animation
+        part_height = sprite_height*(spawn_counter/spawn_time)
+        part_top = sprite_height - part_height
+        draw_sprite_part_ext(sprite_index, 0, 0, part_top, sprite_width, part_height,
+              x + scale_xoffset, y + scale_yoffset + part_top*scale, scale, scale, c_white, 1)
+        draw_set_blend_mode(bm_add)
+        dark = make_color_rgb(75, 75, 75)
+        draw_sprite_part_ext(sprite_index, 1, 0, 0, sprite_width, part_top,
+                    x + scale_xoffset, y + scale_yoffset, scale, scale, dark, 1)
+        for (i = 0; i &lt; 30; i ++) {
+            glow_height =  i*(1-spawn_counter/spawn_time)
+            if (glow_height + part_top &gt; sprite_height) {
+                glow_height = sprite_height - part_top
+            }
+            draw_sprite_part_ext(sprite_index, 0, 0, part_top, sprite_width, glow_height,
+                x + scale_xoffset, 
+                y + scale_yoffset + part_top*scale, scale, scale, c_white, 1)
         }
-        draw_sprite_part_ext(sprite_index, 0, 0, part_top, sprite_width, glow_height,
-            x + scale_xoffset - sprite_width*i/200, 
-            y + scale_yoffset + part_top*scale, scale + i/100, scale, c_white, 1)
+        draw_set_blend_mode(bm_normal)
     }
-    draw_set_blend_mode(bm_normal)
+    //iterate counters and control variables
     if (spawn_counter &gt;= spawn_time) {
         anim_spawn = false
     } else {

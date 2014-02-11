@@ -18,8 +18,8 @@ for (i = 0; i < ds_list_size(enemy_listid); i ++) {
     enemy = ds_list_find_value(enemy_listid, i)
     enemy.x = next_x
     next_x += spacing + sprite_get_bbox_right(enemy.sprite_index) - sprite_get_bbox_left(enemy.sprite_index)
-    if(spacing <= 0) {
-        enemy.stagger = true
+    //if(spacing <= 0) {
+        //enemy.stagger = true
         enemy.stagger_index = i
-    }
+    //}
 }

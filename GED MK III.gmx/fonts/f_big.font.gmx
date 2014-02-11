@@ -8,6 +8,10 @@
   <aa>3</aa>
   <texgroups>
     <texgroup0>0</texgroup0>
+    <texgroup1>0</texgroup1>
+    <texgroup2>0</texgroup2>
+    <texgroup3>0</texgroup3>
+    <texgroup4>0</texgroup4>
   </texgroups>
   <ranges>
     <range0>32,127</range0>
@@ -20,9 +24,9 @@
     <glyph character="61" x="86" y="131" w="15" h="26" shift="21" offset="3"/>
     <glyph character="77" x="162" y="2" w="29" h="32" shift="30" offset="0"/>
     <glyph character="122" x="366" y="88" w="15" h="33" shift="16" offset="1"/>
+    <glyph character="115" x="397" y="88" w="14" h="33" shift="16" offset="1"/>
     <glyph character="56" x="43" y="88" w="18" h="33" shift="21" offset="1"/>
     <glyph character="35" x="175" y="45" w="21" h="32" shift="23" offset="1"/>
-    <glyph character="115" x="397" y="88" w="14" h="33" shift="16" offset="1"/>
     <glyph character="105" x="174" y="131" w="10" h="33" shift="11" offset="1"/>
     <glyph character="47" x="429" y="88" w="13" h="34" shift="13" offset="0"/>
     <glyph character="80" x="475" y="45" w="19" h="32" shift="20" offset="1"/>
@@ -31,12 +35,12 @@
     <glyph character="48" x="106" y="45" w="21" h="33" shift="23" offset="1"/>
     <glyph character="32" x="34" y="131" w="10" h="41" shift="10" offset="0"/>
     <glyph character="91" x="186" y="131" w="9" h="36" shift="13" offset="4"/>
+    <glyph character="79" x="346" y="2" w="23" h="33" shift="24" offset="1"/>
+    <glyph character="97" x="412" y="45" w="19" h="33" shift="20" offset="1"/>
     <glyph character="114" x="413" y="88" w="14" h="32" shift="15" offset="1"/>
     <glyph character="57" x="143" y="88" w="18" h="33" shift="22" offset="2"/>
-    <glyph character="98" x="433" y="45" w="19" h="33" shift="20" offset="0"/>
-    <glyph character="79" x="346" y="2" w="23" h="33" shift="24" offset="1"/>
     <glyph character="107" x="103" y="88" w="18" h="33" shift="20" offset="1"/>
-    <glyph character="97" x="412" y="45" w="19" h="33" shift="20" offset="1"/>
+    <glyph character="98" x="433" y="45" w="19" h="33" shift="20" offset="0"/>
     <glyph character="46" x="295" y="131" w="5" h="33" shift="7" offset="1"/>
     <glyph character="38" x="2" y="45" w="22" h="33" shift="22" offset="1"/>
     <glyph character="100" x="349" y="45" w="19" h="33" shift="20" offset="1"/>

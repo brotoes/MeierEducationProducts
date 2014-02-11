@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>battle = instance_find(OBJ_battle_controller, 0)
+            <string>battle = instance_find(obj_battle_con, 0)
 
 victory = battle.victory
 gold_earned = battle.gold_earned
@@ -98,11 +98,11 @@ if (victory) {
     //draw banners
     draw_sprite(spr_victory_ban, 0, room_width/2 - 
                 sprite_get_width(spr_victory_ban)/2, margin*2)
-    draw_sprite(SPR_got_banner, 0, room_width/2 - 
+    draw_sprite(spr_got_ban, 0, room_width/2 - 
                 sprite_get_width(spr_victory_ban)/2,
                 sprite_get_height(spr_victory_ban) + margin*4)
 
-    draw_set_font(FONT_big)
+    draw_set_font(f_big)
     //draw breakdown
     cur_y = sprite_get_height(spr_victory_ban) + 
             sprite_get_height(spr_got_ban) + margin*5
