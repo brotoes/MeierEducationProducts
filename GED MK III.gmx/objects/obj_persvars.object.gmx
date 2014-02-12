@@ -98,19 +98,22 @@ ds_list_destroy(children_listid)
 stages[0] = 0
 succession[0] = 0
 for (cur_stage = 0; cur_stage &lt; STAGE_COUNT; cur_stage ++) {
+    default_str = "no enemy to load"
     stages[cur_stage] = ds_list_create()
     succession[cur_stage] = ds_list_create()
-    num_enemies = ini_read_real("stage" + string(cur_stage), "enemyCount", 2)
-    for (cur_enemy = 0; cur_enemy &lt; num_enemies; cur_enemy ++) {
-        enemy_name = ini_read_string("stage" + string(cur_stage), "enemy" + string(cur_enemy), "tiger")
-        successor = ini_read_string("stage" + string(cur_stage), "successor" + string(cur_enemy), "null")
-        enemy_name = "obj_" + enemy_name
-        successor = "obj_" + successor
-        ds_list_add(succession[cur_stage], ds_map_find_value(enemy_mapid, successor))
+    cur_enemy = 0
+    enemy = ini_read_string("stage" + string(cur_stage), "enemy" + string(cur_enemy), default_str)
+    successor = ini_read_string("stage" + string(cur_stage), "successor" + string(cur_enemy), "null")
+    while (enemy != default_str) {
+        enemy_name = "obj_" + enemy
+        successor_name = "obj_" + successor
         ds_list_add(stages[cur_stage], ds_map_find_value(enemy_mapid, enemy_name))
+        ds_list_add(succession[cur_stage], ds_map_find_value(enemy_mapid, successor_name))
+        cur_enemy ++
+        enemy = ini_read_string("stage" + string(cur_stage), "enemy" + string(cur_enemy), default_str)
+        successor = ini_read_string("stage" + string(cur_stage), "successor" + string(cur_enemy), "null")
     }
 }
-
 ini_close()
 
 prev_val[0] = gold
@@ -144,6 +147,33 @@ for (i = 0; i &lt; ds_list_size(children_listid); i ++) {
     with (inst) instance_destroy()
 }
 ds_list_destroy(children_listid)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>  
+for (i = 0; i &lt; STAGE_COUNT; i ++) {
+    ds_list_destroy(stages[i])
+    ds_list_destroy(succession[i])
+}
 </string>
           </argument>
         </arguments>
@@ -202,7 +232,7 @@ if (prev_val[11] != hand_size)
 
 len = ds_list_size(changes_listid)
 
-if (len) {
+if (len &gt; 0 and false) {
     ini_open("savedata.ini")
     for (i = 0; i &lt; len; i ++) {
         index = ds_list_find_value(changes_listid, i)

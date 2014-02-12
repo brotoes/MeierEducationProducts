@@ -79,6 +79,7 @@ for (i = 0; i &lt; ds_list_size(title_listid); i ++) {
         section ++
     }
     ds_list_add(body_listid, next_body)
+    ds_list_destroy(next_body)
 }
 
 ini_close()

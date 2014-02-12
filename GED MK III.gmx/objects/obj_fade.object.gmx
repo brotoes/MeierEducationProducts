@@ -40,6 +40,7 @@ age = 0
 scale = 1
 scale_xoffset = 0
 scale_yoffset = 0
+stagger_index = 0
 </string>
           </argument>
         </arguments>
@@ -67,6 +68,7 @@ battle.used_space -= sprite_get_bbox_right(fade_sprite) - sprite_get_bbox_left(f
 
 if (successor != obj_null) {
     enemy = instance_create(x, y, successor)
+    enemy.stagger_index = stagger_index
 }
 </string>
           </argument>

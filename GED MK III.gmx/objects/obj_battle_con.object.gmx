@@ -99,7 +99,9 @@ room_goto(parent_room)
 ds_list_destroy(killname_listid)
 ds_list_destroy(killval_listid)
 ds_list_destroy(queue_listid)
+ds_list_destroy(succession_listid)
 ds_list_destroy(deaths_listid)
+ds_list_destroy(enemy_listid)
 </string>
           </argument>
         </arguments>
@@ -309,6 +311,7 @@ if (not turn_end_waiting and whose_turn == instance_number(obj_enemy_par) + 1) {
     new_enemy = instance_create(0, 0, 
                                 ds_list_find_value(queue_listid, 0))
     new_enemy.successor = ds_list_find_value(succession_listid, 0)
+    show_debug_message(string(new_enemy.successor))
     ds_list_delete(queue_listid, 0)
     ds_list_delete(succession_listid, 0)
     new_enemy.turn_priority = instance_number(obj_enemy_par)
