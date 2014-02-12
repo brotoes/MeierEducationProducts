@@ -75,7 +75,6 @@ if (irandom(3) == 0) {
             <kind>1</kind>
             <string>if (not stun) {
     //heal everything
-    show_debug_message("hello")
     if (instance_number(obj_enemy_par) &gt; 1) {
         for (i = 0; i &lt; instance_number(obj_enemy_par); i ++) {
             heal_target = instance_find(obj_enemy_par, i)
@@ -90,7 +89,6 @@ if (irandom(3) == 0) {
             }
         }
     }
-        show_debug_message("again")
 } else {
     indicator_offset = sprite_width/2
     indicator = instance_create(x + indicator_offset, y + 50,

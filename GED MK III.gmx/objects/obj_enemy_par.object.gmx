@@ -130,6 +130,7 @@ if (stagger) {
     fade.scale_xoffset = ((sprite_width*stagger_shrink)/2)*(stagger_index mod 2)
     fade.scale_yoffset = (sprite_height*stagger_shrink)*(stagger_index mod 2)
     fade.stagger_index = stagger_index
+    fade.enemy_index = ds_list_find_index(battle.enemy_listid, id)
 }
 </string>
           </argument>

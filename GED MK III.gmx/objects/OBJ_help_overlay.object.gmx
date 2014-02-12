@@ -79,7 +79,6 @@ for (i = 0; i &lt; ds_list_size(title_listid); i ++) {
         section ++
     }
     ds_list_add(body_listid, next_body)
-    ds_list_destroy(next_body)
 }
 
 ini_close()
@@ -134,7 +133,12 @@ instance_create(room_width - 128, room_height - 64, obj_done_button)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_list_destroy(title_listid)
+            <string>for (i = 0; i &lt; ds_list_size(body_listid); i ++) {
+    listid = ds_list_find_value(body_listid, i)
+    ds_list_destroy(listid)
+}
+
+ds_list_destroy(title_listid)
 ds_list_destroy(body_listid)
 </string>
           </argument>
@@ -200,8 +204,6 @@ if (scroll_offset &lt; end_y - tile_height*2 - max_y_offset - 100) {
 if (max_y_offset &lt; end_y - tile_height*2) {
     scroll_offset = 0
 }
-
-show_debug_message(string(max_y_offset))
 </string>
           </argument>
         </arguments>

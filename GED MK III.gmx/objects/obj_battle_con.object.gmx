@@ -311,7 +311,6 @@ if (not turn_end_waiting and whose_turn == instance_number(obj_enemy_par) + 1) {
     new_enemy = instance_create(0, 0, 
                                 ds_list_find_value(queue_listid, 0))
     new_enemy.successor = ds_list_find_value(succession_listid, 0)
-    show_debug_message(string(new_enemy.successor))
     ds_list_delete(queue_listid, 0)
     ds_list_delete(succession_listid, 0)
     new_enemy.turn_priority = instance_number(obj_enemy_par)

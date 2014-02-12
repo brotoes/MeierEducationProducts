@@ -198,7 +198,6 @@
     <script>scripts\battle_round.gml</script>
     <script>scripts\split_string_w.gml</script>
     <script>scripts\ds_list_swap.gml</script>
-    <script>scripts\script.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\f_big</font>
