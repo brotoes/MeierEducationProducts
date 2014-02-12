@@ -4,27 +4,7 @@
     <Config>Configs\Default</Config>
     <Config>Configs\Debug</Config>
   </Configs>
-  <datafiles number="5" name="datafiles">
-    <datafile>
-      <name>help</name>
-      <exists>-1</exists>
-      <size>1453</size>
-      <exportAction>2</exportAction>
-      <exportDir></exportDir>
-      <overwrite>0</overwrite>
-      <freeData>-1</freeData>
-      <removeEnd>0</removeEnd>
-      <store>0</store>
-      <ConfigOptions>
-        <Config name="Default">
-          <CopyToMask>49385710</CopyToMask>
-        </Config>
-        <Config name="Debug">
-          <CopyToMask>49385710</CopyToMask>
-        </Config>
-      </ConfigOptions>
-      <filename>help.ini</filename>
-    </datafile>
+  <datafiles number="8" name="datafiles">
     <datafile>
       <name>desc</name>
       <exists>-1</exists>
@@ -40,15 +20,15 @@
           <CopyToMask>49385710</CopyToMask>
         </Config>
         <Config name="Debug">
-          <CopyToMask>49385710</CopyToMask>
+          <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
-      <filename>desc.ini</filename>
+      <filename>desc</filename>
     </datafile>
     <datafile>
       <name>gamedata</name>
       <exists>-1</exists>
-      <size>2599</size>
+      <size>2252</size>
       <exportAction>2</exportAction>
       <exportDir></exportDir>
       <overwrite>0</overwrite>
@@ -64,6 +44,26 @@
         </Config>
       </ConfigOptions>
       <filename>gamedata</filename>
+    </datafile>
+    <datafile>
+      <name>help</name>
+      <exists>-1</exists>
+      <size>1468</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>49385710</CopyToMask>
+        </Config>
+        <Config name="Debug">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>help</filename>
     </datafile>
   </datafiles>
   <NewExtensions>
@@ -287,7 +287,7 @@
     <room>rooms\rm_store</room>
     <room>rooms\rm_battle</room>
   </rooms>
-  <constants number="28">
+  <constants number="27">
     <constant name="SPLASH_MULT">0.4</constant>
     <constant name="GOLD_RAT">1.618</constant>
     <constant name="SCR_R_MARGIN">10</constant>
@@ -295,7 +295,6 @@
     <constant name="MAX_LEVEL">9</constant>
     <constant name="MAX_POINTS">4</constant>
     <constant name="PRIORITY_ATTACK_SOUND">1</constant>
-    <constant name="PRIORITY_MUSIC">0</constant>
     <constant name="MENU_CONF">5</constant>
     <constant name="MENU_LOAD">4</constant>
     <constant name="MENU_SHOP">3</constant>

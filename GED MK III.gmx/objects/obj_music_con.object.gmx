@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>audio_play_sound(m_title, PRIORITY_MUSIC, true)
+            <string>audio_play_music(m_title, true)
 prev_room = room
 recently_off = false
 
@@ -62,16 +62,14 @@ if (mtoggle.image_index == 0) {
         prev_room = room
         switch (room) {
             case rm_store: {
-                audio_stop_all()
-                audio_play_sound(m_store, PRIORITY_MUSIC, true)
+                audio_play_music(m_store, true)
             } break
             case rm_battle: {
-                audio_stop_all()
-                audio_play_sound(m_battle, PRIORITY_MUSIC, true)
+                audio_play_music(m_battle, true)
             } break
             default:
                 audio_stop_all()
-                audio_play_sound(m_title, PRIORITY_MUSIC, true)
+                audio_play_music(m_title, true)
         }
     }
 } else {
@@ -81,15 +79,15 @@ if (mtoggle.image_index == 0) {
 //control victory music
 if (room == rm_battle and battle_over and victory) {
     audio_stop_all()
-    audio_play_sound(m_fanfare, PRIORITY_MUSIC, false)
+    audio_play_music(m_fanfare, false)
     battle_over = false
     fanfare_done = true
 } else if (room == rm_battle and fanfare_done and victory and not audio_is_playing(m_fanfare)) {
     fanfare_done = false
-    audio_play_sound(m_victory, PRIORITY_MUSIC, true)
+    audio_play_music(m_victory, true)
 } else if (room == rm_battle and battle_over) {
     audio_stop_all()
-    audio_play_sound(m_defeat, PRIORITY_MUSIC, true)
+    audio_play_music(m_defeat, true)
     battle_over = false
 }
 </string>

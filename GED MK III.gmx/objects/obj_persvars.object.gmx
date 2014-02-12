@@ -64,7 +64,6 @@ upg_cost[MAX_LEVEL + 1] = ini_read_string("elemUpgCost",
 //purse levels
 purse_cost[MAX_LEVEL + 1] = ini_read_string("elemUpgCost", 
                             "toLevel" + string(MAX_LEVEL + 1), "--")
-ini_write_string("elemUpgCost", "toLevel" + string(MAX_LEVEL + 1), purse_cost[MAX_LEVEL + 1])
 for (i = 0; i &lt;= MAX_LEVEL; i ++) {
     purse_cost[i] = ini_read_real("purseUpgCost", "toLevel" + string(i), 50*i)
 }
@@ -232,7 +231,7 @@ if (prev_val[11] != hand_size)
 
 len = ds_list_size(changes_listid)
 
-if (len &gt; 0 and false) {
+if (len &gt; 0) {
     ini_open("savedata.ini")
     for (i = 0; i &lt; len; i ++) {
         index = ds_list_find_value(changes_listid, i)
@@ -242,47 +241,47 @@ if (len &gt; 0 and false) {
                 ini_write_real("data", "gold", gold)
             } break
             case 1: {
-                prev_val[1] = gold
+                prev_val[1] = gold_multiplier
                 ini_write_real("data", "gmult", gold_multiplier)
             } break
             case 2: {
-                prev_val[2] = gold
+                prev_val[2] = stage
                 ini_write_real("data", "stage", stage)
             } break
             case 3: {
-                prev_val[3] = gold
+                prev_val[3] = run
                 ini_write_real("data", "run", run)
             } break
             case 4: {
-                prev_val[4] = gold
+                prev_val[4] = hp_lvl
                 ini_write_real("data", "hp", hp_lvl)
             } break
             case 5: {
-                prev_val[5] = gold
+                prev_val[5] = purse_lvl
                 ini_write_real("data", "purse", purse_lvl)
             } break
             case 6: {
-                prev_val[6] = gold
+                prev_val[6] = upgrade[ELEMENT_FIRE]
                 ini_write_real("data", "elem0", upgrade[ELEMENT_FIRE])
             } break
             case 7: {
-                prev_val[7] = gold
+                prev_val[7] = upgrade[ELEMENT_EARTH]
                 ini_write_real("data", "elem1", upgrade[ELEMENT_EARTH])
             } break
             case 8: {
-                prev_val[8] = gold
+                prev_val[8] = upgrade[ELEMENT_METAL]
                 ini_write_real("data", "elem2", upgrade[ELEMENT_METAL])
             } break
             case 9: {
-                prev_val[9] = gold
+                prev_val[9] = upgrade[ELEMENT_WATER]
                 ini_write_real("data", "elem3", upgrade[ELEMENT_WATER])
             } break
             case 10: {
-                prev_val[10] = gold
+                prev_val[10] = upgade[ELEMENT_WOOD]
                 ini_write_real("data", "elem4", upgrade[ELEMENT_WOOD])
             } break
             case 11: {
-                prev_val[11] = gold
+                prev_val[11] = hand_size
                 ini_write_real("data", "hand", hand_size)
             } break
         }
